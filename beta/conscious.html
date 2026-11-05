@@ -1,0 +1,1800 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="סיכום קורס פרמדיק – פרק ג׳ · שינוי במצב ההכרה בחולה נושם">
+<title>שינויים בהכרה · סיכום קורס פרמדיק</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Miriam+Libre:wght@400;700&family=Suez+One&display=swap">
+<style>
+/* Layout: one reading column (~68ch) with wide breakouts for tables and figures; a colour-tape rail
+   (one colour zone per chapter) runs down the inline-end edge as navigation, and becomes a thin
+   sticky strip on phones. Highlight system: lime marker = must know, magenta = red flag, slate
+   chart-paper in Miriam Libre = hospital-level knowledge, teal = what the paramedic does in the field. */
+:root {
+  --paper: #F6F8FA;
+  --card: #FFFFFF;
+  --ink: #142030;
+  --ink-2: #4B5969;
+  --ink-3: #7A8796;
+  --rule: #D8DFE7;
+  --hl: #E4FF3F;
+  --hl-ink: #182000;
+  --alarm: #D90F64;
+  --alarm-bg: #FFE6F0;
+  --field: #0A7A72;
+  --field-bg: #E1F3F1;
+  --hosp: #56688A;
+  --hosp-bg: #EEF1F7;
+  --hosp-grid: rgba(86,104,138,.10);
+  --z-grey: #8E959C;
+  --z-pink: #F08DBA;
+  --z-red: #E0312C;
+  --z-purple: #8A4FBF;
+  --z-yellow: #F2C200;
+  --z-white: #E6EAEE;
+  --z-blue: #2C78DD;
+  --z-orange: #F0832A;
+  --z-green: #2BA14D;
+  --zone: var(--z-grey);
+
+  --f-display: "Suez One", "Frank Ruhl Libre", serif;
+  --f-body: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --f-ui: "IBM Plex Sans Hebrew", "Segoe UI", Arial, sans-serif;
+  --f-hosp: "Miriam Libre", "IBM Plex Sans Hebrew", Arial, sans-serif;
+
+  --t-xs: .78rem; --t-sm: .9rem; --t-base: 1.1rem; --t-md: 1.3rem; --t-lg: 1.65rem; --t-xl: 2.3rem; --t-xxl: clamp(2.6rem, 7vw, 4.6rem);
+  --col: 44rem;
+  --wide: 62rem;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--f-body); font-size: var(--t-base); line-height: 1.75;
+  direction: rtl; text-align: start;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+[data-zone="grey"]{--zone:var(--z-grey)} [data-zone="pink"]{--zone:var(--z-pink)} [data-zone="red"]{--zone:var(--z-red)}
+[data-zone="purple"]{--zone:var(--z-purple)} [data-zone="yellow"]{--zone:var(--z-yellow)} [data-zone="white"]{--zone:var(--z-white)}
+[data-zone="blue"]{--zone:var(--z-blue)} [data-zone="orange"]{--zone:var(--z-orange)} [data-zone="green"]{--zone:var(--z-green)}
+
+.page { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1100px) { .page { padding-left: max(96px, env(safe-area-inset-left, 0px)); } }
+.flow { max-width: var(--col); margin-inline: auto; }
+.flow > * + * { margin-block-start: 1em; }
+.flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses {
+  --bw: min(var(--wide), calc(100vw - 200px));
+  width: var(--bw); max-width: none; margin-inline: calc((100% - var(--bw)) / 2);
+}
+@media (max-width: 1000px) { .flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses { width: 100%; margin-inline: 0; } }
+
+a { color: inherit; text-decoration-color: var(--zone); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--field); outline-offset: 2px; border-radius: 4px; }
+h2, h3, h4 { text-wrap: balance; line-height: 1.25; }
+h3 { font-family: var(--f-ui); font-weight: 700; font-size: var(--t-lg); margin-block-start: 2.4em; letter-spacing: -.01em; }
+h3::before { content: ""; display: inline-block; width: .55em; height: .55em; background: var(--zone); border-radius: 2px; margin-inline-end: .45em; vertical-align: .12em; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+h4 { font-family: var(--f-ui); font-weight: 600; font-size: var(--t-md); margin-block-start: 1.8em; color: var(--ink); }
+p, li { text-wrap: pretty; }
+ul, ol { padding-inline-start: 1.3em; }
+li + li { margin-block-start: .3em; }
+li::marker { color: var(--ink-3); }
+strong, b { font-weight: 700; }
+abbr, .en { font-family: var(--f-ui); font-size: .92em; direction: ltr; unicode-bidi: isolate; }
+.num { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-weight: 600; unicode-bidi: isolate; }
+
+/* ---------- highlight system ---------- */
+mark { background: linear-gradient(transparent 12%, var(--hl) 12%, var(--hl) 88%, transparent 88%); color: var(--hl-ink); padding-inline: .15em; border-radius: 2px; font-weight: 600; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.alarm-t { color: var(--alarm); font-weight: 700; }
+
+.callout { border-radius: var(--r); padding: 1rem 1.15rem 1.05rem; position: relative; }
+.callout > .tag { display: inline-flex; align-items: center; gap: .4em; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .06em; padding: .2em .65em; border-radius: 99px; margin-block-end: .5rem; }
+.callout > :last-child { margin-block-end: 0; }
+.callout p { margin: .35em 0; }
+.callout ul, .callout ol { margin: .35em 0; }
+.tag svg { width: 1.05em; height: 1.05em; }
+
+.must { background: var(--hl); color: var(--hl-ink); }
+.must > .tag { background: var(--hl-ink); color: var(--hl); }
+.must mark { background: var(--hl-ink); color: var(--hl); }
+
+.redflag { background: var(--alarm-bg); border: 2px solid var(--alarm); }
+.redflag > .tag { background: var(--alarm); color: #fff; }
+
+.field { background: var(--field-bg); border-inline-start: 5px solid var(--field); border-radius: 4px var(--r) var(--r) 4px; }
+.field > .tag { background: var(--field); color: var(--card); }
+
+.hosp, .hosp-i { font-family: var(--f-hosp); color: var(--hosp); }
+.hosp { font-size: .9rem; line-height: 1.7; background-color: var(--hosp-bg);
+  background-image: linear-gradient(var(--hosp-grid) 1px, transparent 1px), linear-gradient(90deg, var(--hosp-grid) 1px, transparent 1px);
+  background-size: 14px 14px; border: 1px dashed var(--hosp); border-radius: 6px; }
+.hosp > .tag { background: transparent; color: var(--hosp); border: 1px solid var(--hosp); font-family: var(--f-hosp); }
+.hosp-i { font-size: .92em; background: var(--hosp-bg); padding: .05em .4em; border-radius: 4px; border: 1px dashed var(--hosp); }
+
+.note-src { background: transparent; border: 1px solid var(--rule); font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); }
+.note-src > .tag { background: var(--ink-2); color: var(--paper); }
+
+.recap { background: var(--card); border: 1px solid var(--rule); border-top: 6px solid var(--zone); border-radius: var(--r); padding: 1.1rem 1.3rem; }
+.recap > .tag { background: var(--ink); color: var(--paper); }
+.recap ol, .recap ul { font-family: var(--f-ui); font-size: .98rem; }
+
+/* ---------- steps (real sequences only) ---------- */
+ol.steps { list-style: none; padding: 0; counter-reset: s; display: grid; gap: .55rem; font-family: var(--f-ui); font-size: 1rem; line-height: 1.6; }
+ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 2rem 1fr; gap: .7rem; align-items: start; margin: 0; }
+ol.steps > li::before { content: counter(s); width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--field); color: var(--card); font-weight: 700; font-variant-numeric: tabular-nums; }
+ol.steps > li > * { min-width: 0; }
+
+/* ---------- definitions ---------- */
+dl.kv { display: grid; grid-template-columns: minmax(7rem, max-content) 1fr; gap: .45rem 1.1rem; margin: 0; }
+dl.kv dt { font-family: var(--f-ui); font-weight: 700; }
+dl.kv dd { margin: 0; min-width: 0; }
+@media (max-width: 520px) { dl.kv { grid-template-columns: 1fr; } dl.kv dd { margin-block-end: .5rem; } }
+
+/* ---------- tables ---------- */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: var(--r); background: var(--card); }
+table.data { border-collapse: collapse; width: 100%; font-family: var(--f-ui); font-size: .95rem; line-height: 1.5; font-variant-numeric: tabular-nums; }
+table.data caption { caption-side: top; text-align: start; padding: .8rem 1rem .4rem; font-weight: 700; font-size: var(--t-sm); color: var(--ink-2); letter-spacing: .02em; }
+table.data th, table.data td { padding: .6rem .9rem; text-align: start; vertical-align: top; border-block-end: 1px solid var(--rule); }
+table.data thead th { background: color-mix(in srgb, var(--zone) 18%, var(--card)); font-weight: 700; white-space: nowrap; }
+table.data tbody th { font-weight: 600; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+table.data tbody tr:last-child > * { border-block-end: 0; }
+table.data td.hl { background: var(--hl); color: var(--hl-ink); font-weight: 700; }
+table.data td.hosp-c { font-family: var(--f-hosp); color: var(--hosp); font-size: .88rem; }
+
+/* ---------- compare ---------- */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.compare > div { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem 1.15rem; }
+.compare > div > h5 { margin: 0 0 .5rem; font-family: var(--f-ui); font-size: var(--t-md); font-weight: 700; padding-block-end: .45rem; border-block-end: 3px solid var(--zone); }
+.compare ul { margin: 0; font-size: 1rem; }
+
+/* ---------- dose cards ---------- */
+.doses { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+.dose { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
+.dose > header { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; padding: .7rem 1rem; background: color-mix(in srgb, var(--zone) 14%, var(--card)); border-block-end: 1px solid var(--rule); }
+.dose > header h5 { margin: 0; font-family: var(--f-ui); font-size: 1.1rem; font-weight: 700; }
+.dose > header .ind { font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-2); text-align: end; }
+.dose .big { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 700; padding: .7rem 1rem .1rem; line-height: 1.3; }
+.dose .big small { font-size: .9rem; font-weight: 500; color: var(--ink-2); }
+.dose dl { margin: 0; padding: .4rem 1rem .9rem; display: grid; grid-template-columns: max-content 1fr; gap: .25rem .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.45; }
+.dose dt { color: var(--ink-3); }
+.dose dd { margin: 0; min-width: 0; }
+.dose .calc { margin-top: auto; border-block-start: 1px dashed var(--rule); padding: .6rem 1rem; font-family: var(--f-ui); font-size: .9rem; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+.dose .calc::before { content: "דוגמה · "; font-weight: 700; color: var(--field); }
+
+/* ---------- mnemonic ---------- */
+.mnemonic { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; font-family: var(--f-ui); }
+.mnemonic li { margin: 0; flex: 1 1 9rem; min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: .6rem .8rem; font-size: .92rem; line-height: 1.45; }
+.mnemonic li b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 1.7rem; line-height: 1; color: var(--ink); margin-block-end: .25rem; }
+
+/* ---------- figures / svg ---------- */
+figure { margin-block: 1.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem; }
+figure > .svg-box { overflow-x: auto; }
+figure svg { display: block; width: 100%; height: auto; max-width: 100%; margin-inline: auto; }
+figure.narrow svg { max-width: 30rem; }
+figcaption { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); margin-block-start: .7rem; line-height: 1.55; }
+figcaption b { color: var(--ink); }
+svg text { font-family: var(--f-ui); fill: var(--ink); font-size: 14px; }
+svg .t-sm { font-size: 12px; fill: var(--ink-2); }
+svg .t-b { font-weight: 700; }
+svg .t-alarm { fill: var(--alarm); font-weight: 700; }
+svg .t-field { fill: var(--field); font-weight: 700; }
+svg .t-hosp { font-family: var(--f-hosp); fill: var(--hosp); }
+svg .ln { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+svg .ln-soft { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+svg .ln-dash { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-dasharray: 5 5; }
+svg .f-card { fill: var(--card); stroke: var(--rule); stroke-width: 1.5; }
+svg .f-soft { fill: color-mix(in srgb, var(--ink) 7%, var(--card)); }
+svg .f-zone { fill: var(--zone); }
+svg .f-zone-soft { fill: color-mix(in srgb, var(--zone) 25%, var(--card)); }
+svg .f-hl { fill: var(--hl); }
+svg .f-alarm { fill: var(--alarm); }
+svg .f-alarm-soft { fill: var(--alarm-bg); stroke: var(--alarm); stroke-width: 1.5; }
+svg .f-field { fill: var(--field); }
+svg .f-field-soft { fill: var(--field-bg); stroke: var(--field); stroke-width: 1.5; }
+svg .f-hosp-soft { fill: var(--hosp-bg); stroke: var(--hosp); stroke-width: 1.2; stroke-dasharray: 4 3; }
+svg .s-alarm { stroke: var(--alarm); stroke-width: 2.5; fill: none; }
+svg .s-field { stroke: var(--field); stroke-width: 2.5; fill: none; }
+svg .s-zone { stroke: var(--zone); stroke-width: 3; fill: none; }
+svg .f-blood-o { fill: #D7263D; } svg .f-blood-d { fill: #5B5BD6; }
+svg .f-skin { fill: color-mix(in srgb, #E8B897 70%, var(--card)); }
+
+/* ---------- chapter frame ---------- */
+.chapter { padding-block: 4rem 2rem; border-block-start: 1px solid var(--rule); }
+.ch-head { max-width: var(--col); margin-inline: auto; margin-block-end: 2rem; }
+.ch-zone { display: flex; align-items: center; gap: .7rem; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .1em; color: var(--ink-2); }
+.ch-zone::before { content: ""; width: 3.2rem; height: .9rem; background: var(--zone); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.ch-head h2 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xl); margin: .5rem 0 .6rem; letter-spacing: -.005em; }
+.ch-lede { font-size: 1.22rem; color: var(--ink-2); margin: 0; line-height: 1.6; }
+.ch-src { margin-block-start: .9rem; font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-3); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 3.5rem 2.5rem; }
+.hero-in { max-width: var(--wide); margin-inline: auto; }
+.eyebrow { font-family: var(--f-ui); font-size: var(--t-xs); letter-spacing: .14em; font-weight: 700; color: var(--ink-2); }
+.hero h1 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xxl); line-height: 1.02; margin: .6rem 0 1rem; letter-spacing: -.01em; }
+.hero h1 .w { display: block; color: var(--ink-2); font-size: .42em; line-height: 1.3; margin-block-start: .5rem; font-family: var(--f-body); font-weight: 500; }
+.tape { display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px var(--rule); margin-block: 2rem 1.2rem; }
+.tape a { display: flex; flex-direction: column; justify-content: space-between; gap: .9rem; padding: .7rem .6rem .75rem; background: var(--zone); color: #10161E; text-decoration: none; min-height: 8.5rem; min-width: 0; font-family: var(--f-ui); position: relative; transition: filter .15s; }
+.tape a:hover { filter: brightness(1.06) saturate(1.1); }
+.tape a[data-zone="purple"], .tape a[data-zone="red"], .tape a[data-zone="blue"], .tape a[data-zone="green"], .tape a[data-zone="grey"] { color: #fff; }
+.tape a::after { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 9px; background: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 10px); opacity: .45; }
+.tape .n { font-family: var(--f-display); font-size: 1.9rem; line-height: 1; margin-block-start: .5rem; }
+.tape .l { font-size: .82rem; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
+@media (max-width: 860px) { .tape { grid-template-columns: repeat(3, 1fr); } .tape a { min-height: 6rem; } }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.5; }
+.legend > div { min-width: 0; display: flex; flex-direction: column; gap: .35rem; }
+.legend .sw { font-weight: 700; }
+.legend .callout { padding: .7rem .85rem; }
+.hero-note { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); margin-block-start: 1.4rem; max-width: 52rem; }
+
+/* ---------- rail nav ---------- */
+.rail { display: none; }
+@media (min-width: 1100px) {
+  .rail { display: flex; flex-direction: column; position: fixed; left: max(24px, env(safe-area-inset-left, 0px)); top: 50%; transform: translateY(-50%); z-index: 5; border-radius: 5px; overflow: visible; box-shadow: 0 0 0 1px var(--rule); }
+  .rail a { width: 34px; height: 46px; background: var(--zone); display: grid; place-items: center; font-family: var(--f-ui); font-size: .78rem; font-weight: 700; color: rgba(16,22,30,.75); text-decoration: none; position: relative; transition: width .18s; }
+  .rail a:first-child { border-radius: 5px 5px 0 0; } .rail a:last-child { border-radius: 0 0 5px 5px; }
+  .rail a.on { width: 50px; box-shadow: 0 0 0 2px var(--ink); z-index: 1; color: #10161E; }
+  .rail a .lbl { position: absolute; left: calc(100% + 10px); white-space: nowrap; background: var(--ink); color: var(--paper); padding: .25rem .6rem; border-radius: 5px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .15s; }
+  .rail a:hover .lbl, .rail a:focus-visible .lbl { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .rail a, .tape a { transition: none; } }
+.strip { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); height: 7px; }
+.strip a { background: var(--zone); opacity: .55; }
+.strip a.on { opacity: 1; }
+@media (min-width: 1100px) { .strip { display: none; } }
+
+/* ---------- volume bar (multi-page course guide) ---------- */
+.vols { display: flex; flex-wrap: wrap; gap: .35rem .5rem; align-items: center; max-width: var(--wide); margin: 0 auto; padding: 1rem 0 0; font-family: var(--f-ui); font-size: var(--t-xs); }
+.vols a { color: var(--ink-2); text-decoration: none; padding: .25rem .65rem; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--rule); white-space: nowrap; }
+.vols a:hover { color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink-3); }
+.vols a.home { font-weight: 700; color: var(--ink); }
+.vols a.on, .vols a.home.on { background: var(--ink); color: var(--paper); box-shadow: none; }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; margin-block: 2rem; }
+.vcard { display: flex; flex-direction: column; background: var(--card); border-radius: 8px; box-shadow: 0 0 0 1px var(--rule); overflow: hidden; color: var(--ink); text-decoration: none; transition: box-shadow .15s; }
+.vcard:hover { box-shadow: 0 0 0 2px var(--ink-3); }
+.vcard .bar { display: grid; grid-auto-flow: column; height: 10px; }
+.vcard .bar span { background: var(--zone); }
+.vcard .in { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .4rem; }
+.vcard .k { font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .08em; color: var(--ink-3); }
+.vcard h2 { font-family: var(--f-display); font-weight: 400; font-size: 1.6rem; line-height: 1.15; margin: 0; }
+.vcard ol { margin: .3rem 0 0; padding-inline-start: 1.2rem; font-family: var(--f-ui); font-size: .9rem; line-height: 1.5; color: var(--ink-2); }
+@media (prefers-reduced-motion: reduce) { .vcard { transition: none; } }
+
+footer.end { padding-block: 3rem 4rem; text-align: center; font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); border-block-start: 1px solid var(--rule); }
+body{margin:0}
+</style>
+<script data-goatcounter="https://zivgabel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="notes.css">
+</head>
+<body>
+<nav class="strip" aria-hidden="true" style="--n:2"><a href="#ch10" data-zone="red" tabindex="-1"></a><a href="#ch11" data-zone="blue" tabindex="-1"></a></nav>
+<nav class="rail" aria-label="פרקים"><a href="#ch10" data-zone="red">1<span class="lbl">שינוי במצב ההכרה, פרכוסים וסוכרת</span></a><a href="#ch11" data-zone="blue">2<span class="lbl">הרעלות, אלכוהול וסמים, ואירוע מוחי</span></a></nav>
+
+<div class="page">
+<nav class="vols" aria-label="חלקי הסיכום"><a class="home" href="index.html">סיכום הקורס</a><a href="basic.html">מדעי היסוד</a><a href="airway.html">נתיב אוויר</a><a class="on" href="conscious.html">שינויים בהכרה</a><a href="inter.html">פרמקולוגיה ואנמנזה</a><a href="resp.html">נשימה</a><a href="cardio.html">קרדיולוגיה</a><a href="trauma.html">טראומה</a><a href="peds.html">ילדים ותינוקות</a><a href="obgyn.html">גניקולוגיה ומיילדות</a><a href="pop.html">אוכלוסיות שונות</a></nav>
+<header class="hero">
+  <div class="hero-in">
+    <div class="eyebrow">סיכום קורס פרמדיק · פרק ג׳ · שינוי במצב ההכרה בחולה נושם</div>
+    <h1>שינויים בהכרה<span class="w">2 פרקים · מצגות הקורס ופרוטוקולי איחוד הצלה</span></h1>
+    <nav class="tape" aria-label="תוכן העניינים" style="--n:2"><a href="#ch10" data-zone="red"><span class="n">1</span><span class="l">שינוי במצב ההכרה, פרכוסים וסוכרת</span></a><a href="#ch11" data-zone="blue"><span class="n">2</span><span class="l">הרעלות, אלכוהול וסמים, ואירוע מוחי</span></a></nav>
+    <div class="legend" aria-label="מקרא">
+      <div><span class="sw">מרקר = חובה לדעת</span><div class="callout must" style="padding:.55rem .8rem">ערך, סף או מינון <mark>שנשאלים במבחן</mark></div></div>
+      <div><span class="sw">ורוד = דגל אדום</span><div class="callout redflag" style="padding:.55rem .8rem">סימן סכנה שמחייב פעולה מיידית</div></div>
+      <div><span class="sw">טורקיז = מה עושים בשטח</span><div class="callout field" style="padding:.55rem .8rem">פעולות הפרמדיק, לפי הסדר</div></div>
+      <div><span class="sw">נייר מילימטרי = בית חולים</span><div class="callout hosp" style="padding:.55rem .8rem">בירור וטיפול בבית החולים, לידיעה כללית</div></div>
+    </div>
+    <p class="hero-note">הסיכום מבוסס על מצגות הקורס ועל פרוטוקולי איחוד הצלה (UH ACLS 2023). כשהמצגות סותרות זו את זו או את הפרוטוקול, זה מסומן במסגרת "שימו לב למקור".</p>
+  </div>
+</header>
+
+<main>
+<section class="chapter" id="ch10" data-zone="red">
+  <header class="ch-head">
+    <div class="ch-zone">פרק ג׳ · שינוי במצב ההכרה בחולה נושם · פרק 1</div>
+    <h2>שינוי במצב ההכרה, פרכוסים וסוכרת</h2>
+    <p class="ch-lede">איך ניגשים לחולה שאינו בהכרה מלאה אבל נושם: הסיבות, סינקופה, הבדיקה הנוירולוגית וה-GCS, פרכוסים וסטטוס אפילפטיקוס, ומצבי החירום של הסוכרת. בשטח זה אחד התרחישים השכיחים ביותר, ולחלק מהסיבות (היפוגליקמיה, פרכוס מתמשך) יש טיפול מציל חיים שהפרמדיק נותן בדקות הראשונות.</p>
+    <div class="ch-src">מקור: 01 - שינוי במצב ההכרה.pdf (עמ' 1–34) · 02 - פרכוסים.pdf (עמ' 1–52) · 03 - סכרת.pdf (עמ' 1–38) · UH_ACLS_2023.pdf, פרוטוקולים "פרכוסים / לאחר פרכוס" ו"שינויים במצב ההכרה" (עמ' 37–42)</div>
+  </header>
+  <div class="flow">
+
+    <p>חולה "מחוסר הכרה נושם" הוא לא אבחנה, אלא תיאור. מאחוריו יכולים להסתתר דימום מוחי, היפוגליקמיה שמתקנים בתוך דקה, הרעלה, פרכוס שהסתיים, או סתם עילפון. הפרק בנוי לפי הסדר שבו הדברים קורים בשטח: קודם מבינים מה יכול לגרום לשינוי בהכרה, אחר כך איך בודקים ומודדים אותו, ובסוף שלושת המצבים שהקורס מפרט: סינקופה, פרכוסים וסוכרת. הרעלות, אלכוהול וסמים ואירוע מוחי נמצאים בפרק הבא באותו חלק.</p>
+
+    <h3>מה זה שינוי במצב ההכרה ולמה הוא קורה</h3>
+    <p>שינוי במצב ההכרה <span class="en">(Altered Mental Status)</span> הוא פגיעה בתפקוד ההכרה בגלל פגיעה במערכת העצבים המרכזית <span class="en">(CNS)</span>. הטווח רחב: מבלבול קל ועד חוסר הכרה מלא.</p>
+    <p>יש <mark>שני מנגנונים</mark> בלבד שדרכם המוח "נכבה":</p>
+    <dl class="kv">
+      <dt>פגיעה מבנית</dt><dd><span class="en">Structural Lesions</span>: משהו פיזי פוגע ברקמת המוח או לוחץ עליה, כמו דימום, אוטם, גידול או חבלה.</dd>
+      <dt>פגיעה טוקסית-מטבולית</dt><dd>המוח שלם, אבל הסביבה הכימית שלו משובשת: חסר סוכר או חמצן, רעלים, תרופות, חומציות, אורמיה.</dd>
+    </dl>
+    <p>למה ההבחנה חשובה? פגיעה מטבולית היא לרוב הפיכה, ולפעמים הפרמדיק עצמו מתקן אותה (גלוקוז, נרקן, חמצן). פגיעה מבנית דורשת פינוי מהיר למקום שבו אפשר לטפל בה.</p>
+
+    <h4>שבע קבוצות הסיבות</h4>
+    <p>המצגת מחלקת את הסיבות לשבע קבוצות: <b>מבניים, מטבוליים, תרופות, קרדיווסקולריים, נשימתיים, זיהומים וסביבתיים</b>. כדי לא לשכוח אף אחת בשטח, הקורס נותן את רשימת הזיכרון <span class="en">AEIOUTIPS</span>:</p>
+    <ul class="mnemonic">
+      <li><b>A</b><span class="en">Acidosis, Alcohol</span> · חמצת, אלכוהול</li>
+      <li><b>E</b><span class="en">Epilepsy</span> · אפילפסיה</li>
+      <li><b>I</b><span class="en">Infection</span> · זיהום</li>
+      <li><b>O</b><span class="en">Overdose</span> · מנת יתר</li>
+      <li><b>U</b><span class="en">Uremia</span> · אורמיה</li>
+      <li><b>T</b><span class="en">Trauma, Tumor</span> · חבלה, גידול</li>
+      <li><b>I</b><span class="en">Insulin</span> · אינסולין (היפו/היפר)</li>
+      <li><b>P</b><span class="en">Psychosis</span> · פסיכוזה</li>
+      <li><b>S</b><span class="en">Stroke</span> · שבץ</li>
+    </ul>
+
+    <h4>דרגות ההכרה</h4>
+    <div class="tbl-wrap"><table class="data"><caption>ארבע דרגות ההכרה (שינוי במצב ההכרה עמ' 5)</caption>
+      <thead><tr><th>דרגה</th><th>באנגלית</th><th>מה רואים (הסבר)</th></tr></thead>
+      <tbody>
+        <tr><th>עירני</th><td><span class="en">Alert</span></td><td>ער, מגיב באופן תקין לסביבה</td></tr>
+        <tr><th>ישנוני</th><td><span class="en">Drowsiness</span></td><td>נרדם, אבל מתעורר בקלות לקול</td></tr>
+        <tr><th>סטופורוטי</th><td><span class="en">Stupor</span></td><td>מתעורר רק לגירוי חזק, ולזמן קצר</td></tr>
+        <tr><th>קומה</th><td><span class="en">Coma</span></td><td class="hl">לא ניתן להעיר אותו כלל</td></tr>
+      </tbody></table></div>
+
+    <h4>מהירות הכניסה לקומה: רמז לסיבה</h4>
+    <p>שאלה פשוטה לעדים, "כמה מהר זה קרה?", מצמצמת מאוד את האפשרויות:</p>
+    <div class="compare">
+      <div><h5>תהליך איטי: "נמשך ימים"</h5><ul><li>סיבה מטבולית</li><li>גידול</li><li>המטומה תת-קשיתית <span class="en">(Sub Dural Hematoma)</span></li></ul></div>
+      <div><h5>תהליך מהיר: "שניות עד דקות"</h5><ul><li>דימום או אוטם מוחי</li><li>התכווצויות (פרכוס)</li><li>הפרעות קצב</li><li>היפוגליקמיה</li></ul></div>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span><p>היפוגליקמיה נמצאת ברשימת הסיבות ה<b>מהירות</b>, לצד דימום מוחי והפרעות קצב. חולה שקרס בתוך דקות אינו "כנראה שבץ" עד שבדקת סוכר.</p></div>
+
+    <h3>סינקופה: איבוד הכרה זמני</h3>
+    <p>סינקופה <span class="en">(Syncope)</span>, עילפון, היא <mark>איבוד הכרה זמני</mark> שמופיע בפתאומיות, לרוב בישיבה או בעמידה. המנגנון המשותף כמעט לכל הסוגים: <b>ירידה בכמות הדם שמגיעה למוח</b>. ברגע שהחולה נשכב, הדם חוזר למוח בלי להילחם בכוח המשיכה, ולכן הוא מתעורר.</p>
+
+    <h4>פרה-סינקופה: האזהרה שלפני</h4>
+    <p>לפעמים קודמת לעילפון תקופת <span class="en">Pre-syncope</span>: סימנים ותסמינים שמזהירים לפני איבוד ההכרה. היא נמשכת <mark>10–30 שניות</mark> וכוללת חולשה, עייפות, סחרחורת, חיוורון, כאבי ראש, טשטוש ראייה, בחילות והקאות, ושינוי במצב ההכרה.</p>
+
+    <h4>הסיבות</h4>
+    <div class="compare">
+      <div><h5>ירידה בכמות הדם המגיעה למוח</h5><ul><li>חוסר איזון בין כיווץ להרפיה של כלי הדם</li><li>ירידה בנפח הדם</li><li>ירידה בהחזר הורידי ללב</li><li>ירידה בתפוקת הלב</li><li>הפרעות קצב</li></ul></div>
+      <div><h5>סיבות אחרות</h5><ul><li><span class="en">TIA</span></li><li>הפרעות נפשיות ורגשיות</li><li>היפרוונטילציה</li></ul></div>
+    </div>
+
+    <h4>סוגי הסינקופה</h4>
+    <div class="tbl-wrap"><table class="data"><caption>שישה סוגים (שינוי במצב ההכרה עמ' 10–16)</caption>
+      <thead><tr><th>סוג</th><th>מתי ואצל מי</th><th>מנגנון</th></tr></thead>
+      <tbody>
+        <tr><th>וזו-וגלי <span class="en">(Vasovagal)</span></th><td class="hl">הסוג השכיח ביותר. לרוב מתח רגשי, פחד, עייפות או כאב</td><td>חוסר איזון במערכת העצבים האוטונומית שמפעיל את המערכת הפרה-סימפתטית ‏←‏ הרחבת כלי דם, ירידה בהחזר הורידי, בתפוקת הלב ובדם למוח. חוזרים מיד להכרה כשמשכיבים אותם</td></tr>
+        <tr><th>תת-לחץ דם תנוחתי <span class="en">(Postural Hypotension)</span></th><td>קימה פתאומית משכיבה או מישיבה לעמידה. שכיח בחולי סוכרת ובאלכוהוליסטים כרוניים</td><td>הרחבת כלי דם בפלג הגוף התחתון עם ירידה בלחץ הדם הסיסטולי</td></tr>
+        <tr><th>לבבי <span class="en">(Cardiac)</span></th><td>הלם קרדיוגני, היצרות מסתם אאורטלי או פולמונרי, תסחיף ריאתי, טמפונדה לבבית, הפרעות קצב</td><td>ירידה בתפוקת הלב ובדם למוח. בהפרעות קצב: <mark>טכיקרדיה מעל 180/דקה או ברדיקרדיה מתחת 35/דקה</mark></td></tr>
+        <tr><th>בזמן השתנה <span class="en">(Micturition)</span></th><td>לרוב אנשים זקנים, בזמן השתנה</td><td>גירוי פרה-סימפתטי ‏←‏ הרחבת כלי דם וירידה בלחץ הדם</td></tr>
+        <tr><th>שיעול <span class="en">(Cough)</span></th><td>נדיר, בשיעול קשה וממושך</td><td>עליית לחץ בבית החזה מועברת דרך הורידים לגולגולת ‏←‏ עליית לחץ תוך-גולגולתי ‏←‏ פחות דם למוח</td></tr>
+        <tr><th>מתיחה <span class="en">(Stretch)</span></th><td>נדיר, כשמותחים את הצוואר</td><td>לחץ על העורק הוורטברלי בצוואר ‏←‏ פחות דם למוח</td></tr>
+      </tbody></table></div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span><p>סינקופה לבבית היא הסוג המסוכן: מאחוריה הפרעות קצב, היצרות מסתמים, תסחיף ריאתי וטמפונדה. עילפון במאמץ, בשכיבה, או עם דופק מהיר מאוד או איטי מאוד אינו "וזו-וגלי" עד שהוכח אחרת: מוניטור ו-ECG.</p></div>
+
+    <h4>עילפון או פרכוס? ההבחנה החשובה</h4>
+    <p>עדים מתארים לעיתים קרובות "הוא נפל ורעד". גם בסינקופה יכולות להיות תנועות קצרות, ולכן חשוב לשאול על מה שקרה לפני ואחרי:</p>
+    <div class="compare">
+      <div><h5>התכווצות <span class="en">(Seizure)</span></h5><ul><li>יכולה להתחיל בכל מצב: שכיבה, שינה או אחר</li><li>מתחילה ללא סימני אזהרה</li><li>תנועות בזמן איבוד ההכרה</li><li>לפעמים יש אורה</li></ul></div>
+      <div><h5>איבוד הכרה <span class="en">(Syncope)</span></h5><ul><li>בדרך כלל בעמידה (או ישיבה)</li><li>יש תקופה מזהירה <span class="en">(Presyncope)</span></li><li>חוזרים להכרה כשמשכיבים אותם</li><li>דופק חלש ואיטי, עור חיוור ורטוב</li></ul></div>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span><p>התנוחה שבה מופיעה סינקופה מתוארת בשלוש דרכים: "ישיבה או עמידה" (שינוי במצב ההכרה עמ' 7), "בשכיבה או עמידה" בטבלת ההשוואה (פרכוסים עמ' 37), ו"שוכבים או יושבים ועומדים באופן פתאומי" לסינקופה התנוחתית (שינוי במצב ההכרה עמ' 12). "בשכיבה" בטבלה כנראה טעות: באותה עמודה כתוב שהחולים מתאוששים כשמשכיבים אותם.</p></div>
+
+    <h3>הגישה בשטח לחולה מחוסר הכרה נושם</h3>
+    <p><mark>הגישה לחולה מחוסר הכרה שונה מהגישה לחולה בהכרה.</mark> החולה לא יכול לספר מה קרה, ולכן המידע מגיע מאנשים ומהסביבה. בנוסף, המצב יכול להשתנות מהר, ולכן <b>לקיחת מדדים חוזרת היא הדבר החיוני ביותר</b> בחולה מחוסר הכרה.</p>
+
+    <h4>שני שלבים: סבב ראשוני וסבב משני</h4>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>סבב ראשוני</b>: מה שמציל חיים עכשיו.</p>
+      <ol class="steps">
+        <li><div>וידוי חוסר הכרה, והגנה על עמוד השדרה הצווארי אם יש חשד לחבלה.</div></li>
+        <li><div>טיפול לפי <span class="en">A, B, C</span>.</div></li>
+        <li><div>החייאה וטיפולים מצילי חיים: חמצן, פתיחת וריד, מוניטור וסטורציה, וטיפול לפי הצורך (גלוקוז, נלוקסון).</div></li>
+      </ol>
+      <p><b>סבב משני</b>: מחפשים את הסיבה. סימנים חיוניים, אנמנזה ובדיקת זירת האירוע, בדיקה פיזיקלית כללית, בדיקה נוירולוגית שלמה, והחלטה על דרכי הפינוי לבית החולים.</p>
+    </div>
+
+    <h4>בדיקת זירת האירוע ואנמנזה</h4>
+    <p>הזירה היא "העדה" שלא מדברת. מחפשים מקורות אינפורמציה, מסמכים רפואיים, אריזות של תרופות, את מצב הבית או מקום האירוע, וסימנים שמעידים על חבלה או על ניסיון אובדני.</p>
+    <p>ממי ששם (משפחה, שכנים, אנשים מסביב) מבררים: מה קדם לאירוע, <b>כמה זמן</b> המטופל מחוסר הכרה, מחלות רקע ושימוש בתרופות, סמים ואלכוהול, והאם יש סיפור של נפילה, חבלה או פרכוס. עדיף לשאול <b>שאלות סגורות</b> שהתשובה עליהן היא כן או לא: מבוהלים עונים עליהן מהר יותר ומדויק יותר.</p>
+
+    <h4>הבדיקה הפיזיקלית</h4>
+    <ul>
+      <li><b>בדיקה מהירה של ABC</b> כדי לשלול מצב מסכן חיים מיידי.</li>
+      <li><b>סימנים חיוניים</b>: חום, סטורציה, לחץ דם, דופק.</li>
+      <li><b>סימני פרכוס או חבלה</b>: נשיכת לשון, אובדן שליטה על סוגרים, דימומים, חבלה.</li>
+      <li><b>ריחות</b>: חריגים, אצטון, פירות, אלכוהול, רעל, גז.</li>
+      <li><b>בדיקה נוירולוגית</b>: תגובה לכאב, אישונים, רפלקסים, תנועות.</li>
+      <li><b>עור</b>: צבע, פריחה, סימני הזרקה.</li>
+    </ul>
+    <p>המצגת מסכמת את הבדיקה בחמישה ראשי פרקים: אישונים וגלגלי עיניים, צורות הנשימה, תחושה וכוח גס, סימנים חיוניים, והערכה נוירולוגית.</p>
+
+    <h4>אישונים וגלגלי עיניים</h4>
+    <p>שואלים שש שאלות: האם האישונים מורחבים או צרים? האם שניהם מורחבים? האם רק אחד מורחב? האם הם מגיבים לאור? האם הם צרים? האם תנועת גלגלי העיניים תקינה? אישון מורחב בצד אחד מכוון לפגיעה מבנית בצד הזה של המוח, ואישונים צרים מאוד מכוונים להרעלת אופיאטים (מפורט בפרק ההרעלות).</p>
+
+    <h4>צורות הנשימה</h4>
+    <p>מרכזי הנשימה נמצאים בגזע המוח, ולכן פגיעה מוחית או הפרעה מטבולית משנות לעיתים את <b>צורת</b> הנשימה, לא רק את קצבה. המצגת מציגה חמש צורות, ומצגת הסוכרת מוסיפה את נשימת קוסמאול:</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 390" role="img" aria-label="שש צורות נשימה סכמטיות: תקינה, צ'יין-סטוקס, היפרוונטילציה נוירוגנית מרכזית, אטקסית, אפנאוסטית וקוסמאול">
+          <polyline points="30.0,50.0 32.0,47.0 34.0,44.2 36.0,41.8 38.0,39.9 40.0,38.6 42.0,38.0 44.0,38.2 46.0,39.1 48.0,40.8 50.0,42.9 52.0,45.6 54.0,48.5 56.0,51.5 58.0,54.4 60.0,57.1 62.0,59.2 64.0,60.9 66.0,61.8 68.0,62.0 70.0,61.4 72.0,60.1 74.0,58.2 76.0,55.8 78.0,53.0 80.0,50.0 82.0,47.0 84.0,44.2 86.0,41.8 88.0,39.9 90.0,38.6 92.0,38.0 94.0,38.2 96.0,39.1 98.0,40.8 100.0,42.9 102.0,45.6 104.0,48.5 106.0,51.5 108.0,54.4 110.0,57.1 112.0,59.2 114.0,60.9 116.0,61.8 118.0,62.0 120.0,61.4 122.0,60.1 124.0,58.2 126.0,55.8 128.0,53.0 130.0,50.0 132.0,47.0 134.0,44.2 136.0,41.8 138.0,39.9 140.0,38.6 142.0,38.0 144.0,38.2 146.0,39.1 148.0,40.8 150.0,42.9 152.0,45.6 154.0,48.5 156.0,51.5 158.0,54.4 160.0,57.1 162.0,59.2 164.0,60.9 166.0,61.8 168.0,62.0 170.0,61.4 172.0,60.1 174.0,58.2 176.0,55.8 178.0,53.0 180.0,50.0 182.0,47.0 184.0,44.2 186.0,41.8 188.0,39.9 190.0,38.6 192.0,38.0 194.0,38.2 196.0,39.1 198.0,40.8 200.0,42.9 202.0,45.6 204.0,48.5 206.0,51.5 208.0,54.4 210.0,57.1 212.0,59.2 214.0,60.9 216.0,61.8 218.0,62.0 220.0,61.4 222.0,60.1 224.0,58.2 226.0,55.8 228.0,53.0 230.0,50.0 232.0,47.0 234.0,44.2 236.0,41.8 238.0,39.9 240.0,38.6 242.0,38.0 244.0,38.2 246.0,39.1 248.0,40.8 250.0,42.9 252.0,45.6 254.0,48.5 256.0,51.5 258.0,54.4 260.0,57.1 262.0,59.2 264.0,60.9 266.0,61.8 268.0,62.0 270.0,61.4 272.0,60.1 274.0,58.2 276.0,55.8 278.0,53.0 280.0,50.0 282.0,47.0 284.0,44.2 286.0,41.8 288.0,39.9 290.0,38.6 292.0,38.0 294.0,38.2 296.0,39.1 298.0,40.8 300.0,42.9 302.0,45.6 304.0,48.5 306.0,51.5 308.0,54.4 310.0,57.1 312.0,59.2 314.0,60.9 316.0,61.8 318.0,62.0 320.0,61.4 322.0,60.1 324.0,58.2 326.0,55.8 328.0,53.0 330.0,50.0 332.0,47.0 334.0,44.2 336.0,41.8 338.0,39.9 340.0,38.6 342.0,38.0 344.0,38.2 346.0,39.1 348.0,40.8 350.0,42.9 352.0,45.6 354.0,48.5 356.0,51.5 358.0,54.4 360.0,57.1 362.0,59.2 364.0,60.9 366.0,61.8 368.0,62.0 370.0,61.4 372.0,60.1 374.0,58.2 376.0,55.8 378.0,53.0 380.0,50.0" class="ln"/>
+          <text x="625" y="48" direction="rtl" text-anchor="start" class="t-b">תקינה</text>
+          <text x="625" y="66" direction="ltr" text-anchor="end" class="t-sm">Normal</text>
+          <line x1="30" y1="80" x2="625" y2="80" class="ln-dash"/>
+          <polyline points="30.0,110.0 31.0,109.8 32.0,109.2 33.0,108.7 34.0,108.5 35.0,108.9 36.0,110.0 37.0,111.5 38.0,113.1 39.0,114.0 40.0,113.8 41.0,112.4 42.0,110.0 43.0,107.2 44.0,104.7 45.0,103.5 46.0,104.0 47.0,106.3 48.0,110.0 49.0,114.1 50.0,117.4 51.0,118.9 52.0,118.0 53.0,114.8 54.0,110.0 55.0,104.8 56.0,100.7 57.0,99.0 58.0,100.1 59.0,104.1 60.0,110.0 61.0,116.2 62.0,120.9 63.0,122.9 64.0,121.4 65.0,116.7 66.0,110.0 67.0,103.0 68.0,97.7 69.0,95.5 70.0,97.2 71.0,102.5 72.0,110.0 73.0,117.7 74.0,123.4 75.0,125.7 76.0,123.7 77.0,118.0 78.0,110.0 79.0,101.9 80.0,95.8 81.0,93.5 82.0,95.6 83.0,101.6 84.0,110.0 85.0,118.4 86.0,124.6 87.0,126.9 88.0,124.7 89.0,118.5 90.0,110.0 91.0,101.5 92.0,95.3 93.0,93.1 94.0,95.4 95.0,101.6 96.0,110.0 97.0,118.4 98.0,124.4 99.0,126.5 100.0,124.2 101.0,118.1 102.0,110.0 103.0,102.0 104.0,96.3 105.0,94.3 106.0,96.6 107.0,102.3 108.0,110.0 109.0,117.5 110.0,122.8 111.0,124.5 112.0,122.3 113.0,117.0 114.0,110.0 115.0,103.3 116.0,98.6 117.0,97.1 118.0,99.1 119.0,103.8 120.0,110.0 121.0,115.9 122.0,119.9 123.0,121.0 124.0,119.3 125.0,115.2 126.0,110.0 127.0,105.2 128.0,102.0 129.0,101.1 130.0,102.6 131.0,105.9 132.0,110.0 133.0,113.7 134.0,116.0 135.0,116.5 136.0,115.3 137.0,112.8 138.0,110.0 139.0,107.6 140.0,106.2 141.0,106.0 142.0,106.9 143.0,108.5 144.0,110.0 145.0,111.1 146.0,111.5 147.0,111.3 148.0,110.8 149.0,110.2 150.0,110.0 151.0,110.0 152.0,110.0 153.0,110.0 154.0,110.0 155.0,110.0 156.0,110.0 157.0,110.0 158.0,110.0 159.0,110.0 160.0,110.0 161.0,110.0 162.0,110.0 163.0,110.0 164.0,110.0 165.0,110.0 166.0,110.0 167.0,110.0 168.0,110.0 169.0,110.0 170.0,110.0 171.0,110.0 172.0,110.0 173.0,110.0 174.0,110.0 175.0,110.0 176.0,110.0 177.0,110.0 178.0,110.0 179.0,110.0 180.0,110.0 181.0,110.0 182.0,110.0 183.0,110.0 184.0,110.0 185.0,110.0 186.0,110.0 187.0,110.0 188.0,110.0 189.0,110.0 190.0,110.0 191.0,110.0 192.0,110.0 193.0,110.0 194.0,110.0 195.0,110.0 196.0,110.0 197.0,110.0 198.0,110.0 199.0,110.0 200.0,110.0 201.0,110.0 202.0,110.0 203.0,110.0 204.0,110.0 205.0,110.0 206.0,109.8 207.0,109.2 208.0,108.7 209.0,108.5 210.0,108.9 211.0,110.0 212.0,111.5 213.0,113.1 214.0,114.0 215.0,113.8 216.0,112.4 217.0,110.0 218.0,107.2 219.0,104.7 220.0,103.5 221.0,104.0 222.0,106.3 223.0,110.0 224.0,114.1 225.0,117.4 226.0,118.9 227.0,118.0 228.0,114.8 229.0,110.0 230.0,104.8 231.0,100.7 232.0,99.0 233.0,100.1 234.0,104.1 235.0,110.0 236.0,116.2 237.0,120.9 238.0,122.9 239.0,121.4 240.0,116.7 241.0,110.0 242.0,103.0 243.0,97.7 244.0,95.5 245.0,97.2 246.0,102.5 247.0,110.0 248.0,117.7 249.0,123.4 250.0,125.7 251.0,123.7 252.0,118.0 253.0,110.0 254.0,101.9 255.0,95.8 256.0,93.5 257.0,95.6 258.0,101.6 259.0,110.0 260.0,118.4 261.0,124.6 262.0,126.9 263.0,124.7 264.0,118.5 265.0,110.0 266.0,101.5 267.0,95.3 268.0,93.1 269.0,95.4 270.0,101.6 271.0,110.0 272.0,118.4 273.0,124.4 274.0,126.5 275.0,124.2 276.0,118.1 277.0,110.0 278.0,102.0 279.0,96.3 280.0,94.3 281.0,96.6 282.0,102.3 283.0,110.0 284.0,117.5 285.0,122.8 286.0,124.5 287.0,122.3 288.0,117.0 289.0,110.0 290.0,103.3 291.0,98.6 292.0,97.1 293.0,99.1 294.0,103.8 295.0,110.0 296.0,115.9 297.0,119.9 298.0,121.0 299.0,119.3 300.0,115.2 301.0,110.0 302.0,105.2 303.0,102.0 304.0,101.1 305.0,102.6 306.0,105.9 307.0,110.0 308.0,113.7 309.0,116.0 310.0,116.5 311.0,115.3 312.0,112.8 313.0,110.0 314.0,107.6 315.0,106.2 316.0,106.0 317.0,106.9 318.0,108.5 319.0,110.0 320.0,111.1 321.0,111.5 322.0,111.3 323.0,110.8 324.0,110.2 325.0,110.0 326.0,110.0 327.0,110.0 328.0,110.0 329.0,110.0 330.0,110.0 331.0,110.0 332.0,110.0 333.0,110.0 334.0,110.0 335.0,110.0 336.0,110.0 337.0,110.0 338.0,110.0 339.0,110.0 340.0,110.0 341.0,110.0 342.0,110.0 343.0,110.0 344.0,110.0 345.0,110.0 346.0,110.0 347.0,110.0 348.0,110.0 349.0,110.0 350.0,110.0 351.0,110.0 352.0,110.0 353.0,110.0 354.0,110.0 355.0,110.0 356.0,110.0 357.0,110.0 358.0,110.0 359.0,110.0 360.0,110.0 361.0,110.0 362.0,110.0 363.0,110.0 364.0,110.0 365.0,110.0 366.0,110.0 367.0,110.0 368.0,110.0 369.0,110.0 370.0,110.0 371.0,110.0 372.0,110.0 373.0,110.0 374.0,110.0 375.0,110.0 376.0,110.0 377.0,110.0 378.0,110.0 379.0,110.0 380.0,110.0" class="ln"/>
+          <text x="625" y="108" direction="rtl" text-anchor="start" class="t-b">צ'יין-סטוקס</text>
+          <text x="625" y="126" direction="ltr" text-anchor="end" class="t-sm">Cheyne-Stokes</text>
+          <line x1="30" y1="140" x2="625" y2="140" class="ln-dash"/>
+          <polyline points="30.0,170.0 31.0,163.5 32.0,158.0 33.0,154.3 34.0,153.0 35.0,154.3 36.0,158.0 37.0,163.5 38.0,170.0 39.0,176.5 40.0,182.0 41.0,185.7 42.0,187.0 43.0,185.7 44.0,182.0 45.0,176.5 46.0,170.0 47.0,163.5 48.0,158.0 49.0,154.3 50.0,153.0 51.0,154.3 52.0,158.0 53.0,163.5 54.0,170.0 55.0,176.5 56.0,182.0 57.0,185.7 58.0,187.0 59.0,185.7 60.0,182.0 61.0,176.5 62.0,170.0 63.0,163.5 64.0,158.0 65.0,154.3 66.0,153.0 67.0,154.3 68.0,158.0 69.0,163.5 70.0,170.0 71.0,176.5 72.0,182.0 73.0,185.7 74.0,187.0 75.0,185.7 76.0,182.0 77.0,176.5 78.0,170.0 79.0,163.5 80.0,158.0 81.0,154.3 82.0,153.0 83.0,154.3 84.0,158.0 85.0,163.5 86.0,170.0 87.0,176.5 88.0,182.0 89.0,185.7 90.0,187.0 91.0,185.7 92.0,182.0 93.0,176.5 94.0,170.0 95.0,163.5 96.0,158.0 97.0,154.3 98.0,153.0 99.0,154.3 100.0,158.0 101.0,163.5 102.0,170.0 103.0,176.5 104.0,182.0 105.0,185.7 106.0,187.0 107.0,185.7 108.0,182.0 109.0,176.5 110.0,170.0 111.0,163.5 112.0,158.0 113.0,154.3 114.0,153.0 115.0,154.3 116.0,158.0 117.0,163.5 118.0,170.0 119.0,176.5 120.0,182.0 121.0,185.7 122.0,187.0 123.0,185.7 124.0,182.0 125.0,176.5 126.0,170.0 127.0,163.5 128.0,158.0 129.0,154.3 130.0,153.0 131.0,154.3 132.0,158.0 133.0,163.5 134.0,170.0 135.0,176.5 136.0,182.0 137.0,185.7 138.0,187.0 139.0,185.7 140.0,182.0 141.0,176.5 142.0,170.0 143.0,163.5 144.0,158.0 145.0,154.3 146.0,153.0 147.0,154.3 148.0,158.0 149.0,163.5 150.0,170.0 151.0,176.5 152.0,182.0 153.0,185.7 154.0,187.0 155.0,185.7 156.0,182.0 157.0,176.5 158.0,170.0 159.0,163.5 160.0,158.0 161.0,154.3 162.0,153.0 163.0,154.3 164.0,158.0 165.0,163.5 166.0,170.0 167.0,176.5 168.0,182.0 169.0,185.7 170.0,187.0 171.0,185.7 172.0,182.0 173.0,176.5 174.0,170.0 175.0,163.5 176.0,158.0 177.0,154.3 178.0,153.0 179.0,154.3 180.0,158.0 181.0,163.5 182.0,170.0 183.0,176.5 184.0,182.0 185.0,185.7 186.0,187.0 187.0,185.7 188.0,182.0 189.0,176.5 190.0,170.0 191.0,163.5 192.0,158.0 193.0,154.3 194.0,153.0 195.0,154.3 196.0,158.0 197.0,163.5 198.0,170.0 199.0,176.5 200.0,182.0 201.0,185.7 202.0,187.0 203.0,185.7 204.0,182.0 205.0,176.5 206.0,170.0 207.0,163.5 208.0,158.0 209.0,154.3 210.0,153.0 211.0,154.3 212.0,158.0 213.0,163.5 214.0,170.0 215.0,176.5 216.0,182.0 217.0,185.7 218.0,187.0 219.0,185.7 220.0,182.0 221.0,176.5 222.0,170.0 223.0,163.5 224.0,158.0 225.0,154.3 226.0,153.0 227.0,154.3 228.0,158.0 229.0,163.5 230.0,170.0 231.0,176.5 232.0,182.0 233.0,185.7 234.0,187.0 235.0,185.7 236.0,182.0 237.0,176.5 238.0,170.0 239.0,163.5 240.0,158.0 241.0,154.3 242.0,153.0 243.0,154.3 244.0,158.0 245.0,163.5 246.0,170.0 247.0,176.5 248.0,182.0 249.0,185.7 250.0,187.0 251.0,185.7 252.0,182.0 253.0,176.5 254.0,170.0 255.0,163.5 256.0,158.0 257.0,154.3 258.0,153.0 259.0,154.3 260.0,158.0 261.0,163.5 262.0,170.0 263.0,176.5 264.0,182.0 265.0,185.7 266.0,187.0 267.0,185.7 268.0,182.0 269.0,176.5 270.0,170.0 271.0,163.5 272.0,158.0 273.0,154.3 274.0,153.0 275.0,154.3 276.0,158.0 277.0,163.5 278.0,170.0 279.0,176.5 280.0,182.0 281.0,185.7 282.0,187.0 283.0,185.7 284.0,182.0 285.0,176.5 286.0,170.0 287.0,163.5 288.0,158.0 289.0,154.3 290.0,153.0 291.0,154.3 292.0,158.0 293.0,163.5 294.0,170.0 295.0,176.5 296.0,182.0 297.0,185.7 298.0,187.0 299.0,185.7 300.0,182.0 301.0,176.5 302.0,170.0 303.0,163.5 304.0,158.0 305.0,154.3 306.0,153.0 307.0,154.3 308.0,158.0 309.0,163.5 310.0,170.0 311.0,176.5 312.0,182.0 313.0,185.7 314.0,187.0 315.0,185.7 316.0,182.0 317.0,176.5 318.0,170.0 319.0,163.5 320.0,158.0 321.0,154.3 322.0,153.0 323.0,154.3 324.0,158.0 325.0,163.5 326.0,170.0 327.0,176.5 328.0,182.0 329.0,185.7 330.0,187.0 331.0,185.7 332.0,182.0 333.0,176.5 334.0,170.0 335.0,163.5 336.0,158.0 337.0,154.3 338.0,153.0 339.0,154.3 340.0,158.0 341.0,163.5 342.0,170.0 343.0,176.5 344.0,182.0 345.0,185.7 346.0,187.0 347.0,185.7 348.0,182.0 349.0,176.5 350.0,170.0 351.0,163.5 352.0,158.0 353.0,154.3 354.0,153.0 355.0,154.3 356.0,158.0 357.0,163.5 358.0,170.0 359.0,176.5 360.0,182.0 361.0,185.7 362.0,187.0 363.0,185.7 364.0,182.0 365.0,176.5 366.0,170.0 367.0,163.5 368.0,158.0 369.0,154.3 370.0,153.0 371.0,154.3 372.0,158.0 373.0,163.5 374.0,170.0 375.0,176.5 376.0,182.0 377.0,185.7 378.0,187.0 379.0,185.7 380.0,182.0" class="ln"/>
+          <text x="625" y="168" direction="rtl" text-anchor="start" class="t-b">היפרוונטילציה מרכזית</text>
+          <text x="625" y="186" direction="ltr" text-anchor="end" class="t-sm">Central neurogenic hyperventilation</text>
+          <line x1="30" y1="200" x2="625" y2="200" class="ln-dash"/>
+          <polyline points="30.0,230.0 43.9,229.6 57.1,229.6 63.3,215.3 69.5,231.1 73.6,223.6 77.7,230.5 106.4,231.3 112.6,223.3 118.8,231.5 124.7,214.0 130.6,234.4 153.5,230.7 157.2,219.4 161.0,230.4 167.4,218.3 173.9,231.5 179.2,213.6 184.5,234.2 189.1,217.6 193.8,232.2 211.3,231.3 224.1,230.5 245.7,229.9 252.7,223.3 259.7,232.1 283.1,229.1 289.1,221.5 295.1,232.8 298.5,225.1 301.9,231.1 307.3,222.7 312.8,231.7 333.1,228.2 339.6,212.6 346.2,233.7 349.3,222.0 352.4,234.8 357.0,212.8 361.6,233.1 365.8,223.3 370.0,232.2 380.0,231.8 380.0,230.0" class="ln"/>
+          <text x="625" y="228" direction="rtl" text-anchor="start" class="t-b">אטקסית</text>
+          <text x="625" y="246" direction="ltr" text-anchor="end" class="t-sm">Ataxic</text>
+          <line x1="30" y1="260" x2="625" y2="260" class="ln-dash"/>
+          <polyline points="30.0,290.0 38.0,274.0 93.0,274.0 101.0,290.0 146.0,290.0 154.0,274.0 209.0,274.0 217.0,290.0 262.0,290.0 270.0,274.0 325.0,274.0 333.0,290.0 378.0,290.0" class="ln"/>
+          <text x="625" y="288" direction="rtl" text-anchor="start" class="t-b">אפנאוסטית</text>
+          <text x="625" y="306" direction="ltr" text-anchor="end" class="t-sm">Apneustic</text>
+          <line x1="30" y1="320" x2="625" y2="320" class="ln-dash"/>
+          <polyline points="30.0,350.0 31.5,344.5 33.0,339.5 34.5,335.2 36.0,332.1 37.5,330.3 39.0,330.1 40.5,331.4 42.0,334.0 43.5,337.9 45.0,342.8 46.5,348.2 48.0,353.7 49.5,358.9 51.0,363.5 52.5,367.0 54.0,369.2 55.5,370.0 57.0,369.2 58.5,367.0 60.0,363.5 61.5,358.9 63.0,353.7 64.5,348.2 66.0,342.8 67.5,337.9 69.0,334.0 70.5,331.4 72.0,330.1 73.5,330.3 75.0,332.1 76.5,335.2 78.0,339.5 79.5,344.5 81.0,350.0 82.5,355.5 84.0,360.5 85.5,364.8 87.0,367.9 88.5,369.7 90.0,369.9 91.5,368.6 93.0,366.0 94.5,362.1 96.0,357.2 97.5,351.8 99.0,346.3 100.5,341.1 102.0,336.5 103.5,333.0 105.0,330.8 106.5,330.0 108.0,330.8 109.5,333.0 111.0,336.5 112.5,341.1 114.0,346.3 115.5,351.8 117.0,357.2 118.5,362.1 120.0,366.0 121.5,368.6 123.0,369.9 124.5,369.7 126.0,367.9 127.5,364.8 129.0,360.5 130.5,355.5 132.0,350.0 133.5,344.5 135.0,339.5 136.5,335.2 138.0,332.1 139.5,330.3 141.0,330.1 142.5,331.4 144.0,334.0 145.5,337.9 147.0,342.8 148.5,348.2 150.0,353.7 151.5,358.9 153.0,363.5 154.5,367.0 156.0,369.2 157.5,370.0 159.0,369.2 160.5,367.0 162.0,363.5 163.5,358.9 165.0,353.7 166.5,348.2 168.0,342.8 169.5,337.9 171.0,334.0 172.5,331.4 174.0,330.1 175.5,330.3 177.0,332.1 178.5,335.2 180.0,339.5 181.5,344.5 183.0,350.0 184.5,355.5 186.0,360.5 187.5,364.8 189.0,367.9 190.5,369.7 192.0,369.9 193.5,368.6 195.0,366.0 196.5,362.1 198.0,357.2 199.5,351.8 201.0,346.3 202.5,341.1 204.0,336.5 205.5,333.0 207.0,330.8 208.5,330.0 210.0,330.8 211.5,333.0 213.0,336.5 214.5,341.1 216.0,346.3 217.5,351.8 219.0,357.2 220.5,362.1 222.0,366.0 223.5,368.6 225.0,369.9 226.5,369.7 228.0,367.9 229.5,364.8 231.0,360.5 232.5,355.5 234.0,350.0 235.5,344.5 237.0,339.5 238.5,335.2 240.0,332.1 241.5,330.3 243.0,330.1 244.5,331.4 246.0,334.0 247.5,337.9 249.0,342.8 250.5,348.2 252.0,353.7 253.5,358.9 255.0,363.5 256.5,367.0 258.0,369.2 259.5,370.0 261.0,369.2 262.5,367.0 264.0,363.5 265.5,358.9 267.0,353.7 268.5,348.2 270.0,342.8 271.5,337.9 273.0,334.0 274.5,331.4 276.0,330.1 277.5,330.3 279.0,332.1 280.5,335.2 282.0,339.5 283.5,344.5 285.0,350.0 286.5,355.5 288.0,360.5 289.5,364.8 291.0,367.9 292.5,369.7 294.0,369.9 295.5,368.6 297.0,366.0 298.5,362.1 300.0,357.2 301.5,351.8 303.0,346.3 304.5,341.1 306.0,336.5 307.5,333.0 309.0,330.8 310.5,330.0 312.0,330.8 313.5,333.0 315.0,336.5 316.5,341.1 318.0,346.3 319.5,351.8 321.0,357.2 322.5,362.1 324.0,366.0 325.5,368.6 327.0,369.9 328.5,369.7 330.0,367.9 331.5,364.8 333.0,360.5 334.5,355.5 336.0,350.0 337.5,344.5 339.0,339.5 340.5,335.2 342.0,332.1 343.5,330.3 345.0,330.1 346.5,331.4 348.0,334.0 349.5,337.9 351.0,342.8 352.5,348.2 354.0,353.7 355.5,358.9 357.0,363.5 358.5,367.0 360.0,369.2 361.5,370.0 363.0,369.2 364.5,367.0 366.0,363.5 367.5,358.9 369.0,353.7 370.5,348.2 372.0,342.8 373.5,337.9 375.0,334.0 376.5,331.4 378.0,330.1 379.5,330.3" class="s-alarm"/>
+          <text x="625" y="348" direction="rtl" text-anchor="start" class="t-alarm">קוסמאול (DKA)</text>
+          <text x="625" y="366" direction="ltr" text-anchor="end" class="t-sm">Kussmaul</text>
+        </svg>
+      </div>
+      <figcaption><b>צורות נשימה (סכמטי, לא בקנה מידה).</b> כל שורה מתארת נשימה לאורך זמן; גובה הגל הוא עומק הנשימה. צ'יין-סטוקס: נשימות שמעמיקות ואז נחלשות, ואחריהן הפסקה. היפרוונטילציה מרכזית: מהירה, עמוקה וסדירה. אטקסית: לא סדירה לחלוטין. אפנאוסטית: עצירות ממושכות בשאיפה. קוסמאול: עלייה גם בקצב וגם בעומק, אופיינית לקטואצידוזיס סוכרתי. מבוסס על שינוי במצב ההכרה עמ' 28 וסכרת עמ' 25.</figcaption>
+    </figure>
+
+    <h4>רמת ה-CO<sub>2</sub> וכלי הדם במוח</h4>
+    <p>הנשימה משפיעה ישירות על כלי הדם במוח:</p>
+    <ul>
+      <li><mark>PaCO<sub>2</sub> עולה ‏←‏ הרחבה (וזודילטציה) של כלי הדם במוח.</mark></li>
+      <li>PaCO<sub>2</sub> יורד ‏←‏ כיווץ (וזוקונסטריקציה) של כלי הדם במוח.</li>
+    </ul>
+    <p>למה זה חשוב? חולה מחוסר הכרה שנושם לא מספיק צובר CO<sub>2</sub>, כלי הדם במוחו מתרחבים, נפח הדם בגולגולת עולה והלחץ התוך-גולגולתי עולה. מצד שני, הנשמה מהירה מדי מורידה את ה-CO<sub>2</sub>, מכווצת את כלי הדם ומפחיתה את זרימת הדם למוח. לכן אצל חולה מוחי מנשימים בקצב הנכון, לא "כמה שיותר".</p>
+
+    <h4>הערכת חוט השדרה <span class="en">(Spinal Evaluation)</span></h4>
+    <p>בחשד לחבלה בודקים ארבעה דברים: תחושה בגפיים, כוח גס, תגובה לכאב (אם החולה מחוסר הכרה), ושליטה על סוגרים.</p>
+
+    <h4>סימנים חיוניים ולחץ תוך-גולגולתי</h4>
+    <p>החולה מנוטר באופן מתמיד: מוניטור, מכשיר סטורציה ומד לחץ דם. עלייה בלחץ התוך-גולגולתי <span class="en">(ICP)</span> מתבטאת בארבעה שינויים:</p>
+    <div class="callout redflag"><span class="tag">דגל אדום</span><p>ICP עולה ‏←‏ <span class="alarm-t">עלייה בלחץ הדם, ירידה בדופק, ירידה בקצב הנשימה, עלייה בטמפרטורה.</span> שילוב של לחץ דם גבוה עם דופק איטי בחולה מחוסר הכרה הוא סימן מאוחר ומסוכן של לחץ על גזע המוח, ומחייב פינוי דחוף.</p></div>
+
+    <h3>הערכה נוירולוגית: AVPU ו-GCS</h3>
+    <p>יש שני כלים: <span class="en">AVPU</span> מהיר ופשוט, ו-<span class="en">GCS</span> מפורט יותר ומאפשר לעקוב אחר מגמה.</p>
+    <dl class="kv">
+      <dt>A</dt><dd>עירני, מתמצא במקום ובזמן.</dd>
+      <dt>V</dt><dd>מגיב לקול ועונה על השאלות.</dd>
+      <dt>P</dt><dd>מגיב לכאב, אינו עירני.</dd>
+      <dt>U</dt><dd>לא מגיב.</dd>
+    </dl>
+
+    <h4>סולם גלזגו <span class="en">(Glasgow Coma Score)</span></h4>
+    <div class="tbl-wrap"><table class="data"><caption>GCS: שלושה רכיבים, ציון 3–15 (שינוי במצב ההכרה עמ' 31)</caption>
+      <thead><tr><th>ציון</th><th>פקיחת עיניים (E)</th><th>דיבור (V)</th><th>תנועה (M)</th></tr></thead>
+      <tbody>
+        <tr><th>6</th><td>—</td><td>—</td><td>ממלא פקודות</td></tr>
+        <tr><th>5</th><td>—</td><td>מתמצא</td><td>ממקם כאב</td></tr>
+        <tr><th>4</th><td>ספונטנית</td><td>מבולבל</td><td>נסוג (לכאב)</td></tr>
+        <tr><th>3</th><td>להוראה</td><td>משמיע מילים</td><td>מכופף (לכאב)</td></tr>
+        <tr><th>2</th><td>לכאב</td><td>משמיע קולות</td><td>מיישר (לכאב)</td></tr>
+        <tr><th>1</th><td>אין</td><td>אין</td><td>אין</td></tr>
+      </tbody></table></div>
+    <div class="callout must"><span class="tag">חובה לזכור</span><p>המקסימום בכל רכיב: עיניים <mark>4</mark>, דיבור <mark>5</mark>, תנועה <mark>6</mark>. סך הכול בין 3 (אין תגובה כלל) ל-15 (תקין). ציון אפשרי מינימלי הוא 3, לא 0.</p></div>
+
+    <h4>תנוחות פתולוגיות: כיפוף מול יישור</h4>
+    <p>ציונים 3 ו-2 בתנועה הם התנוחות שמופיעות בפגיעה מוחית קשה. כדאי לזהות אותן במבט:</p>
+    <div class="compare">
+      <div><h5>דקורטיקציה <span class="en">(Decorticate)</span></h5><ul><li>הידיים בכיפוף (<span class="en">Flexion</span>) ובקירוב לגוף (<span class="en">Adduction</span>), אל החזה</li><li>הרגליים בסיבוב פנימה, כפות רגליים מכופפות כלפי מטה (<span class="en">Plantar flexion</span>)</li><li>ב-GCS: "מכופף לכאב" = 3</li></ul></div>
+      <div><h5>דצרברציה <span class="en">(Decerebrate)</span></h5><ul><li>הידיים ביישור יתר (<span class="en">Hyperextension</span>) לאורך הגוף, שורש כף היד מכופף (<span class="en">Palmar flexion</span>)</li><li>הרגליים ביישור יתר, כפות מכופפות כלפי מטה</li><li>ב-GCS: "מיישר לכאב" = 2</li></ul></div>
+    </div>
+
+    <h4>GCS כמדד להחלמה</h4>
+    <div class="tbl-wrap"><table class="data"><caption>שיעור החלמה טובה לפי GCS (שינוי במצב ההכרה עמ' 33)</caption>
+      <thead><tr><th>GCS</th><th>החלמה טובה</th></tr></thead>
+      <tbody>
+        <tr><th>8 ומעלה</th><td class="hl">94%</td></tr>
+        <tr><th>5, 6, 7</th><td>50% (בילדים 90%)</td></tr>
+        <tr><th>3, 4</th><td>10%</td></tr>
+      </tbody></table></div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span><p>בשקף (שינוי במצב ההכרה עמ' 33; פרכוסים עמ' 24) כתוב "מדד ≤ <span class="en">8 = 94%</span> החלמה טובה". זה כנראה היפוך של הסימן בכתיבה מימין לשמאל: הכוונה ל-8 <b>ומעלה</b>, שאם לא כן השורות סותרות זו את זו (ציון 5–7 נכלל גם הוא ב"8 ומטה").</p></div>
+
+    <h4>תרגול מהמצגת</h4>
+    <p>הגעת לתאונת דרכים. נהג מוטל על הרצפה. הוא פותח עיניים רק אחרי צביטה וגירוי חזק, מכופף את ידיו פנימה, לא מתמצא בזמן ובמקום, אך משמיע מילים. מה ה-GCS?</p>
+    <ul>
+      <li>עיניים: נפקחות לכאב = <span class="num">2</span></li>
+      <li>דיבור: משמיע מילים = <span class="num">3</span></li>
+      <li>תנועה: מכופף לכאב = <span class="num">3</span></li>
+      <li>סך הכול: 2 + 3 + 3 = <mark>8</mark> (תשובה ג)</li>
+    </ul>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span><p>בתרגיל (שינוי במצב ההכרה עמ' 34) הניסוח "לא מתמצא... אך משמיע מילים" אפשר לקרוא גם כ"מבולבל" (4 נקודות, סה"כ 9). לפי מונחי הטבלה, "משמיע מילים" = 3, וסה"כ 8.</p></div>
+
+    <h3>פרוטוקול "שינויים במצב ההכרה" (איחוד הצלה)</h3>
+    <p>הפרוטוקול הופך את כל מה שלמעלה לסדר פעולות. הרעיון המרכזי: <b>קודם שוללים את הסיבות שאפשר לתקן בשטח</b>, לפי הסדר: היפוגליקמיה, הרעלת אופיאטים, ואז אירוע מוחי. האבחנה המבדלת בפרוטוקול: היפוגליקמיה, הרעלת אופיאטים, אירוע מוחי, פרכוס או מצב לאחר פרכוס, וטראומה.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 600" role="img" aria-label="תרשים זרימה של פרוטוקול שינויים במצב ההכרה: הערכה, נתיב אוויר, בדיקת סוכר, ואז היפוגליקמיה, אופיאטים או F.A.S.T">
+          <defs>
+            <marker id="ch10-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-field"/></marker>
+          </defs>
+          <rect x="140" y="14" width="360" height="36" rx="6" class="f-field-soft"/>
+          <text x="320" y="37" direction="rtl" text-anchor="middle">הערכה ראשונית + אנמנזה מכוונת</text>
+          <line x1="320" y1="50" x2="320" y2="64" class="ln" marker-end="url(#ch10-arr)"/>
+          <rect x="140" y="66" width="360" height="36" rx="6" class="f-field-soft"/>
+          <text x="320" y="89" direction="rtl" text-anchor="middle">נתיב אוויר · השכבה על הצד · שקול חמצן</text>
+          <line x1="320" y1="102" x2="320" y2="116" class="ln" marker-end="url(#ch10-arr)"/>
+          <rect x="140" y="118" width="360" height="36" rx="6" class="f-field-soft"/>
+          <text x="320" y="141" direction="rtl" text-anchor="middle">בדיקה גופנית · גישה ורידית · מוניטור</text>
+          <line x1="320" y1="154" x2="320" y2="168" class="ln" marker-end="url(#ch10-arr)"/>
+          <rect x="140" y="170" width="360" height="36" rx="6" class="f-hl"/>
+          <text x="320" y="193" direction="rtl" text-anchor="middle" class="t-b">בדיקת רמת סוכר בדם</text>
+          <line x1="320" y1="206" x2="320" y2="222" class="ln" marker-end="url(#ch10-arr)"/>
+
+          <polygon points="320,224 435,262 320,300 205,262" class="f-zone-soft"/>
+          <text x="320" y="258" direction="rtl" text-anchor="middle" class="t-b">היפוגליקמיה?</text>
+          <text x="320" y="278" direction="rtl" text-anchor="middle" class="t-sm">סוכר מתחת ל-60</text>
+
+          <polyline points="435,262 535,262 535,314" class="ln" marker-end="url(#ch10-arr)"/>
+          <text x="485" y="254" direction="rtl" text-anchor="middle" class="t-alarm">כן</text>
+          <rect x="450" y="316" width="170" height="36" rx="6" class="f-field-soft"/>
+          <text x="535" y="339" direction="rtl" text-anchor="middle">שקול גלוקוג'ל PO</text>
+          <line x1="535" y1="352" x2="535" y2="370" class="ln" marker-end="url(#ch10-arr)"/>
+          <rect x="450" y="372" width="170" height="36" rx="6" class="f-field-soft"/>
+          <text x="535" y="395" direction="rtl" text-anchor="middle">שקול גלוקוז IV/IO</text>
+          <text x="535" y="428" direction="rtl" text-anchor="middle" class="t-sm">אין שיפור? חזור על הגלוקוז</text>
+          <line x1="535" y1="436" x2="535" y2="544" class="ln" marker-end="url(#ch10-arr)"/>
+          <text x="545" y="494" direction="rtl" text-anchor="end" class="t-sm">שיפור</text>
+
+          <line x1="320" y1="300" x2="320" y2="322" class="ln" marker-end="url(#ch10-arr)"/>
+          <text x="345" y="316" direction="rtl" text-anchor="middle" class="t-field">לא</text>
+          <polygon points="320,324 435,362 320,400 205,362" class="f-zone-soft"/>
+          <text x="320" y="358" direction="rtl" text-anchor="middle" class="t-b">חשד להרעלת</text>
+          <text x="320" y="378" direction="rtl" text-anchor="middle" class="t-b">אופיאטים?</text>
+
+          <polyline points="205,362 115,362 115,414" class="ln" marker-end="url(#ch10-arr)"/>
+          <text x="160" y="354" direction="rtl" text-anchor="middle" class="t-alarm">כן</text>
+          <rect x="20" y="416" width="190" height="54" rx="6" class="f-field-soft"/>
+          <text x="115" y="438" direction="rtl" text-anchor="middle">שקול נרקן IN/IV</text>
+          <text x="115" y="458" direction="rtl" text-anchor="middle" class="t-sm">אין שיפור: פרוטוקול נשימה</text>
+          <line x1="115" y1="470" x2="115" y2="544" class="ln" marker-end="url(#ch10-arr)"/>
+
+          <line x1="320" y1="400" x2="320" y2="430" class="ln" marker-end="url(#ch10-arr)"/>
+          <text x="345" y="420" direction="rtl" text-anchor="middle" class="t-field">לא</text>
+          <rect x="235" y="432" width="170" height="36" rx="6" class="f-field-soft"/>
+          <text x="320" y="455" direction="ltr" text-anchor="middle">F.A.S.T</text>
+          <line x1="320" y1="468" x2="320" y2="486" class="ln" marker-end="url(#ch10-arr)"/>
+          <rect x="235" y="488" width="170" height="36" rx="6" class="f-alarm-soft"/>
+          <text x="320" y="511" direction="rtl" text-anchor="middle" class="t-alarm">לא תקין: חשד ל-CVA</text>
+          <line x1="320" y1="524" x2="320" y2="544" class="ln" marker-end="url(#ch10-arr)"/>
+
+          <rect x="20" y="546" width="600" height="40" rx="6" class="f-zone-soft"/>
+          <text x="320" y="571" direction="rtl" text-anchor="middle" class="t-b">פינוי בדחיפות · ניטור · מדדים כל 5–10 דק' · דיווח למלר"ד</text>
+        </svg>
+      </div>
+      <figcaption><b>פרוטוקול שינויים במצב ההכרה (UH 2023, עמ' 39), מפושט.</b> הסוכר נבדק לפני כל החלטה אחרת. אם אין שיפור אחרי נרקן, עוברים לפרוטוקול "הפסקת נשימה מאיימת". בחשד לאירוע מוחי, הדיווח המוקדם למלר"ד הוא חלק מהטיפול (פירוט בפרק האירוע המוחי).</figcaption>
+    </figure>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div><b>הערכה ראשונית:</b> מצב הכרה, קצב ואיכות הנשימה, סטורציה, דופק ולחץ דם.</div></li>
+        <li><div><b>אנמנזה מכוונת:</b> היפוגליקמיה (מזריק אינסולין? משאבה?), הרעלת אופיאטים (צורך סמים? מדבקות לשיכוך כאבים?), CVA (תלונות חדשות? זמן התחלה?), פרכוס או מצב לאחר פרכוס, טראומה.</div></li>
+        <li><div><b>נתיב אוויר והשכבה על הצד</b> במידת האפשר; <mark>אישה בהריון משכיבים על צד שמאל</mark>. שקול חמצן.</div></li>
+        <li><div><b>בדיקה גופנית, גישה ורידית, מוניטור.</b></div></li>
+        <li><div><b>בדיקת רמת סוכר בדם</b>, ומשם לפי התרשים.</div></li>
+        <li><div><b>פינוי בדחיפות</b> תוך המשך ניטור וטיפול, מדדים כל 5–10 דקות, ושקול להעביר דיווח למלר"ד.</div></li>
+      </ol>
+    </div>
+
+    <h4>זיהוי היפוגליקמיה לפי הפרוטוקול</h4>
+    <p>שאלות מכוונות: האם המטופל סוכרתי? האם הוא משתמש באינסולין או בתרופות אחרות לסוכרת? האם הוא מחובר למשאבת אינסולין? מתי אכל לאחרונה? האם היו אירועים קודמים של היפוגליקמיה?</p>
+    <p>סימנים מחשידים: חיוורון, הזעה, רעד, פלפיטציות, חסר נוירולוגי, שינוי במצב ההכרה.</p>
+    <div class="callout must"><span class="tag">חובה לזכור</span><p>היפוגליקמיה לפי הפרוטוקול: <mark>רמת סוכר נמוכה מ-60 מ"ג/ד"ל</mark>, או נמוכה מרמות הבסיס של המטופל.</p></div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span><p>מטופל עם <b>משאבת אינסולין</b> וסוכר נמוך: יש לנתק את המשאבה. אחרת היא ממשיכה להזרים אינסולין בזמן שאתה מנסה להעלות את הסוכר.</p><p>היפוגליקמיה יכולה להתבטא ב<b>חסר נוירולוגי</b> שנראה כמו שבץ. לכן בודקים סוכר לפני שמגיעים ל-F.A.S.T.</p></div>
+
+    <h4>שאר הענפים בקצרה</h4>
+    <ul>
+      <li><b>פרכוס או מצב לאחר פרכוס:</b> האם יש רקע אפילפטי, או סיבה אחרת לפרכוס (חום, עילפון, פגיעת ראש, תהליך תופס מקום, אלכוהול, הרעלה)? האם החזרה להכרה מהירה או איטית?</li>
+      <li><b>טראומה:</b> יש לשלול סימני חבלה ולחפש דימומים ופגיעות.</li>
+      <li><b>הרעלת אופיאטים ואירוע מוחי</b> מפורטים בפרק הבא. בקצרה: נרקן <mark>0.4 מ"ג IV/IO</mark>, או 2 מ"ג IN במנות של 0.4 מ"ג, וחוזרים כל 5–10 דקות עד שיפור באיכות הנשימה ובהכרה. בהיעדר היפוגליקמיה ואופיאטים מבצעים F.A.S.T (פנים, ידיים, דיבור, זמן).</li>
+    </ul>
+
+    <div class="doses">
+      <article class="dose"><header><h5>גלוקוז 50%</h5><span class="ind">היפוגליקמיה (סוכר מתחת ל-60)</span></header>
+        <div class="big">20 <small>גרם IV/IO</small></div>
+        <dl><dt>צורת הופעה</dt><dd>10 גרם ב-20 מ"ל (50%)</dd>
+          <dt>הכנה</dt><dd>לשאוב 10 מ"ל גלוקוז למזרק 20 מ"ל ולהשלים 10 מ"ל סליין, לריכוז 25%</dd>
+          <dt>חזרה</dt><dd>אם אין שיפור, חוזרים (התרשים חוזר לשלב הגלוקוז)</dd></dl>
+        <div class="calc">מזרק מוכן אחד = 10 מ"ל של <span class="en">50% = 5</span> גרם. 20 גרם = 4 מזרקים כאלה (80 מ"ל של 25%)</div></article>
+      <article class="dose"><header><h5>גלוקוג'ל</h5><span class="ind">היפוגליקמיה בחולה בהכרה</span></header>
+        <div class="big">שפופרת שלמה <small>PO</small></div>
+        <dl><dt>צורת הופעה</dt><dd>שפופרת ג'ל, 15 גרם גלוקוז</dd>
+          <dt>מתן</dt><dd>מריחה על צידי החניכיים</dd>
+          <dt>תנאי</dt><dd>רק לחולה בהכרה שמשתף פעולה</dd></dl>
+        <div class="calc">חולה מבולבל שלא בולע או לא משתף פעולה ‏←‏ לא גלוקוג'ל, אלא גלוקוז IV</div></article>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span><p>הכנת הגלוקוז בפרוטוקול (עמ' 38, 40) מפיקה 20 מ"ל של 25% = <b>5 גרם</b> בלבד, בעוד שהמינון הוא 20 גרם. מזה נובע שצריך 4 מזרקים מוכנים, אבל זה לא כתוב במפורש. בנוסף, מצגת הסוכרת (עמ' 37) נותנת מינון אחר: "גלוקוז 25% 100 סמ"ק לווריד, כלומר 25 גרם (או 50% 50 סמ"ק)". הפרמדיק פועל לפי הפרוטוקול: <b>20 גרם</b>.</p></div>
+
+    <h3>פרכוסים: סיבות וסוגים</h3>
+    <p>פרכוס הוא פריקה חשמלית לא מבוקרת של תאי עצב במוח. כשהפריקה כוללת את כל המוח, רואים התכווצות של כל הגוף עם איבוד הכרה. כשהיא מקומית, רואים תופעה מקומית בלבד.</p>
+
+    <h4>סיבות אפשריות</h4>
+    <div class="tbl-wrap"><table class="data"><caption>סיבות לפרכוסים (פרכוסים עמ' 28; פרוטוקול עמ' 38)</caption>
+      <tbody>
+        <tr><td>היפוקסיה</td><td>אלכוהול</td><td>אירוע מוחי</td><td class="hl">היפוגליקמיה</td></tr>
+        <tr><td>רעלת הריון</td><td>פגיעת ראש</td><td>עלייה בחום הגוף</td><td>מחלות כלי דם</td></tr>
+        <tr><td>אפילפסיה</td><td>מנינגיטיס</td><td>גידולים במוח</td><td>לא ידוע</td></tr>
+        <tr><td>סמים</td><td>עקיצות בעלי חיים</td><td>הרעלות</td><td>—</td></tr>
+      </tbody></table></div>
+    <p>שימו לב: חלק גדול מהסיבות ברשימה (היפוקסיה, היפוגליקמיה, רעלת הריון, חום) הן סיבות שהפרמדיק יכול לזהות ולטפל בהן. לכן כל חולה מפרכס מקבל בדיקת סוכר, וכל אישה בהריון מפרכסת היא חשד לאקלמפסיה.</p>
+
+    <h4>התקף גדול <span class="en">(Grand Mal)</span></h4>
+    <p>מכונה גם "התקף טוני-קלוני". זהו התקף מוטורי כללי עם איבוד הכרה: התכווצויות כלליות חוזרות במשך <mark>2–3 דקות</mark>. במהלכו ייתכנו כחלון בגלל הפרעה בנשימה, הפרשה דמוית קצף מהפה, ואיבוד שליטה על סוגרים (בעיקר שתן). רואים התכווצות של שרירי הצוואר והפנים, ונשיכת לשון שכיחה.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 260" role="img" aria-label="שבעת שלבי ההתקף הגדול לפי סדר הזמן, מימין לשמאל">
+          <defs>
+            <marker id="ch10-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-zone"/></marker>
+          </defs>
+          <text x="320" y="44" direction="rtl" text-anchor="middle" class="t-alarm">התכווצויות כלליות: 2–3 דקות</text>
+          <polyline points="192,66 192,56 448,56 448,66" fill="none" class="s-alarm"/>
+          <rect x="544" y="76" width="80" height="70" rx="6" class="f-soft"/>
+          <text x="584" y="106" direction="rtl" text-anchor="middle" class="t-b">אורה</text>
+          <text x="584" y="126" direction="ltr" text-anchor="middle" class="t-sm">Aura</text>
+          <rect x="456" y="76" width="80" height="70" rx="6" class="f-zone-soft"/>
+          <text x="496" y="106" direction="rtl" text-anchor="middle" class="t-b">איבוד</text>
+          <text x="496" y="126" direction="rtl" text-anchor="middle" class="t-b">הכרה</text>
+          <rect x="368" y="76" width="80" height="70" rx="6" class="f-alarm-soft"/>
+          <text x="408" y="106" direction="rtl" text-anchor="middle" class="t-b">שלב</text>
+          <text x="408" y="126" direction="rtl" text-anchor="middle" class="t-b">טוני</text>
+          <rect x="280" y="76" width="80" height="70" rx="6" class="f-alarm-soft"/>
+          <text x="320" y="106" direction="rtl" text-anchor="middle" class="t-b">שלב</text>
+          <text x="320" y="126" direction="rtl" text-anchor="middle" class="t-b">היפרטוני</text>
+          <rect x="192" y="76" width="80" height="70" rx="6" class="f-alarm-soft"/>
+          <text x="232" y="106" direction="rtl" text-anchor="middle" class="t-b">שלב</text>
+          <text x="232" y="126" direction="rtl" text-anchor="middle" class="t-b">קלוני</text>
+          <rect x="104" y="76" width="80" height="70" rx="6" class="f-zone-soft"/>
+          <text x="144" y="106" direction="rtl" text-anchor="middle" class="t-b">פוסט-</text>
+          <text x="144" y="126" direction="rtl" text-anchor="middle" class="t-b">פרכוס</text>
+          <rect x="16" y="76" width="80" height="70" rx="6" class="f-field-soft"/>
+          <text x="56" y="106" direction="rtl" text-anchor="middle" class="t-b">פוסט-</text>
+          <text x="56" y="126" direction="rtl" text-anchor="middle" class="t-b">איקטלי</text>
+          <text x="584" y="170" direction="rtl" text-anchor="middle" class="t-sm">שניות–שעות</text>
+          <text x="408" y="170" direction="rtl" text-anchor="middle" class="t-sm">כ-15 שניות</text>
+          <text x="232" y="170" direction="rtl" text-anchor="middle" class="t-sm">כ-2 דקות</text>
+          <text x="144" y="170" direction="rtl" text-anchor="middle" class="t-sm">חוסר הכרה</text>
+          <text x="56" y="170" direction="rtl" text-anchor="middle" class="t-sm">20 דק' עד שעות</text>
+          <line x1="610" y1="200" x2="30" y2="200" class="ln-soft" marker-end="url(#ch10-arr2)"/>
+          <text x="320" y="222" direction="rtl" text-anchor="middle" class="t-sm">כיוון הזמן</text>
+          <text x="320" y="248" direction="rtl" text-anchor="middle">לא כל חולה מציג את כל השלבים</text>
+        </svg>
+      </div>
+      <figcaption><b>שלבי ההתקף הגדול (פרכוסים עמ' 30, 32), לא בקנה מידה.</b> אורה: שניות עד שעות לפני ההתקף. טוני: התכווצות כל השרירים, כ-15 שניות. היפרטוני: התכווצות מקסימלית עם אקסטנציה של הגב. קלוני: כ-2 דקות של התכווצות והרפיה לסירוגין. אחר כך החולה נכנס לחוסר הכרה, ובשלב הפוסט-איקטלי מתחיל להתעורר, במשך 20 דקות עד מספר שעות.</figcaption>
+    </figure>
+
+    <dl class="kv">
+      <dt>אורה <span class="en">(Aura)</span></dt><dd>מופיעה מספר שניות עד מספר שעות לפני ההתקף, ויכולה להיות נפשית או תחושתית. מטופל שמכיר את האורה שלו יכול להספיק לשכב ולהזהיר את הסביבה.</dd>
+      <dt>איבוד הכרה</dt><dd><span class="en">Loss of Consciousness</span>.</dd>
+      <dt>שלב טוני</dt><dd>התכווצות של כל השרירים בגוף, נמשך כ-15 שניות.</dd>
+      <dt>שלב היפרטוני</dt><dd>התכווצות מקסימלית עם אקסטנציה של הגב.</dd>
+      <dt>שלב קלוני</dt><dd>נמשך כ-2 דקות: תנועות של התכווצות והרפיה של השרירים.</dd>
+      <dt>פוסט-פרכוס</dt><dd>החולה נכנס לחוסר הכרה.</dd>
+      <dt>פוסט-איקטלי</dt><dd>החולה מתחיל להתעורר; נמשך <mark>מ-20 דקות עד מספר שעות</mark>. בשלב הזה הוא מבולבל, ישנוני, לפעמים תוקפני.</dd>
+    </dl>
+
+    <h4>סוגי פרכוסים אחרים</h4>
+    <div class="tbl-wrap"><table class="data"><caption>השוואת סוגי הפרכוסים (פרכוסים עמ' 29–35)</caption>
+      <thead><tr><th>סוג</th><th>מה רואים</th><th>משך</th><th>נקודות מפתח</th></tr></thead>
+      <tbody>
+        <tr><th>התקף קטן <span class="en">(Petit Mal)</span>, "התקף היעדרות"</th><td>התכווצות כללית קצרה: החולה "מתנתק" לרגעים מהסביבה, רעד בעיניים או בשרירים, או איבוד הכרה קצר ביותר שלעיתים לא מורגש</td><td class="hl">10–30 שניות</td><td>סיבה לא ידועה. נדיר שמתחיל אחרי גיל 20. תגובה לטיפול נמוכה</td></tr>
+        <tr><th>מוקדי מוטורי <span class="en">(Focal Motor)</span></th><td>פגיעה בתפקוד באזור חלקי מסוים בגוף; מתחיל בהתכווצות מקומית בתנועות טוניות וקלוניות</td><td>—</td><td>התפרקות חשמלית באזור קטן במוח. לפעמים ההתכווצויות מתפשטות ונראות כמו התכווצות כללית</td></tr>
+        <tr><th>פסיכומוטורי <span class="en">(Temporal Lobe)</span></th><td>אורה כמו ריח, טעם, קול או מראה מסוים; התכווצויות חלקיות; אובדן קשר עם הסביבה; בלבול, תנועות ללא מטרה, סירוב לטיפול, לפעמים שינוי חד באישיות</td><td>1–2 דקות</td><td>קל לטעות ולחשוב שמדובר בשכרות או בבעיה התנהגותית</td></tr>
+        <tr><th>היסטרי <span class="en">(Hysterical)</span></th><td>תנועות שונות וחדות</td><td>—</td><td>ניתן להפסיק אותן במתן פקודה. <b>אין</b> תקופה פוסט-איקטלית. נדיר מאוד שפוצעים את עצמם</td></tr>
+      </tbody></table></div>
+
+    <h3>טיפול בחולה המפרכס</h3>
+    <p>בשטח מגיעים לחולה המפרכס באחד משני מצבים: הוא עדיין מפרכס, או שהפרכוס כבר הסתיים. הגישה שונה.</p>
+
+    <h4>גישה ואנמנזה</h4>
+    <p>מנסים לקבל מידע מהסובבים: אילו אירועים קדמו לפרכוס, האם ידוע שהחולה אפילפטי, תרופות קבועות. מתרשמים האם החולה נראה במצב פוסט-איקטלי. לא תמיד אפשר לקבל מידע ברור לגבי הפרכוסים. <mark>איבוד שליטה על סוגרים ו/או סימני נשיכת לשון מחזקים את החשד שהחולה עבר פרכוס.</mark></p>
+    <p>מה מבררים על הפרכוס עצמו: אורך ההתכווצות, האם הייתה כללית או חלקית, האם הייתה אורה, איבוד שליטה על שתן, נשיכת לשון או חבלה אחרת בגוף. ועל הרקע: סיפור קודם של פרכוסים, חבלת ראש לאחרונה, אלכוהול או סמים, חום גבוה, כאבי ראש או צוואר נוקשה, סוכרת, מחלת לב או אירוע מוחי, ותרופות שנלקחות באופן קבוע.</p>
+    <div class="callout redflag"><span class="tag">דגל אדום</span><p>חום גבוה + כאב ראש + צוואר נוקשה + פרכוס = חשד לזיהום במוח (מנינגיטיס). חבלת ראש לאחרונה + פרכוס = חשד לדימום מוחי. שני אלה אינם "עוד פרכוס של אפילפטי".</p></div>
+
+    <h4>בזמן הפרכוס</h4>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ul>
+        <li>הרחק גורמים מסוכנים מהמטופל (משקפיים, סכין ביד המטופל וכו').</li>
+        <li>רפד את ראש החולה ואת סביבתו ומנע פגיעה.</li>
+        <li><b>אין לנסות לעצור פרכוס בכוח</b>, לא להרים את החולה ולא להשתמש בכוח גדול.</li>
+        <li>שמור על חום הגוף, חבר למוניטור והרגע את הסביבה.</li>
+        <li>לא ניתן לבדוק סימנים חיוניים (דופק ולחץ דם) בזמן פרכוס.</li>
+      </ul>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span><p><span class="alarm-t">אין להכניס חפצים בין שיניו של החולה בכוח</span>, כולל מנתב אוויר או מקל מרופד: יש חשש לגרימת הקאה, אספירציה ו/או לרינגוספאזם. אסור להכניס שום דבר לפה.</p></div>
+
+    <h4>אחרי שלב הפרכוס: ABCD</h4>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div><b>A, נתיב אוויר:</b> בחולה מחוסר הכרה, <mark>סלק את ההפרשות לפני ביצוע הטיית מצח-סנטר</mark>. השכב את החולה על הצד לאחר השלב הטוני-קלוני.</div></li>
+        <li><div><b>B, נשימה:</b> חפש סימני היפוקסיה. תן חמצן במסכה בעת הצורך, ושקול סיוע נשימתי בעת הצורך.</div></li>
+        <li><div><b>C, פרפוזיה:</b> הערך דופק (קצב וסדירות) ולחץ דם.</div></li>
+        <li><div><b>D, סוכר והכרה:</b> בדוק רמת סוכר, כי חולה לאחר פרכוס יכול להיות במצב של היפוגליקמיה. בצע הערכות חוזרות של רמת ההכרה (AVPU).</div></li>
+        <li><div>חפש סימני פציעה בשפתיים או בלשון ודימום, וקבל החלטה לגבי מצב החולה ודחיפות הפינוי.</div></li>
+      </ol>
+    </div>
+
+    <h4>פרוטוקול "פרכוסים / לאחר פרכוס" (איחוד הצלה)</h4>
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 476" role="img" aria-label="תרשים זרימה של פרוטוקול פרכוסים: הערכה, נתיב אוויר, וריד וסוכר, ואם מפרכס דורמיקום, ואז מוניטור ופינוי">
+          <defs>
+            <marker id="ch10-arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-field"/></marker>
+          </defs>
+          <rect x="120" y="14" width="400" height="36" rx="6" class="f-field-soft"/>
+          <text x="320" y="37" direction="rtl" text-anchor="middle">הערכה ראשונית + אנמנזה מהירה</text>
+          <line x1="320" y1="50" x2="320" y2="64" class="ln" marker-end="url(#ch10-arr3)"/>
+          <rect x="120" y="66" width="400" height="36" rx="6" class="f-field-soft"/>
+          <text x="320" y="89" direction="rtl" text-anchor="middle">נתיב אוויר · על הצד · ריפוד הראש · שקול חמצן</text>
+          <line x1="320" y1="102" x2="320" y2="116" class="ln" marker-end="url(#ch10-arr3)"/>
+          <rect x="120" y="118" width="400" height="36" rx="6" class="f-hl"/>
+          <text x="320" y="141" direction="rtl" text-anchor="middle" class="t-b">גישה ורידית · בדיקת רמת סוכר</text>
+          <line x1="320" y1="154" x2="320" y2="174" class="ln" marker-end="url(#ch10-arr3)"/>
+          <polygon points="320,176 420,212 320,248 220,212" class="f-zone-soft"/>
+          <text x="320" y="217" direction="rtl" text-anchor="middle" class="t-b">מפרכס?</text>
+          <polyline points="220,212 110,212 110,282" class="ln" marker-end="url(#ch10-arr3)"/>
+          <text x="165" y="204" direction="rtl" text-anchor="middle" class="t-alarm">כן</text>
+          <polyline points="420,212 530,212 530,282" class="ln" marker-end="url(#ch10-arr3)"/>
+          <text x="475" y="204" direction="rtl" text-anchor="middle" class="t-field">לא</text>
+          <rect x="20" y="284" width="180" height="36" rx="6" class="f-alarm-soft"/>
+          <text x="110" y="307" direction="rtl" text-anchor="middle" class="t-b">דורמיקום IN/IM/IV</text>
+          <text x="110" y="338" direction="rtl" text-anchor="middle" class="t-sm">ממשיך? חזור אחרי 5–10 דק'</text>
+          <line x1="200" y1="302" x2="438" y2="302" class="ln" marker-end="url(#ch10-arr3)"/>
+          <rect x="440" y="284" width="180" height="36" rx="6" class="f-field-soft"/>
+          <text x="530" y="307" direction="rtl" text-anchor="middle">מוניטור + סטורציה</text>
+          <polyline points="490,320 490,382 262,382" class="ln-dash" marker-end="url(#ch10-arr3)"/>
+          <rect x="20" y="356" width="240" height="52" rx="6" class="f-alarm-soft"/>
+          <text x="140" y="378" direction="rtl" text-anchor="middle" class="t-alarm">חשד לאקלמפסיה?</text>
+          <text x="140" y="398" direction="rtl" text-anchor="middle" class="t-sm">שקול מגנזיום, פרוטוקול מתאים</text>
+          <line x1="580" y1="320" x2="580" y2="420" class="ln" marker-end="url(#ch10-arr3)"/>
+          <rect x="300" y="422" width="320" height="40" rx="6" class="f-zone-soft"/>
+          <text x="460" y="447" direction="rtl" text-anchor="middle" class="t-b">פינוי בדחיפות · מדדים כל 5–10 דק'</text>
+        </svg>
+      </div>
+      <figcaption><b>פרוטוקול פרכוסים / לאחר פרכוס (UH 2023, עמ' 37), מפושט.</b> השאלה המרכזית היא אחת: האם המטופל מפרכס עכשיו. אם כן, דורמיקום; אם לא, ממשיכים לניטור ופינוי. בכל אישה בהריון חושבים על אקלמפסיה. בסוכר מתחת ל-60 נותנים גלוקוז.</figcaption>
+    </figure>
+
+    <p>דגשי הפרוטוקול (עמ' 37–38):</p>
+    <ul>
+      <li><b>הערכה:</b> מצב הכרה, קצב ואיכות נשימתית, סטורציה, דופק ולחץ דם.</li>
+      <li><b>אנמנזה:</b> מחלות רקע (אפילפסיה, סוכרת, מחלת חום, מחלות לב, גידול מוחי), הופעת אורה לפני התקף, איבוד שליטה על סוגרים, סימני נשיכה על הלשון, חבלה כתוצאה מפרכוס, תרופות קבועות.</li>
+      <li><b>בטיחות:</b> יש להרחיק חפצים שהמטופל עלול להיפגע מהם.</li>
+      <li><b>חמצן:</b> בסימני מצוקה נשימתית, היפופרפוזיה, או <mark>סטורציה נמוכה מ-94%</mark>.</li>
+      <li><b>גלוקוז:</b> אם רמת הסוכר נמוכה מ-60 מ"ג%, יש לתת 20 גרם גלוקוז IV (במיהול 25%).</li>
+    </ul>
+
+    <div class="doses">
+      <article class="dose"><header><h5>דורמיקום (מידזולם)</h5><span class="ind">פרכוס פעיל</span></header>
+        <div class="big">2.5–5 <small>מ"ג IV</small></div>
+        <dl><dt>IM</dt><dd>5 מ"ג</dd>
+          <dt>IN</dt><dd>10 מ"ג, עם התקן</dd>
+          <dt>צורת הופעה</dt><dd>אמפולה 5 מ"ג ב-1 מ"ל</dd>
+          <dt>הכנה (IV)</dt><dd>לשאוב 1 מ"ל ולהשלים 4 מ"ל סליין: בכל 1 מ"ל יהיה 1 מ"ג</dd>
+          <dt>חזרה</dt><dd>אחרי 5–10 דקות, אם הפרכוס ממשיך</dd>
+          <dt>תופעות לוואי</dt><dd>דיכוי נשימתי, ירידה בלחץ הדם, ברדיקרדיה</dd>
+          <dt>הריון</dt><dd>רק במצבים מסכני חיים ולאחר התייעצות עם המוקד הרפואי</dd></dl>
+        <div class="calc">אחרי המיהול 1 מ"ג/מ"ל: 2.5 מ"ג = 2.5 מ"ל, 5 מ"ג = 5 מ"ל (כל המזרק)</div></article>
+      <article class="dose"><header><h5>מגנזיום</h5><span class="ind">חשד לאקלמפסיה</span></header>
+        <div class="big">6 <small>גרם IV</small></div>
+        <dl><dt>מיהול</dt><dd>במיהול של 10%</dd>
+          <dt>קצב</dt><dd>בטפטוף, במשך 15–20 דקות</dd>
+          <dt>צורת הופעה</dt><dd>5 גרם ב-10 מ"ל (50%)</dd>
+          <dt>הכנה</dt><dd>לשאוב 4 מ"ל ולמהול ב-100 מ"ל D5W או NS</dd>
+          <dt>ניטור</dt><dd>מוניטור; לחץ דם, דופק ונשימה במהלך הטיפול ובסיומו</dd></dl>
+        <div class="calc">אמפולה של 50%: כל 1 מ"ל = 0.5 גרם, ולכן 4 מ"ל = 2 גרם (ראו הערה למטה)</div></article>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span><p>דורמיקום מדכא נשימה. אחרי מתן, ובמיוחד אחרי מנה חוזרת, היה מוכן לתמוך בנשימה (מפוח), ועקוב אחר סטורציה, לחץ דם ודופק.</p></div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p><b>התרופה:</b> מצגת הפרכוסים (עמ' 38, 42) אומרת רק "מתן אסיבל לתוך הווריד" בלי מינון. הפרוטוקול משתמש ב<b>דורמיקום</b> (IN/IM/IV) במינונים שבכרטיס. בשטח פועלים לפי הפרוטוקול.</p>
+      <p><b>מגנזיום:</b> בפרוטוקול (עמ' 38) המינון 6 גרם, אבל אופן ההכנה ("לשאוב 4 מ"ל") מאמפולה של 5 גרם/10 מ"ל נותן 2 גרם בלבד. כדאי לברר מול המדריכים.</p>
+      <p><b>דורמיקום בהריון:</b> עמ' 37 מציין "התוויית נגד: התייעץ עם המוקד הרפואי", ועמ' 38 "לשקול מתן אך ורק במצבים מסכני חיים ולאחר התייעצות". שני הניסוחים דורשים התייעצות.</p>
+    </div>
+
+    <h3>סטטוס אפילפטיקוס ופרכוסי חום</h3>
+    <h4>סטטוס אפילפטיקוס <span class="en">(Status Epilepticus)</span>: התקף מתמשך</h4>
+    <div class="callout must"><span class="tag">חובה לזכור</span><p>לפי הפרוטוקול, סטטוס אפילפטיקוס הוא <mark>2 פרכוסים עוקבים בלי חזרה להכרה ביניהם</mark>, או <mark>פרכוס הנמשך יותר מ-5 דקות</mark>. זהו מצב מסכן חיים מיידית בגלל אפניאה ממושכת.</p></div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span><p>מצגת הפרכוסים נותנת שתי הגדרות: עמ' 39, "מבחינה מעשית התכווצות מעל 5 דקות", ועמ' 43, "פרכוס הנמשך 30 דקות או יותר, או התקפים חוזרים שנמשכים 30 דקות או יותר". ההגדרה של 30 דקות היא ההגדרה הקלאסית; לצורך החלטה בשטח הפרוטוקול קובע <b>5 דקות</b>.</p></div>
+
+    <div class="compare">
+      <div><h5>סיבות</h5><ul><li>אי-איזון תרופתי או הפסקת נטילת תרופות על ידי החולה (הסיבה הראשונה ברשימה)</li><li>הרעלות מתרופות</li><li>זיהום ב-CNS</li><li>חבלת ראש</li></ul></div>
+      <div><h5>סיבוכים</h5><ul><li>הפסקת נשימה, היפוקסיה</li><li>לחץ דם גבוה מאוד</li><li>לחץ תוך-גולגולתי מוגבר ובצקת מוחית</li><li>עלייה בחום הגוף</li><li>שברים בעצמות ארוכות ובעמוד השדרה</li><li>נקרוזיס של שריר הלב</li><li>חוסר נוזלים בגוף</li></ul></div>
+    </div>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ul>
+        <li>טיפול ופינוי תוך התייחסות לעמוד השדרה (עמ"ש/עמש"צ), כי השרירים המתכווצים יכולים לשבור עצמות.</li>
+        <li>שמירה על נתיב אוויר ומתן חמצן בריכוז גבוה.</li>
+        <li>פתיחת וריד וניטור; גלוקוז אם יש היפוגליקמיה.</li>
+        <li>תרופה להפסקת ההתכווצויות (לפי הפרוטוקול: דורמיקום), ושמירה מתקדמת על דרכי האוויר ברמת ALS.</li>
+      </ul>
+    </div>
+
+    <h4>פרכוסי חום בילדים</h4>
+    <p>פרכוסי חום נגרמים על רקע עלייה משמעותית בחום הגוף, בדרך כלל כתוצאה ממחלה.</p>
+    <ul>
+      <li>נפוצים במיוחד <mark>מגיל 6 חודשים עד 6 שנים</mark>.</li>
+      <li>בדרך כלל דומים לפרכוס כללי <span class="en">(grand mal)</span> ונמשכים <mark>פחות מ-5 דקות</mark>.</li>
+      <li>פרכוס על רקע חום בדרך כלל אינו חוזר תוך 24 שעות.</li>
+    </ul>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div>אבטח נתיב אוויר.</div></li>
+        <li><div>אבטח נשימה מספקת.</div></li>
+        <li><div>הערך מצב פרפוזיה.</div></li>
+        <li><div>נקוט צעדים להורדת חום הגוף: מגבת רטובה באזור העורף.</div></li>
+        <li><div>הפנה לרופא להמשך טיפול.</div></li>
+      </ol>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span><p>חשוב לפנות לבית החולים, <b>במיוחד בפרכוס ראשון</b>, גם כשנראה שהפרכוס הוא על רקע חום, להמשך בדיקה וטיפול. פרכוס שנמשך יותר מ-5 דקות או חוזר אינו מתאים לתמונה של פרכוס חום פשוט. (פירוט נוסף בשיעור מצבי חירום בילדים.)</p></div>
+
+    <h3>סוכרת: מה קורה בגוף</h3>
+    <p>סוכרת <span class="en">(Diabetes Mellitus)</span> נחשבת מחלה אנדוקרינית שנובעת <b>מחוסר תפקוד תקין של תאי β באיי לנגרהנס בלבלב</b>, שמפרישים את ההורמון אינסולין שמווסת את רמת הסוכר בדם.</p>
+    <ul>
+      <li>אחת המחלות הנפוצות ביותר בעולם המערבי, והתפוצה הולכת ועולה (מזון עתיר סוכר וחומצות שומן רוויות, גנטיקה, פגם במערכת החיסון).</li>
+      <li>המחלה אינה ספציפית ללבלב: יש לה פוטנציאל לפגוע במערכות נוספות, ובראשן <b>המערכת הקרדיווסקולרית</b>.</li>
+      <li>מעל גיל 40 אחוז הגברים החולים גבוה מהנשים; עד גיל 40 שווה. 30% מהחולים מתגלים בעשור החמישי.</li>
+      <li>בישראל, בשנת 2021, 548,000 בני אדם מעל גיל 18 אובחנו כחולי סוכרת.</li>
+    </ul>
+
+    <h4>מטבוליזם של הגלוקוז</h4>
+    <p>הגלוקוז <span class="en">(Dextrose)</span> הוא המרכיב החשוב ביותר בייצור אנרגיה (<span class="en">ATP</span>) בגוף. הסוכרים במזון מתפרקים במערכת העיכול לחד-סוכרים (גלוקוז, פרוקטוז, גלקטוז), ו-95%–98% ממה שמגיע לדם הוא גלוקוז.</p>
+    <p>הנקודה החשובה: <mark>הגלוקוז אינו חודר בעצמו לתוך התא</mark> (מולקולה גדולה יחסית). הוא עובר את הממברנה בדיפוזיה מוקלת <span class="en">(Facilitated Diffusion)</span> בעזרת נשאים, והכניסה תלויה בכמות האינסולין. האינסולין נקשר לרצפטורים על הממברנה ו"פותח את הדלת". חריג חשוב: <b>כליות ועיניים</b> אינן תלויות באינסולין ומכניסות גלוקוז גם בלעדיו, ולכן הן נפגעות מעודף סוכר בדם לאורך שנים.</p>
+    <p>הנשאים נקראים <span class="en">Glucose Transport (GluT)</span>; יש חמישה סוגים, <span class="en">GluT 1</span> עד <span class="en">GluT 5</span>, וכל סוג נמצא באיבר או ברקמה מסוימת.</p>
+
+    <h4>הלבלב ושלושת סוגי התאים</h4>
+    <p>הלבלב נמצא בבטן העליונה משמאל, מאחורי הקיבה, ויש לו תפקידים אנדוקריניים (הורמונים לדם) ואקסוקריניים (אנזימי עיכול). הוא החלק ממנו יוצאת המחלה, ומכיל שלושה סוגי תאים:</p>
+    <div class="tbl-wrap"><table class="data"><caption>תאי הלבלב (סכרת עמ' 6–10)</caption>
+      <thead><tr><th>תא</th><th>הורמון</th><th>מתי מופרש</th><th>מה עושה</th></tr></thead>
+      <tbody>
+        <tr><th>α</th><td>גלוקגון</td><td>כשרמת הסוכר בדם יורדת</td><td>מעורר את הכבד לפרק ולשחרר את מאגר הסוכר האגור בו</td></tr>
+        <tr><th>β</th><td class="hl">אינסולין</td><td>מיד כשרמת הסוכר בדם עולה</td><td>מכניס גלוקוז לתאים ומוריד את רמת הסוכר בדם. אנטגוניסט לגלוקגון. זמן מחצית החיים בדם כ-5 דקות; מפורק בכבד</td></tr>
+        <tr><th>γ (לפי המצגת)</th><td>סומטוסטטין</td><td>מושפע מרמות הנוראדרנלין בדם</td><td>מנטר את ייצור הגלוקגון והאינסולין</td></tr>
+      </tbody></table></div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 290" role="img" aria-label="ויסות הסוכר: כשהסוכר גבוה תאי בטא מפרישים אינסולין והסוכר יורד; כשהסוכר נמוך תאי אלפא מפרישים גלוקגון והכבד משחרר סוכר">
+          <defs>
+            <marker id="ch10-arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-zone"/></marker>
+          </defs>
+          <text x="620" y="34" direction="rtl" text-anchor="start" class="t-b">כשהסוכר גבוה</text>
+          <rect x="440" y="48" width="180" height="64" rx="8" class="f-alarm-soft"/>
+          <text x="530" y="75" direction="rtl" text-anchor="middle" class="t-b">רמת הסוכר עולה</text>
+          <text x="530" y="96" direction="rtl" text-anchor="middle" class="t-sm">(אחרי ארוחה)</text>
+          <line x1="440" y1="80" x2="414" y2="80" class="ln" marker-end="url(#ch10-arr4)"/>
+          <rect x="230" y="48" width="180" height="64" rx="8" class="f-zone-soft"/>
+          <text x="320" y="75" direction="rtl" text-anchor="middle" class="t-b">תאי β בלבלב</text>
+          <text x="320" y="96" direction="rtl" text-anchor="middle" class="t-sm">מפרישים אינסולין</text>
+          <line x1="230" y1="80" x2="204" y2="80" class="ln" marker-end="url(#ch10-arr4)"/>
+          <rect x="20" y="48" width="180" height="64" rx="8" class="f-field-soft"/>
+          <text x="110" y="75" direction="rtl" text-anchor="middle" class="t-b">גלוקוז נכנס לתאים</text>
+          <text x="110" y="96" direction="rtl" text-anchor="middle" class="t-sm">עודף נאגר; הסוכר יורד</text>
+
+          <line x1="20" y1="140" x2="620" y2="140" class="ln-dash"/>
+
+          <text x="620" y="174" direction="rtl" text-anchor="start" class="t-b">כשהסוכר נמוך</text>
+          <rect x="440" y="188" width="180" height="64" rx="8" class="f-alarm-soft"/>
+          <text x="530" y="215" direction="rtl" text-anchor="middle" class="t-b">רמת הסוכר יורדת</text>
+          <text x="530" y="236" direction="rtl" text-anchor="middle" class="t-sm">(רעב, שינת לילה)</text>
+          <line x1="440" y1="220" x2="414" y2="220" class="ln" marker-end="url(#ch10-arr4)"/>
+          <rect x="230" y="188" width="180" height="64" rx="8" class="f-zone-soft"/>
+          <text x="320" y="215" direction="rtl" text-anchor="middle" class="t-b">תאי α בלבלב</text>
+          <text x="320" y="236" direction="rtl" text-anchor="middle" class="t-sm">מפרישים גלוקגון</text>
+          <line x1="230" y1="220" x2="204" y2="220" class="ln" marker-end="url(#ch10-arr4)"/>
+          <rect x="20" y="188" width="180" height="64" rx="8" class="f-field-soft"/>
+          <text x="110" y="215" direction="rtl" text-anchor="middle" class="t-b">הכבד מפרק מאגרים</text>
+          <text x="110" y="236" direction="rtl" text-anchor="middle" class="t-sm">ומשחרר גלוקוז; הסוכר עולה</text>
+          <text x="320" y="278" direction="rtl" text-anchor="middle" class="t-sm">תאי המוח בעדיפות ראשונה: צריכים אספקת גלוקוז רציפה</text>
+        </svg>
+      </div>
+      <figcaption><b>שני הורמונים שמושכים לכיוונים הפוכים.</b> אינסולין מוריד את הסוכר בדם (מכניס אותו לתאים ולמאגרים), גלוקגון מעלה אותו (משחרר את המאגר מהכבד). כשהמאגרים בכבד ובשרירים מתרוקנים, הגוף עובר לייצר גלוקוז מחלבונים ומשומנים. בסוכרת המנגנון העליון לא עובד: אין מספיק אינסולין, או שהתאים לא מגיבים לו.</figcaption>
+    </figure>
+
+    <p>רמת הסוכר בדם לאחר צום של 8 שעות צריכה להיות <mark>80–100 מ"ג</mark>. בזמן רעב או אחרי שינת לילה הגוף פונה למחסני החירום (הכבד והשרירים), ו<b>תאי המוח הם בעדיפות ראשונה</b> וצריכים אספקת גלוקוז שוטפת כל הזמן ללא הפסקה. זה ההסבר לכך שהמוח הוא הראשון שנפגע בהיפוגליקמיה.</p>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span><p>במצגת הסוכרת יש בלבול בין <b>גלוקגון</b> (ההורמון) ל<b>גליקוגן</b> (צורת האחסון של הסוכר בכבד ובשרירים): עמ' 8, הכבד "משחרר את הגלוקגון המאוחסן בו"; עמ' 11, הגלוקוז "הופך לגלוקגון שממלא את המחסנים"; עמ' 13, המאגר "מאוחסן בצורת גלוקוז". הנכון: המאגר הוא <b>גליקוגן</b>, וגלוקגון הוא ההורמון שמפרק אותו. בנוסף, בעמ' 10 סומטוסטטין מיוחס לתאי γ; בדרך כלל הוא מיוחס לתאי δ.</p></div>
+
+    <h4>סוגי הסוכרת</h4>
+    <div class="compare">
+      <div><h5>סוג 1: תלויה באינסולין <span class="en">(IDDM)</span></h5><ul>
+        <li>ירידה או הפסקה של ייצור האינסולין בתאי β</li>
+        <li>הסיבה אינה ידועה; גורמים אפשריים: ויראלי, אוטואימוני, תורשתי</li>
+        <li>מחייבת מנות יומיות של אינסולין חיצוני</li>
+        <li>חוסר קשה של סוכר <b>בתוך התאים</b> למרות רמתו הגבוהה בדם</li>
+        <li>התאים מייצרים אנרגיה בדרך אחרת, עם תוצרי לוואי: גופיפי קטו וחומצות שומן ‏←‏ ירידת pH (חמצת), קטואצידוזיס</li></ul></div>
+      <div><h5>סוג 2: לא תלויה באינסולין <span class="en">(NIDDM)</span></h5><ul>
+        <li>שכיחה יותר מסוג 1</li>
+        <li>אופיינית למבוגרים עם השמנת יתר; הגורמים העיקריים: השמנת יתר וגורם תורשתי</li>
+        <li>ירידה במספר הרצפטורים ובאיכותם, ושינויים ברמת האינסולין ובאיכותו</li>
+        <li>עיקר הטיפול: דיאטה דלת פחמימות וסוכרים ופעילות גופנית קבועה</li></ul></div>
+    </div>
+    <p>סימני המחלה בכלל: לרוב מתגלים במקרה בבדיקות רוטיניות או במצבי חולי אחרים. הסימנים הקלאסיים הם <b>שלושת ה-Poly</b>: השתנת יתר <span class="en">(Polyuria)</span>, רעב מוגבר <span class="en">(Polyphagia)</span>, צימאון ויובש בפה <span class="en">(Polydipsia)</span>. בנוסף: זיהום בדרכי השתן, פצעים שלא מגלידים, סימנים נוירולוגיים, ירידה במשקל למרות אכילה תקינה, ונטייה להשמנה למרות שמירת דיאטה (בעיות חילוף חומרים).</p>
+    <p>סיבוכים ארוכי טווח: זיהומים, טרשת עורקים, היפוקסיה, פגיעה במערכת העצבים, בכליות ובראייה. לפרמדיק זה אומר: חולה סוכרתי הוא חולה לב וכלי דם בסיכון גבוה, ולכן גם תלונה "לא סוכרתית" מחייבת חשיבה על לב ושבץ.</p>
+
+    <h3>היפרגליקמיה: DKA ו-NKHS</h3>
+    <p>היפרגליקמיה היא מצב שבו רמת הסוכר בדם מעל לערכים התקינים בצום או לאחר אוכל. מצבי החירום בסוכרת הם שלושה: <b>שני מצבי היפרגליקמיה</b> (DKA ו-NKHS) ו<b>היפוגליקמיה</b>.</p>
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span><p>קריטריונים לאבחנת היפרגליקמיה (סכרת עמ' 21): סוכר בצום מעל 110 מ"ג%; קביעה אקראית מעל 160 מ"ג%; שעה אחרי ארוחת פחמימות או העמסת 75–100 גרם גלוקוז מעל 160 מ"ג%; שעתיים אחרי מעל 120 מ"ג%.</p></div>
+
+    <h4>קטואצידוזיס סוכרתי <span class="en">(DKA)</span></h4>
+    <p>מה קורה, צעד אחר צעד:</p>
+    <ol>
+      <li>אין מספיק אינסולין במחזור הדם, ולכן הגלוקוז נשאר בחוץ.</li>
+      <li>התאים "רעבים" (במצגת: נמצאים בהיפוגליקמיה קשה) ופונים לייצר סוכר ממקורות אחרים, בעיקר שומנים.</li>
+      <li>תוצרי הלוואי: יוני H<sup>+</sup>, גופיפי קטון, חומצות שומן ואמינו ‏←‏ <b>חמצת</b>.</li>
+      <li>הסוכר הגבוה מעלה את הלחץ האוסמוטי בדם; הכליות מפרישות סוכר בשתן, והוא "גורר" איתו מים ‏←‏ השתנה מרובה ‏←‏ סכנת התייבשות.</li>
+      <li>הפרעות באלקטרוליטים (אשלגן, נתרן, זרחן) ‏←‏ סכנת הפרעות קצב, התייבשות, הלם.</li>
+    </ol>
+    <p>התהליך מתפתח במהלך שעות (<b>מעל ל-2 שעות</b>), ולא בדקות כמו היפוגליקמיה.</p>
+    <p><b>סיבות נפוצות:</b> החולה לא הזריק כמות מספקת של אינסולין או לא נטל תרופות; פעילות פיזית מאומצת; אכילת כמות גדולה מדי של מזון עתיר פחמימות, סוכרים ואלכוהול; זיהום.</p>
+
+    <h4>סימני ההיפרגליקמיה</h4>
+    <ul>
+      <li>ירידה <b>הדרגתית</b> ברמת ההכרה, עד קומה.</li>
+      <li><mark>ריח מתקתק בנשימה</mark> (אצטון, פירות).</li>
+      <li>נשימת <span class="en">Kussmaul</span>: ניסיון לפצות על החמצת על ידי הנשמה, נשימות עמוקות ומהירות שמוציאות CO<sub>2</sub>.</li>
+      <li>תחושת צמא ויובש בפה; עור חם ויבש (לרוב).</li>
+      <li>חום סיסטמי לפעמים; ירידה בלחץ הדם.</li>
+    </ul>
+
+    <h4>מצב היפראוסמולרי לא קטוטי <span class="en">(NKHS)</span></h4>
+    <p>תהליך שמתפתח באיטיות ודומה ל-DKA, עם הבדל מרכזי אחד: <b>קיימת הפרשת אינסולין</b>, אבל ריכוז הסוכר בדם גבוה. כיוון שיש מעט אינסולין, הגוף <b>לא פונה לתהליך הקטואצידוזיס</b>. מה שנשאר הוא עלייה בלחץ האוסמוטי, השתנה מרובה, אובדן מים ואלקטרוליטים ושינויים בלחץ הדם.</p>
+    <p>הסימנים: ירידה ברמת ההכרה, ירידה בלחץ הדם, הפרעות קצב, טכיקרדיה, צמא ויובש ברריות, עור חם ויבש, אובדן מים ואלקטרוליטים.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>DKA מול NKHS</caption>
+      <thead><tr><th></th><th>DKA</th><th>NKHS</th></tr></thead>
+      <tbody>
+        <tr><th>אינסולין</th><td>אין מספיק</td><td>קיימת הפרשה</td></tr>
+        <tr><th>קטונים וחמצת</th><td class="hl">כן: ריח אצטון, נשימת קוסמאול</td><td>לא</td></tr>
+        <tr><th>קצב התפתחות</th><td>שעות (מעל 2 שעות)</td><td>איטי</td></tr>
+        <tr><th>הבעיה המרכזית בשטח</th><td>חמצת, התייבשות, אלקטרוליטים</td><td>התייבשות קשה, אובדן אלקטרוליטים, לחץ דם</td></tr>
+        <tr><th>טיפול בשטח</th><td colspan="2">זהה: ABC, נוזלים, ניטור, פינוי</td></tr>
+      </tbody></table></div>
+
+    <div class="callout field"><span class="tag">בשטח: טיפול בהיפרגליקמיה (DKA ו-NKHS)</span>
+      <ul>
+        <li>לפי ABC על פי הצורך.</li>
+        <li>מוניטור, חמצן, וריד, סטורציה.</li>
+        <li><b>נוזלים לפי הצורך</b>: הבעיה הדחופה שהפרמדיק מתקן היא ההתייבשות.</li>
+        <li>בדיקת סוכר בסטיק.</li>
+        <li>פינוי לבית החולים עם השגחה.</li>
+      </ul>
+      <p><span class="hosp-i">אינסולין: בדרג בית החולים</span>. הפרמדיק אינו נותן אינסולין.</p>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span><p>עמ' 17 מקשר קטואצידוזיס לסוכרת סוג 1, אבל עמ' 18 אומר ש"סוכרת Type II מחולקת לשני סוגים: DKA ו-NKHS". המקובל: DKA אופייני לסוג 1 ו-NKHS לסוג 2. בנוסף, "פעילות גופנית מאומצת" (עמ' 23) כגורם להיפרגליקמיה מפוקפקת: בדרך כלל מאמץ דווקא מוריד סוכר.</p></div>
+
+    <h3>היפוגליקמיה</h3>
+    <p>היפוגליקמיה היא מכלול סימפטומים שקשור בריכוזים נמוכים במידה רבה של הגלוקוז בדם. זהו <mark>מצב מסכן חיים ובעל חשיבות רבה בדרג הנט"ן</mark>: הוא מתפתח במהירות, תוך שניות עד דקות ספורות, ונובע מכמות גבוהה של אינסולין בדם או מכמות נמוכה של גלוקוז. ללא טיפול מהיר החולה יכול למות ממחסור אנרגיה זמני למערכת העצבים ולתאי המוח. החדשות הטובות: זה אחד המצבים היחידים שבהם הפרמדיק "מרפא" את המטופל בשטח בתוך דקות.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 220" role="img" aria-label="סרגל רמות סוכר בדם בקנה מידה, 0 עד 200 מ&quot;ג לד&quot;ל, עם ספי היפוגליקמיה 50 ו-60, טווח תקין בצום 80 עד 100, וספי היפרגליקמיה 110 ו-160">
+          <text x="620" y="24" direction="rtl" text-anchor="start" class="t-b">רמת סוכר בדם (מ"ג/ד"ל), בקנה מידה</text>
+          <rect x="40" y="90" width="560" height="36" rx="4" class="f-soft"/>
+          <rect x="40" y="90" width="168" height="36" rx="4" class="f-alarm-soft"/>
+          <rect x="40" y="90" width="140" height="36" rx="4" class="f-alarm"/>
+          <rect x="264" y="90" width="56" height="36" class="f-field"/>
+          <rect x="348" y="90" width="252" height="36" rx="4" class="f-zone-soft"/>
+          <text x="124" y="78" direction="rtl" text-anchor="middle" class="t-alarm">היפוגליקמיה</text>
+          <text x="292" y="78" direction="rtl" text-anchor="middle" class="t-field">תקין בצום</text>
+          <text x="474" y="78" direction="rtl" text-anchor="middle" class="t-b">היפרגליקמיה</text>
+          <line x1="180" y1="84" x2="180" y2="132" class="ln-dash"/>
+          <line x1="208" y1="84" x2="208" y2="132" class="ln-dash"/>
+          <line x1="348" y1="84" x2="348" y2="132" class="ln-dash"/>
+          <line x1="488" y1="84" x2="488" y2="132" class="ln-dash"/>
+          <text x="40" y="146" direction="ltr" text-anchor="middle" class="t-sm">0</text>
+          <text x="180" y="146" direction="ltr" text-anchor="middle" class="t-sm">50</text>
+          <text x="208" y="146" direction="ltr" text-anchor="middle" class="t-sm">60</text>
+          <text x="264" y="146" direction="ltr" text-anchor="middle" class="t-sm">80</text>
+          <text x="320" y="146" direction="ltr" text-anchor="middle" class="t-sm">100</text>
+          <text x="348" y="146" direction="ltr" text-anchor="middle" class="t-sm">110</text>
+          <text x="488" y="146" direction="ltr" text-anchor="middle" class="t-sm">160</text>
+          <text x="600" y="146" direction="ltr" text-anchor="middle" class="t-sm">200</text>
+          <text x="140" y="172" direction="rtl" text-anchor="middle" class="t-sm">שקף: מתחת 50</text>
+          <text x="232" y="196" direction="rtl" text-anchor="middle" class="t-alarm">פרוטוקול: מתחת 60</text>
+          <text x="370" y="196" direction="rtl" text-anchor="middle" class="t-sm">צום: מעל 110</text>
+          <text x="488" y="172" direction="rtl" text-anchor="middle" class="t-sm">אקראי: מעל 160</text>
+        </svg>
+      </div>
+      <figcaption><b>היכן נופלים המספרים (בקנה מידה).</b> בצום תקין: 80–100. סף ההיפוגליקמיה במצגת: מתחת 50 מ"ג%; בפרוטוקול, שלפיו מטפלים: <b>מתחת 60 מ"ג/ד"ל</b> (או מתחת לרמת הבסיס של המטופל). ספי ההיפרגליקמיה (110 בצום, 160 אקראי) הם קריטריונים אבחנתיים של בית החולים. מקורות: סכרת עמ' 11, 21, 30; פרוטוקול עמ' 39–40.</figcaption>
+    </figure>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span><p>מצגת הסוכרת (עמ' 30): "ריכוזי גלוקוז בפלסמה הנמוכים מ-50 מ"ג% בדרך כלל הינם אבחנתיים להיפוגליקמיה". הפרוטוקול (עמ' 39–40) קובע <b>מתחת ל-60</b>. בשטח מטפלים לפי הפרוטוקול.</p></div>
+
+    <h4>סיבות</h4>
+    <div class="tbl-wrap"><table class="data"><caption>שלוש קבוצות סיבות (סכרת עמ' 32–35)</caption>
+      <thead><tr><th>קבוצה</th><th>דוגמאות</th></tr></thead>
+      <tbody>
+        <tr><th>היפוגליקמיה תגובתית <span class="en">(Reactive)</span></th><td>תפקודית תגובתית; תגובתית משנית לסוכרת; תזונתית; אי-סבילות תורשתית לפרוקטוזה</td></tr>
+        <tr><th>היפוגליקמיה בצום</th><td>מחלת איי לנגרהנס בלבלב; חוסר בגלוקגון; מחלה כבדית; גידולים; תת-תזונה; הפרעות אנדוקריניות</td></tr>
+        <tr><th>היפוגליקמיה מזויפת <span class="en">(Factitious)</span></th><td class="hl">הזרקת אינסולין בכמות גדולה; נטילת כמויות גדולות של תרופות כמו ברביטוראטים</td></tr>
+      </tbody></table></div>
+    <p>בשטח, התרחיש הקלאסי: סוכרתי שהזריק אינסולין ולא אכל, או שהתאמץ יותר מהרגיל.</p>
+
+    <h4>הסימנים</h4>
+    <div class="compare">
+      <div><h5>מוח בלי דלק</h5><ul><li>שינויים ברמת ההכרה: הכרה מעורפלת או חוסר הכרה</li><li>שינויים התנהגותיים, עצבנות ואי שקט</li><li>רעד שרירים ופרכוסים</li><li>חסר נוירולוגי (לפי הפרוטוקול)</li></ul></div>
+      <div><h5>תגובת "הילחם או ברח"</h5><ul><li>הזעה, חיוורון</li><li>טכיקרדיה, פלפיטציות</li><li>טכיפניאה (נשמת)</li><li>בחילות, חרדה</li></ul></div>
+    </div>
+    <p>ההסבר לשתי העמודות: המוח, שתלוי באספקה רציפה של גלוקוז, מפסיק לתפקד, ובמקביל הגוף משחרר הורמוני דחק (אדרנלין) כדי להעלות את הסוכר, ואלה גורמים להזעה, לדופק מהיר ולרעד.</p>
+    <div class="compare">
+      <div><h5>היפוגליקמיה</h5><ul><li>מתפתחת בשניות עד דקות</li><li>עור <b>חיוור, קר ומזיע</b></li><li>טכיקרדיה, רעד, חרדה</li><li>מגיבה תוך דקות לגלוקוז</li></ul></div>
+      <div><h5>היפרגליקמיה (DKA)</h5><ul><li>מתפתחת בשעות</li><li>עור <b>חם ויבש</b>, צמא</li><li>ריח אצטון, נשימת קוסמאול</li><li>צריכה נוזלים ואינסולין בבית החולים</li></ul></div>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span><p>הציור בשקף "סימנים של היפוגליקמיה" (סכרת עמ' 36) מראה בחלקו סימני <b>היפר</b>גליקמיה (צמא מוגבר, השתנה מרובה, ירידה לא מוסברת במשקל, ריח אצטון מהפה). זה סותר את התבליטים באותו שקף ואת עמ' 24. למבחן: הסתמכו על התבליטים.</p></div>
+
+    <h4>טיפול</h4>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div>טיפול לפי ABC כנדרש.</div></li>
+        <li><div>חמצן, מוניטור, וריד, סטורציה, לחץ דם.</div></li>
+        <li><div><b>חולה בהכרה ומשתף פעולה:</b> מתן סוכר דרך הפה (מיץ סוכרייה) או גלוקוג'ל, שפופרת שלמה על החניכיים.</div></li>
+        <li><div><b>חולה שאינו יכול לקבל דרך הפה:</b> <mark>גלוקוז 20 גרם IV/IO</mark> לפי הפרוטוקול, וחזרה אם אין שיפור.</div></li>
+        <li><div>משאבת אינסולין: לנתק כשהסוכר נמוך.</div></li>
+        <li><div>השגחה ופינוי לבית החולים.</div></li>
+      </ol>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span><ul>
+      <li><span class="alarm-t">לא נותנים שום דבר דרך הפה</span> לחולה עם הכרה מעורפלת שאינו מגן על נתיב האוויר: סכנת אספירציה.</li>
+      <li>חולה שהתעורר אחרי גלוקוז עדיין בסכנה: אם ההיפוגליקמיה נגרמה מאינסולין ארוך טווח או מתרופות, הסוכר יכול לרדת שוב. לכן ההנחיה היא השגחה ופינוי, וממשיכים לבדוק סוכר.</li>
+      <li>חולה מחוסר הכרה שלא התעורר אחרי תיקון הסוכר: חפש סיבה נוספת (חבלת ראש מנפילה, פרכוס, שבץ).</li>
+    </ul></div>
+
+    <div class="recap"><span class="tag">בשורה התחתונה</span>
+      <ol>
+        <li>שינוי במצב ההכרה נובע מפגיעה מבנית או טוקסית-מטבולית; AEIOUTIPS עוזר לא לשכוח סיבות.</li>
+        <li>בחולה מחוסר הכרה: עדים, זירה, ו<b>מדדים חוזרים</b>. כניסה מהירה לקומה: דימום/אוטם, פרכוס, הפרעת קצב או היפוגליקמיה.</li>
+        <li>GCS: עיניים 4, דיבור 5, תנועה 6; טווח 3–15. דקורטיקציה = 3, דצרברציה = 2 ברכיב התנועה.</li>
+        <li>ICP עולה: לחץ דם עולה, דופק יורד, נשימה יורדת, חום עולה.</li>
+        <li>בכל שינוי בהכרה ובכל פרכוס בודקים סוכר. היפוגליקמיה בפרוטוקול: מתחת ל-60 מ"ג/ד"ל; גלוקוז 20 גרם IV/IO, או גלוקוג'ל לחולה בהכרה ומשתף.</li>
+        <li>בזמן פרכוס: מגנים מפגיעה, לא מרסנים ולא מכניסים דבר לפה. אחרי: ABCD ושכיבה על הצד.</li>
+        <li>פרכוס פעיל: דורמיקום 2.5–5 מ"ג IV, 5 מ"ג IM או 10 מ"ג IN; חזרה אחרי 5–10 דקות. אישה בהריון: חשד לאקלמפסיה, שקול מגנזיום 6 גרם.</li>
+        <li>סטטוס אפילפטיקוס: פרכוס מעל 5 דקות, או 2 פרכוסים בלי חזרה להכרה ביניהם.</li>
+        <li>פרכוסי חום: גיל 6 חודשים עד 6 שנים, פחות מ-5 דקות; פרכוס ראשון מפנים לבית החולים.</li>
+        <li>DKA: שעות, ריח אצטון, קוסמאול, עור חם ויבש ‏←‏ נוזלים ופינוי. היפוגליקמיה: דקות, עור חיוור ומזיע ‏←‏ גלוקוז מיד.</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<section class="chapter" id="ch11" data-zone="blue">
+  <header class="ch-head">
+    <div class="ch-zone">פרק ג׳ · שינוי במצב ההכרה בחולה נושם · פרק 2</div>
+    <h2>הרעלות, אלכוהול וסמים, ואירוע מוחי</h2>
+    <p class="ch-lede">שלוש סיבות שכיחות למטופל נושם שמצב ההכרה שלו השתנה: רעל שנכנס לגוף (כולל עשן, CO, ציאניד וזרחנים אורגניים), אלכוהול וסמים, ואירוע מוחי וסקולרי. הפרק מסביר איך כל אחד נראה, איך מבדילים ביניהם בשטח, ומה הפרמדיק עושה — כולל פרוטוקול זרחנים אורגניים של איחוד הצלה.</p>
+    <div class="ch-src">מקור: 04 - הרעלות.pdf, עמ' 1–21 · 05 - הרעלת אלכוהול וסמים.pdf, עמ' 1–15 · 06 - אירוע מוחי וסקולרי -CVA.pdf, עמ' 1–39 · UH_ACLS_2023.pdf, עמ' 129–130</div>
+  </header>
+  <div class="flow">
+
+    <p>מטופל מבולבל, ישנוני או מחוסר הכרה שנושם בעצמו הוא אחד המצבים השכיחים בשטח. הרבה פעמים הסיבה היא חומר שנכנס לגוף — רעל, תרופה, סם או אלכוהול — ולפעמים זה המוח עצמו שאיבד אספקת דם. המלכודת הגדולה היא שהמצבים האלה <b>מתחפשים זה לזה</b>: שיכור יכול להסתיר שבץ, ושבץ יכול להיראות כמו שכרות. לכן הפרק בנוי כך שבסופו תדעו לא רק לטפל בכל מצב, אלא גם לחשוב על השני.</p>
+
+    <h3>מהי הרעלה, ואיך הרעל נכנס לגוף</h3>
+    <p><b>רעל</b> הוא חומר שגורם להשפעה פיזיולוגית או פסיכולוגית. <b>הרעלה</b> היא חשיפה של הגוף לחומר רעיל בכמות מספיקה שגורמת להרס ולפגיעה בתפקוד. הרעלות הן גורם שכיח לתחלואה ולתמותה בעולם, ו<mark>חומרת ההרעלה קשורה באופן ישיר לסוג ולכמות החומר הרעיל</mark>.</p>
+
+    <h4>שלושה סוגי הרעלות</h4>
+    <ul>
+      <li><b>הרעלה שאינה מכוונת</b> — למשל טעות במינון או בכמות של תרופות.</li>
+      <li><b>הרעלה מכוונת</b> — ניסיון אובדני, מקרי תקיפה ורצח, לוחמה כימית.</li>
+      <li><b>צריכת סמים ו/או אלכוהול.</b></li>
+    </ul>
+
+    <h4>ארבע דרכי כניסה</h4>
+    <p>הדרך שבה הרעל נכנס משנה את קצב ההופעה של הסימנים ואת מה שצריך לשאול ולחפש. אבל חשוב לזכור: <mark>לא משנה מה הדרך — לרעל תמיד יש אפקט מיידי ואפקט מאוחר</mark>. מטופל שנראה טוב עכשיו עלול להידרדר בהמשך.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>דרכי הכניסה של רעל לגוף (הרעלות, עמ' 4–8)</caption>
+      <thead><tr><th>דרך</th><th>באנגלית</th><th>דוגמאות ונקודות מהשקפים</th></tr></thead>
+      <tbody>
+        <tr><th>בליעה</th><td><span class="en">Ingestion</span></td><td>חומרים שנמצאים בבתים וזמינים לילדים: חומרי ניקוי, קוסמטיקה, תרופות, אוכל, צמחים, חומרים על בסיס פטרול (חומרי צבע, גאזולין). <b>בילדים זה מקרי, במבוגרים בדרך כלל במכוון.</b></td></tr>
+        <tr><th>שאיפה</th><td><span class="en">Inhalation</span></td><td>גז, אדים, אמוניה, קלור, CO. החומר נספג דרך האלבאולות, גורם לגירוי של דרכי הנשימה, בצקת והרס, וכשהוא מגיע לדם — למעורבות סיסטמית. <b>הסימנים עלולים להופיע בין דקות לשעה.</b></td></tr>
+        <tr><th>הזרקה</th><td><span class="en">Injection</span></td><td>הרעל יכול להיות תרופה, או להיכנס דרך עקיצה או נשיכה.</td></tr>
+        <tr><th>ספיגה</th><td><span class="en">Surface Absorption</span></td><td>מגע של העור עם צמחים רעילים, עם חומרים כימיים, עם חומרי ריסוס-הדברה.</td></tr>
+      </tbody></table></div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 300" role="img" aria-label="ארבע דרכי הכניסה של רעל לגוף מתנקזות לדם, ולכל רעל אפקט מיידי ואפקט מאוחר">
+          <defs>
+            <marker id="ch11-arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" class="f-zone"/>
+            </marker>
+          </defs>
+          <rect x="480" y="20" width="140" height="70" rx="10" class="f-zone-soft"/>
+          <text x="550" y="50" direction="rtl" text-anchor="middle" class="t-b">בליעה</text>
+          <text x="550" y="72" direction="ltr" text-anchor="middle" class="t-sm">Ingestion</text>
+          <rect x="330" y="20" width="140" height="70" rx="10" class="f-zone-soft"/>
+          <text x="400" y="50" direction="rtl" text-anchor="middle" class="t-b">שאיפה</text>
+          <text x="400" y="72" direction="ltr" text-anchor="middle" class="t-sm">Inhalation</text>
+          <rect x="180" y="20" width="140" height="70" rx="10" class="f-zone-soft"/>
+          <text x="250" y="50" direction="rtl" text-anchor="middle" class="t-b">הזרקה</text>
+          <text x="250" y="72" direction="ltr" text-anchor="middle" class="t-sm">Injection</text>
+          <rect x="30" y="20" width="140" height="70" rx="10" class="f-zone-soft"/>
+          <text x="100" y="50" direction="rtl" text-anchor="middle" class="t-b">ספיגה</text>
+          <text x="100" y="72" direction="ltr" text-anchor="middle" class="t-sm">Surface Absorption</text>
+          <line x1="550" y1="92" x2="425" y2="146" class="s-zone" marker-end="url(#ch11-arr1)"/>
+          <line x1="400" y1="92" x2="362" y2="146" class="s-zone" marker-end="url(#ch11-arr1)"/>
+          <line x1="250" y1="92" x2="280" y2="146" class="s-zone" marker-end="url(#ch11-arr1)"/>
+          <line x1="100" y1="92" x2="218" y2="146" class="s-zone" marker-end="url(#ch11-arr1)"/>
+          <rect x="190" y="150" width="260" height="50" rx="10" class="f-card"/>
+          <text x="320" y="181" direction="rtl" text-anchor="middle" class="t-b">הרעל בדם ובאיברי המטרה</text>
+          <line x1="370" y1="202" x2="425" y2="236" class="ln" marker-end="url(#ch11-arr1)"/>
+          <line x1="270" y1="202" x2="215" y2="236" class="ln" marker-end="url(#ch11-arr1)"/>
+          <rect x="340" y="240" width="180" height="44" rx="10" class="f-hl"/>
+          <text x="430" y="267" direction="rtl" text-anchor="middle" class="t-b">אפקט מיידי</text>
+          <rect x="120" y="240" width="180" height="44" rx="10" class="f-alarm-soft"/>
+          <text x="210" y="267" direction="rtl" text-anchor="middle" class="t-b">אפקט מאוחר</text>
+        </svg>
+      </div>
+      <figcaption><b>כל הדרכים מובילות לדם.</b> בבליעה לוקח זמן עד שהרעל עובר ממערכת העיכול למחזור הדם; בשאיפה החומר עובר דרך האלבאולות ויכול לפגוע גם בריאות עצמן. בכל מקרה יש אפקט מיידי ואפקט מאוחר — ולכן מטופל "שנראה בסדר" עדיין צריך הערכה ומעקב.</figcaption>
+    </figure>
+
+    <h3>עקרונות הטיפול בכל מורעל</h3>
+    <p>לפני שמזהים את הרעל הספציפי, יש כמה כללים שתקפים כמעט תמיד. מדי שנה נדרשים צוותים רפואיים לטפל במגוון מצבי חירום טוקסיקולוגיים, ולכן כדאי שהם יהיו אוטומטיים.</p>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div><b>בטיחות הצוות קודמת לכל:</b> ביגוד מגן. אל תהפכו לנפגע הבא — חומר שהרעיל את המטופל יכול להרעיל גם אתכם.</div></li>
+        <li><div><b>סקירת השטח:</b> חולים אחרי ניסיון התאבדות יכולים להיות אלימים.</div></li>
+        <li><div><b>דגש על נתיב אוויר ומצב נשימתי</b> — זה מה שהורג ראשון.</div></li>
+        <li><div><b>אנמנזה ממוקדת</b> (ראו בהמשך) — מה, כמה, מתי.</div></li>
+        <li><div><mark>מומלץ תמיד לקבל ייעוץ ממרכז ההרעלות.</mark></div></li>
+      </ol>
+    </div>
+
+    <h4>בליעה של חומר רעיל: למה ההיסטוריה כל כך חשובה</h4>
+    <p>בבליעה, לוקח זמן עד שהרעל עובר ממערכת העיכול אל מחזור הדם. המשמעות המעשית: המטופל עשוי להיראות טוב בהגעה, והחומר עדיין "בדרך". לכן <b>חשוב מאוד לדעת איזה חומר נבלע ומתי</b> — ההיסטוריה היא שקובעת את המשך הטיפול.</p>
+
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>שאלות האנמנזה בהרעלה:</b></p>
+      <ul>
+        <li>איזה חומר רעיל נלקח? באיזו כמות?</li>
+        <li>כמה זמן עבר מאז לקיחת החומר?</li>
+        <li>האם לקח בנוסף גם אלכוהול או חומר אחר? האם משתמש בסמים או בתרופות אחרות?</li>
+        <li>מחלות רקע? רגישויות? משקל הגוף?</li>
+        <li>האם יש ניסיון התאבדות?</li>
+      </ul>
+    </div>
+    <p>שאלת המשקל אינה טריוויאלית: אותה כמות של חומר היא מנה קטנה למבוגר ומנה מסוכנת לילד. ושאלת "מה עוד" חשובה כי שילוב של כמה חומרים (למשל תרופות עם אלכוהול) מחמיר את התמונה.</p>
+
+    <h4>גירוי הקאה — מתי בכלל, ומתי אסור</h4>
+    <p>לפי השקפים, אם המטופל בלע את החומר <mark>תוך 60–90 דקות</mark> לפני שמגיעים אליו, צריך ליצור קשר עם מרכז ההרעלות ולקבל הנחיות. לפעמים צריך לנקות את מערכת העיכול לפני ההגעה לבית החולים — אבל רק לפי ההנחיה, ולעולם לא כשיש התווית נגד.</p>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>אסור לגרום להקאה ב:</b></p>
+      <ol>
+        <li>חולים עם הפרעה בהכרה.</li>
+        <li>חולים עם התכווצויות.</li>
+        <li>חולים עם חשד לאוטם בשריר הלב.</li>
+        <li>חולים שבלעו חומרים קורוזיביים כמו חומצה או בסיס.</li>
+        <li>חולים שנטלו תרופות כמו <span class="en">Tricyclic Antidepressants</span> — שמפתחים איבוד הכרה והתכווצויות בצורה מהירה.</li>
+      </ol>
+      <p>ההיגיון: מטופל שההכרה שלו ירודה או שעלול לפרכס לא מגן על נתיב האוויר, ותוכן קיבה ייכנס לריאות. חומר קורוזיבי שורף את הוושט פעם שנייה בדרך החוצה.</p>
+    </div>
+
+    <h3>הרעלות שכיחות: עשן, CO וציאניד</h3>
+    <p>השקפים מונים את סוגי ההרעלות השכיחים: <b>פחמן חד-חמצני (CO)</b>, <b>ציאניד (Cn)</b>, <b>זרחן אורגני (OP)</b>, <b>סמים</b> (משככי כאבים, ממריצים, מעוררי הזיות, מדכאים), <b>תרופות</b> (במרשם וללא מרשם) ו<b>אלכוהול</b>. שלושת הראשונים קשורים לרוב לשריפה או לחשיפה תעשייתית/חקלאית.</p>
+
+    <h4>הרעלה משריפה</h4>
+    <p>הרעלה משריפה היא <b>גורם עיקרי לתחלואה ולתמותה כתוצאה משריפה</b> — לא רק הכוויות. היא מורכבת משלושה גורמים עיקריים:</p>
+    <ol>
+      <li>נזק תרמי לדרכי הנשימה;</li>
+      <li>פגיעה ריאתית;</li>
+      <li>הרעלה סיסטמית משנית לשאיפת טוקסינים (בעיקר CO וציאניד).</li>
+    </ol>
+    <p>זה מהווה אתגר טיפולי גם בטרום בית החולים וגם בבית החולים.</p>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><mark>כל מטופל ששהה בחלל סגור במהלך שריפה ייחשד כסובל משאיפת עשן וגזים, ומהרעלת CO, עד שיוכח אחרת.</mark></p>
+    </div>
+
+    <div class="compare">
+      <div><h5>פחמן חד-חמצני <span class="en">(CO)</span></h5><ul>
+        <li>גז רעיל, <b>חסר טעם, צבע או ריח</b> — מכונה "הרוצח השקט".</li>
+        <li>תוצר של בעירה חלקית; מואץ בחללים סגורים.</li>
+        <li>נקשר להמוגלובין <b>פי 240</b> חזק יותר מחמצן.</li>
+        <li>גורם להיפוקסיה ברמה התאית.</li>
+        <li>הרעלה שכיחה מאוד — מדי שנה מטופלים אלפי נפגעים בעולם.</li>
+        <li><b>סימנים:</b> כאבי ראש, סחרחורות, טשטוש בראייה, חוסר הכרה.</li>
+      </ul></div>
+      <div><h5>ציאניד <span class="en">(Cn)</span></h5><ul>
+        <li>תרכובת כימית רעילה בתעשיית הטקסטיל, הפלסטיק, המתכות, חומרי הדברה, הדפוס ועוד.</li>
+        <li>נפלט לאוויר בבעירה חלקית של ניילון, פלסטיק, פוליאתילן, חומרי צבע, צמר וכדומה.</li>
+        <li>גורם לפגיעה בייצור האנרגיה ברמה התאית.</li>
+        <li>נספג בשאיפה, בבליעה, ודרך העור והריריות.</li>
+        <li><b>הרעלה חמורה עלולה להוביל למוות בתוך דקות</b>; בכמויות קטנות המהלך ארוך ומגוון יותר.</li>
+      </ul></div>
+    </div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 175" role="img" aria-label="כושר הקשירה להמוגלובין: CO נקשר פי 240 יותר מחמצן, בקנה מידה">
+          <text x="620" y="26" direction="rtl" text-anchor="start" class="t-b">כושר הקשירה להמוגלובין (יחסית לחמצן)</text>
+          <text x="620" y="72" direction="rtl" text-anchor="start" class="t-b">חמצן</text>
+          <rect x="478.3" y="54" width="1.7" height="28" class="f-field"/>
+          <text x="470" y="73" direction="ltr" text-anchor="end">×1</text>
+          <text x="620" y="122" direction="ltr" text-anchor="end" class="t-b">CO</text>
+          <rect x="80" y="104" width="400" height="28" rx="3" class="f-alarm"/>
+          <text x="72" y="123" direction="ltr" text-anchor="end" class="t-alarm">×240</text>
+          <line x1="480" y1="46" x2="480" y2="140" class="ln-soft"/>
+          <text x="320" y="164" direction="rtl" text-anchor="middle" class="t-sm">פס החמצן כמעט בלתי נראה — זה קנה המידה האמיתי</text>
+        </svg>
+      </div>
+      <figcaption><b>למה CO כל כך מסוכן.</b> כשהמוגלובין "תפוס" על ידי CO הוא לא יכול לשאת חמצן, והתאים נחנקים גם כשהמטופל נושם. הפסים מצוירים בקנה מידה (עמ' 11). הרחבה כללית: מד סטורציה רגיל לא מבחין בין המוגלובין שנושא חמצן להמוגלובין שנושא CO, ולכן סטורציה "תקינה" לא שוללת הרעלת CO.</figcaption>
+    </figure>
+
+    <h3>הרעלת זרחנים אורגניים <span class="en">(OP)</span></h3>
+
+    <h4>מה זה ואיך זה עובד</h4>
+    <p>זרחנים אורגניים הם תרכובת כימית רעילה שנמצאת במגוון חומרים ומוצרים: חומרי דישון, חומרי הדברה, קוטלי חרקים ביתיים, וחומרי לחימה כימיים. הם <b>נספגים בנשימה, בבליעה, ודרך העור והריריות</b> — ולכן גם הצוות בסכנה.</p>
+    <p>המנגנון: האנזים <b>אצטיל-כולין אסטראז <span class="en">(AchE)</span></b> מפרק את האצטיל-כולין ובכך "מכבה" את האות בין העצב לאיבר המטרה. זרחנים אורגניים מעכבים את האנזים, ולכן אצטיל-כולין מצטבר וגורם ל<b>הפעלה מתמשכת של איברי המטרה</b>. התוצאה היא גוף "רטוב ומתכווץ": בלוטות שמפרישות בלי הפסקה, סמפונות שנסגרים, שרירים שמתכווצים ואז נחלשים.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בשקף (הרעלות, עמ' 13) כתוב שהזרחנים "מעכבים את <b>השחרור</b> של אצטיל-כולין אסטראז". הניסוח לא מדויק: הם מעכבים את פעולת האנזים עצמו, וזה מה שמוביל לעודף אצטיל-כולין.</p>
+    </div>
+
+    <p><b>סימנים לפי השקף:</b> כאבים בחזה, צפצופים בנשימה, ריור, שלשולים, הקאות, הזעת יתר, אישונים צרים, איבוד שליטה על סוגרים.</p>
+
+    <h4>דרגות חומרה לפי הפרוטוקול</h4>
+    <p>הפרוטוקול של איחוד הצלה מחלק את הנפגעים לשלוש דרגות, והטיפול נגזר מהדרגה:</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>דרגות הפגיעה בהרעלת זרחנים אורגניים (UH 2023, עמ' 129–130)</caption>
+      <thead><tr><th>דרגה</th><th>סימנים</th><th>אטרופין למבוגר</th></tr></thead>
+      <tbody>
+        <tr><th>קל</th><td>אישונים צרים, נזלת.</td><td>מעקב סימנים חיוניים; <b>שקול</b> אטרופין, בייעוץ עם המוקד הרפואי</td></tr>
+        <tr><th>בינוני</th><td>טשטוש בראייה, הזעה מוגברת, ריור, קוצר נשימה קל (צפצופים), שינויים באק"ג (הארכת QT, ברדיקרדיה), הקאות, כאבי בטן, התכווצויות שרירים.</td><td class="hl">1–2 מ"ג IV/IM/IO</td></tr>
+        <tr><th>קשה</th><td>שינויים במצב ההכרה, קוצר נשימה חריף, הפרעות קצב, ירידת לחץ דם, חולשה עד שיתוק בשרירים, אי שליטה על סוגרים, פרכוסים, הזעה משמעותית (חולה "רטוב ומתכווץ").</td><td class="hl">2–4 מ"ג IV/IM/IO, מנות חוזרות</td></tr>
+      </tbody></table></div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>סיבות המוות העיקריות:</b> <span class="alarm-t">אי ספיקה נשימתית</span> (שילוב של חולשת שרירי הנשימה עם ריבוי הפרשות בדרכי הנשימה ועם ברונכוספזם) ו<span class="alarm-t">הפרעות קצב חדריות</span>. הארכת מקטע QT עלולה להוביל ל-<span class="en">WCT</span> מסוג <span class="en">Torsade de Pointes (TDP)</span>.</p>
+      <p>הסימנים יכולים להתפתח בין דקות לשעות — <b>לעיתים רק אחרי 12–24 שעות</b> — ותלויים בסוג החומר, צורת החשיפה והכמות. מטופל קל עכשיו יכול להיות קשה בעוד כמה שעות.</p>
+    </div>
+
+    <h4>אלגוריתם הטיפול</h4>
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 560" role="img" aria-label="אלגוריתם פרוטוקול הרעלות כולל זרחנים אורגניים: בטיחות, הערכת חומרה, וטיפול לפי קל, בינוני וקשה">
+          <defs>
+            <marker id="ch11-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" class="f-field"/>
+            </marker>
+          </defs>
+          <rect x="150" y="16" width="340" height="44" rx="8" class="f-field-soft"/>
+          <text x="320" y="44" direction="rtl" text-anchor="middle" class="t-b">בטיחות: מיגון, הרחקה מאזור הסכנה</text>
+          <line x1="320" y1="60" x2="320" y2="78" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <rect x="150" y="80" width="340" height="44" rx="8" class="f-card"/>
+          <text x="320" y="108" direction="rtl" text-anchor="middle">הערכת נפגעים, שקול כוחות נוספים</text>
+          <line x1="320" y1="124" x2="320" y2="142" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <rect x="150" y="144" width="340" height="44" rx="8" class="f-card"/>
+          <text x="320" y="172" direction="rtl" text-anchor="middle" class="t-b">הערך את חומרת הפגיעה</text>
+          <line x1="320" y1="188" x2="320" y2="202" class="ln-soft"/>
+          <line x1="110" y1="202" x2="530" y2="202" class="ln-soft"/>
+          <line x1="530" y1="202" x2="530" y2="218" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <line x1="320" y1="202" x2="320" y2="218" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <line x1="110" y1="202" x2="110" y2="218" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <rect x="440" y="220" width="180" height="40" rx="8" class="f-field-soft"/>
+          <text x="530" y="246" direction="rtl" text-anchor="middle" class="t-b">קל</text>
+          <rect x="230" y="220" width="180" height="40" rx="8" class="f-hl"/>
+          <text x="320" y="246" direction="rtl" text-anchor="middle" class="t-b">בינוני</text>
+          <rect x="20" y="220" width="180" height="40" rx="8" class="f-alarm-soft"/>
+          <text x="110" y="246" direction="rtl" text-anchor="middle" class="t-b">קשה</text>
+          <line x1="530" y1="260" x2="530" y2="278" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <line x1="320" y1="260" x2="320" y2="278" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <line x1="110" y1="260" x2="110" y2="278" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <rect x="440" y="280" width="180" height="62" rx="8" class="f-card"/>
+          <text x="530" y="305" direction="rtl" text-anchor="middle">מעקב סימנים חיוניים</text>
+          <text x="530" y="328" direction="rtl" text-anchor="middle" class="t-sm">שקול אטרופין + ייעוץ</text>
+          <rect x="230" y="280" width="180" height="62" rx="8" class="f-card"/>
+          <text x="320" y="305" direction="rtl" text-anchor="middle" class="t-b">אטרופין IV</text>
+          <text x="320" y="328" direction="rtl" text-anchor="middle" class="t-sm">ואז מעקב סימנים חיוניים</text>
+          <rect x="20" y="280" width="180" height="62" rx="8" class="f-card"/>
+          <text x="110" y="305" direction="rtl" text-anchor="middle" class="t-b">מנות חוזרות</text>
+          <text x="110" y="328" direction="rtl" text-anchor="middle" class="t-sm">של אטרופין IV</text>
+          <line x1="320" y1="342" x2="320" y2="358" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <polygon points="320,360 370,392 320,424 270,392" class="f-hl"/>
+          <text x="320" y="397" direction="rtl" text-anchor="middle" class="t-b">שיפור?</text>
+          <path d="M370 392 H425 V311 H414" fill="none" class="s-alarm" marker-end="url(#ch11-arr2)"/>
+          <text x="398" y="384" direction="rtl" text-anchor="middle" class="t-alarm">לא</text>
+          <text x="336" y="448" direction="rtl" text-anchor="middle" class="t-field">כן</text>
+          <line x1="110" y1="342" x2="110" y2="358" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <rect x="20" y="360" width="180" height="56" rx="8" class="f-alarm-soft"/>
+          <text x="110" y="384" direction="rtl" text-anchor="middle" class="t-sm">שקול מעבר לפרוטוקול</text>
+          <text x="110" y="404" direction="rtl" text-anchor="middle" class="t-sm">הפסקת נשימה מאיימת</text>
+          <line x1="110" y1="416" x2="110" y2="430" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <rect x="20" y="432" width="180" height="40" rx="8" class="f-card"/>
+          <text x="110" y="457" direction="rtl" text-anchor="middle">שקול דורמיקום</text>
+          <line x1="530" y1="342" x2="530" y2="488" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <line x1="320" y1="424" x2="320" y2="488" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <line x1="110" y1="472" x2="110" y2="488" class="s-field" marker-end="url(#ch11-arr2)"/>
+          <rect x="40" y="490" width="560" height="58" rx="8" class="f-zone-soft"/>
+          <text x="320" y="514" direction="rtl" text-anchor="middle" class="t-b">פינוי לבי"ח תוך המשך ניטור וטיפול</text>
+          <text x="320" y="537" direction="rtl" text-anchor="middle" class="t-sm">הערך מדדים כל 5–10 דק' · שקול דיווח למלר"ד</text>
+        </svg>
+      </div>
+      <figcaption><b>פרוטוקול "הרעלות כולל זרחנים אורגניים" (UH 2023, עמ' 129), מפושט.</b> לפני ההסתעפות: דיווח הגעה למוקד, הערכת בטיחות זירה, הערכת מצב הנפגעים, שקילת כוחות נוספים, ועצירת דימומים פורצים גלויים. בדרגה הבינונית — אם אין שיפור חוזרים לאטרופין (חץ "לא").</figcaption>
+    </figure>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>בטיחות (UH 2023, עמ' 129–130):</b> כפפות ואפוד מוהה, בטיחות זירה, בטיחות הצוות; הרחק את המטופל מאזור הסכנה והימנע מחשיפה נוספת. אחרי הפשטת הנפגע יש להכניס בגדים מזוהמים לשקית סגורה.</p>
+      <p><b>הזמנת סיוע:</b> כוננים נוספים, ALS, משטרה, כב"ה, מוקד 1221.</p>
+      <p><b>אטרופין:</b> <mark>אין מינון מקסימלי בהרעלת זרחנים אורגניים.</mark> ממשיכים לתת מנות חוזרות עד השגת <b>אטרופיניזציה</b>, בדגש על הפסקת ריור והפרשות ברונכיאליות.</p>
+    </div>
+
+    <div class="doses">
+      <article class="dose"><header><h5>אטרופין · מבוגר</h5><span class="ind">זרחנים אורגניים</span></header>
+        <div class="big">1–2 / 2–4 <small>מ"ג IV/IM/IO</small></div>
+        <dl><dt>בינוני</dt><dd>1–2 מ"ג</dd><dt>קשה</dt><dd>2–4 מ"ג, מנות חוזרות</dd><dt>צורה</dt><dd>1 מ"ג, 1 מ"ל באמפולה</dd><dt>הכנה</dt><dd>לשאוב למזרק של 2.5 מ"ל לפי המינון</dd><dt>מקסימום</dt><dd>אין, בזרחנים אורגניים</dd></dl>
+        <div class="calc">נפגע קשה: 2–4 מ"ג = 2–4 אמפולות של 1 מ"ג</div></article>
+      <article class="dose"><header><h5>אטרופין · ילד</h5><span class="ind">זרחנים אורגניים</span></header>
+        <div class="big">0.02–0.05 <small>מ"ג/ק"ג IV/IM/IO</small></div>
+        <dl><dt>חזרה</dt><dd>מנות חוזרות עד אטרופיניזציה</dd><dt>מקסימום</dt><dd>אין, בזרחנים אורגניים</dd></dl>
+        <div class="calc">ילד 20 ק"ג &rlm;←&rlm; 0.4–1 מ"ג</div></article>
+      <article class="dose"><header><h5>דורמיקום</h5><span class="ind">נפגע קשה</span></header>
+        <div class="big">2.5 <small>מ"ג IV במבוגר</small></div>
+        <dl><dt>צורה</dt><dd>אמפולה 5 מ"ג, 1 מ"ל</dd><dt>IM מבוגר</dt><dd>5 מ"ג</dd><dt>נזאלי</dt><dd>עם התקן — 10 מ"ג</dd><dt>IV ילד</dt><dd>0.1–0.2 מ"ג/ק"ג</dd><dt>IN/IM ילד</dt><dd>0.2 מ"ג/ק"ג</dd><dt>התווית נגד</dt><dd>לחץ דם נמוך וסימני היפופרפוזיה</dd></dl>
+        <div class="calc">ילד 20 ק"ג &rlm;←&rlm; IV ‏2–4 מ"ג; IN/IM ‏4 מ"ג</div></article>
+    </div>
+
+    <p>אחרי דורמיקום <b>יש למדוד לחץ דם</b>, ואם יש ירידה בלחץ הדם — לתת נוזלים (UH 2023, עמ' 130). דורמיקום מדכא נשימה ולחץ דם, ובמטופל שכבר נמצא בסיכון לאי ספיקה נשימתית זה לא דבר של מה בכך.</p>
+
+    <h4>איך יודעים שהגענו לאטרופיניזציה</h4>
+    <p>אטרופין חוסם את הקולטנים שעליהם האצטיל-כולין העודף פועל, ולכן הוא "מייבש" את המטופל. המטרה היא לא אישונים רחבים, אלא נשימה בטוחה. לפי השקפים, הסימנים הקליניים לאטרופיניזציה הם:</p>
+    <ul>
+      <li>הפסקת ההזעה;</li>
+      <li>הפחתה משמעותית בהפרשות דרכי הנשימה העליונות;</li>
+      <li>הקלה משמעותית בעבודת הנשימה;</li>
+      <li>דופק מעל 80 פעימות בדקה.</li>
+    </ul>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>שקפי הפרוטוקול במצגת (הרעלות, עמ' 19–21) הם גרסה אחרת מ-UH 2023, ויש ביניהם הבדלים. לפי הכלל, מה שמבוצע הוא <b>UH 2023</b>:</p>
+      <ul>
+        <li><b>דורמיקום:</b> בשקף (עמ' 20) — מבוגר 5 מ"ג למנה IV/IM/IO, אפשר לחזור כל 5 דקות עד מקסימום 0.1 מ"ג/ק"ג; ילד 0.1 מ"ג/ק"ג, מקסימום 5 מ"ג, אפשר לחזור פעם נוספת אחרי 5 דקות. גם בתוך UH 2023 יש אי-התאמה: בתרשים (עמ' 129) — מבוגר 5 מ"ג IV/IM/IN, ילד 0.1–0.2 מ"ג/ק"ג; בהערות (עמ' 130) — IV ‏2.5 מ"ג, IM ‏5 מ"ג, נזאלי 10 מ"ג, ילד IN/IM ‏0.2 מ"ג/ק"ג. בכרטיס למעלה הוצגו ערכי עמ' 130 המפורטים.</li>
+        <li><b>אטרופין:</b> בשקף (עמ' 20) — "יש להכפיל את המנה כל 5 דקות" עד ייבוש ההפרשות. ב-UH 2023 כתוב "מנות חוזרות" בלי הכפלה ובלי מרווח זמן.</li>
+        <li><b>תרופות שמופיעות רק בשקפים</b> ולא בעמודי הפרוטוקול של UH 2023: אירובנט (מבוגר 1 מ"ג, ילד 0.5 מ"ג באינהלציה), דופמין 5–20 mcg/kg/min, בולוסים חוזרים של סליין (מבוגר 500 מ"ל, ילד 20 מ"ל/ק"ג) בירידת לחץ דם, מגנזיום ב-<span class="en">Torsade de Pointes</span> (מבוגר "2 gr" מהולים ב-20 מ"ל סליין תוך 10–15 דקות; ילד 50 מ"ג/ק"ג מהולים ב-10 מ"ל סליין), והזלפת אטרופין בקצב של 20% ממנת ההעמסה לשעה אחרי אטרופיניזציה (דוגמה בשקף: 10 מ"ג ‏&rlm;←&rlm; 2 מ"ג/שעה).</li>
+        <li>בדרגה קשה: השקף אומר "שקול מעבר לפרוטוקול ניהול מתקדם של נתיב האוויר"; UH 2023 אומר "שקול מעבר לפרוטוקול הפסקת נשימה מאיימת".</li>
+      </ul>
+    </div>
+
+    <h3>הרעלת אלכוהול</h3>
+    <p>עליית רמת האלכוהול בדם גורמת להרעלה, שהסימנים האחרונים שלה הם שכרות. אלכוהול מדכא את מערכת העצבים המרכזית בהדרגה: קודם "משחרר" את ההתנהגות, אחר כך פוגע בשליטה ובשיווי המשקל, ובסוף מדכא את מרכזי ההכרה והנשימה. לכן <b>האדם השיכור עובר שלושה שלבי הרעלה</b>.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 262" role="img" aria-label="שלושת שלבי הרעלת האלכוהול כמדרגות עולות, מהשלב הראשון עם הכרה מלאה ועד השלב השלישי עם דום נשימה">
+          <defs>
+            <marker id="ch11-arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" class="f-alarm"/>
+            </marker>
+          </defs>
+          <line x1="600" y1="30" x2="40" y2="30" class="s-alarm" marker-end="url(#ch11-arr3)"/>
+          <text x="320" y="20" direction="rtl" text-anchor="middle" class="t-sm">עליית ריכוז האלכוהול בדם</text>
+          <rect x="430" y="150" width="190" height="92" rx="6" class="f-zone-soft"/>
+          <text x="525" y="176" direction="rtl" text-anchor="middle" class="t-b">שלב ראשון</text>
+          <text x="525" y="200" direction="rtl" text-anchor="middle" class="t-sm">פטפטנות, שמחה, אודם בפנים</text>
+          <text x="525" y="222" direction="rtl" text-anchor="middle" class="t-sm">הכרה מלאה</text>
+          <rect x="225" y="104" width="190" height="138" rx="6" class="f-hl"/>
+          <text x="320" y="130" direction="rtl" text-anchor="middle" class="t-b">שלב שני</text>
+          <text x="320" y="154" direction="rtl" text-anchor="middle" class="t-sm">חוסר שליטה עד בלבול</text>
+          <text x="320" y="176" direction="rtl" text-anchor="middle" class="t-sm">חוסר שיווי משקל</text>
+          <text x="320" y="198" direction="rtl" text-anchor="middle" class="t-sm">בחילות, הקאות, זיעה</text>
+          <text x="320" y="220" direction="rtl" text-anchor="middle" class="t-sm">טכיקרדיה, טכיפניאה</text>
+          <rect x="20" y="52" width="190" height="190" rx="6" class="f-alarm-soft"/>
+          <text x="115" y="78" direction="rtl" text-anchor="middle" class="t-b">שלב שלישי</text>
+          <text x="115" y="102" direction="rtl" text-anchor="middle" class="t-sm">מעל 3 גר'/ליטר דם</text>
+          <text x="115" y="126" direction="rtl" text-anchor="middle" class="t-sm">ישנוניות, איבוד הכרה</text>
+          <text x="115" y="150" direction="rtl" text-anchor="middle" class="t-sm">אישונים מוגדלים</text>
+          <text x="115" y="174" direction="rtl" text-anchor="middle" class="t-sm">היפותרמיה</text>
+          <text x="115" y="198" direction="rtl" text-anchor="middle" class="t-alarm">ברדיפניאה עד</text>
+          <text x="115" y="220" direction="rtl" text-anchor="middle" class="t-alarm">הפסקת נשימה, מוות</text>
+          <line x1="10" y1="242" x2="630" y2="242" class="ln"/>
+        </svg>
+      </div>
+      <figcaption><b>שלושת שלבי ההרעלה (אלכוהול וסמים, עמ' 2–4).</b> הסף היחיד שמופיע בשקפים הוא של השלב השלישי: ריכוז אלכוהול בדם של יותר מ-3 גר'/ליטר. ככל שעולים במדרגות, הבעיה עוברת מ"התנהגות" ל-<b>נתיב אוויר ונשימה</b>.</figcaption>
+    </figure>
+
+    <div class="tbl-wrap"><table class="data"><caption>שלבי הרעלת האלכוהול — הרשימה המלאה מהשקפים</caption>
+      <thead><tr><th>שלב</th><th>סימנים</th></tr></thead>
+      <tbody>
+        <tr><th>ראשון</th><td>פטפטנות; סימני שמחה וצחוק; הרגשת חום ושלווה; אודם בפנים; ריח אלכוהול נודף מהפה; הכרה מלאה.</td></tr>
+        <tr><th>שני</th><td>עליית אחוז האלכוהול בדם; חוסר שליטה בדיבור ובהתנהגות, עד כדי בלבול; חוסר שיווי משקל; טשטוש ראייה; בחילות והקאות; זיעה; טכיקרדיה וטכיפניאה.</td></tr>
+        <tr><th>שלישי</th><td class="hl">עליית אחוז האלכוהול בדם ליותר מ-3 גר'/ליטר דם; שכרות וישנוניות; איבוד הכרה; אישונים מוגדלים; היפותרמיה; ברדיפניה עד הפסקת נשימה; מוות.</td></tr>
+      </tbody></table></div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>טיפול בשיכור:</b></p>
+      <ol class="steps">
+        <li><div>טיפול לפי <span class="en">ABCD</span>.</div></li>
+        <li><div>בדיקת זירת האירוע וחיפוש סימני חבלה.</div></li>
+        <li><div>מתן חמצן.</div></li>
+        <li><div>פתיחת וריד.</div></li>
+        <li><div>פינוי לבית חולים.</div></li>
+      </ol>
+    </div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>"הוא סתם שיכור"</b> היא אחת המסקנות המסוכנות בשטח. שיכור נופל, ונפגע בראש; שיכור מקיא, ושואף; שיכור בשלב השלישי מאבד את הדחף הנשימתי. ולפעמים מה שנראה כמו שכרות הוא בכלל שבץ, היפוגליקמיה או מצב אחרי פרכוס — ולכן השקפים על שבץ מדגישים <b>לשלול גורמים אחרים לירידה ברמת ההכרה</b> (ראו בהמשך). ריח אלכוהול לא שולל שום דבר אחר.</p>
+    </div>
+
+    <h4>אלכוהוליסטים</h4>
+    <p>אנשים שמכורים לאלכוהול. בדרך כלל רזים, עם חוסר תיאבון וירידה בוויטמינים, פגיעה בכבד, ירידה ברמת הריכוז והחשיבה, ובדרך כלל מראה כללי מוזנח. הפגיעה בכבד ובתזונה הופכת אותם לפגיעים יותר — למשל לנפילות ולפציעות שאינן נראות מיד.</p>
+
+    <h4>אלכוהוליסט במצב "קריז" (גמילה)</h4>
+    <p>כשהגוף רגיל לאלכוהול כמדכא קבוע, הפסקת האספקה "משחררת את הבלמים" ומערכת העצבים נעשית יתר-פעילה. חוסר אספקת אלכוהול לאלכוהוליסטים גורם לסימנים:</p>
+    <ol>
+      <li>רעד שרירים;</li>
+      <li>בחילות והקאות;</li>
+      <li>אי שקט ועצבנות;</li>
+      <li>התכווצויות;</li>
+      <li>זיעה;</li>
+      <li><span class="en">Delirium Tremens</span> — הזיות והתכווצויות שרירים.</li>
+    </ol>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>טיפול ב"קריז":</b> לפי <span class="en">ABCD</span>; בטיחות הצוות הרפואי; <b>הטיפול היעיל הוא מתן תרופות דרך הווריד על ידי רופא או פרמדיק</b>; פינוי לבית חולים.</p>
+    </div>
+
+    <h3>הרעלת סמים</h3>
+    <p>השקפים עוסקים בחמש קבוצות: קוקאין, הרואין, מריחואנה וגראס, אמפטמינים וחומרי הזיה. כדאי לחשוב עליהן בשתי משפחות: <b>ממריצים</b> (קוקאין, אמפטמינים) שמאיצים הכול — דופק, לחץ דם, חום, אי שקט; ו<b>מדכאים</b> (הרואין) שמאטים הכול — הכרה, נשימה, דופק. הרמז הכי מהיר בשטח הם <b>האישונים</b>.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>הרעלת סמים — השוואה (אלכוהול וסמים, עמ' 9–14)</caption>
+      <thead><tr><th>סם</th><th>דרך שימוש</th><th>זמן השפעה</th><th>אישונים</th><th>סימנים</th></tr></thead>
+      <tbody>
+        <tr><th>קוקאין (קראק, רוק…)</th><td>שאיפה מהאף, וריד, עישון</td><td>מתחיל תוך שניות, נמשך עד שעתיים בערך</td><td>מורחבים</td><td>אי שקט ועצבנות, פעילות פיזית מוגברת, טכיקרדיה, לחץ דם גבוה, הפרעות קצב, התכווצויות, מוות.</td></tr>
+        <tr><th>הרואין</th><td>פה, אף או וריד</td><td>נמשך עד 24 שעות</td><td class="hl">מכווצים</td><td>ישנוניות, דיבור איטי מבולבל ומקוטע, ירידה בלחץ דם, היפותרמיה, ברדיקרדיה, ברדיפניה, התכווצויות, מוות.</td></tr>
+        <tr><th>מריחואנה וגראס</th><td>עישון או פה</td><td>מתחילה תוך שניות, נמשכת עד שלוש שעות בערך</td><td>מורחבים</td><td>סימני כיף-מרחף, יובש בפה.</td></tr>
+        <tr><th>אמפטמינים</th><td>פה או וריד</td><td>מתחילה אחרי חצי שעה, נמשכת עד 8 שעות</td><td>מורחבים</td><td>אי שקט וחרדה, מדבר הרבה, זז הרבה, עלייה בלחץ דם ובחום הגוף, טכיקרדיה, טכיפניאה, הזיות והתכווצויות, אי ספיקת לב וריאות, מוות.</td></tr>
+        <tr><th>חומרי הזיה <span class="en">(PCP, STP, LSD)</span></th><td>פה ועישון</td><td>—</td><td>מורחבים</td><td>כאבי ראש, סחרחורת, בחילות והקאות, הזיות.</td></tr>
+      </tbody></table></div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 262" role="img" aria-label="משך ההשפעה של הסמים על ציר של 24 שעות, בקנה מידה">
+          <text x="630" y="24" direction="rtl" text-anchor="start" class="t-b">משך ההשפעה מרגע השימוש</text>
+          <line x1="520" y1="40" x2="520" y2="204" class="ln-dash"/>
+          <line x1="440" y1="40" x2="440" y2="204" class="ln-dash"/>
+          <line x1="360" y1="40" x2="360" y2="204" class="ln-dash"/>
+          <line x1="280" y1="40" x2="280" y2="204" class="ln-dash"/>
+          <line x1="200" y1="40" x2="200" y2="204" class="ln-dash"/>
+          <line x1="120" y1="40" x2="120" y2="204" class="ln-dash"/>
+          <line x1="40" y1="40" x2="40" y2="204" class="ln-dash"/>
+          <text x="630" y="65" direction="rtl" text-anchor="start" class="t-b">קוקאין</text>
+          <rect x="480" y="50" width="40" height="22" rx="3" class="f-alarm-soft"/>
+          <text x="472" y="66" direction="rtl" text-anchor="start" class="t-sm">עד כשעתיים</text>
+          <text x="630" y="105" direction="rtl" text-anchor="start" class="t-b">מריחואנה</text>
+          <rect x="460" y="90" width="60" height="22" rx="3" class="f-zone-soft"/>
+          <text x="452" y="106" direction="rtl" text-anchor="start" class="t-sm">עד כשלוש שעות</text>
+          <text x="630" y="145" direction="rtl" text-anchor="start" class="t-b">אמפטמינים</text>
+          <rect x="360" y="130" width="150" height="22" rx="3" class="f-alarm-soft"/>
+          <text x="352" y="146" direction="rtl" text-anchor="start" class="t-sm">מתחיל אחרי חצי שעה, עד 8 שעות</text>
+          <text x="630" y="185" direction="rtl" text-anchor="start" class="t-b">הרואין</text>
+          <rect x="40" y="170" width="480" height="22" rx="3" class="f-field-soft"/>
+          <text x="280" y="186" direction="rtl" text-anchor="middle" class="t-sm">עד 24 שעות</text>
+          <line x1="40" y1="204" x2="520" y2="204" class="ln"/>
+          <text x="520" y="222" direction="ltr" text-anchor="middle" class="t-sm">0</text>
+          <text x="440" y="222" direction="ltr" text-anchor="middle" class="t-sm">4</text>
+          <text x="360" y="222" direction="ltr" text-anchor="middle" class="t-sm">8</text>
+          <text x="280" y="222" direction="ltr" text-anchor="middle" class="t-sm">12</text>
+          <text x="200" y="222" direction="ltr" text-anchor="middle" class="t-sm">16</text>
+          <text x="120" y="222" direction="ltr" text-anchor="middle" class="t-sm">20</text>
+          <text x="40" y="222" direction="ltr" text-anchor="middle" class="t-sm">24</text>
+          <text x="280" y="248" direction="rtl" text-anchor="middle" class="t-sm">שעות מהשימוש (הזמן זורם מימין לשמאל)</text>
+        </svg>
+      </div>
+      <figcaption><b>משך ההשפעה בקנה מידה (20 פיקסלים לשעה).</b> לפי השקפים: קוקאין — מתחיל תוך שניות, עד שעתיים בערך; מריחואנה — תוך שניות, עד שלוש שעות; אמפטמינים — מתחיל אחרי חצי שעה, עד 8 שעות; הרואין — עד 24 שעות (לא צוין זמן התחלה). המשמעות: מטופל אחרי הרואין יכול להיות בסיכון נשימתי עוד הרבה אחרי שהגעתם, ולכן מפנים ומנטרים.</figcaption>
+    </figure>
+
+    <div class="compare">
+      <div><h5>"הכול מואץ" — קוקאין, אמפטמינים</h5><ul>
+        <li>אישונים מורחבים</li>
+        <li>טכיקרדיה, לחץ דם גבוה, הפרעות קצב</li>
+        <li>אי שקט, פעילות יתר; באמפטמינים גם עליית חום</li>
+        <li>הסכנה: <span class="alarm-t">הפרעות קצב, התכווצויות</span>, ובאמפטמינים גם אי ספיקת לב וריאות</li>
+      </ul></div>
+      <div><h5>"הכול מואט" — הרואין</h5><ul>
+        <li><mark>אישונים מכווצים</mark></li>
+        <li>ברדיקרדיה, ירידה בלחץ הדם, היפותרמיה</li>
+        <li>ישנוניות, דיבור איטי ומקוטע</li>
+        <li>הסכנה: <span class="alarm-t">ברדיפניה</span> — הנשימה היא מה שנכשל</li>
+      </ul></div>
+    </div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>טיפול בהרעלת סמים:</b></p>
+      <ol class="steps">
+        <li><div>טיפול לפי <span class="en">ABCD</span>.</div></li>
+        <li><div>מתן חמצן.</div></li>
+        <li><div>פתיחת וריד.</div></li>
+        <li><div>דיווח למרכז הרעלות קרוב.</div></li>
+        <li><div>פינוי לבית חולים.</div></li>
+      </ol>
+      <p><b>הערה מהשקף:</b> במקרים אלו צריך לשים דגש על הבטיחות של הצוות ועל בדיקת זירת האירוע (מחטים, אלימות, חומרים נוספים).</p>
+    </div>
+
+    <h3>אירוע מוחי וסקולרי <span class="en">(CVA)</span>: מה קורה במוח</h3>
+    <p><b>אירוע מוחי</b> הוא שם כולל שמתאר נזק או מוות לתאי המוח, לרוב כתוצאה מהפרעה לזרימת דם אל אזור במוח. ההגדרה בשקפים: <b>מוות של חלק מתאי המוח עקב הפסקה בזרם הדם אליה</b>; שבץ <span class="en">(Stroke)</span> הוא הפרעה באספקת דם למוח שמתבטאת בהופעת סימנים נוירולוגיים. בדרך כלל זה קורה אצל חולים עם מחלות רקע, ו-<mark>CVA הוא הגורם מספר 3 לתמותה בגיל מבוגר</mark>.</p>
+
+    <p>יש שני סוגים עיקריים:</p>
+    <dl class="kv">
+      <dt>אוטם / איסכמי</dt><dd><b>כ-85% מהמקרים.</b> חסימה של כלי דם מוחי על ידי קריש דם או גוף אחר — מטרומבוס מקומי או מאמבולוס ממקור מרוחק.</dd>
+      <dt>דימום / המורגי</dt><dd>דימום מכלי דם מוחי — פיצוץ או קרע בכלי הדם. נובע מנזק מקומי לכלי דם, ייתכן שמולד.</dd>
+      <dt><span class="en">TIA</span></dt><dd><span class="en">Transient Ischemic Attack</span> — אירוע מוחי חולף (זמני). מופיע בהמשך.</dd>
+    </dl>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 290" role="img" aria-label="שני סוגי השבץ: חסימה של כלי דם באוטם, וקרע של כלי דם בדימום, עם פס חלוקה של 85 אחוז איסכמי">
+          <defs>
+            <marker id="ch11-arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" class="f-blood-o"/>
+            </marker>
+          </defs>
+          <text x="480" y="28" direction="rtl" text-anchor="middle" class="t-b">אוטם (איסכמי)</text>
+          <rect x="350" y="60" width="260" height="50" rx="25" class="f-card"/>
+          <rect x="468" y="70" width="132" height="30" rx="6" class="f-blood-o"/>
+          <rect x="360" y="70" width="90" height="30" rx="6" class="f-soft"/>
+          <ellipse cx="459" cy="85" rx="15" ry="20" class="f-blood-d"/>
+          <line x1="600" y1="48" x2="520" y2="48" class="s-alarm" marker-end="url(#ch11-arr4)"/>
+          <text x="560" y="40" direction="rtl" text-anchor="middle" class="t-sm">זרימה</text>
+          <text x="459" y="132" direction="rtl" text-anchor="middle" class="t-sm">קריש / תסחיף</text>
+          <text x="400" y="150" direction="rtl" text-anchor="middle" class="t-sm">אין זרימה</text>
+          <ellipse cx="400" cy="186" rx="62" ry="22" class="f-alarm-soft"/>
+          <text x="400" y="191" direction="rtl" text-anchor="middle" class="t-sm">אזור איסכמי</text>
+          <text x="160" y="28" direction="rtl" text-anchor="middle" class="t-b">דימום (המורגי)</text>
+          <rect x="30" y="60" width="260" height="50" rx="25" class="f-card"/>
+          <rect x="40" y="70" width="240" height="30" rx="6" class="f-blood-o"/>
+          <path d="M150 108 C140 125 135 135 148 140 C155 132 165 132 172 140 C185 135 180 125 170 108 Z" class="f-blood-o"/>
+          <ellipse cx="160" cy="165" rx="62" ry="24" class="f-blood-o"/>
+          <text x="160" y="208" direction="rtl" text-anchor="middle" class="t-sm">קרע: דם נשפך לרקמת המוח</text>
+          <text x="320" y="232" direction="rtl" text-anchor="middle" class="t-sm">חלוקת מקרי ה-CVA</text>
+          <rect x="124" y="242" width="476" height="30" rx="4" class="f-zone-soft"/>
+          <text x="362" y="262" direction="rtl" text-anchor="middle" class="t-b">איסכמי · כ-85%</text>
+          <rect x="40" y="242" width="84" height="30" rx="4" class="f-alarm-soft"/>
+          <text x="82" y="262" direction="rtl" text-anchor="middle" class="t-sm">המורגי</text>
+        </svg>
+      </div>
+      <figcaption><b>שני מנגנונים, אותה תוצאה.</b> באוטם, קריש או תסחיף סוגרים את כלי הדם והרקמה שאחריו נשארת בלי חמצן. בדימום, כלי הדם נקרע והדם נשפך לרקמה או סביבה. פס החלוקה בקנה מידה: כ-85% איסכמי (עמ' 7, 9), והשאר המורגי.</figcaption>
+    </figure>
+
+    <h4>שבץ איסכמי (אוטם)</h4>
+    <p>נוצר עקב חסימה של כלי דם על ידי תסחיף או קריש דם, והתוצאה היא הפרעה בזרימת הדם לאזור שאליו מוביל כלי הדם החסום ויצירת אזור איסכמי. <b>התסחיף בא בדרך כלל מהקרוטיס או מהלב</b>, והוא יכול להיות גם אוויר, שומן או רקמת גידול. הגורמים לפי השקפים: התנתקות פלאק, תסחיף אוויר, תסחיף שומן, רקמה מגידול, קריש דם. מחלות כמו וסקוליטיס, גידולים ובעיות קרישה גורמות ליצור מוגבר של קריש דם.</p>
+    <div class="compare">
+      <div><h5>גורמי סיכון: אתרוסקלרוזיס</h5><ul>
+        <li>גיל, מין</li>
+        <li>יתר לחץ דם, עישון</li>
+        <li>סכרת, כולסטרול</li>
+        <li>היסטוריה משפחתית</li>
+      </ul></div>
+      <div><h5>גורמי סיכון: אמבולוס</h5><ul>
+        <li>פרפור עליות</li>
+        <li>מחלת לב איסכמית</li>
+        <li>מצבי קרישיות יתר</li>
+      </ul></div>
+    </div>
+    <p>פרפור עליות הוא הדוגמה הקלאסית: בעלייה שלא מתכווצת כראוי הדם עומד, נוצר קריש, והוא נשלח עם זרם הדם ישר לעורקי המוח. מטופל עם שבץ ופרפור עליות במוניטור — שני הממצאים כנראה קשורים.</p>
+
+    <h4>שבץ המורגי (דימום)</h4>
+    <p>קרע בכלי דם קטן צמוד לרקמות המוח או בתוכם, או קרע של עורק בתוך המוח או בחלל ה<b>סבארכנואיד</b>. <b>ההתחלה פתאומית ומאופיינת בכאבי ראש חזקים ובנוקשות בצוואר.</b></p>
+    <ul>
+      <li><b>דימום תוך-מוחי</b> — שכיח בחולים עם יתר לחץ דם.</li>
+      <li><b>דימום סובארכנואידאלי</b> — שכיח בחולים עם מלפורמציה בכלי דם.</li>
+      <li>גורמי סיכון: קטע חלש בדופן כלי הדם, שינויים מולדים במבנה כלי הדם.</li>
+    </ul>
+
+    <h4>גורמי סיכון ל-CVA — הרשימה המלאה</h4>
+    <p>יתר לחץ דם; סכרת; שומנים גבוהים; גלולות נגד הריון; הפרעות קצב לבביות; מחלות שונות כמו וסקוליטיס, גידולים ובעיות קרישה; חולים שמקבלים קומדין וכדומה; <span class="en">TIA</span>; סטרס נפשי ומתח; גנטיקה; חוסר פעילות גופנית. באנמנזה, כל פריט כזה מחזק את החשד.</p>
+
+    <h3>למה הסימנים כל כך שונים ממטופל למטופל</h3>
+    <p>הסימנים של שבץ <b>תלויים בגודל ובאיזור שנפגע במוח</b>. כדי להבין את זה, השקפים משתמשים ב<b>הומונקולוס</b> — "האדם הקטן" שמצויר לפי השטח שכל איבר תופס בקליפת המוח:</p>
+    <ul>
+      <li><b>ההומונקולוס התחושתי</b> מדגים את גודל האזורים במוח שאחראים על עיבוד תחושת מגע בכל איבר.</li>
+      <li><b>ההומונקולוס המוטורי</b> מבטא את גודל האזורים במוח שאחראים ליצירת תנועה בכל איבר.</li>
+    </ul>
+    <p>בשני המקרים הידיים, השפתיים, הלשון והפנים "ענקיים", והגו והרגליים קטנים יחסית. זו הסיבה שגם שבץ קטן בקליפת המוח מופיע הרבה פעמים כחולשה ביד, צניחת זווית הפה או קושי בדיבור — האזורים האלה תופסים הרבה "נדל"ן" במוח. כמו כן מופיעים בשקף אזורי השפה (<span class="en">Broca's area</span> — הפקת דיבור, <span class="en">Wernicke's area</span> — הבנת שפה): פגיעה בהם מסבירה למה מטופל אחד לא מצליח להוציא מילים, ואחר מדבר שוטף אבל לא מבין אתכם.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>סימנים לפי מיקום (CVA, עמ' 16)</caption>
+      <thead><tr><th>טריטוריה</th><th>סימנים</th></tr></thead>
+      <tbody>
+        <tr><th>עורקי הקרוטיד</th><td>שיתוק בצד אחד (המיפלגיה); נימול בצד אחד; הפרעות דיבור והבנה; הפרעות ראייה.</td></tr>
+        <tr><th>גזע המוח</th><td>סחרחורת; הפרעות ראייה (ראייה כפולה); הפרעות דיבור; הפרעות בשיווי משקל.</td></tr>
+        <tr><th>שבץ המורגי</th><td class="hl">אובדן הכרה קצר; כאב ראש חזק; סימני גירוי קרומים.</td></tr>
+      </tbody></table></div>
+
+    <h4>סימנים וסימפטומים של CVA</h4>
+    <ol>
+      <li>תלויים בגודל ובאיזור שנפגע במוח.</li>
+      <li>ההתחלה בדרך כלל פתאומית, ויכולה להתלוות לאיבוד הכרה.</li>
+      <li>נשימה נוחרת <span class="en">(Stertorous Breathing)</span>.</li>
+      <li>אקספיריום בצורת <span class="en">Puff</span>.</li>
+      <li>לפעמים אישונים לא שווים.</li>
+      <li>חולשה או שיתוק של צד אחד: פנים, יד ורגל.</li>
+      <li>העיניים לפעמים במבט לכיוון ההפוך מהפגיעה בגוף.</li>
+      <li>עור קר ורטוב.</li>
+      <li>אפזיה — אי יכולת לדבר.</li>
+      <li>דיסארטריה — הפרעה בדיבור.</li>
+      <li>שינויים במצב ההכרה עד איבוד הכרה מלא.</li>
+      <li>כאב ראש והקאות.</li>
+      <li>התכווצויות.</li>
+    </ol>
+    <p>נשימה נוחרת ואקספיריום "נושף" (Puff) הם סימנים של מטופל שההכרה שלו ירודה והשרירים בפה ובלחי רפויים — רמז ישיר לכך שנתיב האוויר בסכנה.</p>
+
+    <h3>אירוע מוחי חולף <span class="en">(TIA)</span></h3>
+    <p><span class="en">TIA</span> נוצר כתוצאה מתסחיף קטן או מחוסר אספקת דם זמנית לרקמת המוח. הסימנים זהים לסימני CVA, אבל הם חולפים.</p>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <ul>
+        <li>הסימנים והתלונות מופיעים בפתאומיות, משכם <b>לרוב מספר דקות עד מספר שעות</b>, ו<mark>חולפים תוך 24 שעות</mark>.</li>
+        <li>אחרי האירוע לא נשארת הפרעה נוירולוגית; בדרך כלל אין איבוד הכרה.</li>
+        <li><mark>חולים עם TIA בסיכון לפתח CVA.</mark></li>
+      </ul>
+    </div>
+    <p><b>גורמים:</b> מחלה של עורקי הקרוטיד; תסחיף (בדרך כלל על רקע טרשת העורקים, במיוחד בקרוטיס); ירידה בתפוקת לב; ירידה בלחץ דם; מינון יתר של תרופות להורדת לחץ דם; ספזם (כיווץ זמני) של העורקים במוח.</p>
+    <p><b>סימנים:</b> מופיעים בדרך כלל באופן פתאומי ותלויים בגודל הפגיעה במוח — איבוד ראייה בעין אחת, חולשה או שיתוק בחצי גוף, הפרעה בבליעה, אפזיה או דיסארטריה, נימול או חוסר תחושה, סחרחורת, אי יכולת לעמוד ונטייה ליפול.</p>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>"זה עבר לו" אינו סיבה לא לפנות.</b> בזמן הופעת הסימנים, ולפני שחלפו, <span class="alarm-t">לא ניתן להבדיל בין CVA ל-TIA במתאר הטרום-אשפוזי</span> — שלבי הגישה והטיפול זהים. <b>יש לפנות את החולה לבית החולים להמשך בדיקות ובירור גם אם הסימנים והתלונות חלפו</b>: TIA הוא אזהרה לשבץ שעלול לבוא.</p>
+    </div>
+
+    <h3>זיהוי שבץ בשטח: FAST, סינסינטי ולוס אנג'לס</h3>
+    <p>בשטח <b>לא ניתן להבדיל בין סוגי השבץ</b>, וסימני השבץ דומים לאלו של מחלות רבות אחרות. מצד שני, <mark>טיפול מהיר בשבץ יכול להפוך את התמונה הקלינית</mark>. לכן יש צורך בזיהוי מהיר של שבץ ובקדימות טיפולית — ובשביל זה יש בדיקות סקר פשוטות.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>עמ' 17 קובע ש"לא ניתן להבדיל בין סוגי השבץ בשטח", אבל עמ' 16 מונה סימנים שמאפיינים שבץ המורגי (אובדן הכרה קצר, כאב ראש חזק, סימני גירוי קרומים), ועמ' 23 מתאר התחלה פתאומית עם כאבי ראש חזקים ונוקשות צוואר. הדרך ליישב: הסימנים האלה <b>מעלים חשד</b> לדימום, אבל אבחנה של הסוג נעשית רק בהדמיה, והטיפול בשטח זהה.</p>
+    </div>
+
+    <h4>FAST</h4>
+    <p>לפני הבדיקה: <b>שלול גורמים אחרים לירידה ברמת ההכרה</b> — כמו היפוגליקמיה, מינון יתר של סמים/אלכוהול, מצב אחרי פרכוס וכו'. אחר כך בצע בדיקה מהירה לאיתור סימני CVA:</p>
+    <ul class="mnemonic">
+      <li><b>F</b><span class="en">Face</span> — צניחת פנים</li>
+      <li><b>A</b><span class="en">Arms</span> — חולשה בזרועות</li>
+      <li><b>S</b><span class="en">Speech</span> — שינויים בדיבור</li>
+      <li><b>T</b><span class="en">Time</span> — הזמן: מתי התחיל, ולהזעיק</li>
+    </ul>
+
+    <h4>בדיקות סקר מובנות</h4>
+    <div class="compare">
+      <div><h5>סינסינטי <span class="en">(Cincinnati Prehospital Stroke Scale)</span></h5><ol>
+        <li>צניחה / אסימטריה בפנים</li>
+        <li>חולשת הזרוע</li>
+        <li>בעיה בדיבור</li>
+      </ol>
+      <p>כאשר <b>אחד מהשלושה</b> חיובי — סבירות של 89% לשבץ. הבדיקה מזהה 59% ממקרי השבץ.</p></div>
+      <div><h5>לוס אנג'לס <span class="en">(LAPSS)</span></h5><ol>
+        <li>האם מעל גיל 45 שנה?</li>
+        <li>ללא היסטוריה של פרכוסים ו/או אפילפסיה?</li>
+        <li>משך התסמינים קצר מ-24 שעות?</li>
+        <li>ברקע, החולה אינו מרותק למיטתו או מוגבל בכל צורה אחרת?</li>
+        <li>רמות סוכר בדם בין 60–400?</li>
+        <li>נמצאת אסימטריה ניכרת באחד משלושת הבאים: חיוך, אחיזה, חוזק הזרוע?</li>
+      </ol>
+      <p>כאשר <b>כל הפריטים</b> חיוביים — סבירות של 97% לשבץ. הבדיקה מזהה 93% ממקרי השבץ.</p></div>
+    </div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 262" role="img" aria-label="השוואה בקנה מידה בין סינסינטי ללוס אנג'לס: סבירות לשבץ כשחיובי ושיעור השבצים שמזוהים">
+          <line x1="470" y1="44" x2="470" y2="226" class="ln-soft"/>
+          <line x1="270" y1="44" x2="270" y2="226" class="ln-dash"/>
+          <line x1="70" y1="44" x2="70" y2="226" class="ln-dash"/>
+          <text x="630" y="34" direction="rtl" text-anchor="start" class="t-b">סינסינטי (CPSS)</text>
+          <text x="630" y="72" direction="rtl" text-anchor="start" class="t-sm">סבירות לשבץ אם חיובי</text>
+          <rect x="114" y="56" width="356" height="24" rx="3" class="f-zone"/>
+          <text x="106" y="73" direction="ltr" text-anchor="end" class="t-b">89%</text>
+          <text x="630" y="108" direction="rtl" text-anchor="start" class="t-sm">שיעור השבצים שמזוהים</text>
+          <rect x="234" y="92" width="236" height="24" rx="3" class="f-field-soft"/>
+          <text x="226" y="109" direction="ltr" text-anchor="end" class="t-b">59%</text>
+          <text x="630" y="150" direction="rtl" text-anchor="start" class="t-b">לוס אנג'לס (LAPSS)</text>
+          <text x="630" y="188" direction="rtl" text-anchor="start" class="t-sm">סבירות לשבץ אם חיובי</text>
+          <rect x="82" y="172" width="388" height="24" rx="3" class="f-zone"/>
+          <text x="74" y="189" direction="ltr" text-anchor="end" class="t-b">97%</text>
+          <text x="630" y="222" direction="rtl" text-anchor="start" class="t-sm">שיעור השבצים שמזוהים</text>
+          <rect x="98" y="206" width="372" height="24" rx="3" class="f-field-soft"/>
+          <text x="90" y="223" direction="ltr" text-anchor="end" class="t-b">93%</text>
+          <text x="470" y="250" direction="ltr" text-anchor="middle" class="t-sm">0%</text>
+          <text x="270" y="250" direction="ltr" text-anchor="middle" class="t-sm">50%</text>
+          <text x="70" y="250" direction="ltr" text-anchor="middle" class="t-sm">100%</text>
+        </svg>
+      </div>
+      <figcaption><b>סינסינטי מול לוס אנג'לס, בקנה מידה (עמ' 18–19).</b> סינסינטי מהיר ופשוט, אבל מפספס כ-4 מכל 10 שבצים (מזהה 59%). לוס אנג'לס ארוך יותר, אבל מזהה 93% מהשבצים — חלק מהשאלות שלו (גיל, היסטוריית פרכוסים, סוכר) נועדו בדיוק לסנן את המצבים שמחקים שבץ.</figcaption>
+    </figure>
+
+    <p>שימו לב לפריט הסוכר בלוס אנג'לס: היפוגליקמיה היא המחקה הקלאסי של שבץ — חולשה חד-צדדית ובלבול שנעלמים עם מתן סוכר. לכן <b>בדיקת סוכר היא חלק מכל הערכה של חשד לשבץ</b>.</p>
+
+    <h3>טיפול בחשד ל-CVA ול-TIA</h3>
+    <p>הרעיון המרכזי מהשקפים: <mark>זיהוי מוקדם של אירוע מוחי ופינוי מהיר לבית החולים הם כלי מפתח להגדלת סיכויי ההחלמה וההישרדות של החולה</mark>. בשבץ איסכמי, כל דקה שעוברת היא עוד רקמת מוח שמתה, והטיפולים בבית החולים יעילים רק בחלון זמן מוגבל — ולכן "שעת התחלת הסימנים" היא הנתון הכי חשוב שתעבירו.</p>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>עקרונות הגישה (עמ' 33):</b></p>
+      <ol class="steps">
+        <li><div>זיהוי וטיפול במצבים מסכני חיים ומתן טיפול מיידי <span class="en">(ABCDE)</span>.</div></li>
+        <li><div>ביצוע הערכה מהירה למצב אירוע מוחי <span class="en">(FAST)</span>.</div></li>
+        <li><div><b>בדיקה ורישום של שעת התחלת הסימנים</b> — או השעה האחרונה בה החולה נראה במצב תקין.</div></li>
+        <li><div>קבלת החלטה לגבי דחיפות המצב: <mark>במידה ויש אפשרות לאירוע מוחי "טרי" — פינוי דחוף לבית חולים ייעודי תוך דיווח בדרך.</mark></div></li>
+      </ol>
+      <p><b>הטיפול עצמו (עמ' 32):</b></p>
+      <ul>
+        <li>השכבת החולה עם ראש מורם <b>15°</b>.</li>
+        <li>שמירת נתיב אוויר פתוח.</li>
+        <li>מתן חמצן וסעד נשימתי אם צריך; חולה מחוסר הכרה צריך להנשים.</li>
+        <li>פתיחת וריד וניטור החולה.</li>
+        <li>הרגעת החולה.</li>
+        <li><b>אסור לתת לחולה לשתות או לאכול.</b></li>
+        <li>העברה לבית חולים.</li>
+      </ul>
+    </div>
+    <p>למה אסור לאכול ולשתות? שבץ פוגע הרבה פעמים ביכולת הבליעה (הפרעה בבליעה מופיעה גם ברשימת סימני ה-TIA). מטופל שנותנים לו לשתות עלול לשאוף את הנוזל לריאות. והראש המורם מעט עוזר לנתיב האוויר ולמניעת שאיפה.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בשקף הטיפול (עמ' 32) הסעיף "שמירת נתיב אוויר פתוח?" מופיע עם סימן שאלה — כנראה שאלה לכיתה. נתיב אוויר פתוח הוא כמובן חלק מהטיפול.</p>
+    </div>
+
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p>ההבחנה בין שבץ איסכמי להמורגי נעשית ב-<b>CT של המוח</b>. ב-CT דימום טרי נראה <b>לבן (בהיר)</b>, ואזור איסכמי נראה <b>כהה</b>. זו הסיבה שהאבחנה הסופית מחכה לבית החולים, וזו הסיבה שמעבירים את המטופל לבית חולים ייעודי.</p>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בשקף ה-CT (CVA, עמ' 30) הכיתוב הוא "שחור = המורגי, לבן = איסכמי" — הפוך מהתמונות שבאותו שקף, שבהן הדימום (<span class="en">Hemorrhagic Stroke</span>) לבן והאיסכמיה (<span class="en">Ischemic Stroke</span>) כהה. הנכון: <b>דימום = לבן, איסכמיה = כהה</b>.</p>
+    </div>
+
+    <h3>מלכודות: כשמצבים מחקים זה את זה</h3>
+    <div class="tbl-wrap"><table class="data"><caption>מה לחשוב כשהמטופל ירוד בהכרה ונושם</caption>
+      <thead><tr><th>מה רואים</th><th>מה עלול להסתתר</th><th>מה עושים</th></tr></thead>
+      <tbody>
+        <tr><th>ריח אלכוהול וחולשה בצד אחד</th><td>שבץ, או חבלת ראש מנפילה</td><td>FAST מלא, בדיקת סימני חבלה, רישום שעת התחלה</td></tr>
+        <tr><th>"שבץ" עם הזעה ובלבול</th><td>היפוגליקמיה</td><td>בדיקת סוכר לפני שמסיקים</td></tr>
+        <tr><th>כמה נפגעים בחלל סגור עם כאבי ראש</th><td>הרעלת CO</td><td>בטיחות הצוות, הוצאה מהחלל, חשד עד שיוכח אחרת</td></tr>
+        <tr><th>אישונים צרים מאוד</th><td>הרואין, או זרחנים אורגניים</td><td>לחפש ריור, הזעה, צפצופים ו"מטופל רטוב" — וליתר ביטחון מיגון</td></tr>
+        <tr><th>סימנים שחלפו עד ההגעה</th><td><span class="en">TIA</span> — אזהרה לשבץ</td><td>לפנות לבירור בכל מקרה</td></tr>
+        <tr><th>בליעה, מטופל "בסדר"</th><td>הרעל עדיין נספג; אפקט מאוחר</td><td>מה, כמה, מתי; ייעוץ מרכז הרעלות; פינוי</td></tr>
+      </tbody></table></div>
+
+    <div class="recap"><span class="tag">בשורה התחתונה</span>
+      <ol>
+        <li>לכל רעל, בכל דרך כניסה, יש אפקט מיידי ואפקט מאוחר — מה, כמה, מתי, ותמיד ייעוץ ממרכז ההרעלות.</li>
+        <li>אסור לגרום להקאה בהפרעה בהכרה, בהתכווצויות, בחשד לאוטם, בחומר קורוזיבי וב-Tricyclic Antidepressants.</li>
+        <li>כל מי ששהה בחלל סגור בשריפה — חשוד בשאיפת עשן ו-CO עד שיוכח אחרת; CO נקשר להמוגלובין פי 240 מחמצן.</li>
+        <li>זרחנים אורגניים: מיגון קודם; אטרופין 1–2 מ"ג בבינוני, 2–4 מ"ג במנות חוזרות בקשה, ילד 0.02–0.05 מ"ג/ק"ג — בלי מקסימום, עד אטרופיניזציה.</li>
+        <li>מוות בזרחנים: אי ספיקה נשימתית והפרעות קצב חדריות (QT ארוך &rlm;←&rlm; TDP); הסימנים יכולים להופיע אחרי 12–24 שעות.</li>
+        <li>אלכוהול: שלושה שלבים; בשלישי (מעל 3 גר'/ליטר) איבוד הכרה, היפותרמיה וברדיפניה עד דום נשימה.</li>
+        <li>הרואין — אישונים מכווצים ונשימה איטית; קוקאין ואמפטמינים — אישונים מורחבים, טכיקרדיה ולחץ דם גבוה.</li>
+        <li>CVA: כ-85% איסכמי; בשטח אי אפשר לקבוע את הסוג, ו-TIA נראה בדיוק אותו דבר עד שהוא חולף — מפנים תמיד.</li>
+        <li>FAST, סינסינטי (89% / מזהה 59%), לוס אנג'לס (97% / מזהה 93%); תמיד לשלול היפוגליקמיה.</li>
+        <li>בחשד ל-CVA: ABCDE, שעת התחלת הסימנים, ראש מורם 15°, כלום דרך הפה, ופינוי דחוף לבית חולים ייעודי עם דיווח בדרך.</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+</main>
+<footer class="end">סיכום קורס פרמדיק · סיכום לימודי לקורס פרמדיק מספר 5. אינו מחליף את הפרוטוקולים הרשמיים.</footer>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a, .strip a'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.chapter'));
+  if (!('IntersectionObserver' in window) || !secs.length) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(function (s) { io.observe(s); });
+})();
+</script>
+<script src="notes.js"></script>
+</body>
+</html>
