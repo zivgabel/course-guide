@@ -89,8 +89,10 @@
   function toast(m) { toastEl.textContent = m; toastEl.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { toastEl.hidden = true; }, 2600); }
 
   // "+ הערה" button that follows the selection
-  var add = btn('+ הערה', '', function () { if (pending) openEditor(null, pending); hideAdd(); });
-  add.id = 'un-add'; add.hidden = true; ui.appendChild(add);
+  function google(q) { window.open('https://www.google.com/search?q=' + encodeURIComponent(q), '_blank', 'noopener'); }
+  var add = el('div'); add.id = 'un-add'; add.hidden = true; ui.appendChild(add);
+  add.appendChild(btn('+ הערה', '', function () { if (pending) openEditor(null, pending); hideAdd(); }));
+  add.appendChild(btn('חיפוש בגוגל', '', function () { if (pending) google(pending.quote); hideAdd(); }));
   add.addEventListener('pointerdown', function (e) { e.preventDefault(); }); // keep the selection alive
   add.addEventListener('mousedown', function (e) { e.preventDefault(); });
   var pending = null, selT;
@@ -117,7 +119,7 @@
       if (!p) { if (!edBack.hidden) return; pending = null; hideAdd(); return; }
       pending = p;
       var coarse = window.matchMedia && matchMedia('(pointer: coarse)').matches;
-      var x = Math.min(Math.max(p.rect.left + p.rect.width / 2, 70), document.documentElement.clientWidth - 70);
+      var x = Math.min(Math.max(p.rect.left + p.rect.width / 2, 125), document.documentElement.clientWidth - 125);
       add.style.left = (x + scrollX) + 'px';
       add.style.top = (p.rect.bottom + scrollY + (coarse ? 34 : 10)) + 'px'; // below the native handles/menu on touch
       add.hidden = false;
@@ -172,6 +174,7 @@
   });
   popRow.appendChild(btn('עריכה', '', function () { openEditor(popN); }));
   popRow.appendChild(delB);
+  popRow.appendChild(btn('חיפוש בגוגל', '', function () { google(popN.quote); }));
   pop.appendChild(popT); pop.appendChild(popM); pop.appendChild(popRow); ui.appendChild(pop);
   function hidePop() { pop.hidden = true; popN = null; }
   function showPop(n, target) {

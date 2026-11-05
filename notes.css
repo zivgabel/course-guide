@@ -15,7 +15,10 @@
 .un-ui button.del { color: var(--alarm); }
 .un-ui button:focus-visible, .un-ui textarea:focus-visible { outline: 2px solid var(--un); outline-offset: 2px; }
 
-#un-add { position: absolute; z-index: 70; transform: translateX(-50%); padding: .4rem .85rem; border-radius: 99px; background: var(--un); color: #fff; font-weight: 700; font-size: var(--t-sm); box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+#un-add { position: absolute; z-index: 70; transform: translateX(-50%); display: flex; border-radius: 99px; overflow: hidden; background: var(--un); box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+.un-ui #un-add button { background: transparent; color: #fff; border-radius: 0; padding: .4rem .85rem; font-weight: 700; white-space: nowrap; }
+.un-ui #un-add button + button { border-inline-start: 1px solid rgba(255,255,255,.35); font-weight: 600; }
+.un-ui #un-add button:hover { background: rgba(255,255,255,.14); }
 #un-add[hidden] { display: none; }
 
 .un-back { position: fixed; inset: 0; z-index: 80; background: rgba(10,16,24,.45); display: flex; align-items: center; justify-content: center; padding: 16px; }
@@ -55,3 +58,4 @@
 #un-toast { position: fixed; z-index: 90; left: 50%; bottom: 80px; transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: .5rem 1rem; border-radius: 8px; font-family: var(--f-ui); font-size: var(--t-sm); }
 #un-toast[hidden] { display: none; }
 @media print { #un-fab, #un-add, #un-pop, #un-panel { display: none !important; } }
+#un-fab .c[hidden] { display: none; }
