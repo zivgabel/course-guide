@@ -1,0 +1,2194 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="סיכום קורס פרמדיק – פרק ד׳ · מצבי חירום נשימתיים">
+<title>נשימה · סיכום קורס פרמדיק</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Miriam+Libre:wght@400;700&family=Suez+One&display=swap">
+<style>
+/* Layout: one reading column (~68ch) with wide breakouts for tables and figures; a colour-tape rail
+   (one colour zone per chapter) runs down the inline-end edge as navigation, and becomes a thin
+   sticky strip on phones. Highlight system: lime marker = must know, magenta = red flag, slate
+   chart-paper in Miriam Libre = hospital-level knowledge, teal = what the paramedic does in the field. */
+:root {
+  --paper: #F6F8FA;
+  --card: #FFFFFF;
+  --ink: #142030;
+  --ink-2: #4B5969;
+  --ink-3: #7A8796;
+  --rule: #D8DFE7;
+  --hl: #E4FF3F;
+  --hl-ink: #182000;
+  --alarm: #D90F64;
+  --alarm-bg: #FFE6F0;
+  --field: #0A7A72;
+  --field-bg: #E1F3F1;
+  --hosp: #56688A;
+  --hosp-bg: #EEF1F7;
+  --hosp-grid: rgba(86,104,138,.10);
+  --z-grey: #8E959C;
+  --z-pink: #F08DBA;
+  --z-red: #E0312C;
+  --z-purple: #8A4FBF;
+  --z-yellow: #F2C200;
+  --z-white: #E6EAEE;
+  --z-blue: #2C78DD;
+  --z-orange: #F0832A;
+  --z-green: #2BA14D;
+  --zone: var(--z-grey);
+
+  --f-display: "Suez One", "Frank Ruhl Libre", serif;
+  --f-body: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --f-ui: "IBM Plex Sans Hebrew", "Segoe UI", Arial, sans-serif;
+  --f-hosp: "Miriam Libre", "IBM Plex Sans Hebrew", Arial, sans-serif;
+
+  --t-xs: .78rem; --t-sm: .9rem; --t-base: 1.1rem; --t-md: 1.3rem; --t-lg: 1.65rem; --t-xl: 2.3rem; --t-xxl: clamp(2.6rem, 7vw, 4.6rem);
+  --col: 44rem;
+  --wide: 62rem;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--f-body); font-size: var(--t-base); line-height: 1.75;
+  direction: rtl; text-align: start;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+[data-zone="grey"]{--zone:var(--z-grey)} [data-zone="pink"]{--zone:var(--z-pink)} [data-zone="red"]{--zone:var(--z-red)}
+[data-zone="purple"]{--zone:var(--z-purple)} [data-zone="yellow"]{--zone:var(--z-yellow)} [data-zone="white"]{--zone:var(--z-white)}
+[data-zone="blue"]{--zone:var(--z-blue)} [data-zone="orange"]{--zone:var(--z-orange)} [data-zone="green"]{--zone:var(--z-green)}
+
+.page { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1100px) { .page { padding-left: max(96px, env(safe-area-inset-left, 0px)); } }
+.flow { max-width: var(--col); margin-inline: auto; }
+.flow > * + * { margin-block-start: 1em; }
+.flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses {
+  --bw: min(var(--wide), calc(100vw - 200px));
+  width: var(--bw); max-width: none; margin-inline: calc((100% - var(--bw)) / 2);
+}
+@media (max-width: 1000px) { .flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses { width: 100%; margin-inline: 0; } }
+
+a { color: inherit; text-decoration-color: var(--zone); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--field); outline-offset: 2px; border-radius: 4px; }
+h2, h3, h4 { text-wrap: balance; line-height: 1.25; }
+h3 { font-family: var(--f-ui); font-weight: 700; font-size: var(--t-lg); margin-block-start: 2.4em; letter-spacing: -.01em; }
+h3::before { content: ""; display: inline-block; width: .55em; height: .55em; background: var(--zone); border-radius: 2px; margin-inline-end: .45em; vertical-align: .12em; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+h4 { font-family: var(--f-ui); font-weight: 600; font-size: var(--t-md); margin-block-start: 1.8em; color: var(--ink); }
+p, li { text-wrap: pretty; }
+ul, ol { padding-inline-start: 1.3em; }
+li + li { margin-block-start: .3em; }
+li::marker { color: var(--ink-3); }
+strong, b { font-weight: 700; }
+abbr, .en { font-family: var(--f-ui); font-size: .92em; direction: ltr; unicode-bidi: isolate; }
+.num { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-weight: 600; unicode-bidi: isolate; }
+
+/* ---------- highlight system ---------- */
+mark { background: linear-gradient(transparent 12%, var(--hl) 12%, var(--hl) 88%, transparent 88%); color: var(--hl-ink); padding-inline: .15em; border-radius: 2px; font-weight: 600; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.alarm-t { color: var(--alarm); font-weight: 700; }
+
+.callout { border-radius: var(--r); padding: 1rem 1.15rem 1.05rem; position: relative; }
+.callout > .tag { display: inline-flex; align-items: center; gap: .4em; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .06em; padding: .2em .65em; border-radius: 99px; margin-block-end: .5rem; }
+.callout > :last-child { margin-block-end: 0; }
+.callout p { margin: .35em 0; }
+.callout ul, .callout ol { margin: .35em 0; }
+.tag svg { width: 1.05em; height: 1.05em; }
+
+.must { background: var(--hl); color: var(--hl-ink); }
+.must > .tag { background: var(--hl-ink); color: var(--hl); }
+.must mark { background: var(--hl-ink); color: var(--hl); }
+
+.redflag { background: var(--alarm-bg); border: 2px solid var(--alarm); }
+.redflag > .tag { background: var(--alarm); color: #fff; }
+
+.field { background: var(--field-bg); border-inline-start: 5px solid var(--field); border-radius: 4px var(--r) var(--r) 4px; }
+.field > .tag { background: var(--field); color: var(--card); }
+
+.hosp, .hosp-i { font-family: var(--f-hosp); color: var(--hosp); }
+.hosp { font-size: .9rem; line-height: 1.7; background-color: var(--hosp-bg);
+  background-image: linear-gradient(var(--hosp-grid) 1px, transparent 1px), linear-gradient(90deg, var(--hosp-grid) 1px, transparent 1px);
+  background-size: 14px 14px; border: 1px dashed var(--hosp); border-radius: 6px; }
+.hosp > .tag { background: transparent; color: var(--hosp); border: 1px solid var(--hosp); font-family: var(--f-hosp); }
+.hosp-i { font-size: .92em; background: var(--hosp-bg); padding: .05em .4em; border-radius: 4px; border: 1px dashed var(--hosp); }
+
+.note-src { background: transparent; border: 1px solid var(--rule); font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); }
+.note-src > .tag { background: var(--ink-2); color: var(--paper); }
+
+.recap { background: var(--card); border: 1px solid var(--rule); border-top: 6px solid var(--zone); border-radius: var(--r); padding: 1.1rem 1.3rem; }
+.recap > .tag { background: var(--ink); color: var(--paper); }
+.recap ol, .recap ul { font-family: var(--f-ui); font-size: .98rem; }
+
+/* ---------- steps (real sequences only) ---------- */
+ol.steps { list-style: none; padding: 0; counter-reset: s; display: grid; gap: .55rem; font-family: var(--f-ui); font-size: 1rem; line-height: 1.6; }
+ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 2rem 1fr; gap: .7rem; align-items: start; margin: 0; }
+ol.steps > li::before { content: counter(s); width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--field); color: var(--card); font-weight: 700; font-variant-numeric: tabular-nums; }
+ol.steps > li > * { min-width: 0; }
+
+/* ---------- definitions ---------- */
+dl.kv { display: grid; grid-template-columns: minmax(7rem, max-content) 1fr; gap: .45rem 1.1rem; margin: 0; }
+dl.kv dt { font-family: var(--f-ui); font-weight: 700; }
+dl.kv dd { margin: 0; min-width: 0; }
+@media (max-width: 520px) { dl.kv { grid-template-columns: 1fr; } dl.kv dd { margin-block-end: .5rem; } }
+
+/* ---------- tables ---------- */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: var(--r); background: var(--card); }
+table.data { border-collapse: collapse; width: 100%; font-family: var(--f-ui); font-size: .95rem; line-height: 1.5; font-variant-numeric: tabular-nums; }
+table.data caption { caption-side: top; text-align: start; padding: .8rem 1rem .4rem; font-weight: 700; font-size: var(--t-sm); color: var(--ink-2); letter-spacing: .02em; }
+table.data th, table.data td { padding: .6rem .9rem; text-align: start; vertical-align: top; border-block-end: 1px solid var(--rule); }
+table.data thead th { background: color-mix(in srgb, var(--zone) 18%, var(--card)); font-weight: 700; white-space: nowrap; }
+table.data tbody th { font-weight: 600; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+table.data tbody tr:last-child > * { border-block-end: 0; }
+table.data td.hl { background: var(--hl); color: var(--hl-ink); font-weight: 700; }
+table.data td.hosp-c { font-family: var(--f-hosp); color: var(--hosp); font-size: .88rem; }
+
+/* ---------- compare ---------- */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.compare > div { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem 1.15rem; }
+.compare > div > h5 { margin: 0 0 .5rem; font-family: var(--f-ui); font-size: var(--t-md); font-weight: 700; padding-block-end: .45rem; border-block-end: 3px solid var(--zone); }
+.compare ul { margin: 0; font-size: 1rem; }
+
+/* ---------- dose cards ---------- */
+.doses { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+.dose { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
+.dose > header { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; padding: .7rem 1rem; background: color-mix(in srgb, var(--zone) 14%, var(--card)); border-block-end: 1px solid var(--rule); }
+.dose > header h5 { margin: 0; font-family: var(--f-ui); font-size: 1.1rem; font-weight: 700; }
+.dose > header .ind { font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-2); text-align: end; }
+.dose .big { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 700; padding: .7rem 1rem .1rem; line-height: 1.3; }
+.dose .big small { font-size: .9rem; font-weight: 500; color: var(--ink-2); }
+.dose dl { margin: 0; padding: .4rem 1rem .9rem; display: grid; grid-template-columns: max-content 1fr; gap: .25rem .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.45; }
+.dose dt { color: var(--ink-3); }
+.dose dd { margin: 0; min-width: 0; }
+.dose .calc { margin-top: auto; border-block-start: 1px dashed var(--rule); padding: .6rem 1rem; font-family: var(--f-ui); font-size: .9rem; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+.dose .calc::before { content: "דוגמה · "; font-weight: 700; color: var(--field); }
+
+/* ---------- mnemonic ---------- */
+.mnemonic { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; font-family: var(--f-ui); }
+.mnemonic li { margin: 0; flex: 1 1 9rem; min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: .6rem .8rem; font-size: .92rem; line-height: 1.45; }
+.mnemonic li b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 1.7rem; line-height: 1; color: var(--ink); margin-block-end: .25rem; }
+
+/* ---------- figures / svg ---------- */
+figure { margin-block: 1.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem; }
+figure > .svg-box { overflow-x: auto; }
+figure svg { display: block; width: 100%; height: auto; max-width: 100%; margin-inline: auto; }
+figure.narrow svg { max-width: 30rem; }
+figcaption { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); margin-block-start: .7rem; line-height: 1.55; }
+figcaption b { color: var(--ink); }
+svg text { font-family: var(--f-ui); fill: var(--ink); font-size: 14px; }
+svg .t-sm { font-size: 12px; fill: var(--ink-2); }
+svg .t-b { font-weight: 700; }
+svg .t-alarm { fill: var(--alarm); font-weight: 700; }
+svg .t-field { fill: var(--field); font-weight: 700; }
+svg .t-hosp { font-family: var(--f-hosp); fill: var(--hosp); }
+svg .ln { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+svg .ln-soft { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+svg .ln-dash { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-dasharray: 5 5; }
+svg .f-card { fill: var(--card); stroke: var(--rule); stroke-width: 1.5; }
+svg .f-soft { fill: color-mix(in srgb, var(--ink) 7%, var(--card)); }
+svg .f-zone { fill: var(--zone); }
+svg .f-zone-soft { fill: color-mix(in srgb, var(--zone) 25%, var(--card)); }
+svg .f-hl { fill: var(--hl); }
+svg .f-alarm { fill: var(--alarm); }
+svg .f-alarm-soft { fill: var(--alarm-bg); stroke: var(--alarm); stroke-width: 1.5; }
+svg .f-field { fill: var(--field); }
+svg .f-field-soft { fill: var(--field-bg); stroke: var(--field); stroke-width: 1.5; }
+svg .f-hosp-soft { fill: var(--hosp-bg); stroke: var(--hosp); stroke-width: 1.2; stroke-dasharray: 4 3; }
+svg .s-alarm { stroke: var(--alarm); stroke-width: 2.5; fill: none; }
+svg .s-field { stroke: var(--field); stroke-width: 2.5; fill: none; }
+svg .s-zone { stroke: var(--zone); stroke-width: 3; fill: none; }
+svg .f-blood-o { fill: #D7263D; } svg .f-blood-d { fill: #5B5BD6; }
+svg .f-skin { fill: color-mix(in srgb, #E8B897 70%, var(--card)); }
+
+/* ---------- chapter frame ---------- */
+.chapter { padding-block: 4rem 2rem; border-block-start: 1px solid var(--rule); }
+.ch-head { max-width: var(--col); margin-inline: auto; margin-block-end: 2rem; }
+.ch-zone { display: flex; align-items: center; gap: .7rem; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .1em; color: var(--ink-2); }
+.ch-zone::before { content: ""; width: 3.2rem; height: .9rem; background: var(--zone); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.ch-head h2 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xl); margin: .5rem 0 .6rem; letter-spacing: -.005em; }
+.ch-lede { font-size: 1.22rem; color: var(--ink-2); margin: 0; line-height: 1.6; }
+.ch-src { margin-block-start: .9rem; font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-3); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 3.5rem 2.5rem; }
+.hero-in { max-width: var(--wide); margin-inline: auto; }
+.eyebrow { font-family: var(--f-ui); font-size: var(--t-xs); letter-spacing: .14em; font-weight: 700; color: var(--ink-2); }
+.hero h1 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xxl); line-height: 1.02; margin: .6rem 0 1rem; letter-spacing: -.01em; }
+.hero h1 .w { display: block; color: var(--ink-2); font-size: .42em; line-height: 1.3; margin-block-start: .5rem; font-family: var(--f-body); font-weight: 500; }
+.tape { display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px var(--rule); margin-block: 2rem 1.2rem; }
+.tape a { display: flex; flex-direction: column; justify-content: space-between; gap: .9rem; padding: .7rem .6rem .75rem; background: var(--zone); color: #10161E; text-decoration: none; min-height: 8.5rem; min-width: 0; font-family: var(--f-ui); position: relative; transition: filter .15s; }
+.tape a:hover { filter: brightness(1.06) saturate(1.1); }
+.tape a[data-zone="purple"], .tape a[data-zone="red"], .tape a[data-zone="blue"], .tape a[data-zone="green"], .tape a[data-zone="grey"] { color: #fff; }
+.tape a::after { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 9px; background: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 10px); opacity: .45; }
+.tape .n { font-family: var(--f-display); font-size: 1.9rem; line-height: 1; margin-block-start: .5rem; }
+.tape .l { font-size: .82rem; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
+@media (max-width: 860px) { .tape { grid-template-columns: repeat(3, 1fr); } .tape a { min-height: 6rem; } }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.5; }
+.legend > div { min-width: 0; display: flex; flex-direction: column; gap: .35rem; }
+.legend .sw { font-weight: 700; }
+.legend .callout { padding: .7rem .85rem; }
+.hero-note { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); margin-block-start: 1.4rem; max-width: 52rem; }
+
+/* ---------- rail nav ---------- */
+.rail { display: none; }
+@media (min-width: 1100px) {
+  .rail { display: flex; flex-direction: column; position: fixed; left: max(24px, env(safe-area-inset-left, 0px)); top: 50%; transform: translateY(-50%); z-index: 5; border-radius: 5px; overflow: visible; box-shadow: 0 0 0 1px var(--rule); }
+  .rail a { width: 34px; height: 46px; background: var(--zone); display: grid; place-items: center; font-family: var(--f-ui); font-size: .78rem; font-weight: 700; color: rgba(16,22,30,.75); text-decoration: none; position: relative; transition: width .18s; }
+  .rail a:first-child { border-radius: 5px 5px 0 0; } .rail a:last-child { border-radius: 0 0 5px 5px; }
+  .rail a.on { width: 50px; box-shadow: 0 0 0 2px var(--ink); z-index: 1; color: #10161E; }
+  .rail a .lbl { position: absolute; left: calc(100% + 10px); white-space: nowrap; background: var(--ink); color: var(--paper); padding: .25rem .6rem; border-radius: 5px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .15s; }
+  .rail a:hover .lbl, .rail a:focus-visible .lbl { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .rail a, .tape a { transition: none; } }
+.strip { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); height: 7px; }
+.strip a { background: var(--zone); opacity: .55; }
+.strip a.on { opacity: 1; }
+@media (min-width: 1100px) { .strip { display: none; } }
+
+/* ---------- volume bar (multi-page course guide) ---------- */
+.vols { display: flex; flex-wrap: wrap; gap: .35rem .5rem; align-items: center; max-width: var(--wide); margin: 0 auto; padding: 1rem 0 0; font-family: var(--f-ui); font-size: var(--t-xs); }
+.vols a { color: var(--ink-2); text-decoration: none; padding: .25rem .65rem; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--rule); white-space: nowrap; }
+.vols a:hover { color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink-3); }
+.vols a.home { font-weight: 700; color: var(--ink); }
+.vols a.on, .vols a.home.on { background: var(--ink); color: var(--paper); box-shadow: none; }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; margin-block: 2rem; }
+.vcard { display: flex; flex-direction: column; background: var(--card); border-radius: 8px; box-shadow: 0 0 0 1px var(--rule); overflow: hidden; color: var(--ink); text-decoration: none; transition: box-shadow .15s; }
+.vcard:hover { box-shadow: 0 0 0 2px var(--ink-3); }
+.vcard .bar { display: grid; grid-auto-flow: column; height: 10px; }
+.vcard .bar span { background: var(--zone); }
+.vcard .in { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .4rem; }
+.vcard .k { font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .08em; color: var(--ink-3); }
+.vcard h2 { font-family: var(--f-display); font-weight: 400; font-size: 1.6rem; line-height: 1.15; margin: 0; }
+.vcard ol { margin: .3rem 0 0; padding-inline-start: 1.2rem; font-family: var(--f-ui); font-size: .9rem; line-height: 1.5; color: var(--ink-2); }
+@media (prefers-reduced-motion: reduce) { .vcard { transition: none; } }
+
+footer.end { padding-block: 3rem 4rem; text-align: center; font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); border-block-start: 1px solid var(--rule); }
+body{margin:0}
+</style>
+<script data-goatcounter="https://zivgabel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<nav class="strip" aria-hidden="true" style="--n:2"><a href="#ch15" data-zone="red" tabindex="-1"></a><a href="#ch16" data-zone="blue" tabindex="-1"></a></nav>
+<nav class="rail" aria-label="פרקים"><a href="#ch15" data-zone="red">1<span class="lbl">הגישה לחולה הנשימתי, אסתמה, COPD ודלקת ריאות</span></a><a href="#ch16" data-zone="blue">2<span class="lbl">תסחיף, תפליט, חזה אוויר, CO, ARDS והנשמה</span></a></nav>
+
+<div class="page">
+<nav class="vols" aria-label="חלקי הסיכום"><a class="home" href="index.html">סיכום הקורס</a><a href="basic.html">מדעי היסוד</a><a href="airway.html">נתיב אוויר</a><a href="conscious.html">שינויים בהכרה</a><a href="inter.html">פרמקולוגיה ואנמנזה</a><a class="on" href="resp.html">נשימה</a><a href="cardio.html">קרדיולוגיה</a><a href="trauma.html">טראומה</a><a href="peds.html">ילדים ותינוקות</a><a href="obgyn.html">גניקולוגיה ומיילדות</a><a href="pop.html">אוכלוסיות שונות</a></nav>
+<header class="hero">
+  <div class="hero-in">
+    <div class="eyebrow">סיכום קורס פרמדיק · פרק ד׳ · מצבי חירום נשימתיים</div>
+    <h1>נשימה<span class="w">2 פרקים · מצגות הקורס ופרוטוקולי איחוד הצלה</span></h1>
+    <nav class="tape" aria-label="תוכן העניינים" style="--n:2"><a href="#ch15" data-zone="red"><span class="n">1</span><span class="l">הגישה לחולה הנשימתי, אסתמה, COPD ודלקת ריאות</span></a><a href="#ch16" data-zone="blue"><span class="n">2</span><span class="l">תסחיף, תפליט, חזה אוויר, CO, ARDS והנשמה</span></a></nav>
+    <div class="legend" aria-label="מקרא">
+      <div><span class="sw">מרקר = חובה לדעת</span><div class="callout must" style="padding:.55rem .8rem">ערך, סף או מינון <mark>שנשאלים במבחן</mark></div></div>
+      <div><span class="sw">ורוד = דגל אדום</span><div class="callout redflag" style="padding:.55rem .8rem">סימן סכנה שמחייב פעולה מיידית</div></div>
+      <div><span class="sw">טורקיז = מה עושים בשטח</span><div class="callout field" style="padding:.55rem .8rem">פעולות הפרמדיק, לפי הסדר</div></div>
+      <div><span class="sw">נייר מילימטרי = בית חולים</span><div class="callout hosp" style="padding:.55rem .8rem">בירור וטיפול בבית החולים, לידיעה כללית</div></div>
+    </div>
+    <p class="hero-note">הסיכום מבוסס על מצגות הקורס ועל פרוטוקולי איחוד הצלה (UH ACLS 2023). כשהמצגות סותרות זו את זו או את הפרוטוקול, זה מסומן במסגרת "שימו לב למקור".</p>
+  </div>
+</header>
+
+<main>
+<section class="chapter" id="ch15" data-zone="red">
+  <header class="ch-head">
+    <div class="ch-zone">פרק ד׳ · מצבי חירום נשימתיים · פרק 1</div>
+    <h2>הגישה לחולה הנשימתי, אסתמה, COPD ודלקת ריאות</h2>
+    <p class="ch-lede">קוצר נשימה הוא האירוע השני בשכיחותו בשטח, אחרי כאבים בחזה. הפרק בונה דרך עבודה קבועה לחולה הנשימתי, ואז עובר על שלוש המחלות שרוב הקריאות האלה מגיעות מהן: אסתמה, COPD ודלקת ריאות. לאורך הדרך מוצגים פרוטוקולי איחוד הצלה, המינונים, ומקרה של דלקת ריאות מהקבלה ועד האבחנה.</p>
+    <div class="ch-src">מקור: 01 - גישה לחולה הנשימתי.pdf, עמ' 1–29 · 02 - מחלת אסטמה.pdf, עמ' 1–20 · 03 - מחלת COPD.pdf, עמ' 1–19 · 04 - דלקת ריאות - PNEUMONIA.pdf, עמ' 1–17 · 05 - אבחנה מבדלת של דלקת ריאות.pdf, עמ' 1–35 · UH_ACLS_2023.pdf, עמ' 23–27</div>
+  </header>
+  <div class="flow">
+
+    <h3>למה החולה הנשימתי דורש גישה מסודרת</h3>
+    <p>מחוץ לבית החולים, <mark>קוצר נשימה הוא האירוע השני בשכיחותו (אחרי כאבים בחזה)</mark>. מעל 90% מהמתלוננים על קוצר נשימה הם זקנים וקשישים עם מחלות רקע של COPD ואסתמה, שהגיעו בגלל החמרה במצבם. לכן צריך לקחת כל תלונה של קוצר נשימה ברצינות.</p>
+
+    <div class="compare">
+      <div><h5>מקרים שכיחים של מצוקה נשימתית</h5><ul>
+        <li>חולי COPD עם החמרה במצבם.</li>
+        <li>חולים עם אי-ספיקת לב ובצקת ריאות.</li>
+        <li>חולים עם התקף אסתמה חריף.</li>
+        <li>זקנים וקשישים עם דלקת ריאות ו/או אספירציה.</li>
+      </ul></div>
+      <div><h5>מקרים נדירים יותר</h5><ul>
+        <li>שאיפת עשן (גז או אדים רעילים).</li>
+        <li>תסחיף ריאתי.</li>
+        <li>תפליט פלאורלי.</li>
+        <li>אנפילקסיס.</li>
+        <li>מחלות ילדים.</li>
+        <li>חזה אוויר ספונטני.</li>
+        <li><span class="en">ARDS</span>.</li>
+      </ul></div>
+    </div>
+    <p>חלק מהמצבים הנדירים נלמדים בפרק הבא בחלק זה. כאן נתמקד בגישה הכללית ובשלוש המחלות השכיחות.</p>
+
+    <h4>מהי מצוקה נשימתית</h4>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>מצוקה נשימתית</b> היא אוסף של סימנים ותלונות שמצביעים על כך שהחולה סובל מבעיה במערכת הנשימה. <mark>הסימן המרכזי הוא קושי או מאמץ בנשימה.</mark> המצוקה יכולה לנבוע מהשפעה ישירה או עקיפה על מערכת הנשימה.</p>
+    </div>
+    <p>הסכנה עובדת כמו שרשרת. משהו מגביל את זרימת האוויר או את חילוף הגזים. הגוף מנסה לפצות ומגביר את קצב הנשימות ואת עומקן. המאמץ הזה הוא מה שאנחנו רואים כמצוקה נשימתית. אם הפיצוי לא מספיק, או שהשרירים מתעייפים, מגיעים להיפוקסיה. לכן <b>מטופל שנושם מהר ובמאמץ עדיין מפצה</b>. מטופל שמאט את הנשימה בלי שמצבו השתפר הוא מטופל שמתעייף.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 200" role="img" aria-label="שרשרת הסכנה: הגבלה בזרימת אוויר או בחילוף גזים, פיצוי בקצב ועומק נשימה, מצוקה נשימתית, היפוקסיה">
+          <defs>
+            <marker id="ch15-arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" class="f-alarm"/>
+            </marker>
+          </defs>
+          <rect x="506" y="40" width="120" height="90" rx="10" class="f-card"/>
+          <text x="566" y="72" text-anchor="middle" direction="rtl">הגבלה בזרימת</text>
+          <text x="566" y="92" text-anchor="middle" direction="rtl">האוויר או</text>
+          <text x="566" y="112" text-anchor="middle" direction="rtl">בחילוף הגזים</text>
+          <rect x="352" y="40" width="120" height="90" rx="10" class="f-zone-soft"/>
+          <text x="412" y="72" text-anchor="middle" direction="rtl">הגוף מגביר</text>
+          <text x="412" y="92" text-anchor="middle" direction="rtl">קצב ועומק</text>
+          <text x="412" y="112" text-anchor="middle" direction="rtl">נשימה (פיצוי)</text>
+          <rect x="198" y="40" width="120" height="90" rx="10" class="f-alarm-soft"/>
+          <text x="258" y="82" text-anchor="middle" direction="rtl" class="t-b">מצוקה</text>
+          <text x="258" y="102" text-anchor="middle" direction="rtl" class="t-b">נשימתית</text>
+          <rect x="44" y="40" width="120" height="90" rx="10" class="f-alarm-soft"/>
+          <text x="104" y="92" text-anchor="middle" direction="rtl" class="t-alarm">היפוקסיה</text>
+          <line x1="504" y1="85" x2="476" y2="85" class="s-alarm" marker-end="url(#ch15-arr1)"/>
+          <line x1="350" y1="85" x2="322" y2="85" class="s-alarm" marker-end="url(#ch15-arr1)"/>
+          <line x1="196" y1="85" x2="168" y2="85" class="s-alarm" marker-end="url(#ch15-arr1)"/>
+          <text x="556" y="160" text-anchor="middle" direction="rtl" class="t-sm">אוורור, דיפוזיה, פרפוזיה</text>
+          <text x="412" y="182" text-anchor="middle" direction="rtl" class="t-sm">טכיפניאה, שרירי עזר</text>
+          <text x="258" y="160" text-anchor="middle" direction="rtl" class="t-sm">הסימן המרכזי: מאמץ</text>
+          <text x="104" y="182" text-anchor="middle" direction="rtl" class="t-sm">הסכנה האמיתית</text>
+        </svg>
+      </div>
+      <figcaption><b>שרשרת הסכנה במצבי חירום נשימתיים.</b> לפי עמ' 5 במצגת הגישה לחולה הנשימתי: הגבלה בזרימת האוויר או בחילוף הגזים מובילה לפיצוי בקצב ובעומק הנשימות, לאחר מכן למצוקה נשימתית ולבסוף להיפוקסיה. הטיפול מנסה לשבור את השרשרת מוקדם ככל האפשר.</figcaption>
+    </figure>
+
+    <h3>פתופיזיולוגיה: שלוש דרכים להיכשל</h3>
+    <p>התפקיד העיקרי של מערכת הנשימה הוא <b>שחלוף גזים</b>. לשם כך צריכים לעבוד שלושה דברים: <b>פעולת נשימה</b> שמכניסה אוויר לאלבאולות, <b>דיפוזיה ריאתית</b> (שחלוף החומרים דרך דופן האלבאולה), ו<b>פרפוזיה ריאתית</b>, כלומר אספקת דם מהלב לריאות ובחזרה. בעיה בכל אחד מהשלבים תיגמר באותה היפוקסיה, אבל הסיבות והטיפול שונים. המצגת מסמנת אותם באותיות A, B ו-C.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>שלושת סוגי ההפרעה (גישה לחולה הנשימתי, עמ' 9–12)</caption>
+      <thead><tr><th>סוג ההפרעה</th><th>מה נפגע</th><th>דוגמאות מהשקפים</th></tr></thead>
+      <tbody>
+        <tr><th>A · ונטילטורית</th><td>האוויר לא נכנס ויוצא כמו שצריך</td><td><b>נתיב אוויר עליון ותחתון:</b> גוף זר, טראומה, בצקת.<br><b>התרחבות בית החזה:</b> אובדן הלחץ השלילי (פנימוטורקס, חזה רופף), קרע בסרעפת, מחלות ניוון שרירים (<span class="en">ALS, SMA</span>).<br><b>פיקוח עצבי:</b> מינון יתר של סמים, אלכוהול, טראומה למרכזי הנשימה.</td></tr>
+        <tr><th>B · דיפוזיה</th><td>האוויר מגיע, אבל החמצן לא עובר לדם</td><td><b>ירידה בכמות החמצן באלבאולות:</b> היצרות דרכי אוויר, חסימה, דלקת ריאות, טביעה, <span class="en">ARDS</span>, בעיה במבנה האלבאולרי כמו חוסר בסורפקטנט, <span class="en">COPD</span>. עישון ממושך והרס נאדיות פוגעים בשחלוף.<br><b>סביבה היפוקסית:</b> חלל סגור, שריפה, מקום גבוה.</td></tr>
+        <tr><th>C · פרפוזיה</th><td>חילוף הגזים תקין, אבל הדם לא מגיע או לא נושא חמצן</td><td><b>ירידה בפרפוזיה הכללית:</b> דימום מסיבי, הלם תת-נפחי (התייבשות קשה), מצבי שוק, לחץ דם נמוך.<br><b>ירידה בפרפוזיה הריאתית:</b> תסחיף ריאתי (<span class="en">PE</span>), שאנט ריאתי.<br><b>ירידה בכמות ההמוגלובין:</b> איבוד דם, מחסור בברזל ותזונה לקויה, אנמיה חרמשית.</td></tr>
+      </tbody></table></div>
+
+    <p>למה זה חשוב בשטח? כי זה מסביר למה <b>סטורציה נמוכה לא תמיד מתוקנת בחמצן בלבד</b>. בבעיית אוורור צריך לפתוח נתיב או לסייע בהנשמה. בבעיית דיפוזיה חמצן ולחץ חיובי (CPAP) עוזרים. בבעיית פרפוזיה צריך לטפל בגורם, כמו דימום או שוק.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בעמ' 10–13 האותיות A/B/C משמשות לסוגי ההפרעה (A = אוורור, B = דיפוזיה, C = פרפוזיה). זו לא המשמעות הרגילה (<span class="en">Airway / Breathing / Circulation</span>), ובעמ' 23 אותה מצגת כבר משתמשת בסדר <span class="en">Airway / Breathing / Circulation</span>. אל תבלבלו בין השניים במבחן.</p>
+    </div>
+
+    <h4>גורמי סיכון</h4>
+    <div class="compare">
+      <div><h5>גורמי סיכון מולדים</h5><ul>
+        <li>גנטיקה של מערכת החיסון: אסתמה, חוסר יכולת הגוף להתמודד.</li>
+        <li>גנטיקה בכללותה: מקום מוצא, מגורים גאוגרפיים מסוימים.</li>
+        <li>מערכת הדם: הפרעות קרישה, מחלות לב.</li>
+      </ul></div>
+      <div><h5>גורמי סיכון נרכשים</h5><ul>
+        <li><b>עישון.</b></li>
+        <li>זיהום סביבתי: עבודה, חומרים כימיים.</li>
+        <li>מצבי חירום התקפיים: אורח חיים לא בריא שמשפיע על הגוף, מחלות לב, שינוי הורמונלי.</li>
+      </ul></div>
+    </div>
+
+    <h3>הערכת החולה הנשימתי בשטח</h3>
+    <p>הגישה בנויה משלוש שכבות: <b>התרשמות ראשונית</b> (זיהוי סכנת חיים, הסתכלות), <b>אנמנזה נשימתית ממוקדת</b> (מחלות והיסטוריה), ו<b>בדיקה פיזיקלית ממוקדת</b> (לחץ דם, דופק, סטורציה, קפנו, גודש ורידי צוואר, שריר עזר, ראש וצוואר, בצקת גפיים, ניקוש, האזנה). אבל לפני הכול סורקים את הזירה.</p>
+
+    <h4>לסרוק את השטח</h4>
+    <p>סריקת הזירה משרתת שני צרכים: <b>בטיחות</b> (<span class="en">Safety</span>), ו<b>רמזים למצבו של החולה</b>.</p>
+    <ul>
+      <li><b>רמזים בסביבה הקרובה:</b> מיכל חמצן ביתי, מכשיר חימום דלוק, ריח מוזר, מזרקים, אלכוהול, מאפרות מלאות סיגריות, תרופות שונות, מכשיר אינהלציה.</li>
+      <li><b>מראה כללי של המקום:</b> מצב סוציו-אקונומי, סימני אלימות.</li>
+      <li><b>קרובי משפחה או שכנים</b> שמכירים את החולה.</li>
+    </ul>
+    <p>מיכל חמצן ביתי ומכשיר אינהלציה אומרים לכם מיד שמדובר כנראה בחולה ריאתי כרוני. מכשיר חימום דלוק בחדר סגור צריך להדליק אצלכם מחשבה על הרעלת CO.</p>
+
+    <h4>התרשמות ראשונית <span class="en">(General Impression)</span></h4>
+    <dl class="kv">
+      <dt>תנוחה</dt><dd>רעב לאוויר, שכיבה, עמידה. מטופל שיושב בתנוחת טריפוד ולא מסכים לשכב נאבק על כל נשימה.</dd>
+      <dt>עור</dt><dd>ציאנוזיס, זיעה, כחלון פריפרי, חיוורון.</dd>
+      <dt>מצב הכרה</dt><dd>אי שקט, בלבול, חולה היפוקסי.</dd>
+      <dt>כושר דיבור</dt><dd>כמה מילים הוא מצליח להגיד בנשימה אחת.</dd>
+      <dt>מאמץ נשימתי</dt><dd>שרירי עזר.</dd>
+      <dt>נתיב אוויר</dt><dd>חסימה.</dd>
+      <dt>נשימה</dt><dd>צורה, רעשים, הפרשות.</dd>
+    </dl>
+
+    <h4>סימני מצוקה כלליים</h4>
+    <p>המצגות חוזרות על רשימת הסימנים הזאת שלוש פעמים (גישה עמ' 20, COPD עמ' 2, דלקת ריאות עמ' 9), כי היא משותפת לכל המחלות בפרק:</p>
+    <div class="tbl-wrap"><table class="data"><caption>סימני מצוקה נשימתית כלליים</caption>
+      <thead><tr><th>נשימה</th><th>לב וכלי דם</th><th>הכרה ומראה</th></tr></thead>
+      <tbody>
+        <tr><td>קושי/כאב בנשימה</td><td>דופק מהיר</td><td>אי שקט</td></tr>
+        <tr><td>נשימה מהירה</td><td>כחלון מרכזי או פריפרי</td><td>ירידה ברמת ההכרה</td></tr>
+        <tr><td>מאמץ בנשימה, שרירי עזר</td><td>שפתיים קפוצות</td><td>ישיבת טריפוד</td></tr>
+        <tr><td>הרחבת נחיריים, קולות חריגים, שיעול</td><td></td><td>חוסר יכולת להשלים משפט</td></tr>
+      </tbody></table></div>
+
+    <h4>סדר הפעולות והסקר הראשוני</h4>
+    <ol class="steps">
+      <li><div><b>רמת הכרה <span class="en">(Consciousness)</span>.</b> האם החולה בהכרה או מחוסר הכרה, מגיב או לא.</div></li>
+      <li><div><b>נתיב אוויר <span class="en">(Airway)</span>.</b> האם יש עדות לתקלה בדרכי האוויר? אם יש, מתקנים. אם אין, עוברים להערכת נשימה.</div></li>
+      <li><div><b>נשימה <span class="en">(Breathing)</span>.</b> קצב נשימה (בשקף: בין 8 ל-30).</div></li>
+      <li><div><b>מחזור הדם <span class="en">(Circulation)</span>.</b> בדיקת דופק (בשקף: 60–120).</div></li>
+    </ol>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <ul>
+        <li><span class="alarm-t">המוח מחזיק מעמד 5 דקות.</span></li>
+        <li>אם דרכי האוויר חסומים, הנשימה לא עוזרת. אם החולה לא נושם, פתיחת דרכי אוויר לא עוזרת.</li>
+        <li>אם יש חסימה בדרכי האוויר, <b>לא מבזבזים זמן</b> בבקשת עזרה או בחיפוש אחרי ציוד.</li>
+      </ul>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בעמ' 24 הטווחים בסקר הראשוני הם נשימות 8–30 ודופק 60–120. אלה לא הערכים התקינים הרגילים, אלא כנראה גבולות "האם יש בעיה מיידית" בסקר הראשוני. כדאי לברר עם המדריכים.</p>
+    </div>
+
+    <h4>סקר משני: אנמנזה ובדיקה</h4>
+    <p>בחולה קוצר נשימה שואלים <b>שאלות ישירות וממוקדות לבעיה העיקרית</b>, ועדיף שאלות שאפשר לענות עליהן בכן או לא. מתמקדים גם במידע מהסביבה הקרובה. האנמנזה הנשימתית בנויה על שני ראשי תיבות:</p>
+    <ul class="mnemonic">
+      <li><b>S</b><span class="en">Signs – Symptoms</span></li>
+      <li><b>A</b><span class="en">Allergies</span></li>
+      <li><b>M</b><span class="en">Medication</span></li>
+      <li><b>P</b><span class="en">Past medical history</span></li>
+      <li><b>L</b><span class="en">Last oral intake</span></li>
+      <li><b>E</b><span class="en">Event before the emergency</span></li>
+    </ul>
+    <ul class="mnemonic">
+      <li><b>P</b><span class="en">Provokes – Pain – Position</span></li>
+      <li><b>Q</b><span class="en">Quality</span></li>
+      <li><b>R</b><span class="en">Relevance – Risk factor – Radiate</span></li>
+      <li><b>S</b><span class="en">Severity</span></li>
+      <li><b>T</b><span class="en">Timing</span></li>
+      <li><b>A</b><span class="en">Associated complaints</span></li>
+    </ul>
+    <p><b>הבדיקה הפיזיקלית</b> כוללת בדיקת ראש וצוואר, בדיקת בית החזה (הסתכלות, ניקוש, הרגשה, שמיעה) ובדיקת גפיים (בצקות, צבע, מילוי קפילרי):</p>
+    <dl class="kv">
+      <dt>הסתכלות</dt><dd>מבנה בית החזה, קצב נשימה, איכות הנשימה, שימוש בשריר עזר, סימנים סיסטמיים.</dd>
+      <dt>ניקוש</dt><dd>הדיות מול עמימות. עמימות רומזת על נוזל או רקמה דחוסה (למשל דלקת ריאות). הדיות מוגברת רומזת על עודף אוויר.</dd>
+      <dt>האזנה</dt><dd>סוג הנשימה, מה שומעים, אקספיריום.</dd>
+    </dl>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>החשוב מכל: היגיון בריא.</b> אם אין אבחנה חד-משמעית, אל תחפרו לחולה בשאלות, אל תשנו את תנוחת החולה ואל תעצבנו אותו. <b>זכרו שהכותרת כבר כתובה: קוצר נשימה.</b> מטופל קשה נשימה שמדבר הרבה מוציא את האוויר שאין לו.</p>
+    </div>
+
+    <h4>חלוקת עבודה בצוות</h4>
+    <p>כשמגיעים עם צוות אל החולה, צריך לערוך חלוקת תפקידים:</p>
+    <div class="compare">
+      <div><h5>הפרמדיק <span class="en">(EMT-P)</span></h5><ol>
+        <li>סקר ראשוני של החולה.</li>
+        <li>רמת הכרה, דרכי אוויר.</li>
+        <li>חשיפת בית החזה והאזנה לריאות.</li>
+        <li>תשאול החולה.</li>
+        <li>אבחנה.</li>
+        <li>החלטה על טיפול.</li>
+      </ol></div>
+      <div><h5>שאר הצוות</h5><ol>
+        <li>הושבת החולה בתנוחה מתאימה.</li>
+        <li>ניטור עם מכשיר סטורציה וחיבור לחמצן.</li>
+        <li>חיבור למוניטור.</li>
+        <li>מדידת לחץ דם ודופק.</li>
+        <li>הכנת אינהלציות.</li>
+        <li>שאיבת תרופות.</li>
+        <li>עזרה ואירגון בפינוי.</li>
+      </ol></div>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>עמ' 21 אומר "לא לשנות את תנוחת החולה", ובעמ' 27–28 משימת הצוות היא "הושבת החולה בתנוחה מתאימה". הדרך ליישב: לא מכריחים חולה לשכב או לזוז כנגד רצונו. עוזרים לו לשבת בתנוחה שבה נוח לו לנשום. בפרוטוקולי האסתמה וה-COPD של איחוד הצלה (עמ' 23, 26) כתוב במפורש "הושב את המטופל".</p>
+    </div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p>סיכום הגישה לחולה הנשימתי (עמ' 28):</p>
+      <ol class="steps">
+        <li><div>סקר ראשוני של החולה וסביבתו.</div></li>
+        <li><div>חלוקת עבודה בין הצוות.</div></li>
+        <li><div>לשים את החולה בתנוחה מתאימה.</div></li>
+        <li><div>לבדוק קצב נשימות, לחבר לסטורציה ולתת חמצן.</div></li>
+        <li><div>לחבר למוניטור ולבדוק לחץ דם.</div></li>
+        <li><div>חשיפת בית החזה והאזנה.</div></li>
+        <li><div>פתיחת וריד.</div></li>
+        <li><div>התחלת טיפול בהתאם לפרוטוקול.</div></li>
+        <li><div>פינוי לבית חולים.</div></li>
+        <li><div>דיווח.</div></li>
+      </ol>
+    </div>
+
+    <h3>נפחי ריאה: השפה של אסתמה ו-COPD</h3>
+    <p>כדי להבין מה קורה בריאה החסומה צריך להכיר את נפחי הריאה. <b>נפח</b> הוא מדידה בודדת. <b>קיבולת</b> היא סכום של כמה נפחים.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>נפחים וקיבולות ריאה (אסתמה, עמ' 7–8)</caption>
+      <thead><tr><th>מדד</th><th>הגדרה</th><th>ערך אופייני</th></tr></thead>
+      <tbody>
+        <tr><th><span class="en">TV</span> · נפח נשימה</th><td>נפח שנכנס ויוצא בנשימה רגילה</td><td>500 מ"ל</td></tr>
+        <tr><th><span class="en">IRV</span></th><td>נפח מרבי שאפשר להכניס אחרי שאיפה רגילה</td><td>3,000–3,300 מ"ל</td></tr>
+        <tr><th><span class="en">ERV</span></th><td>נפח מרבי שאפשר להוציא אחרי נשיפה רגילה</td><td>1,000–1,200 מ"ל</td></tr>
+        <tr><th><span class="en">RV</span> · נפח שארי</th><td>מה שנשאר בריאה אחרי נשיפה מרבית</td><td>1,200 מ"ל</td></tr>
+        <tr><th><span class="en">VC</span> · קיבולת חיונית</th><td><span class="en">TV + IRV + ERV</span></td><td class="hl">4,500–5,000 מ"ל</td></tr>
+        <tr><th><span class="en">IC</span></th><td><span class="en">TV + IRV</span></td><td>3,500–3,800 מ"ל</td></tr>
+        <tr><th><span class="en">FRC</span></th><td><span class="en">ERV + RV</span></td><td>2,200–2,400 מ"ל</td></tr>
+        <tr><th><span class="en">TLC</span> · קיבולת כוללת</th><td><span class="en">TV + IRV + ERV + RV</span></td><td>5,700–6,200 מ"ל</td></tr>
+      </tbody></table></div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 330" role="img" aria-label="עמודה בקנה מידה של נפחי הריאה: נפח שארי 1200, ERV 1200, נפח נשימה 500, IRV 3100, סך הכול 6000 מיליליטר">
+          <rect x="260" y="30" width="120" height="144.7" class="f-zone-soft"/>
+          <rect x="260" y="174.7" width="120" height="23.3" class="f-hl"/>
+          <rect x="260" y="198" width="120" height="56" class="f-soft"/>
+          <rect x="260" y="254" width="120" height="56" class="f-alarm-soft"/>
+          <line x1="250" y1="310" x2="390" y2="310" class="ln"/>
+          <text x="392" y="107" direction="ltr" text-anchor="start">IRV 3,100</text>
+          <text x="392" y="191" direction="ltr" text-anchor="start" class="t-b">TV 500</text>
+          <text x="392" y="231" direction="ltr" text-anchor="start">ERV 1,200</text>
+          <text x="392" y="287" direction="ltr" text-anchor="start">RV 1,200</text>
+          <path d="M520 30 H514 M520 30 V198 M520 198 H514" class="ln-soft"/>
+          <text x="530" y="119" direction="ltr" text-anchor="start">IC 3,600</text>
+          <path d="M240 30 H246 M240 30 V254 M240 254 H246" class="ln-soft"/>
+          <text x="232" y="146" direction="ltr" text-anchor="end" class="t-b">VC 4,800</text>
+          <path d="M170 198 H176 M170 198 V310 M170 310 H176" class="ln-soft"/>
+          <text x="162" y="258" direction="ltr" text-anchor="end">FRC 2,400</text>
+          <path d="M70 30 H76 M70 30 V310 M70 310 H76" class="ln-soft"/>
+          <text x="70" y="22" direction="ltr" text-anchor="middle">TLC 6,000</text>
+          <text x="320" y="326" direction="ltr" text-anchor="middle" class="t-sm">0 mL</text>
+          <text x="320" y="22" direction="ltr" text-anchor="middle" class="t-sm">6,000 mL</text>
+        </svg>
+      </div>
+      <figcaption><b>נפחי הריאה בקנה מידה.</b> העמודה בנויה מערכי הגרף בעמ' 8 (מצגת האסתמה) ובעמ' 3 (מצגת ה-COPD): <span class="en">RV</span> 1,200 + <span class="en">ERV</span> 1,200 + <span class="en">TV</span> 500 + <span class="en">IRV</span> <span class="en">3,100 = 6,000</span> מ"ל. הסוגריים מראים את הקיבולות. הנפח השארי (באדום) הוא האוויר שנשאר לכוד בריאה. הוא עולה באמפיזמה.</figcaption>
+    </figure>
+
+    <p>שני מדדים חוזרים בפרק: <b><span class="en">FEV1</span></b> (<span class="en">Forced Expiratory Volume in 1 Second</span>), כמה אוויר המטופל מצליח לנשוף בכוח בשנייה הראשונה, ו-<b><span class="en">VC</span></b>. בהתקף אסתמה שניהם יורדים בצורה דרמטית וזמנית. ב-COPD התמונה שונה בין שני סוגי המחלה, כפי שנראה בהמשך.</p>
+
+    <h3>אסתמה</h3>
+    <h4>מה זה ולמה זה קורה</h4>
+    <p>אסתמה היא <b>התכווצות לסירוגין ודלקת בדרכי האוויר התחתונות</b>. הסימפונים הקטנים והברונכיולים רגישים יותר ונוטים להדלק ולהתכווץ. שכיחות המחלה בעולם עולה.</p>
+    <div class="compare">
+      <div><h5>מה גורם להתקף</h5><ol>
+        <li>אלרגנים סביבתיים.</li>
+        <li>אוויר קר.</li>
+        <li>מאמץ.</li>
+        <li>אוכל.</li>
+        <li>תרופות.</li>
+        <li>טריגר לא ידוע.</li>
+      </ol></div>
+      <div><h5>מאפייני המחלה</h5><ol>
+        <li>התקפים חוזרים של קוצר נשימה.</li>
+        <li>בין ההתקפים החולה חי באופן נורמלי.</li>
+        <li>מתחילה בגיל צעיר ושכיחותה עולה.</li>
+        <li>הבעיה היא באקספיריום, שהוא פעולה פסיבית.</li>
+        <li>בזמן ההתקף יש ירידה דרמטית זמנית ב-<span class="en">FEV1</span> וב-<span class="en">VC</span>.</li>
+      </ol></div>
+    </div>
+
+    <h4>שלבי ההתקף</h4>
+    <ol class="steps">
+      <li><div>חשיפה לטריגר מסוים.</div></li>
+      <li><div>כיווץ ובצקת של הברונכיולים.</div></li>
+      <li><div>הפרשת מוקוס גוברת.</div></li>
+      <li><div>תאי דם לבנים, בעיקר איוזינופילים, מגיעים למוקוזה של דרכי האוויר.</div></li>
+      <li><div>עוד נפיחות ועוד בצקת, ועלייה בהיצרות של דרכי האוויר.</div></li>
+    </ol>
+    <p>למה הבעיה דווקא בנשיפה? בשאיפה השרירים מושכים את בית החזה החוצה והסימפונים נמתחים ונפתחים מעט. הנשיפה היא פסיבית, ובזמנה הלחץ בבית החזה דוחס את הסימפונים הצרים עוד יותר. לכן האוויר נכנס אבל מתקשה לצאת. מכאן הצפצופים באקספיריום והאקספיריום המוארך. מכאן גם שלושת יעדי הטיפול: <b>לתקן את ההיפוקסיה, לתקן את הברונכוספזם, ולטפל בשינויים הדלקתיים.</b></p>
+
+    <h4>איך זה נראה</h4>
+    <p><b>סימנים וסימפטומים:</b> קוצר נשימה בדרגות שונות, <mark>צפצופים דו-צדדיים בזמן אקספיריום</mark>, לפעמים שיעול מתמשך, זיעה, חרדה, טכיקרדיה ושימוש בשרירי עזר.</p>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>סימני התקף קשה (אסתמה, עמ' 10):</b></p>
+      <ul>
+        <li>אי יכולת לדבר משפט ללא הפסקה כדי לנשום.</li>
+        <li>טכיפניאה מעל 30 נשימות לדקה, טכיקרדיה מעל 130 לדקה.</li>
+        <li><span class="alarm-t">צפצופים מרובים, או שלא שומעים כלום: חזה שקט.</span></li>
+        <li>שימוש קשה בשרירי עזר.</li>
+        <li>ירידה ברמת הסטורציה (גורם לאי שקט קשה).</li>
+        <li><span class="en">Pulsus Paradoxus</span>: נפילה של 10 מ"מ כספית או יותר בלחץ הדם הסיסטולי בעת שאיפה.</li>
+      </ul>
+      <p><b>חזה שקט הוא לא שיפור.</b> צפצוף נוצר כשאוויר עובר דרך סימפון צר. כשכמעט שום אוויר לא זז, אין צפצוף. מטופל שהיה מצפצף והפך לשקט בלי שהמצוקה פחתה נמצא לפני עצירה נשימתית.</p>
+    </div>
+
+    <h4>דרגות חומרה</h4>
+    <div class="tbl-wrap"><table class="data"><caption>דרגות התקף אסתמה (אסתמה, עמ' 11–12)</caption>
+      <thead><tr><th>דרגה</th><th>קליניקה</th><th><span class="en">VC/FEV1</span></th><th><span class="en">pH</span></th><th><span class="en">PCO2</span></th></tr></thead>
+      <tbody>
+        <tr><th>I · התקף קל</th><td>קוצר נשימה קל, צפצופים מפוזרים בודדים, אוויר נכנס בצורה נאותה</td><td>80% מהנורמה</td><td>תקין/↑</td><td>תקין/↓ (טכיפניאה)</td></tr>
+        <tr><th>II · התקף בינוני</th><td>קוצר נשימה במנוחה, שימוש בשרירי עזר, צפצופים על פני שתי הריאות, אינספיריום קצר ואקספיריום ארוך</td><td>50% מהנורמה</td><td>תקין/↑</td><td>↓</td></tr>
+        <tr><th>III · התקף קשה</th><td>קצב נשימה מעל 30, כחלון, שימוש חזק בשרירי עזר, צפצופים קשים או חזה שקט, פולזוס פרדוקסוס 20–30 מ"מ כספית, טכיקרדיה מעל 130, אי שקט</td><td>25% מהנורמה</td><td>↓</td><td class="hl">↑</td></tr>
+        <tr><th>IV · אי-ספיקה נשימתית</th><td>מצוקה נשימתית קשה, ישנוניות (CO<sub>2</sub>↑), בלבול (O<sub>2</sub>↓), פולזוס פרדוקסוס 30–50, שימוש קשה בשרירי עזר</td><td>"10 of N"</td><td>↓↓</td><td class="hl">↑↑</td></tr>
+      </tbody></table></div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 310" role="img" aria-label="גרף עמודות: FEV1 כאחוז מהנורמה לפי דרגת התקף. קל 80, בינוני 50, קשה 25, אי-ספיקה כ-10">
+          <line x1="110" y1="50" x2="580" y2="50" class="ln-dash"/>
+          <text x="100" y="55" direction="ltr" text-anchor="end" class="t-sm">100%</text>
+          <line x1="110" y1="250" x2="580" y2="250" class="ln"/>
+          <rect x="485" y="90" width="70" height="160" class="f-field-soft"/>
+          <rect x="365" y="150" width="70" height="100" class="f-hl"/>
+          <rect x="245" y="200" width="70" height="50" class="f-alarm-soft"/>
+          <rect x="125" y="230" width="70" height="20" class="f-alarm"/>
+          <text x="520" y="80" direction="ltr" text-anchor="middle" class="t-b">80%</text>
+          <text x="400" y="140" direction="ltr" text-anchor="middle" class="t-b">50%</text>
+          <text x="280" y="190" direction="ltr" text-anchor="middle" class="t-b">25%</text>
+          <text x="160" y="220" direction="ltr" text-anchor="middle" class="t-b">~10%</text>
+          <text x="520" y="272" direction="rtl" text-anchor="middle">קל</text>
+          <text x="400" y="272" direction="rtl" text-anchor="middle">בינוני</text>
+          <text x="280" y="272" direction="rtl" text-anchor="middle" class="t-alarm">קשה</text>
+          <text x="160" y="272" direction="rtl" text-anchor="middle" class="t-alarm">אי-ספיקה</text>
+          <text x="520" y="294" direction="ltr" text-anchor="middle" class="t-sm">PCO2 ↓</text>
+          <text x="400" y="294" direction="ltr" text-anchor="middle" class="t-sm">PCO2 ↓</text>
+          <text x="280" y="294" direction="ltr" text-anchor="middle" class="t-alarm">PCO2 ↑</text>
+          <text x="160" y="294" direction="ltr" text-anchor="middle" class="t-alarm">PCO2 ↑↑</text>
+          <text x="345" y="30" direction="rtl" text-anchor="middle" class="t-sm">FEV1/VC כאחוז מהנורמה</text>
+        </svg>
+      </div>
+      <figcaption><b>ככל שההתקף קשה יותר, הנשיפה קורסת.</b> העמודות בקנה מידה לפי הטבלה בעמ' 11–12. בדרגה IV כתוב בשקף "10 of N", וכאן זה מוצג כ-10% בערך. שימו לב לשורה התחתונה: בהתקף קל ה-CO<sub>2</sub> <b>נמוך</b> (טכיפניאה מוציאה אותו). כשה-CO<sub>2</sub> חוזר לתקין ואז עולה, המטופל כבר לא מצליח לאוורר.</figcaption>
+    </figure>
+
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p>בהתקף אסתמה המטופל נושם מהר, ולכן <mark>ה-CO<sub>2</sub> אמור להיות נמוך</mark>. CO<sub>2</sub> תקין או גבוה בחולה אסתמה במצוקה הוא סימן לעייפות ולהתקף קשה. בשטח רואים את זה כישנוניות. בקפנומטריה רואים ערך שעולה.</p>
+    </div>
+
+    <h4><span class="en">Status Asthmaticus</span></h4>
+    <ul>
+      <li>התקף אסתמה קשה וממושך <b>שלא מגיב לטיפול</b>.</li>
+      <li>החולים אצידוטים, עם חוסר נוזלים.</li>
+      <li>הטיפול דומה להתקף קשה רגיל.</li>
+      <li><span class="alarm-t">אפשרות להפסקת נשימה מיידית.</span> צריך להיות מוכנים לאינטובציה מיידית.</li>
+    </ul>
+
+    <h4>הטיפול בשטח לפי פרוטוקול איחוד הצלה</h4>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ul>
+        <li><b>לטפל בחולה ולא במספרים.</b></li>
+        <li><b>למנוע דום לב בכל מחיר.</b></li>
+        <li><b>להיות תמיד מוכנים לאינטובציה מהירה.</b></li>
+      </ul>
+    </div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 770" role="img" aria-label="תרשים זרימה של פרוטוקול אסתמה של איחוד הצלה">
+          <defs>
+            <marker id="ch15-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" class="f-field"/>
+            </marker>
+          </defs>
+          <rect x="250" y="10" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="400" y="37" text-anchor="middle" direction="rtl">הערכה ראשונית + אנמנזה מהירה</text>
+          <rect x="250" y="72" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="400" y="99" text-anchor="middle" direction="rtl">הושב את המטופל · שקול חמצן</text>
+          <rect x="250" y="134" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="400" y="161" text-anchor="middle" direction="rtl">האזנה · מד סטורציה · הערך חומרה</text>
+          <rect x="250" y="196" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="400" y="223" text-anchor="middle" direction="rtl">גישה ורידית · מוניטור</text>
+          <rect x="250" y="258" width="300" height="56" rx="8" class="f-field-soft"/>
+          <text x="400" y="282" text-anchor="middle" direction="rtl" class="t-b">אינהלציה: ונטולין + אירוונט</text>
+          <text x="400" y="302" text-anchor="middle" direction="rtl">שקול סולומדרול לווריד</text>
+          <line x1="400" y1="54" x2="400" y2="70" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <line x1="400" y1="116" x2="400" y2="132" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <line x1="400" y1="178" x2="400" y2="194" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <line x1="400" y1="240" x2="400" y2="256" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <line x1="400" y1="314" x2="400" y2="330" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <polygon points="400,332 470,362 400,392 330,362" class="f-hl"/>
+          <text x="400" y="367" text-anchor="middle" direction="rtl" class="t-b">התקף קשה?</text>
+          <path d="M330 362 H200 V418" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <text x="300" y="352" text-anchor="middle" direction="rtl" class="t-field">כן</text>
+          <path d="M470 362 H545 V418" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <text x="500" y="352" text-anchor="middle" direction="rtl" class="t-field">לא</text>
+          <rect x="90" y="420" width="220" height="50" rx="8" class="f-field-soft"/>
+          <text x="200" y="441" text-anchor="middle" direction="rtl">שקול אינהלציות חוזרות</text>
+          <text x="200" y="460" text-anchor="middle" direction="rtl">ונטולין + אירוונט</text>
+          <rect x="90" y="490" width="220" height="40" rx="8" class="f-field-soft"/>
+          <text x="200" y="515" text-anchor="middle" direction="rtl">שקול אדרנלין תת-עורי</text>
+          <rect x="90" y="550" width="220" height="40" rx="8" class="f-field-soft"/>
+          <text x="200" y="575" text-anchor="middle" direction="rtl">שקול מגנזיום לווריד</text>
+          <line x1="200" y1="470" x2="200" y2="488" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <line x1="200" y1="530" x2="200" y2="548" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <line x1="200" y1="590" x2="200" y2="610" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <polygon points="200,612 260,640 200,668 140,640" class="f-hl"/>
+          <text x="200" y="645" text-anchor="middle" direction="rtl" class="t-b">יש שיפור?</text>
+          <rect x="465" y="420" width="160" height="50" rx="8" class="f-field-soft"/>
+          <text x="545" y="441" text-anchor="middle" direction="rtl">שקול ונטולין</text>
+          <text x="545" y="460" text-anchor="middle" direction="rtl">חוזר</text>
+          <line x1="545" y1="470" x2="545" y2="610" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <rect x="400" y="612" width="225" height="56" rx="8" class="f-card"/>
+          <text x="512" y="636" text-anchor="middle" direction="rtl" class="t-b">פינוי דחוף לבית החולים</text>
+          <text x="512" y="656" text-anchor="middle" direction="rtl">מדדים כל 5–10 דק'</text>
+          <line x1="260" y1="640" x2="398" y2="640" class="s-field" marker-end="url(#ch15-arr2)"/>
+          <text x="300" y="630" text-anchor="middle" direction="rtl" class="t-field">כן</text>
+          <line x1="200" y1="668" x2="200" y2="698" class="s-alarm" marker-end="url(#ch15-arr2)"/>
+          <text x="180" y="688" text-anchor="middle" direction="rtl" class="t-alarm">לא</text>
+          <rect x="70" y="700" width="260" height="56" rx="8" class="f-alarm-soft"/>
+          <text x="200" y="724" text-anchor="middle" direction="rtl" class="t-alarm">אין נשימה / הפסקה מאיימת</text>
+          <text x="200" y="744" text-anchor="middle" direction="rtl">עבור לפרוטוקול מתאים</text>
+        </svg>
+      </div>
+      <figcaption><b>פרוטוקול אסתמה, איחוד הצלה 2023 (עמ' 23), בקיצור.</b> הענף הימני הוא התקף קל עד בינוני, הענף השמאלי הוא התקף קשה. מכל שלב בפרוטוקול, בהעדר נשימה או בהפסקת נשימה מאיימת, עוברים לפרוטוקול המתאים (בפרוטוקול יש קו כזה כבר מהשלב של האזנה וסטורציה).</figcaption>
+    </figure>
+
+    <h4>הערכת חומרת ההתקף לפי הפרוטוקול</h4>
+    <div class="tbl-wrap"><table class="data"><caption>מהערות הפרוטוקול (UH 2023, עמ' 23–24)</caption>
+      <thead><tr><th>מצב</th><th>מה מחפשים</th></tr></thead>
+      <tbody>
+        <tr><th>התקף קשה</th><td>קוצר נשימה במנוחה, קושי בשיחה ובהשלמת משפטים, שימוש ניכר בשרירי עזר, כניסת אוויר ירודה. סטורציה מתחת ל-90% עם חמצן (עמ' 24; בצד עמ' 23 כתוב מתחת ל-94%), <mark>מעל 30 נשימות או מתחת ל-10 בדקה</mark>.</td></tr>
+        <tr><th>הפסקת נשימה מאיימת</th><td>המטופל מדרדר, שינויים במצב ההכרה, <span class="alarm-t">חוסר יכולת לשמור על סטורציה מעל 90%</span>, נשימה לא יעילה. בכל שלב בטיפול שוקלים מעבר לפרוטוקול המתאים.</td></tr>
+      </tbody></table></div>
+    <p><b>יעד החמצן:</b> <mark>שמירה על סטורציה מעל 94%</mark>. חשוב: חולה בהתקף אסתמה יהיה לרוב דיספנאי וטכיפנאי <b>בלי קשר לרמת החמצן בדם</b>. סטורציה טובה לא אומרת שההתקף קל.</p>
+    <p><b>הערכת חומרת המחלה (היסטוריה):</b> תדירות ההתקפים, טיפול תרופתי קבוע (לרבות שימוש בסטרואידים), אשפוזים או ביקורים במלר"ד בשנה האחרונה, הזדקקות להנשמה בעבר.</p>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>גורמי סיכון להתקף פטאלי</b> (UH 2023, עמ' 24):</p>
+      <ul>
+        <li>הונשם בעבר.</li>
+        <li>יותר משני אשפוזים על רקע אסתמה בשנה האחרונה.</li>
+        <li>יותר משלושה ביקורים במלר"ד בשנה האחרונה על רקע אסתמה.</li>
+        <li>שימוש ביותר מ-2 מיכלי ונטולין בחודש.</li>
+      </ul>
+      <p>מטופל כזה עלול להידרדר מהר גם אם הוא נראה סביר כשאתם מגיעים.</p>
+    </div>
+
+    <h4>התרופות באסתמה</h4>
+    <div class="doses">
+      <article class="dose"><header><h5>ונטולין <span class="en">(Salbutamol)</span></h5><span class="ind">ברונכוספזם · אינהלציה</span></header>
+        <div class="big">2.5 / 5 <small>מ"ג באינהלציה</small></div>
+        <dl><dt>קל/בינוני</dt><dd>2.5 מ"ג</dd><dt>קשה</dt><dd>5 מ"ג</dd>
+          <dt>צורה</dt><dd>בקבוקון 100 מ"ג ב-20 מ"ל (5 מ"ג = 1 מ"ל)</dd>
+          <dt>הכנה</dt><dd>לשאוב 0.5–1 מ"ל למזרק 5 מ"ל, למהול ב-2 מ"ל סליין 0.9%</dd>
+          <dt>מתן</dt><dd>לכוסית האינהלציה, חמצן 6 LPM</dd>
+          <dt>חזרות</dt><dd>עד 3 מנות בהפרש של 20 דקות</dd>
+          <dt>אחרי אינטובציה</dt><dd>5 מ"ג מהול ב-5 מ"ל סליין 0.9% לתוך הטובוס</dd></dl>
+        <div class="calc">2.5 מ"ג ‏←‏ 0.5 מ"ל · 5 מ"ג ‏←‏ 1 מ"ל</div></article>
+      <article class="dose"><header><h5>אירוונט <span class="en">(Ipratropium)</span></h5><span class="ind">ברונכוספזם · אינהלציה</span></header>
+        <div class="big">0.5 <small>מ"ג באינהלציה</small></div>
+        <dl><dt>צורה</dt><dd>בקבוקון 5 מ"ג ב-20 מ"ל (0.25 מ"ג = 1 מ"ל)</dd>
+          <dt>הכנה</dt><dd>לשאוב 2 מ"ל למזרק 5 מ"ל, למהול ב-2 מ"ל סליין 0.9%</dd>
+          <dt>מתן</dt><dd>לכוסית האינהלציה, חמצן 6 LPM</dd>
+          <dt>בהתקף קשה</dt><dd>0.5 מ"ג בשילוב עם ונטולין, עד שלוש מנות</dd></dl>
+        <div class="calc">0.5 מ"ג ÷ 0.25 מ"ג/מ"ל ‏←‏ 2 מ"ל</div></article>
+      <article class="dose"><header><h5>סולומדרול</h5><span class="ind">דלקת · IV</span></header>
+        <div class="big">125 <small>מ"ג IV, מנה חד-פעמית</small></div>
+        <dl><dt>צורה</dt><dd>פלאקון 125 מ"ג אבקה, 2 מ"ל נוזל</dd>
+          <dt>הכנה</dt><dd>ללחוץ את פקק הפלאקון כדי למסס את האבקה בנוזל, לנער עד נוזל צלול ואחיד, לשאוב למזרק 2 מ"ל</dd></dl>
+        <div class="calc">כל הפלאקון ‏←‏ 125 מ"ג</div></article>
+      <article class="dose"><header><h5>אדרנלין</h5><span class="ind">התקף קשה · SC</span></header>
+        <div class="big">0.3 <small>מ"ג SC</small></div>
+        <dl><dt>צורה</dt><dd>1 מ"ג ב-1 מ"ל</dd>
+          <dt>הכנה א'</dt><dd>מזרק 10 מ"ל: 1 מ"ל אדרנלין + 9 מ"ל סליין 0.9%, לתת 3 מ"ל</dd>
+          <dt>הכנה ב'</dt><dd>מזרק 5 מ"ל: 1 מ"ל אדרנלין + 4 מ"ל סליין 0.9%, לתת 1.5 מ"ל</dd>
+          <dt>מתן</dt><dd>יש לשטח את המחט לזווית של 45 מעלות</dd>
+          <dt>זהירות</dt><dd>מטופלים מעל גיל 40 או עם מחלות לב איסכמיות (סיכון מוגבר)</dd></dl>
+        <div class="calc">0.1 מ"ג/מ"ל × 3 מ"ל = 0.3 מ"ג · 0.2 מ"ג/מ"ל × 1.5 מ"ל = 0.3 מ"ג</div></article>
+      <article class="dose"><header><h5>מגנזיום סולפט</h5><span class="ind">התקף קשה · IV</span></header>
+        <div class="big">2 <small>גרם IV</small></div>
+        <dl><dt>מתי</dt><dd>במידה ואין הטבה/שיפור</dd>
+          <dt>צורה</dt><dd>5 גרם ב-10 מ"ל (50%)</dd>
+          <dt>הכנה</dt><dd>לשאוב 4 מ"ל ולמהול ב-100 מ"ל D5W או NS</dd>
+          <dt>מתן</dt><dd>בטפטוף במשך 20 דקות</dd>
+          <dt>התווית נגד</dt><dd>לחץ דם סיסטולי נמוך מ-90 מ"מ כספית</dd></dl>
+        <div class="calc">0.5 גרם/מ"ל × 4 מ"ל = 2 גרם</div></article>
+    </div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ul>
+        <li>אפשר לחזור על אינהלציית ונטולין + אירוונט <b>לאחר 20 דקות</b>.</li>
+        <li>בהתקף קשה שוקלים מעבר לפרוטוקול המתאים: הפסקת נשימה מאיימת, או CPAP (במשנה זהירות).</li>
+        <li>בהזלפת ונטולין לצינור התוך-קני יש לנתק את המחט מהמזרק לפני ההזלפה (אסתמה, עמ' 20).</li>
+        <li>בפינוי: ממשיכים ניטור וטיפול, מדדים חוזרים כל 5–10 דקות, ושוקלים דיווח מקדים למלר"ד.</li>
+      </ul>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li><b>ספי התקף קשה לא אחידים.</b> שקפים עמ' 10 ו-12: נשימות מעל 30, דופק מעל 130. השקף בעמ' 20 (צילום מפרוטוקול ישן): נשימות מעל 25, דופק מעל 110, סטורציה מתחת ל-92% (קל/בינוני: עד 24 נשימות, דופק עד 110, סטורציה מעל 94% עם חמצן). בפרוטוקול 2023: סטורציה מתחת ל-94% בצד של עמ' 23, ומתחת ל-90% עם חמצן ומעל 30 או מתחת ל-10 נשימות בעמ' 24. <b>בשטח עובדים לפי פרוטוקול 2023.</b></li>
+        <li><b>מגנזיום:</b> שקף עמ' 19 אומר למהול ב-100 מ"ל ולהזליף בתוך 10 דקות. בפרוטוקול 2023 (עמ' 25): טפטוף במשך 20 דקות.</li>
+        <li><b>אדרנלין IM:</b> השקפים (עמ' 15, 18–19) כוללים אדרנלין 0.5 מ"ג IM באי-ספיקה נשימתית. בפרוטוקול 2023 מופיע רק אדרנלין 0.3 מ"ג SC.</li>
+        <li><b>תרשים ישן (עמ' 18):</b> כולל עירוי סליין 20 מ"ל/דקה (מקסימום 500 מ"ל) בזמן הפינוי. זה לא מופיע בפרוטוקול 2023.</li>
+        <li><b>טבלת הדרגות, עמ' 12:</b> בדרגה IV כתוב <span class="en">VC/FEV1</span> "10 of N", כנראה 10% מהנורמה.</li>
+      </ul>
+    </div>
+
+    <h3><span class="en">COPD</span>: מחלות ריאה חסימתיות כרוניות</h3>
+    <p><span class="en">COPD (Chronic Obstructive Pulmonary Disease)</span> כוללת שתי מחלות: <b>אמפיזמה (נפחת)</b> ו<b>ברונכיטיס כרונית</b>. בשתיהן הגורם העיקרי הוא <mark>עישון</mark>, ושתיהן שכיחות יותר בגברים. ההבדל הוא איפה בריאה נמצא הנזק.</p>
+
+    <div class="compare">
+      <div><h5>אמפיזמה <span class="en">(Emphysema)</span></h5><ul>
+        <li><b>הרס של מבנה האלבאולות.</b></li>
+        <li>פגיעה באלסטיות ובגמישות הריאות (עלייה בתנגודת ריאתית).</li>
+        <li>פגיעה בשחלוף הגזים (צבירת CO<sub>2</sub>).</li>
+        <li><span class="en">RV</span> עולה, <span class="en">VC</span> תקין.</li>
+        <li>נטייה לזיהומים ולהפרעות קצב.</li>
+      </ul></div>
+      <div><h5>ברונכיטיס כרונית <span class="en">(Chronic Bronchitis)</span></h5><ul>
+        <li><b>פגיעה בדפנות הסימפונים</b>, לפחות 3 חודשים בשנה.</li>
+        <li>שיעול ממושך וכיח רב.</li>
+        <li>האלבאולות בדרך כלל שמורות, ואין פגיעה בדיפוזיה.</li>
+        <li>בעיה בשחלוף הגזים כתוצאה מפגיעה <b>באוורור</b>.</li>
+        <li>PO<sub>2</sub>↓, PCO<sub>2</sub>↑. <span class="en">VC</span>↓, <span class="en">RV</span> תקין.</li>
+      </ul></div>
+    </div>
+
+    <p>האלבאולות באמפיזמה נהרסות ומאבדות את הגמישות שלהן. בלי הרתע האלסטי הזה, הנשיפה לא מרוקנת את הריאה והאוויר נלכד. לכן הנפח השארי (<span class="en">RV</span>) עולה, בית החזה הופך חביתי, והחולה נושף לאט ובמאמץ דרך שפתיים קפוצות. בברונכיטיס הבעיה בצינורות: הסימפונים מודלקים ומלאים בכיח, האוורור נפגע, ה-CO<sub>2</sub> עולה והחמצן יורד.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>אמפיזמה מול ברונכיטיס כרונית: התמונה הקלינית (COPD, עמ' 7, 9, 11)</caption>
+      <thead><tr><th></th><th>אמפיזמה · "נשפן ורוד" <span class="en">(Pink Puffer)</span></th><th>ברונכיטיס כרונית · "נפחן כחול" <span class="en">(Blue Bloater)</span></th></tr></thead>
+      <tbody>
+        <tr><th>היכן הפגיעה</th><td>באלבאולות</td><td>בסימפונות</td></tr>
+        <tr><th>נפחים</th><td><span class="en">VC</span> תקין, <span class="en">RV</span>↑</td><td><span class="en">VC</span>↓, <span class="en">RV</span> תקין</td></tr>
+        <tr><th>מראה</th><td>צבע ורוד, חולה רזה עם מבנה חזה חביתי, שרירי צוואר מוגדלים</td><td>צבע כחול, חולה שמן, השמנת יתר, חיוור וכחלחל</td></tr>
+        <tr><th>נשימה</th><td>אקספיריום מוארך ואקטיבי. נושמים דרך פה ושפתיים מעט סגורות כדי להעלות את הלחץ בדרכי האוויר</td><td>אקספיריום מוארך. קוצר נשימה שהולך ומחמיר עם התקדמות המחלה</td></tr>
+        <tr><th>שיעול וכיח</th><td>שיעול וכיח קל</td><td>שיעול ממושך ופליטת כיח רב קבוע</td></tr>
+        <tr><th>ניקוש</th><td>הדיות יתר</td><td>—</td></tr>
+        <tr><th>האזנה</th><td>קולות נשימה מרוחקים ושקטים/חלשים. לפעמים מעט חרחורים וצפצופים</td><td>צפצופים + חרחורים</td></tr>
+        <tr><th>CO<sub>2</sub> גבוה</th><td>—</td><td>כאבי ראש, שינוי באישיות, אי שקט. הצרות כלי דם ריאתיים ועלייה בלחץ הדם הריאתי</td></tr>
+        <tr><th>סיבוך</th><td>בחולים קשים לפעמים סימנים של אי-ספיקת לב ימנית</td><td>סימנים של אי-ספיקת לב ימנית בשלבים כרוניים</td></tr>
+      </tbody></table></div>
+
+    <p><b>סימפטומים נוספים באמפיזמה:</b> קוצר נשימה במאמץ, שבהמשך מופיע לעתים קרובות ללא קשר למאמץ; שיעול; חולשה כללית. <b>בברונכיטיס כרונית:</b> חולשה כללית וירידה בפעילות הגופנית.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>פוליציתמיה ו-<span class="en">Clubbing</span> מופיעים גם תחת אמפיזמה (עמ' 7: "<span class="en">Pink Puffer – Polycythemia</span>", "<span class="en">Clubbing</span> – צבירה של CO<sub>2</sub> יותר") וגם תחת ברונכיטיס כרונית (עמ' 9: "<span class="en">Polythemia</span> ו-<span class="en">Clubbing</span>"). בטבלת הסיכום (עמ' 11) הם לא מופיעים באף אחד מהצדדים. כדאי לברר מה הדגש למבחן.</p>
+    </div>
+
+    <h4>החמרה ב-<span class="en">COPD</span></h4>
+    <p>החמרה מתבטאת <b>בקוצר נשימה, החמרה בשיעול, ריבוי ליחה ושינוי צבעה</b>. גורמים להחמרה: זיהום בדרכי אוויר עליונות, ריפלוקס גסטרו-אזופגיאלי, תסחיף ריאתי. סימנים להחמרה: טכיפניאה, טכיקרדיה, בלבול, שינוי במצב ההכרה, ירידה ביכולת התפקוד היום-יומית, ירידה בערכי סטורציה.</p>
+    <p><b>מטרות הטיפול:</b> זיהוי הגורם להחמרה וטיפול בו, השבת תפקודי הריאה למצב המיטבי, שיפור החמצון ופינוי הפרשות, והימנעות ככל האפשר מאינטובציה ומהנשמה מלאכותית.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>הערכת חומרת ההחמרה ב-COPD (UH 2023, עמ' 27)</caption>
+      <thead><tr><th>חומרה</th><th>מצב הכרה</th><th>נשימות</th><th>סטורציה</th><th>קפנומטריה</th></tr></thead>
+      <tbody>
+        <tr><th>קל</th><td>ללא שינוי</td><td>20–30 לדקה</td><td>88%–92% ללא חמצן בריכוז גבוה</td><td>ללא עלייה</td></tr>
+        <tr><th>קשה ללא סכנת חיים</th><td>ללא שינוי</td><td>גבוה מ-30 לדקה, שימוש בשרירי עזר</td><td>88%–92% ללא חמצן בריכוז גבוה</td><td>50–60 ממ"כ</td></tr>
+        <tr><th>קשה עם סכנת חיים</th><td class="hl">שינויים במצב ההכרה</td><td>גבוה מ-30 לדקה, שימוש בשרירי עזר</td><td>88%–92% עם חמצן בריכוז 40%</td><td class="hl">גבוה מ-60 ממ"כ</td></tr>
+      </tbody></table></div>
+
+    <p>הטבלה מלמדת משהו חשוב: <b>חולה COPD חי בדרך כלל עם סטורציה נמוכה מהרגיל</b>, ולכן הסטורציה לבד לא מבדילה בין החמרה קלה לקשה. מה שמבדיל הוא <b>מצב ההכרה והקפנומטריה</b>. עלייה ב-CO<sub>2</sub> מעל 60 ממ"כ עם שינוי בהכרה פירושה שהחולה מפסיק לאוורר.</p>
+
+    <h4>הטיפול בשטח לפי פרוטוקול איחוד הצלה</h4>
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 540" role="img" aria-label="תרשים זרימה של פרוטוקול COPD של איחוד הצלה">
+          <defs>
+            <marker id="ch15-arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" class="f-field"/>
+            </marker>
+          </defs>
+          <rect x="210" y="10" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="360" y="37" text-anchor="middle" direction="rtl">הערכה ראשונית + אנמנזה מהירה</text>
+          <rect x="210" y="72" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="360" y="99" text-anchor="middle" direction="rtl">הושב את המטופל · שקול חמצן</text>
+          <rect x="210" y="134" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="360" y="161" text-anchor="middle" direction="rtl">האזנה · סטורציה · שקול CPAP</text>
+          <rect x="210" y="196" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="360" y="223" text-anchor="middle" direction="rtl">גישה ורידית · מוניטור</text>
+          <rect x="210" y="258" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="360" y="285" text-anchor="middle" direction="rtl" class="t-b">אינהלציה: ונטולין + אירוונט</text>
+          <rect x="210" y="320" width="300" height="44" rx="8" class="f-field-soft"/>
+          <text x="360" y="347" text-anchor="middle" direction="rtl">שקול סולומדרול לווריד</text>
+          <line x1="360" y1="54" x2="360" y2="70" class="s-field" marker-end="url(#ch15-arr3)"/>
+          <line x1="360" y1="116" x2="360" y2="132" class="s-field" marker-end="url(#ch15-arr3)"/>
+          <line x1="360" y1="178" x2="360" y2="194" class="s-field" marker-end="url(#ch15-arr3)"/>
+          <line x1="360" y1="240" x2="360" y2="256" class="s-field" marker-end="url(#ch15-arr3)"/>
+          <line x1="360" y1="302" x2="360" y2="318" class="s-field" marker-end="url(#ch15-arr3)"/>
+          <line x1="360" y1="364" x2="360" y2="382" class="s-field" marker-end="url(#ch15-arr3)"/>
+          <polygon points="360,384 420,412 360,440 300,412" class="f-hl"/>
+          <text x="360" y="417" text-anchor="middle" direction="rtl" class="t-b">שיפור?</text>
+          <path d="M420 412 H535 V458" class="s-field" marker-end="url(#ch15-arr3)"/>
+          <text x="470" y="402" text-anchor="middle" direction="rtl" class="t-field">כן</text>
+          <path d="M300 412 H145 V458" class="s-alarm" marker-end="url(#ch15-arr3)"/>
+          <text x="250" y="402" text-anchor="middle" direction="rtl" class="t-alarm">לא</text>
+          <rect x="440" y="460" width="190" height="60" rx="8" class="f-card"/>
+          <text x="535" y="485" text-anchor="middle" direction="rtl" class="t-b">פינוי דחוף</text>
+          <text x="535" y="506" text-anchor="middle" direction="rtl">מדדים כל 5–10 דק'</text>
+          <rect x="10" y="460" width="270" height="60" rx="8" class="f-alarm-soft"/>
+          <text x="145" y="485" text-anchor="middle" direction="rtl" class="t-alarm">אין שיפור או התדרדרות</text>
+          <text x="145" y="506" text-anchor="middle" direction="rtl">פרוטוקול הפסקת נשימה מאיימת</text>
+        </svg>
+      </div>
+      <figcaption><b>פרוטוקול COPD, איחוד הצלה 2023 (עמ' 26), בקיצור.</b> גם כאן יש קו אדום ישיר מהשלב של האזנה, סטורציה ו-CPAP אל פרוטוקול הפסקת נשימה מאיימת, למטופל שמתדרדר.</figcaption>
+    </figure>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <dl class="kv">
+        <dt>תנוחה</dt><dd>להושיב את המטופל (בשקף COPD עמ' 13: בתנוחה של 45°).</dd>
+        <dt>חמצן</dt><dd>במטופל עם מצוקה נשימתית ניכרת, או סטורציה נמוכה מ-94%, או סימני פרפוזיה ירודה. <b>הזהר בחולים עם נטייה לצבירת CO<sub>2</sub>.</b></dd>
+        <dt>ונטולין</dt><dd>2.5 מ"ג באינהלציה.</dd>
+        <dt>אירוונט</dt><dd>0.5 מ"ג באינהלציה, בשילוב עם ונטולין. אפשר לחזור על האינהלציה לאחר 20 דקות.</dd>
+        <dt>סולומדרול</dt><dd>125 מ"ג IV.</dd>
+        <dt>ניטור</dt><dd>מצב הכרה, מאמץ נשימתי, סטורציה, קפנומטריה נזאלית ככל האפשר, אק"ג.</dd>
+      </dl>
+    </div>
+
+    <h4><span class="en">CPAP</span> ב-<span class="en">COPD</span></h4>
+    <ul>
+      <li><b>למי:</b> מטופל בהכרה ומשתף פעולה, באי-ספיקה נשימתית חריפה או מאיימת.</li>
+      <li><b>מטרה:</b> <mark>שמירה על סטורציה מעל 90%</mark> במטופלים שחמצן במסיכה לא עזר להם.</li>
+      <li><b>לחצים:</b> להקפיד על ערכי PEEP נמוכים (השקף בעמ' 16 נותן כדוגמה 5 cmH<sub>2</sub>O).</li>
+      <li><span class="alarm-t">מטופל שהופך ישנוני או מתעייף בזמן השימוש במסכה, או שיש עלייה בקפנומטריה</span>: שוקלים אינטובציה, כלומר מעבר לפרוטוקול ניהול מתקדם של נתיב האוויר.</li>
+    </ul>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>חולה COPD <b>ששוקע</b> והופך להיות לא יציב בהכרה עובר לניהול נתיב אוויר מתקדם (COPD, עמ' 13). ישנוניות בחולה COPD היא לא "סוף סוף נרגע": היא לרוב סימן לצבירת CO<sub>2</sub>.</p>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>השקף בעמ' 15 (צילום מפרוטוקול ישן) אומר לתת חמצן "כדי לשמור על ערכי סטורציה סביב 94%", ושסולומדרול ניתן "לחולים שאינם מטופלים בסטרואידים". בפרוטוקול 2023 (עמ' 26–27) הסטורציה של 94% היא סף <b>להתחלת</b> חמצן, הטבלה מתארת סטורציה של 88%–92%, ואין הגבלה לגבי מטופלים בסטרואידים. בשטח עובדים לפי פרוטוקול 2023.</p>
+    </div>
+
+    <h3>דלקת ריאות <span class="en">(Pneumonia)</span></h3>
+    <h4>מה זה ואיך זה נוצר</h4>
+    <p>דלקת ריאות היא <b>זיהום של רקמת הריאה, בחלק שמשתתף בחילוף הגזים</b>. הגורם יכול להיות חיידק, וירוס או פטריה. <mark>זו סיבת המוות העיקרית בחולים זקנים ובחולי HIV.</mark></p>
+    <p><b>איך הפתוגן מגיע לריאה:</b></p>
+    <ul>
+      <li>פתוגנים חודרים, לרוב עקב אספירציה, לחלק התחתון של הריאה.</li>
+      <li>חדירת פתוגן ממחזור הדם.</li>
+      <li>דלקת ריאות שנרכשת בבית החולים, בדרך כלל מחיידק עמיד.</li>
+      <li>זיהום סביבתי ושאיפת חומרים רעילים.</li>
+    </ul>
+
+    <ol class="steps">
+      <li><div>הפתוגן מגיע לריאה, מתיישב ברקמה ומתחיל לצמוח ולגדול.</div></li>
+      <li><div><b>שיעול כסימן ראשון.</b></div></li>
+      <li><div>פגיעה בדיפוזיה הריאתית: ירידה בשטח הפנים של הריאה הפנימית, ומוקוס שחוסם את האלבאולה.</div></li>
+      <li><div>הגזים מתקשים לעבור.</div></li>
+      <li><div>בסוף מתחיל קוצר נשימה וירידה בסטורציה.</div></li>
+    </ol>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 290" role="img" aria-label="השוואה בין אלבאולה תקינה, שבה חמצן עובר לנימי הדם, לבין אלבאולה בדלקת ריאות, מלאה בנוזל, שבה החמצן נחסם">
+          <defs>
+            <marker id="ch15-arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" class="f-field"/>
+            </marker>
+          </defs>
+          <text x="480" y="28" text-anchor="middle" direction="rtl" class="t-b">אלבאולה תקינה</text>
+          <circle cx="480" cy="120" r="70" class="f-card"/>
+          <circle cx="480" cy="120" r="70" fill="none" class="s-zone"/>
+          <text x="480" y="105" direction="ltr" text-anchor="middle" class="t-field">O2</text>
+          <line x1="480" y1="115" x2="480" y2="214" class="s-field" marker-end="url(#ch15-arr4)"/>
+          <rect x="390" y="218" width="180" height="30" rx="15" class="f-blood-o"/>
+          <text x="480" y="272" text-anchor="middle" direction="rtl" class="t-sm">נימי דם: החמצן עובר</text>
+          <text x="160" y="28" text-anchor="middle" direction="rtl" class="t-b">דלקת ריאות</text>
+          <circle cx="160" cy="120" r="70" class="f-zone-soft"/>
+          <circle cx="160" cy="120" r="70" fill="none" class="s-zone"/>
+          <text x="160" y="95" text-anchor="middle" direction="rtl">נוזל, מוקוס</text>
+          <text x="160" y="115" text-anchor="middle" direction="rtl">ותאי דלקת</text>
+          <text x="160" y="148" direction="ltr" text-anchor="middle" class="t-field">O2</text>
+          <line x1="160" y1="156" x2="160" y2="178" class="s-field"/>
+          <line x1="148" y1="186" x2="172" y2="206" class="s-alarm"/>
+          <line x1="172" y1="186" x2="148" y2="206" class="s-alarm"/>
+          <rect x="70" y="218" width="180" height="30" rx="15" class="f-blood-d"/>
+          <text x="160" y="272" text-anchor="middle" direction="rtl" class="t-sm">החמצן נחסם: היפוקסיה</text>
+          <line x1="320" y1="40" x2="320" y2="260" class="ln-dash"/>
+        </svg>
+      </div>
+      <figcaption><b>למה דלקת ריאות היא בעיית דיפוזיה (B).</b> באלבאולה תקינה החמצן עובר בקלות לנימי הדם. בדלקת ריאות האלבאולה מתמלאת בנוזל, במוקוס ובתאי דלקת (כמו בתמונה "<span class="en">Fluid-filled Alveoli</span>" במצגת האבחנה המבדלת, עמ' 31), והגזים מתקשים לעבור. לכן הסטורציה יורדת גם כשהמטופל נושם מהר.</figcaption>
+    </figure>
+
+    <p>הדלקת יכולה להיות <b>פזורה בכמה מוקדים</b> (<span class="en">Bronchopneumonia</span>) או <b>לתפוס אונה שלמה</b> (<span class="en">Lobar pneumonia</span>), כפי שמוצג באיור בעמ' 30 של מצגת האבחנה המבדלת. בדלקת אונתית קל יותר לשמוע הבדל בין צד לצד.</p>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>חולה שלא יטופל = ספסיס.</b> הסכנות של דלקת ריאות:</p>
+      <ul>
+        <li>ירידה בסטורציה.</li>
+        <li><span class="alarm-t">הלם ספסיס / הלם ספטי.</span></li>
+        <li>תפליט ריאתי (המוגלה עוברת לפלאורה).</li>
+        <li>פנימוטורקס.</li>
+        <li><span class="en">ARDS</span>.</li>
+        <li>ירידה ברמת ההכרה.</li>
+        <li>מחלת לב ראומטית (סטרפטוקוק A).</li>
+      </ul>
+    </div>
+
+    <h4>איך זה נראה</h4>
+    <div class="compare">
+      <div><h5>סימפטומים (מה החולה מספר)</h5><ul>
+        <li>חום גבוה.</li>
+        <li>צמרמורת.</li>
+        <li>חולשה כללית.</li>
+        <li>אי-נוחות.</li>
+        <li>שיעול עם כיח פרודוקטיבי.</li>
+        <li>כאבים בחזה, כאבים פלאורליים.</li>
+      </ul></div>
+      <div><h5>בדיקה פיזיקלית (מה אתם מוצאים)</h5><ul>
+        <li>חום גבוה, טכיקרדיה, שיעול, קוצר נשימה.</li>
+        <li>צפצופים וחרחורים <b>מעל איזור הדלקת</b>.</li>
+        <li>ירידה בכניסת אוויר מעל איזור הדלקת.</li>
+        <li>עמימות בניקוש מעל איזור הדלקת.</li>
+      </ul></div>
+    </div>
+    <p><b>סימנים קליניים נוספים:</b> הם חולים כבר כמה ימים. "סימני מיטה": שוכב במיטה, טישו, שיעול, צמרמורת, חום גבוה, כאבים בחזה מפושטים. שיעול מעייף וטורדני. כיח וליחה, וצבעם. ו<b>תקשיבו לחולה. הוא מכיר את עצמו טוב.</b></p>
+
+    <h4>אל תסמכו על הסטטוסקופ</h4>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <ul>
+        <li>תמיד תהיה בעיה להבדיל <b>בין בצקת לדלקת</b>.</li>
+        <li><mark>ב-90% מחולי הדלקת ההאזנה לא תהיה שווה דו-צדדית</mark>. ב-10% ההאזנה שווה דו-צדדית.</li>
+        <li>להתמקד בסימנים ובסימפטומים, בתשאול ובאנמנזה.</li>
+      </ul>
+    </div>
+    <dl class="kv">
+      <dt>חרחורים אינספירטוריים</dt><dd>מהדלקת. הנוזלים במקור התחתון יוצרים את החרחור.</dd>
+      <dt>חרחורים אקספירטוריים</dt><dd>כתוצאה מליחה שמפעפעת.</dd>
+      <dt>צפצופים</dt><dd>יש דלקת שגורמת להיצרות, ולכן יש צפצוף.</dd>
+      <dt>מעורבת</dt><dd>שומעים הכול.</dd>
+    </dl>
+    <p>לא רק צריך לחפש צפצוף או חרחור. יש עוד הרבה מעבר לשיטת ההאזנה.</p>
+
+    <h4>הטיפול בשטח</h4>
+    <p>הטיפול הדפיניטיבי הוא אנטיביוטיקה, וזה עניין של בית החולים. <b>בשטח הטיפול הוא לרוב תסמיני</b>:</p>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <dl class="kv">
+        <dt>חמצן</dt><dd>שיפור מדדים ומצב ההכרה.</dd>
+        <dt>CPAP</dt><dd><mark>כלי טוב בדלקת.</mark> לחץ חיובי פותח אלבאולות ומשפר חמצון.</dd>
+        <dt>נוזלים</dt><dd>תיתכן ירידה בלחץ דם ואיבוד נוזלים (חום, נשימה מהירה).</dd>
+        <dt>אינהלציה</dt><dd>צריך לשקול טוב בהתאם לסימנים (למשל אם שומעים צפצופים). בשקף הטיפול: "לפעמים מרחיבי סימפונות".</dd>
+        <dt>מדידת סוכר</dt><dd>מי שאינו סוכרתי, עם רמות סוכר גבוהות, ולא אכל בשעות האחרונות: זה יכול לאשר אבחנה של דלקת ולא בצקת. זיהום הוא מצב דחק שמעלה את רמת הסוכר.</dd>
+      </dl>
+    </div>
+    <p><b>דרגות מחלה:</b> קל עד בינוני, קשה, אי-ספיקה נשימתית, החייאה. בכל דרגה מתאימים את הטיפול לחומרה, כמו בשאר המחלות בפרק.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li><b>דלקת ריאות, עמ' 15:</b> בטיפול התומך כתוב "חמצן, אנטיביוטיקה נגד חום". כנראה הכוונה לנוגדי חום (ואנטיביוטיקה היא הטיפול הדפיניטיבי).</li>
+        <li><b>דלקת ריאות, עמ' 5:</b> "כל ספסיס ייגרם מדלקת ריאות או יגרום לדלקת". זו הכללה. המסר הוא שדלקת ריאות היא מקור שכיח לספסיס.</li>
+      </ul>
+    </div>
+
+    <h3>מקרה: אבחנה מבדלת של דלקת ריאות</h3>
+    <p>המצגת האחרונה מלמדת איך לחשוב דרך מקרה אחד, צעד אחר צעד. שווה לעבור עליו כמו על קריאה אמיתית.</p>
+
+    <h4>הסיפור</h4>
+    <p>יום חורף גשום. אדון בן 66 פנה לקופת חולים עם סיפור של צמרמורות פתאומיות, קושי בנשימה וכאבים בחזה, ומשם הופנה למלר"ד. בשיחה: "אני חולה לב... הייתי לפני 4 ימים בקופת חולים, היו לי כאב ראש. מאתמול יש לי צמרמורות, קשה לי לנשום וכואב לי בחזה שאני נושם". השאלות הראשונות: מה התלונה העיקרית? ממתי החל קוצר הנשימה? האם סבל מזה בעבר?</p>
+
+    <h4>סקר ראשוני: נתונים סובייקטיביים ואובייקטיביים</h4>
+    <div class="tbl-wrap"><table class="data"><caption>הסקר הראשוני במקרה (אבחנה מבדלת, עמ' 5–13)</caption>
+      <thead><tr><th></th><th>סובייקטיבי (מה הוא מספר)</th><th>אובייקטיבי (מה רואים ומודדים)</th></tr></thead>
+      <tbody>
+        <tr><th>A</th><td>ללא טראומה ובלי סיפור של בעיה בנתיב האוויר. הקיא פעם אחת ללא קשר לאוכל. לא היה במגע עם אלרגן.</td><td>שיעול טורדני פרודוקטיבי. יושב נשען קדימה, לא נינוח. בהכרה מלאה, בחרדה, חיוורון. מדבר ברצף, אך מתלונן שקשה לו לנשום.</td></tr>
+        <tr><th>B</th><td>קושי נשימתי קל, ללא סיפור של טראומה.</td><td>טכיפניאה, חיוורון ללא כחלון, שימוש בשרירי עזר, <mark>סטורציה 92%</mark>, התרחבות סימטרית של בית החזה.</td></tr>
+        <tr><th>C</th><td>—</td><td>דופק 110 לא סדיר, נמוש היטב. עור חם יבש. מילוי קפילרי תקין.</td></tr>
+        <tr><th>D</th><td>ללא שינויים במצב הכרה, ללא סיפור של חבלת ראש. כאבי הראש לא הופיעו בפתאומיות והכאב נסבל.</td><td>בהכרה מלאה, אישונים תקינים, פעילות מוטורית תקינה.</td></tr>
+      </tbody></table></div>
+    <p>אחרי כל אות שואלים: <b><span class="en">Resuscitation?</span></b> האם צריך לטפל עכשיו, לפני שממשיכים? כאן התשובה היא חמצן, אבל המטופל לא בסכנה מיידית לנתיב האוויר.</p>
+
+    <h4>סקר משני: מחלה נוכחית</h4>
+    <div class="compare">
+      <div><h5>הכאב (PQRST-A)</h5><ul>
+        <li><b>P:</b> לא יודע, אך שם לב שנושם עמוק או משתעל, הכאב מתגבר.</li>
+        <li><b>Q:</b> דוקר.</li>
+        <li><b>R:</b> בכל החזה, לא מקרין.</li>
+        <li><b>S:</b> 8.</li>
+        <li><b>T:</b> החל לפני יומיים.</li>
+        <li><b>A:</b> קוצר נשימה, ללא הזעה, בחילות. הקאה בודדת לאחר שיעול.</li>
+      </ul></div>
+      <div><h5>קושי בנשימה</h5><ul>
+        <li><b>P:</b> הרגיש צמרמורות פתאומיות וקושי בנשימה מאתמול. אחרי שלקח אופטלגין הוקל לו מעט.</li>
+        <li><b>R (גורמי סיכון):</b> שפעת לאחרונה שטופלה בצפלוספורינים (כן); בעיה במערכת חיסונית (לא); אלכוהוליזם (לא); מחלות קרדיווסקולריות (כן); סוכרת (כן).</li>
+        <li><b>S:</b> קשה לנשום, אין לי כוח, אני כל הזמן שוכב במיטה.</li>
+        <li><b>T:</b> החל לפני יומיים.</li>
+        <li><b>A:</b> חולשה (כן), שיעול פרודוקטיבי (כן), חום (?), כאבי גרון (כן), צמרמורות (כן).</li>
+      </ul></div>
+    </div>
+    <p><b>שאלות המשך:</b> שיעול פרודוקטיבי וטורדני. <b>צבע הכיח: דמי.</b> חום: לא יודע. כאבים פלאוריטיים: כן. נחשף לאנשים חולים לאחרונה: לא. מעשן: לא. אלרגיות: לא.</p>
+    <p><b>רקע:</b> שפעת לפני חודש, מחלת לב איסכמית. ניתוח פרוסטטה לפני 4 שנים, ניתוח כיס מרה, אשפוז בפנימית לפני חצי שנה בגלל הלב. רקע משפחתי: אבא עם יתר לחץ דם וסוכרת, אמא עם סרטן השד. מבחינה ביו-פסיכו-סוציאלית: לא מעשן, הגיע לקופ"ח לבדו, מתפקד באופן עצמאי בביתו, מתגורר עם אשתו, בפנסיה אך עובד כשומר במגרש חניה.</p>
+    <p><b>תרופות:</b> הוא לא זוכר מינונים ותדירות, רק יודע שאלה תרופות ללב. הלקח מהשקף: <b>לחשוב על תופעות לוואי של תרופות.</b></p>
+
+    <h4>סקירה כללית ובדיקה ממוקדת</h4>
+    <ul>
+      <li><b>הסתכלות:</b> בהכרה, הגיע בכוחות עצמו למיון, נראה חולה, עור חם למגע, ללא כחלון. ללא <span class="en">Clubbing</span>, מבנה בית חזה תקין, דיבור רצוף, מבנה גוף תקין.</li>
+      <li><b>סימנים חיוניים:</b> לחץ דם 140/90, דופק 110 לא סדיר, <mark>חום 38.5</mark>, סטורציה 95% עם חמצן.</li>
+      <li><b>ריאות:</b> טכיפניאה. ניקוש: <b>עמימות בבסיס ריאה שמאלית</b>. מישוש: פרימיטוס מוגבר. נשימה ברונכיאלית, צפצופים וחרחורים עדינים על פני ריאה שמאלית, כניסת אוויר מופחתת לריאה שמאלית.</li>
+      <li>טכיקרדיה.</li>
+    </ul>
+    <p>שימו לב שכל הממצאים הריאתיים <b>חד-צדדיים</b>. זה בדיוק ה-90% מהשקף "אל תסמכו על הסטטוסקופ": בבצקת ריאות היינו מצפים לממצאים דו-צדדיים.</p>
+
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p><b>בדיקות אבחון:</b> צילום חזה (בעמ' 26 מסומן צל בבסיס הריאה השמאלית). בדיקות מעבדה: ספירת דם, תרבית דם, תרבית לכיח, גזים בדם, ואק"ג.</p>
+      <p><b>בדיקות המיון:</b> WBC 22,000, CRP 300, גלוקוז 188. גזים: pH 7.40, PCO2 38, PO2 112, HCO3 24. (וגם Hg 16.2, Hct 44%, PLT 388,000, INR 1.1, Na 145, K 4.9, Cl 101, Ca 8.9.)</p>
+      <p><b>אבחנה:</b> <span class="en">Streptococcus pneumonia</span>, דלקת ריאות טיפוסית, <span class="en">CAP = Community Acquired Pneumonia</span> (דלקת ריאות שנרכשה בקהילה).</p>
+    </div>
+    <p>מה זה אומר לפרמדיק? הספירה הלבנה וה-CRP הגבוהים מאשרים זיהום. <b>הגלוקוז 188 במטופל במצב דחק</b> מתחבר לכלל "מדידת סוכר" מהטיפול בשטח. גזי הדם תקינים, כלומר המטופל עוד מפצה.</p>
+
+    <h4>מה מאפיין דלקת ריאות סטרפטוקוקלית</h4>
+    <div class="tbl-wrap"><table class="data"><caption>סימנים קליניים (אבחנה מבדלת, עמ' 32)</caption>
+      <thead><tr><th>מערכת</th><th>סימנים</th></tr></thead>
+      <tbody>
+        <tr><th>כללי</th><td>חולשה, עייפות. צמרמורות, <mark>חום 38.5–40.5</mark></td></tr>
+        <tr><th>דרכי נשימה עליונות</th><td>כאבי גרון, נזלת</td></tr>
+        <tr><th>ריאות</th><td>שיעול, ליחה. כאבים בחזה (כאב פלאוריטי)</td></tr>
+        <tr><th>מערכת עיכול</th><td>בחילות, הקאות, כאבי בטן</td></tr>
+        <tr><th>לב ונשימה</th><td>טכיקרדיה, <mark>טכיפניאה 25–45 לדקה</mark>, קושי בנשימה</td></tr>
+        <tr><th>נוירולוגי</th><td>שינוי במצב ההכרה</td></tr>
+      </tbody></table></div>
+    <p>המצגת מציגה את הנושאים שמרכיבים את ההבנה של המחלה: הגורם, עונת השנה (האיור הוא של חורף), פתופיזיולוגיה, גורמי סיכון, סימנים קליניים וטיפול.</p>
+
+    <h4>בעיות, התערבות והערכה</h4>
+    <div class="compare">
+      <div><h5>בעיות סיעודיות</h5><ul>
+        <li>קושי בנשימה עקב דלקת ריאות.</li>
+        <li>חרדה עקב קוצר נשימה או חוסר ידע על המחלה הנוכחית.</li>
+        <li>חשש להפרעה בנתיב אוויר עקב ריבוי הפרשות.</li>
+        <li>חשש לחמצת רספירטורית (ראו הערה למטה).</li>
+        <li>חשש לאובדן נוזלים, עקב חום וקוצר נשימה.</li>
+        <li>חשש לאטלקטזיס, אי-ספיקה נשימתית ובלבול.</li>
+      </ul></div>
+      <div><h5>תכנון והתערבות</h5><ul>
+        <li>מתן חמצן.</li>
+        <li>אומדן נשימה, הושבה ומנוחה במיטה.</li>
+        <li>מדידת סימנים חיוניים.</li>
+        <li>ניקוז הפרשות לפי הצורך.</li>
+        <li>מעקב אחר גזים בדם.</li>
+        <li>טיפול תרופתי: נוזלים, אנטיביוטיקה, מרחיבי סימפונות.</li>
+        <li>ניטור קרדיאלי.</li>
+      </ul></div>
+      <div><h5>הערכה (האם זה עבד)</h5><ul>
+        <li>אומדן נשימה חוזר.</li>
+        <li>מדידת סימנים חיוניים.</li>
+        <li>המטופל מסוגל לכייח באופן עצמאי.</li>
+        <li>בדיקת גזים חוזרת.</li>
+        <li>מאזן נוזלים ואלקטרוליטים.</li>
+        <li>המטופל רגוע.</li>
+      </ul></div>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li><b>עמ' 33:</b> "חשש לחמצת רספירטורית עקב טכיפניאה". נשימה מהירה מורידה CO<sub>2</sub> ונוטה לבססת, לא לחמצת. חמצת רספירטורית מתפתחת כשהמטופל מתעייף ומאוורר פחות. גזי הדם במקרה (עמ' 25) תקינים: pH 7.40, PCO2 38.</li>
+        <li><b>ציר הזמן לא עקבי:</b> כאב ראש "לפני 4 ימים" (עמ' 3) מול תחילת התלונות "לפני יומיים" (עמ' 14–15). השפעת מופיעה "לאחרונה" (עמ' 15) ו"לפני חודש" (עמ' 17).</li>
+      </ul>
+    </div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>המלכודות בחולה הנשימתי:</b></p>
+      <ul>
+        <li><span class="alarm-t">חזה שקט באסתמה</span> הוא סימן להתקף קשה מאוד, לא לשיפור.</li>
+        <li>חולה אסתמה או COPD <b>ישנוני</b> צובר CO<sub>2</sub>. מתכוננים לאינטובציה.</li>
+        <li>סטורציה תקינה באסתמה לא שוללת התקף קשה. המטופל דיספנאי בלי קשר לרמת החמצן.</li>
+        <li>האזנה לבדה לא מבדילה בין בצקת לדלקת. אנמנזה, חום וממצאים חד-צדדיים עוזרים.</li>
+        <li>דלקת ריאות שלא מטופלת מתקדמת לספסיס.</li>
+      </ul>
+    </div>
+
+    <div class="recap"><span class="tag">בשורה התחתונה</span>
+      <ol>
+        <li>קוצר נשימה הוא האירוע השני בשכיחותו בשטח. מעל 90% מהפונים הם קשישים עם COPD או אסתמה בהחמרה.</li>
+        <li>הסימן המרכזי של מצוקה נשימתית הוא מאמץ בנשימה. השרשרת היא: הגבלה ‏←‏ פיצוי ‏←‏ מצוקה ‏←‏ היפוקסיה.</li>
+        <li>שלושה מנגנוני כשל: אוורור, דיפוזיה ופרפוזיה. לכל אחד טיפול אחר.</li>
+        <li>סדר העבודה: סריקת זירה, הכרה, נתיב אוויר, נשימה, מחזור דם. החולה בתנוחה נוחה, לא מעייפים אותו בשאלות.</li>
+        <li>אסתמה: ונטולין 2.5 מ"ג (קל/בינוני) או 5 מ"ג (קשה) + אירוונט 0.5 מ"ג, סולומדרול 125 מ"ג IV. בהתקף קשה: אדרנלין 0.3 מ"ג SC ומגנזיום 2 גרם IV ב-20 דקות.</li>
+        <li>יעד הסטורציה באסתמה מעל 94%. חזה שקט, ישנוניות ו-CO<sub>2</sub> שעולה הם סימנים לאי-ספיקה.</li>
+        <li>COPD: אמפיזמה (נשפן ורוד, RV↑) מול ברונכיטיס כרונית (נפחן כחול, VC↓). שתיהן בעיקר מעישון.</li>
+        <li>ב-COPD: זהירות עם חמצן בצוברי CO<sub>2</sub>. ונטולין 2.5 + אירוונט 0.5, סולומדרול 125, ו-CPAP לשמירה על סטורציה מעל 90%.</li>
+        <li>דלקת ריאות: ב-90% ההאזנה לא שווה בשני הצדדים. חום, כיח וסוכר גבוה בלא-סוכרתי תומכים בדלקת ולא בבצקת.</li>
+        <li>בדלקת ריאות הטיפול בשטח תסמיני: חמצן, CPAP, נוזלים, ואינהלציה לפי הסימנים. דלקת שלא מטופלת מתקדמת לספסיס.</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<section class="chapter" id="ch16" data-zone="blue">
+  <header class="ch-head">
+    <div class="ch-zone">פרק ד׳ · מצבי חירום נשימתיים · פרק 2</div>
+    <h2>תסחיף, תפליט, חזה אוויר, CO, ARDS והנשמה</h2>
+    <p class="ch-lede">שבעה מצבים שכולם מסתיימים באותה תלונה — "קשה לי לנשום" — אבל מסיבות שונות לגמרי: קריש שחוסם את עורקי הריאה, נוזל או אוויר בחלל הצדר, נשימה מהירה מדי, גז שגונב את מקום החמצן, ונאדיות שמתמלאות נוזל. בסוף הפרק: איך מנשימים — מכונת הנשמה, CPAP ופרוטוקול ה-CPAP ובצקת הריאות של איחוד הצלה.</p>
+    <div class="ch-src">מקור: 06 - תסחיף ריאתי.pdf, עמ' 1–15 · 07 - תפליט פליאורלי.pdf, עמ' 1–15 · 08 - היפרוונטלציה.pdf, עמ' 1–14 · 09 - הרעלת CO.pdf, עמ' 1–20 · 10 - פנימוטוראקס ספונטאני.pdf, עמ' 1–15 · 11 - הכשל הנשימתי - ARDS.pdf, עמ' 1–28 · 12 - הנשמה לא פולשנית - CPAP.pdf, עמ' 1–13 · 13 - הנשמה מלאכותית.pdf, עמ' 1–40 · UH_ACLS_2023.pdf, עמ' 20–22, 28–29</div>
+  </header>
+  <div class="flow">
+
+    <p>בפרק הקודם בנינו את הגישה לחולה הנשימתי ועברנו על אסתמה, COPD ודלקת ריאות. כאן נמשיך למצבים שבהם הבעיה איננה בהכרח בדרכי האוויר: לפעמים כלי הדם של הריאה חסומים, לפעמים הריאה נדחסת מבחוץ, ולפעמים הריאות בכלל תקינות והבעיה בדם (CO) או בראש (היפרוונטילציה). השאלה שתלווה אותנו לאורך כל הפרק היא <b>איפה נשבר המסלול של החמצן</b> — באוויר שנכנס, במעבר לדם, בזרימת הדם, או בהובלה לרקמות. מי שעונה על השאלה הזו בוחר נכון את הטיפול.</p>
+
+    <!-- ============ PE ============ -->
+    <h3>תסחיף ריאתי <span class="en">(Pulmonary Embolism – PE)</span></h3>
+
+    <h4>מה זה ואיך זה קורה</h4>
+    <p>תסחיף ריאתי מתרחש כאשר <b>קריש דם נשלח לריאות</b>. ברוב המקרים מקורו בפקקת ורידים עמוקה ברגליים <span class="en">(Deep Vein Thrombosis – DVT)</span>. הקריש ניתק מדופן הווריד, נסחף במערכת הוורידית אל הצד הימני של הלב, ומשם נדחף לעורקי הריאה — עד שהוא מגיע לכלי דם צר ממנו ונתקע. החלק של הריאה שמאחורי הקריש עדיין מאוורר, אבל דם כבר לא מגיע אליו, ולכן <mark>רמת החמצן בדם יורדת</mark>.</p>
+    <p>כשתסחיפים חוסמים חלק מכלי הדם הריאתיים, הלחץ הריאתי עולה. החדר הימני צריך לדחוף דם נגד התנגדות גבוהה, הלחץ בתוכו עולה — וזה יכול להוביל ל<b>אי-ספיקת לב ימנית</b>. זה ההסבר לכך שתסחיף גדול יכול להפיל לחץ דם ולגרום לדום לב: החדר הימני פשוט לא מצליח להעביר דם הלאה, ולכן גם החדר השמאלי לא מקבל דם להזרים לגוף.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 760 240" role="img" aria-label="מסלול הקריש מוורידי הרגל לעורק הריאה והשלכותיו על הלב הימני">
+          <defs>
+            <marker id="ch16-arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-zone"/></marker>
+            <marker id="ch16-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-alarm"/></marker>
+          </defs>
+          <rect x="585" y="30" width="160" height="58" rx="10" class="f-zone-soft"/>
+          <text x="665" y="55" text-anchor="middle" direction="rtl" class="t-b">פקקת ורידים ברגל</text>
+          <text x="665" y="76" text-anchor="middle" direction="ltr" class="t-sm">DVT</text>
+          <rect x="395" y="30" width="160" height="58" rx="10" class="f-zone-soft"/>
+          <text x="475" y="55" text-anchor="middle" direction="rtl" class="t-b">וריד נבוב תחתון</text>
+          <text x="475" y="76" text-anchor="middle" direction="ltr" class="t-sm">IVC</text>
+          <rect x="205" y="30" width="160" height="58" rx="10" class="f-zone-soft"/>
+          <text x="285" y="55" text-anchor="middle" direction="rtl" class="t-b">צד ימין של הלב</text>
+          <text x="285" y="76" text-anchor="middle" direction="rtl" class="t-sm">עלייה וחדר ימניים</text>
+          <rect x="15" y="30" width="160" height="58" rx="10" class="f-alarm-soft"/>
+          <text x="95" y="55" text-anchor="middle" direction="rtl" class="t-b">עורק הריאה</text>
+          <text x="95" y="76" text-anchor="middle" direction="rtl" class="t-alarm">הקריש נתקע</text>
+          <line x1="583" y1="59" x2="559" y2="59" class="s-zone" marker-end="url(#ch16-arr1)"/>
+          <line x1="393" y1="59" x2="369" y2="59" class="s-zone" marker-end="url(#ch16-arr1)"/>
+          <line x1="203" y1="59" x2="179" y2="59" class="s-zone" marker-end="url(#ch16-arr1)"/>
+          <line x1="95" y1="90" x2="95" y2="158" class="s-alarm" marker-end="url(#ch16-arr2)"/>
+          <rect x="15" y="162" width="160" height="58" rx="10" class="f-card"/>
+          <text x="95" y="187" text-anchor="middle" direction="rtl" class="t-b">זרימת הדם נחסמת</text>
+          <text x="95" y="208" text-anchor="middle" direction="rtl" class="t-sm">פחות חמצן בדם</text>
+          <rect x="205" y="162" width="160" height="58" rx="10" class="f-card"/>
+          <text x="285" y="196" text-anchor="middle" direction="rtl" class="t-b">הלחץ הריאתי עולה</text>
+          <rect x="395" y="162" width="160" height="58" rx="10" class="f-card"/>
+          <text x="475" y="196" text-anchor="middle" direction="rtl" class="t-b">הלחץ בחדר ימין עולה</text>
+          <rect x="585" y="162" width="160" height="58" rx="10" class="f-alarm-soft"/>
+          <text x="665" y="196" text-anchor="middle" direction="rtl" class="t-alarm">אי-ספיקת לב ימנית</text>
+          <line x1="177" y1="191" x2="201" y2="191" class="s-alarm" marker-end="url(#ch16-arr2)"/>
+          <line x1="367" y1="191" x2="391" y2="191" class="s-alarm" marker-end="url(#ch16-arr2)"/>
+          <line x1="557" y1="191" x2="581" y2="191" class="s-alarm" marker-end="url(#ch16-arr2)"/>
+        </svg>
+      </div>
+      <figcaption><b>מהרגל ללב הימני.</b> השורה העליונה (מימין לשמאל) היא מסלול הקריש; השורה התחתונה (משמאל לימין) היא מה שקורה אחרי שהוא נתקע. שתי בעיות במקביל: פחות דם מגיע לנאדיות המאווררות (היפוקסמיה), והחדר הימני נכשל מול לחץ גבוה.</figcaption>
+    </figure>
+
+    <h4>חשוב לדעת</h4>
+    <ul>
+      <li>תסחיף ריאתי נחשב <b>לגורם תמותה משמעותי</b>; בישראל כ-<span class="num">4500</span> מקרים בשנה.</li>
+      <li><b>אבחון מוקדם יכול להציל ממוות</b> — ו<span class="alarm-t">ההידרדרות הקלינית של החולה היא מהירה</span>.</li>
+      <li>לעתים התסחיפים מופיעים <b>ללא סימפטומים ברורים</b>, ולכן החשד צריך לבוא מהסיפור ומגורמי הסיכון.</li>
+    </ul>
+
+    <h4>גורמי סיכון</h4>
+    <p>כמעט כל גורמי הסיכון מתחלקים לשלוש קבוצות: דם שזורם לאט (חוסר תנועה), דם שנקרש בקלות (מצבים תורשתיים, סרטן, היריון, גלולות), ודופן וריד פגועה (ניתוח, טראומה). זכרו את ההיגיון — וזה יעזור לכם לשאול את השאלות הנכונות באנמנזה.</p>
+    <div class="tbl-wrap"><table class="data"><caption>גורמי סיכון לתסחיף ריאתי (עמ' 4)</caption>
+      <thead><tr><th>קבוצה</th><th>גורם הסיכון</th></tr></thead>
+      <tbody>
+        <tr><th>זרימה איטית</th><td>חוסר תנועתיות — מנוחה ממושכת במיטה, נסיעות ארוכות; מחלת לב (בעיקר אי-ספיקת לב); השמנת יתר</td></tr>
+        <tr><th>קרישיות יתר</th><td>מצבים תורשתיים של קרישיות יתר <span class="en">(Factor V Leiden, Antiphospholipid antibody syndrome)</span>; גידול סרטני; היריון; שימוש בגלולות למניעת היריון אצל מעשנות</td></tr>
+        <tr><th>פגיעה בכלי הדם</th><td>ניתוח גדול (אורתופדי, אגני); טראומה</td></tr>
+        <tr><th>רקע</th><td>פקקת ורידים <span class="en">(DVT)</span> או תסחיף ריאתי בעבר; גיל (ראו הערה)</td></tr>
+      </tbody></table></div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בעמ' 4 גורם הסיכון "גיל" כתוב <b>"&lrm;60 &lt;&lrm;"</b> בתוך שורה עברית — בכתיבה מימין לשמאל לא ברור אם הכוונה מתחת לגיל 60 או מעל גיל 60. הכוונה ההגיונית היא <b>גיל מבוגר</b>, אבל כדאי לברר מול המדריך.</p>
+    </div>
+
+    <h4>איך זה נראה</h4>
+    <p>המילה החשובה היא <mark>פתאומי</mark>. מטופל שהיה בסדר ופתאום נהיה קוצר נשימה — במיוחד עם גורם סיכון — צריך להדליק נורה.</p>
+    <ul>
+      <li>קוצר נשימה פתאומי, נשימה מהירה</li>
+      <li>כאב בחזה (בשקופית האנגלית: כאב חזה עמום)</li>
+      <li>שיעול, לפעמים <b>ליחה דמית</b> <span class="en">(Hemoptysis)</span></li>
+      <li>דופק מהיר, הפרעות קצב</li>
+      <li>עלפון — סימן לתסחיף גדול שמוריד את תפוקת הלב</li>
+      <li>חרחורים / צפצופים</li>
+      <li>כאב בשוק או בירך — הרמז ל-DVT שממנו התחיל הכול</li>
+    </ul>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בעמ' 7 (איור באנגלית) מופיע <span class="en">Wheezing</span> (צפצופים), ובעמ' 8 (רשימה בעברית) מופיעים "חרחורים". אלה שני קולות נשימה שונים — כדאי לזכור ששניהם הוצגו.</p>
+    </div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p>המקור לא מפרט פרוטוקול שטח ייעודי לתסחיף. מה שכן כתוב: <b>הצעד הראשון בטיפול הוא מתן חמצן</b> (עמ' 11), וההידרדרות מהירה. בפועל:</p>
+      <ul>
+        <li>חשדו — קוצר נשימה פתאומי + גורם סיכון (ניתוח, טיסה, גלולות, סרטן, רגל נפוחה).</li>
+        <li>חמצן, ניטור, גישה ורידית, אק"ג.</li>
+        <li>פינוי מהיר — הטיפול המכריע (מדללי דם, פירוק קרישים) ניתן בבית החולים.</li>
+        <li>הערכה חוזרת לעתים קרובות: עלפון, ירידת ל"ד או הפרעות קצב הם סימני תסחיף גדול.</li>
+      </ul>
+    </div>
+
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p><b>אבחון:</b> D-Dimer (תוצר פירוק של קריש — רמה נמוכה מאפשרת לשלול); אולטרסאונד דופלקס של הרגליים (DVT); אקו לב (סימני אי-ספיקת לב ימנית); מיפוי V/Q; <b>CT עם חומר ניגוד — הבדיקה הנבחרת</b>; צנתור ריאות כשבדיקות אחרות לא הניבו אבחנה.</p>
+      <p><b>טיפול:</b> חמצן; דילול דם (הפרין או LMWH) למניעת תסחיפים נוספים, תוך שקילת סיכון הדימום; דילול לטווח ארוך (קומדין); טיפול מפורר קרישים (TPA) בקרישים גדולים — כרוך בסיכון לדימום; מסנן בווריד הנבוב התחתון <span class="en">(IVC Filter)</span> למי שלא יכול לקבל מדללים; ניתוח להוצאת הקריש; צנתור עורקי הריאה; וטיפול מונע לבעלי גורמי סיכון (למשל שמירה על זרימת הדם ברגליים בטיסות).</p>
+    </div>
+
+    <h4>מהלך ותחזית</h4>
+    <div class="tbl-wrap"><table class="data"><caption>שיעורי תמותה (עמ' 12)</caption>
+      <thead><tr><th>מצב</th><th>תמותה</th></tr></thead>
+      <tbody>
+        <tr><th>תסחיף שלא אובחן בזמן</th><td class="hl">כ-30%</td></tr>
+        <tr><th>אובחן בזמן וטופל</th><td>10% בשנה הראשונה</td></tr>
+        <tr><th>שרדו את האירוע הראשון ולא טופלו</th><td>30% ימותו מתסחיף חוזר</td></tr>
+      </tbody></table></div>
+    <p><b>תסחיפים חוזרים</b> נפוצים ויכולים לגרום ליתר לחץ דם ריאתי כרוני ולאי-ספיקת לב כרונית. במילים פשוטות: אבחנה שלכם בשטח — גם אם היא רק "חשד" בדיווח לבית החולים — משנה את התחזית.</p>
+
+    <!-- ============ PLEURA ============ -->
+    <h3>חלל הצדר: מה יכול להצטבר בו</h3>
+    <p>הצדר <span class="en">(Pleura)</span> הוא קרום נסיובי כפול שעוטף את הריאות. בין שני הקרומים יש <b>חלל פוטנציאלי</b> — חלל הצדר. באופן טבעי יש בו מעט מאוד נוזל שמשמש כחומר סיכה, ומאפשר לריאה לנוע, להתרחב ולהתכווץ בגמישות. הנוזל מגיע לחלל דרך נימים של שני הקרומים, ומתנקז דרך חורים קטנים בסרעפת אל חלל הבטן.</p>
+    <p>הנקודה החשובה: <b>הריאה "דבוקה" לדופן החזה רק בזכות החלל הסגור הזה</b>. ברגע שמשהו נכנס לחלל — אוויר, דם או נוזל — הריאה נדחסת או קורסת.</p>
+
+    <dl class="kv">
+      <dt>פנאומוטורקס</dt><dd>אוויר בין קרומי הצדר (אחרי חבלה או טראומה)</dd>
+      <dt>המוטורקס</dt><dd>דם בין קרומי הצדר</dd>
+      <dt>המופנאומוטורקס</dt><dd>דם ואוויר בין קרומי הצדר — רוב הפצועים</dd>
+      <dt>תפליט פלאורלי</dt><dd>נוזל שאיננו דם בין קרומי הצדר <span class="en">(Pleural effusion)</span></dd>
+      <dt>פנאומוטורקס ספונטני</dt><dd>אוויר בצדר <b>ללא</b> חבלה או טראומה</dd>
+    </dl>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 780 310" role="img" aria-label="השוואה בין חלל צדר תקין, תפליט פלאורלי וחזה אוויר">
+          <text x="645" y="26" text-anchor="middle" direction="rtl" class="t-b">תקין</text>
+          <rect x="545" y="40" width="200" height="200" rx="40" class="f-card"/>
+          <rect x="557" y="52" width="176" height="176" rx="34" class="f-zone-soft"/>
+          <text x="645" y="145" text-anchor="middle" direction="rtl" class="t-b">ריאה</text>
+          <text x="645" y="268" text-anchor="middle" direction="rtl" class="t-sm">הריאה ממלאת את בית החזה</text>
+          <text x="645" y="290" text-anchor="middle" direction="rtl" class="t-sm">הקשה: קול תקין</text>
+
+          <text x="390" y="26" text-anchor="middle" direction="rtl" class="t-b">תפליט פלאורלי</text>
+          <rect x="290" y="40" width="200" height="200" rx="40" class="f-card"/>
+          <path d="M 302 168 L 478 168 L 478 194 Q 478 228 444 228 L 336 228 Q 302 228 302 194 Z" class="f-field-soft"/>
+          <rect x="310" y="56" width="160" height="104" rx="30" class="f-zone-soft"/>
+          <text x="390" y="114" text-anchor="middle" direction="rtl" class="t-b">ריאה</text>
+          <text x="390" y="204" text-anchor="middle" direction="rtl" class="t-field">נוזל</text>
+          <text x="390" y="268" text-anchor="middle" direction="rtl" class="t-sm">הריאה נדחסת מלמטה</text>
+          <text x="390" y="290" text-anchor="middle" direction="rtl" class="t-sm">הקשה: עמימות</text>
+
+          <text x="135" y="26" text-anchor="middle" direction="rtl" class="t-b">חזה אוויר</text>
+          <rect x="35" y="40" width="200" height="200" rx="40" class="f-card"/>
+          <rect x="95" y="110" width="90" height="110" rx="30" class="f-zone-soft"/>
+          <text x="140" y="170" text-anchor="middle" direction="rtl" class="t-b">ריאה</text>
+          <text x="135" y="84" text-anchor="middle" direction="rtl" class="t-alarm">אוויר</text>
+          <text x="135" y="268" text-anchor="middle" direction="rtl" class="t-sm">הריאה קורסת</text>
+          <text x="135" y="290" text-anchor="middle" direction="rtl" class="t-sm">הקשה: הדיות (קול חלול)</text>
+        </svg>
+      </div>
+      <figcaption><b>שלושה מצבים של חלל הצדר (מבט סכמטי בחצי בית חזה).</b> נוזל שוקע לחלק התחתון ונותן <b>עמימות</b> בהקשה; אוויר דוחק את הריאה ונותן <b>הדיות</b> — קול נקישה חלול. בשני המצבים כניסת האוויר בהאזנה <b>יורדת בצד הפגוע</b>.</figcaption>
+    </figure>
+
+    <!-- ============ EFFUSION ============ -->
+    <h3>תפליט פלאורלי <span class="en">(Pleural Effusion)</span></h3>
+    <p>תפליט פלאורלי הוא <b>עודף נוזלים במרווח הפלאורלי</b> — נוזל שהצטבר בין שני קרומי הריאה בכמות גדולה מהרגיל ומקשה על הנשימה. חשוב להבין: <mark>תפליט הוא סימן, לא מחלה</mark>. הצטברות הנוזל מעידה על פתולוגיה שיכולה לנבוע ממספר סיבות — אי-ספיקת לב, אי-ספיקת ריאות, דלקת, סרטן ועוד.</p>
+
+    <h4>סיבות</h4>
+    <ul>
+      <li><b>אי-ספיקת לב</b></li>
+      <li><b>שחמת הכבד</b> — כ-<span class="num">5%</span> מהחולים בשחמת ובמיימת עלולים לפתח תפליט</li>
+      <li>תפליטים הקשורים בזיהומים חיידקיים (דלקת ריאות) וזיהומים ויראליים</li>
+      <li>תסחיף ריאתי</li>
+      <li>שחפת — תגובת יתר רגישות לחלבוני חיידק השחפת</li>
+      <li>ממאירות</li>
+      <li>פנאומוטורקס והמוטורקס</li>
+      <li>ניתוח מעקפים</li>
+    </ul>
+
+    <h4>טרנסודט מול אקסודט — למה זה חשוב</h4>
+    <p>קביעת סוג הנוזל מסייעת רבות לאבחנה הסופית ולדרכי הטיפול, כי היא אומרת לנו אם הבעיה <b>בכל הגוף</b> או <b>בריאה עצמה</b>. ההיגיון: כשהלחץ בכלי הדם עולה או שהחלבון בדם יורד (אי-ספיקת לב, שחמת), נוזל "דליל" מסונן החוצה מכלי דם שלמים. כשיש דלקת או גידול מקומי, כלי הדם עצמם דולפים ונוזל עשיר בחלבון יוצא.</p>
+    <div class="compare">
+      <div><h5>טרנסודט <span class="en">(Transudate)</span></h5><ul>
+        <li>נוזל <b>עני</b> בחלבונים</li>
+        <li>מעיד על גורם <b>סיסטמי</b> — מחלה של כל הגוף, לא מקומית בריאות</li>
+        <li>דוגמאות: אי-ספיקת לב, שחמת הכבד, תסמונת נפרוטית</li>
+      </ul></div>
+      <div><h5>אקסודט <span class="en">(Exudate)</span></h5><ul>
+        <li>נוזל <b>עשיר</b> בחלבונים</li>
+        <li>מעיד על גורם <b>מקומי</b></li>
+        <li>דוגמאות: דלקת ריאות חיידקית, ממאירות בריאות, זיהום ויראלי, תסחיף ריאתי, ניתוח מעקפים באזור; גם בעיות גניקולוגיות (תסמונת מייגס <span class="en">Meigs</span>)</li>
+      </ul></div>
+    </div>
+
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p>הנוזל נלקח בניקור פלאורלי <span class="en">(Thoracentesis)</span> ונבדק במעבדה. ההבחנה נעשית לפי רמות החלבון וה-LDH בתפליט לעומת הדם. נוזל ייקרא אקסודטיבי אם מתקיים לפחות אחד מהקריטריונים: חלבון בתפליט יותר מהדם; LDH בתפליט יותר מהדם; LDH בתפליט גבוה מ-2/3 מהרמה הנורמלית הגבוהה ביותר בדם. אקסודט נשלח לבדיקות נוספות: גלוקוז, עמילאז, ציטולוגיה, תרביות וצביעות. עמילאז גבוה יכול לנבוע מקרע בוושט או מממאירות; גלוקוז נמוך מ-60 מ"ג — מזיהום חיידקי או ממאירות. צילום חזה מעלה חשד, ו-CT קובע בבירור שמדובר בתפליט ואת חומרתו.</p>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>עמ' 9: הקריטריונים "חלבון בתפליט יותר מהדם" ו-"LDH בתפליט יותר מהדם" הם פישוט של יחסים (תפליט/דם) שנלמדים בדרך כלל כיחס. עמ' 10: "ראומטיק פליאוריטיס" מופיע כדוגמה ל<b>ממאירות</b> (זו מחלה דלקתית), וסף הגלוקוז "60 מ"ג" מופיע בלי יחידת נפח.</p>
+    </div>
+
+    <h4>סימנים</h4>
+    <ul>
+      <li>לרוב, <b>הסימנים השולטים יהיו של המחלה הגורמת</b> (אי-ספיקת לב, דלקת ריאות, סרטן).</li>
+      <li>שיעול רדוד ותכוף, לא פרודוקטיבי.</li>
+      <li>כאבים בחזה — במיוחד בשאיפה.</li>
+      <li>בהאזנה: <b>ירידה מקומית בכניסת אוויר</b>, קרפטציות עדינות. ברוב המקרים הנוזל ממוקד <b>לצד אחד</b>.</li>
+      <li>בהקשה (למי שיודע): <b>עמימות</b>.</li>
+      <li>באנמנזה נסו להבין אם יש תנוחה מסוימת שמתאימה לממצא ההאזנתי.</li>
+    </ul>
+
+    <h4>התמונה בשטח והסכנות</h4>
+    <p>מצוקה נשימתית תביא אותנו לרוב בשלב שבו כבר יש כמות נוזל ניכרת. התמונה הטיפוסית מבלבלת: <b>הכול תקין מסביב, אבל החולה נראה סובל ומתנשם</b>; לחץ הדם תקין או גבוה מעט (אם קראו לנו בזמן). מיומנות בהאזנה היא שתמקד את החשד.</p>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>הסכנות בתפליט גדול: מצוקה נשימתית, דה-סטורציה והיפוקסמיה; <span class="alarm-t">ירידה ברמת ההכרה וכניסה לשרשרת המוות</span>; <span class="alarm-t">ירידה בלחץ הדם — בגלל לחץ במדיאסטינום</span>; זיהומים וספסיס; דום נשימה.</p>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>עמ' 11 מונה ירידה בלחץ הדם כסכנה, ועמ' 15 אומר שלחץ הדם "יהיה תקין או גבוה מעט (אם קראו לנו בזמן)". אין כאן סתירה של ממש: ל"ד תקין הוא התמונה המוקדמת, ירידת ל"ד היא סימן מאוחר ומסוכן.</p>
+    </div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ul>
+        <li><b>לפני הטיפול צריך לאבחן מה הסיבה.</b></li>
+        <li>טיפול סימפטומטי: <b>חמצן בזרימה גבוהה</b>.</li>
+        <li>גודש: <b>פוסיד לא יעזור אם זה לא לבבי</b> — משתן מוציא נוזל מכלי הדם, לא מחלל הצדר כשהסיבה דלקתית או גידולית.</li>
+        <li>הטיפול המכריע הוא ניקוז (ניקור) — <span class="hosp-i">בבית החולים</span>.</li>
+      </ul>
+    </div>
+
+    <!-- ============ PNEUMOTHORAX ============ -->
+    <h3>חזה אוויר ספונטני <span class="en">(Spontaneous Pneumothorax)</span></h3>
+    <p>חזה אוויר מסווג לארבעה סוגים: <b>ספונטני, סגור, סגור בלחץ, ופתוח</b>. כאן נתמקד בספונטני — אוויר בצדר בלי חבלה.</p>
+
+    <h4>איך זה קורה</h4>
+    <p>חזה אוויר ספונטני מתרחש בעקבות <b>קרע ברקמת הריאה</b> — התנקבות של שלפוחיות ריאה. אצל אנשים עם פתולוגיה בריאה נוצר לחץ, למשל כתוצאה <b>משיעול</b>, ושלפוחית בריאה מתפוצצת ומאפשרת לאוויר לברוח לחלל הצדר. האוויר שהצטבר יכול להיספג לבד והחולה יחזור לאיתנו — <span class="alarm-t">או להמשיך להצטבר ולהוביל לחזה אוויר בלחץ (טנשן)</span>.</p>
+    <ul>
+      <li><b>עישון מעלה את הסיכון פי 100.</b></li>
+      <li>שכיח במיוחד <b>בגברים גבוהים ורזים</b>.</li>
+      <li>קשה לאבחון לאור התפתחות איטית.</li>
+    </ul>
+    <p><b>גורמים:</b> אסתמה, COPD, סינדרום מרפן, מחלות ריאה נוספות, גידולים, אבסס. <b>שיעול נחשב למגרה הראשוני</b> — האירוע קורה לרוב עקב שינויים בלחץ: שיעול, טיסה, מאמץ, צלילה ועוד. סינדרום מרפן <span class="en">(Marfan)</span> — מחלה גנטית של רקמת החיבור — מוזכר כי החולים גבוהים, עם אצבעות ארוכות, ונוטים לקרעים ברקמות.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>הנתון "עישון מעלה את הסיכון פי 100" (עמ' 4) נמצא בקצה הגבוה של הנתונים המקובלים. זה המספר שבחומר — כך ייתכן שיופיע במבחן.</p>
+    </div>
+
+    <h4>סימנים וממצאים</h4>
+    <div class="tbl-wrap"><table class="data"><caption>חזה אוויר ספונטני — תלונות וממצאים (עמ' 7–8)</caption>
+      <thead><tr><th>תלונות (סימפטומים)</th><th>ממצאים בבדיקה</th></tr></thead>
+      <tbody>
+        <tr><td><b>כאבים בחזה — 90%</b>, כאב דוקר וחד</td><td>מצוקה נשימתית, שימוש בשרירי עזר</td></tr>
+        <tr><td><b>קוצר נשימה — 80%</b>, חד, מתוח, שטחי</td><td><b>ירידה חד-צדדית בכניסת אוויר</b> — בצד הפגוע</td></tr>
+        <tr><td>כאב אפיגסטרי או כאב צלעי דוקר שקשור לנשימה</td><td>חרחורים וצפצופים חד-צדדיים — כיווץ הריאה גורם לאוויר לעבור במקומות צרים יותר</td></tr>
+        <tr><td>חרדה, אי שקט, עייפות וחולשה</td><td>טכיפניאה (חלק מהמצוקה), טכיקרדיה</td></tr>
+        <tr><td>טכיקרדיה קלה, ירידה בסטורציה</td><td><b>הדיות בצד הפגוע</b> — קול נקישה חלול בהקשה על הריאה</td></tr>
+      </tbody></table></div>
+
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p>האבחון: סיפור המחלה, בדיקה גופנית (האזנה, מישוש וניקוש), ובדיקות עזר — סטורציה, גזים בדם, צילום חזה (<b>לא תמיד ניתן לזהות — יש פספוס בפענוח</b>), CT של בית החזה, ואולטרסאונד — שיטה מדויקת שלאחרונה הוכנסה גם לנט"ן.</p>
+    </div>
+
+    <h4>טיפול</h4>
+    <ul>
+      <li><b>לרוב אין צורך בהתערבות.</b></li>
+      <li>טיפול תומך כולל <b>100% חמצן</b>.</li>
+      <li>ניקוז בעזרת מחט; החדרת נקז חזה (טרוקר) <span class="hosp-i">בבית החולים</span>.</li>
+      <li>יש לנקז כל חזה אוויר של הצטברות <b>מעל 10%</b>.</li>
+      <li><b>בחולה מונשם יש להחדיר נקז גם לפנאומוטורקס קטן</b>, כיוון שההנשמה בלחץ חיובי תחמיר את הפנאומוטורקס.</li>
+      <li><mark>הידרדרות במצב החולה היא אינדיקציה לטנשן פנאומוטורקס.</mark> ברמת הנט"ן ניתן לטפל בטנשן באמצעות נידל שינקז את האוויר מבין קרומי הצדר.</li>
+    </ul>
+
+    <h4>חזה אוויר בלחץ — המצב שהורג תוך דקות</h4>
+    <p>בטנשן פנאומוטורקס נוצר "שסתום חד-כיווני": אוויר נכנס לצדר בכל נשימה ולא יוצא. כך נראית שרשרת האירועים:</p>
+    <ol class="steps">
+      <li><div>אוויר נכנס לחלל הצדר ולא יוצא — הלחץ בצד הפגוע עולה עם כל נשימה.</div></li>
+      <li><div>הריאה בצד הפגוע קורסת לגמרי, והלחץ נדחף אל המדיאסטינום.</div></li>
+      <li><div>הלחץ מופעל על הוורידים הנבובים — <b>דם לא נכנס ללב</b>.</div></li>
+      <li><div>ירידה חדה ב-Preload <span class="hosp-i">‏&rlm;←&rlm; תפוקת הלב קורסת</span> — מוות תוך מספר דקות ללא טיפול.</div></li>
+    </ol>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <ul>
+        <li>החמרה במצב החולה = <b>חשדו בטנשן</b>. זהו מצב חירום שדורש <b>התערבות מיידית</b> ומיומנות בביצוע פרוצדורות (ניקוז במחט).</li>
+        <li><span class="alarm-t">אל תחשבו שהאינטובציה היא הפתרון — כאן היא יכולה להיות האויב שלכם.</span> הנשמה בלחץ חיובי דוחפת עוד אוויר דרך הקרע ומחמירה את הטנשן.</li>
+        <li>מאותה סיבה, לפי פרוטוקול איחוד הצלה, <b>פנאומוטורקס ספונטני (בעבר ובהווה) הוא התווית נגד ל-CPAP</b>.</li>
+      </ul>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>עמ' 11 כותב שהמוות נגרם "על רקע ירידה חדה ב-PRELOAD לחדר <b>שמאל</b> עקב לחץ על הוורידים הנבובים". הניסוח המקובל הוא ירידה בהחזר הוורידי ללב — שמתחילה כבר בצד <b>ימין</b> (הוורידים הנבובים נשפכים לעלייה הימנית), ובעקבותיה כל הלב לא מתמלא. העיקרון ("דם לא נכנס ללב") נכון.</p>
+    </div>
+
+    <!-- ============ HYPERVENTILATION ============ -->
+    <h3>תסמונת היפרוונטילציה <span class="en">(Hyperventilation Syndrome – HVS)</span></h3>
+    <p>מצב שמאופיין ב<b>נשימה עמוקה ומהירה ללא הפרעה או מחלה, ושלא על רקע לקיחת תרופות</b>. בדרך כלל מופיע אצל אנשים צעירים (נשים), ומבטא מתח נפשי וחרדה. <b>החולה אינו מודע לכך שהוא נושם באופן לא נורמלי.</b> המצב מביא לאוורור יתר של הריאות ולירידה ב-CO<sub>2</sub> בדם מתחת לערכו הנורמלי — ו<mark>הכול מתחיל בירידת ה-CO<sub>2</sub></mark>.</p>
+    <p>המשפט מהשקופיות "אם אין צופים, אין הצגה" מזכיר שהגורם הרגשי משמעותי מאוד: קהל, לחץ ובהלה מזינים את המצב — ולכן הרגעה בסביבה שקטה היא חלק מהטיפול.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 350" role="img" aria-label="מעגל ההיפרוונטילציה">
+          <defs>
+            <marker id="ch16-arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-alarm"/></marker>
+            <marker id="ch16-arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-zone"/></marker>
+          </defs>
+          <rect x="245" y="50" width="150" height="40" rx="20" class="f-alarm-soft"/>
+          <text x="320" y="75" text-anchor="middle" direction="rtl" class="t-b">היפרוונטילציה</text>
+          <rect x="369" y="140" width="150" height="40" rx="20" class="f-card"/>
+          <text x="444" y="165" text-anchor="middle" direction="rtl">תחושה רעה</text>
+          <rect x="340" y="285" width="140" height="40" rx="20" class="f-card"/>
+          <text x="410" y="310" text-anchor="middle" direction="rtl">חרדה</text>
+          <rect x="160" y="285" width="140" height="40" rx="20" class="f-card"/>
+          <text x="230" y="310" text-anchor="middle" direction="rtl">עוד היפרוונטילציה</text>
+          <rect x="121" y="140" width="150" height="40" rx="20" class="f-card"/>
+          <text x="196" y="165" text-anchor="middle" direction="rtl">החמרת התסמינים</text>
+          <line x1="372" y1="92" x2="420" y2="137" class="s-alarm" marker-end="url(#ch16-arr3)"/>
+          <line x1="450" y1="182" x2="425" y2="281" class="s-alarm" marker-end="url(#ch16-arr3)"/>
+          <line x1="338" y1="305" x2="304" y2="305" class="s-alarm" marker-end="url(#ch16-arr3)"/>
+          <line x1="218" y1="283" x2="196" y2="184" class="s-alarm" marker-end="url(#ch16-arr3)"/>
+          <line x1="230" y1="138" x2="268" y2="94" class="s-alarm" marker-end="url(#ch16-arr3)"/>
+          <rect x="255" y="200" width="130" height="36" rx="8" class="f-zone-soft"/>
+          <text x="320" y="223" text-anchor="middle" direction="rtl" class="t-b">טריגר: סטרס</text>
+          <line x1="320" y1="198" x2="320" y2="96" class="s-zone" marker-end="url(#ch16-arr4)"/>
+        </svg>
+      </div>
+      <figcaption><b>מעגל ההיפרוונטילציה (עמ' 2).</b> לחץ נפשי (עבודה, אבל, פחד, בעיות בריאות ועוד) מתניע נשימת יתר; התסמינים מפחידים, החרדה מגבירה את הנשימה, וחוזר חלילה. הטיפול שובר את המעגל: הרגעה ונשימה איטית.</figcaption>
+    </figure>
+
+    <h4>מה קורה בדם — ולמה זה מסביר את הסימנים</h4>
+    <ul>
+      <li><b>ירידה ב-CO<sub>2</sub> הופכת את הדם לבסיסי</b> <span class="en">(בססת נשימתית – Respiratory Alkalosis)</span>.</li>
+      <li>בבססת, הסידן "בוחר" להתחבר לאלבומין, והגוף קורא את זה כ<b>היפוקלצמיה</b>. לכן מופיעים עקצוצים בידיים וברגליים ומסביב לפה, ובהמשך <b>כיווץ לא רצוני של אצבעות הידיים</b>. מצב מתקדם יכול לגרום להפרעות קצב.</li>
+      <li>ירידה בחומציות גורמת ל<b>כיווץ כלי דם במוח</b> — ירידה באספקת החמצן למוח, סחרחורת, טשטוש ראייה ועילפון.</li>
+      <li><b>אפניאה:</b> מנגנון ההחלטה לנשום הוא ה-CO<sub>2</sub> — כשרמתו עולה החולה נושם. אחרי אוורור יתר ה-CO<sub>2</sub> נמוך, ולכן החולה עלול להפחית את הנשימות עד מצב של אפניאה.</li>
+    </ul>
+
+    <h4>סימנים</h4>
+    <div class="compare">
+      <div><h5>התחושה</h5><ul>
+        <li>חרדה קשה ובהלה</li>
+        <li>תחושת חנק, קוצר נשימה</li>
+        <li>כאבים / דקירות בחזה</li>
+        <li>דפיקות לב, דופק מהיר</li>
+        <li>הזעה, רעד, יתר לחץ דם</li>
+      </ul></div>
+      <div><h5>הגוף</h5><ul>
+        <li>עקצוצים בידיים, ברגליים ומסביב לפה</li>
+        <li>לעתים הרגשת קור בידיים וברגליים</li>
+        <li>סחרחורות</li>
+        <li>בהמשך — כיווץ לא רצוני של אצבעות הידיים</li>
+        <li>טשטוש ראייה ועילפון</li>
+      </ul></div>
+    </div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>המטרה: להעלות את רמת ה-CO<sub>2</sub> בדם.</b></p>
+      <ol class="steps">
+        <li><div><b>שללו קודם בעיה אחרת.</b> חובה לברר לפני הטיפול את הגורם לבעיה ולשלול בעיות רפואיות אחרות.</div></li>
+        <li><div><b>הרגיעו</b> את החולה והורו לו לנשום לאט.</div></li>
+        <li><div>אפשרות נוספת: <b>שקית</b> — מניחים אותה צמודה לפה ולאף, והחולה נושם לתוכה ובכך מעלה את ה-CO<sub>2</sub> (רק אחרי ששללתם סיבה אורגנית).</div></li>
+        <li><div>במצבים קיצוניים — <b>תרופות הרגעה</b> בכדורים או דרך הווריד.</div></li>
+      </ol>
+    </div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <ul>
+        <li><b>נשימה מהירה עלולה להופיע על רקע בעיה חמורה אחרת</b> — אוטם בשריר הלב, הרעלות או מצבים סוכרתיים. במצבים אלה <span class="alarm-t">אין לתת לחולה שקית</span>: הנשימה המהירה היא תגובת הגנה של הגוף ובאה כפיצוי (למשל על חמצת).</li>
+        <li><span class="alarm-t">כחלון אינו מופיע בדרך כלל בהיפרוונטילציה</span> — הופעתו מחשידה לבעיה חמורה יותר.</li>
+        <li>הסכנות: <b>פספוס של משהו מעבר</b>, הפרעות קצב במצב מתקדם, טעות בטיפול.</li>
+      </ul>
+    </div>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p>כלל בטיפול בחולה: <b>כל פעם שמשתנה משהו אצל החולה — מבצעים <span class="en">RE-ASSESSMENT</span>.</b> "היפרוונטילציה" היא אבחנה של שלילה, לא של נוחות.</p>
+    </div>
+
+    <!-- ============ CO ============ -->
+    <h3>הרעלת פחמן חד-חמצני <span class="en">(CO – Carbon Monoxide)</span></h3>
+    <h4>מה זה CO ומאיפה הוא בא</h4>
+    <p>CO הוא <b>גז חסר טעם, ריח וצבע</b> — ולכן הרעלה שלו קשה לאבחון וקטלנית: לא ניתן לזהות אם הוא נמצא בסביבתנו. ה-CO נוצר רק כשיש בעירה <b>שאין לה מספיק חמצן</b>: בבעירה רגילה משתמשים בחמצן ופולטים CO<sub>2</sub>, אבל כשאין מספיק חמצן פולטים CO במקום CO<sub>2</sub>. (מבחינה כימית, ה-CO לא אמור להיות במצב יציב — לפחמן במולקולה יש שני אלקטרונים שאינם קשורים.)</p>
+    <p><b>מקורות חשיפה:</b> שריפה במקום סגור; אמצעי חימום — גז ונפט כשהחלונות סגורים, תנורי חימום ביתיים, בעירת פחם וחימום בבית; גז שנפלט מרכבים וחניונים סגורים; מנועי פליטת גז כמו גנרטורים ומכונות תעשייה; מפעלי תעשייה; עישון סיגריות. ה-CO שימושי גם בניסיונות התאבדות.</p>
+
+    <h4>המנגנון: "הרוצח השקט"</h4>
+    <p>ל-CO יש יכולת גבוהה להתקשר להמוגלובין <b>במקום החמצן</b>, והקשירה הזו חזקה מאוד. <mark>זיקת הקשירה של CO להמוגלובין גדולה פי 240 בערך מזו של חמצן.</mark> ההמוגלובין שנקשר ל-CO הופך לקרבוקסי-המוגלובין <span class="en">(COHb)</span> ואינו נושא חמצן. המערכת "מתפקדת רגיל", אבל בפועל התאים לא מקבלים חמצן — ולכן השם הרשמי של סיבת המוות הוא <b>חנק ברמה התאית</b>. ה-CO מסולק מהגוף <b>רק דרך הריאות</b> ומחזור הדם — וזו בדיוק הסיבה שחמצן בריכוז גבוה הוא הטיפול.</p>
+    <p>בגלל שהקשירה מתרחשת בדם ולא בריאות, הריאות עצמן יכולות להיות תקינות לגמרי. לכן גם בדיקת הסטורציה הרגילה עלולה להטעות: היא מודדת כמה המוגלובין "תפוס", ולא מבדילה היטב בין תפוס-בחמצן לתפוס-ב-CO. סטורציה טובה <b>אינה</b> שוללת הרעלת CO.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 760 290" role="img" aria-label="אחוז קרבוקסי-המוגלובין בקבוצות שונות, בקנה מידה">
+          <line x1="540" y1="38" x2="540" y2="232" class="ln"/>
+          <line x1="40" y1="232" x2="540" y2="232" class="ln"/>
+          <line x1="415" y1="38" x2="415" y2="232" class="ln-dash"/>
+          <line x1="290" y1="38" x2="290" y2="232" class="ln-dash"/>
+          <line x1="165" y1="38" x2="165" y2="232" class="ln-dash"/>
+          <line x1="40" y1="38" x2="40" y2="232" class="ln-dash"/>
+          <rect x="508.75" y="48" width="18.75" height="28" class="f-field"/>
+          <rect x="415" y="96" width="37.5" height="28" class="f-zone"/>
+          <rect x="227.5" y="144" width="62.5" height="28" class="f-alarm-soft"/>
+          <rect x="40" y="192" width="125" height="28" class="f-alarm"/>
+          <text x="745" y="62" text-anchor="start" direction="rtl" class="t-b">לא מעשנים (תקין)</text>
+          <text x="745" y="80" text-anchor="start" direction="rtl" class="t-sm">1–2.5%</text>
+          <text x="745" y="110" text-anchor="start" direction="rtl" class="t-b">מעשנים</text>
+          <text x="745" y="128" text-anchor="start" direction="rtl" class="t-sm">עד 7–10%</text>
+          <text x="745" y="158" text-anchor="start" direction="rtl" class="t-b">הרעלה כרונית</text>
+          <text x="745" y="176" text-anchor="start" direction="rtl" class="t-sm">20–25%</text>
+          <text x="745" y="206" text-anchor="start" direction="rtl" class="t-alarm">הרעלה חריפה</text>
+          <text x="745" y="224" text-anchor="start" direction="rtl" class="t-sm">30–40%</text>
+          <text x="540" y="252" text-anchor="middle" direction="ltr" class="t-sm">0%</text>
+          <text x="415" y="252" text-anchor="middle" direction="ltr" class="t-sm">10%</text>
+          <text x="290" y="252" text-anchor="middle" direction="ltr" class="t-sm">20%</text>
+          <text x="165" y="252" text-anchor="middle" direction="ltr" class="t-sm">30%</text>
+          <text x="40" y="252" text-anchor="middle" direction="ltr" class="t-sm">40%</text>
+          <text x="290" y="280" text-anchor="middle" direction="rtl" class="t-sm">אחוז ההמוגלובין שהפך לקרבוקסי-המוגלובין (COHb)</text>
+        </svg>
+      </div>
+      <figcaption><b>COHb בקנה מידה.</b> ערכים מעמ' 7, 8 ו-15. שימו לב שמעשן כבד "מתחיל" כבר ברמה כפולה מהנורמה — ושההבדל בין הרעלה כרונית לחריפה הוא עוד 10%–15% בלבד.</figcaption>
+    </figure>
+
+    <h4>הרעלה כרונית מול חריפה</h4>
+    <div class="compare">
+      <div><h5>הרעלה כרונית</h5><ul>
+        <li>כמויות קטנות יחסית של CO במחזור הדם</li>
+        <li><b>20–25%</b> מההמוגלובין הופך לקרבוקסי-המוגלובין ומפחית את יכולת העברת החמצן לרקמות</li>
+        <li>סימנים קלים: כאבי ראש, סחרחורת, בחילות, בלבול, <b>תופעות דמויות שפעת</b> ואף תחושת שכרות</li>
+        <li>ערכים בערך בין <b>200–400 PPM</b></li>
+      </ul></div>
+      <div><h5>הרעלה חריפה (אקוטית)</h5><ul>
+        <li>רמות גבוהות של CO במחזור הדם</li>
+        <li><b>30–40%</b> מההמוגלובין הופך לקרבוקסי-המוגלובין</li>
+        <li>כאבי ראש פרונטליים חדים, כאבים בחזה, סחרחורת, חוסר שיווי משקל, בעיות שיפוט וקואורדינציה, פרכוסים, קוצר נשימה, תרדמת, <span class="alarm-t">אי-ספיקה נשימתית ולבבית עד כדי מוות</span></li>
+        <li>ערכים <b>מעל 400 PPM</b></li>
+      </ul></div>
+    </div>
+    <p>"תופעות דמויות שפעת" הן המלכודת הקלאסית: משפחה שלמה עם כאב ראש ובחילה בחורף, בבית סגור עם תנור — זו לא שפעת עד שהוכח אחרת.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>סימני הרעלה לפי ריכוז ה-CO באוויר (עמ' 5)</caption>
+      <thead><tr><th>ריכוז</th><th>מה קורה</th></tr></thead>
+      <tbody>
+        <tr><th>35ppm (0.0035%)</th><td>כאבי ראש וסחרחורות תוך 6–8 שעות של חשיפה רצופה</td></tr>
+        <tr><th>100ppm (0.01%)</th><td>כאבי ראש קלים תוך 2–3 שעות חשיפה</td></tr>
+        <tr><th>200ppm (0.02%)</th><td>כאבי ראש תוך "3-3" שעות חשיפה ואיבוד כושר שיפוט</td></tr>
+        <tr><th>400ppm (0.04%)</th><td>כאב ראש פרונטלי תוך 1–2 שעות חשיפה</td></tr>
+        <tr><th>800ppm (0.08%)</th><td>סחרחורות, בחילה ופרכוסים תוך 45 דקות; איבוד תחושת רגישות תוך שעתיים</td></tr>
+        <tr><th>1,600ppm (0.16%)</th><td>כאבי ראש, טכיקרדיה, סחרחורות ובחילות תוך 20 דקות; <b>מוות תוך פחות משעתיים</b></td></tr>
+        <tr><th>3,200ppm (0.32%)</th><td>כאבי ראש, סחרחורות ובחילה תוך 5–10 דקות; <b>מוות תוך 30 דקות</b></td></tr>
+        <tr><th>6,400ppm (0.64%)</th><td>כאבי ראש וסחרחורות תוך 1–2 דקות; פרכוסים, עצירת נשימה <b>ומוות תוך 20 דקות</b></td></tr>
+        <tr><th>12,800ppm (1.28%)</th><td class="hl">איבוד הכרה תוך 2–3 שאיפות אוויר; תשניק ומוות תוך פחות מ-3 דקות</td></tr>
+      </tbody></table></div>
+    <p>אין צורך לשנן את הטבלה שורה-שורה (השקופיות עצמן אומרות "החישוב לא פשוט"); מה שחשוב הוא העיקרון: <b>ככל שהריכוז מוכפל, הזמן עד לנזק מתקצר דרמטית</b> — מ-שעות לדקות ולשאיפות בודדות. לכן גם צוות שנכנס לחלל סגור בלי הגנה נמצא בסכנה ממשית.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li>עמ' 5, שורת 200ppm: "תוך 3-3 שעות" — כנראה טעות הקלדה (אולי 2–3).</li>
+        <li>עמ' 5 מול עמ' 7–8: בטבלה 400ppm הוא "כאב ראש תוך 1–2 שעות", ובעמ' 7–8 הרעלה כרונית היא 200–400 PPM והרעלה חריפה "מעל 400 PPM". ה-PPM בטבלה הוא ריכוז באוויר, והסף בעמ' 8 הוא חלוקה גסה.</li>
+        <li>עמ' 15: הכותרת היא "<b>אין</b> בודקים את רמתו בדם", אבל התבליט הראשון אומר שמדידת COHb <b>מתבצעת</b> כשיש חשד להרעלה וחיונית לניטור יעילות הטיפול. ככל הנראה הכוונה "אֵיךְ בודקים".</li>
+        <li>עמ' 13: פוליציתמיה (ייצור יתר של כדוריות אדומות) מוצגת כפיצוי של הגוף על קשירת CO להמוגלובין. ייצור כדוריות אדומות הוא תהליך איטי — הוא רלוונטי לחשיפה <b>כרונית</b>, לא לאירוע חריף.</li>
+      </ul>
+    </div>
+
+    <h4>סימנים וסימפטומים</h4>
+    <p>כאבי ראש, עצבנות יתר, טעויות בשיפוט, הקאות, כאבים בחזה, בלבול, אי שקט, חוסר קואורדינציה, שינוי ברמת ההכרה, התכווצויות, כחלון בעור — ומוות.</p>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>לזכור: האנמנזה והתשאול כולל בדיקת זירת האירוע — זה המפתח.</b> אין לגז צבע או ריח, ולכן אין דרך לאתר אותו מלבד הזיהוי על ידי סיפור המקרה.</p>
+      <ol class="steps">
+        <li><div><b>בטיחות והרחקה מזירת האירוע.</b> הגז מרדים וגורם לישנוניות — גם אצלכם.</div></li>
+        <li><div><b>חשדו וזהו:</b> בדקו את הסביבה, סרקו את המקום, בררו את אורך זמן החשיפה והאם המקום היה פתוח או סגור.</div></li>
+        <li><div>העריכו את מצב החולה: בהכרה, מעורפל או מחוסר הכרה.</div></li>
+        <li><div><b>חמצן בריכוז גבוה.</b></div></li>
+        <li><div><b>התערבות בהנשמה פולשנית</b> לפי הצורך.</div></li>
+        <li><div>שקלו עם בית החולים העברה ל<b>תא לחץ</b>.</div></li>
+      </ol>
+    </div>
+
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p><b>מדידת COHb</b> מתבצעת כשיש חשד להרעלה, וחיונית לניטור יעילות הטיפול. ערכים תקינים: 1–2.5% בלא מעשנים, עד 7–10% במעשנים; בתנאים נורמליים רמת CO בפלזמה היא 0 מ"מ כספית.</p>
+      <p><b>תא לחץ (היפרברי):</b> מטרתו להפחית את זמן מחצית החיים של הקרבוקסי-המוגלובין מאשר מתן חמצן בלבד. הלחץ בתא יכול להגיע ל-<b>3 אטמוספירות</b>, מה שמאפשר לנוזלי הגוף לספוג חמצן ולהעבירו לרקמות שבהיפוקסיה. תאי לחץ קיימים משנת 1933; בישראל — למשל בבית החולים אלישע.</p>
+    </div>
+
+    <!-- ============ ARDS ============ -->
+    <h3>הכשל הנשימתי — ARDS <span class="en">(Acute/Adult Respiratory Distress Syndrome)</span></h3>
+    <p>ARDS הוא <b>מצב חירום קטלני נשימתי</b> שנגרם מסיבות שונות ותוקף בדרך כלל מבוגרים. החולה אינו יכול לסבול את התסמונת באופן כרוני — <b>חולה שמצבו לא יוטב ימות</b>.</p>
+
+    <h4>מה קורה בנאדיות</h4>
+    <p>תהליך המחלה מאופיין <b>בנזק לתאי נאדיות הריאה</b> מגורמים שונים. בעקבות הנזק הנאדיות הופכות ל"מעין מסננת" — החדירות של נוזלים ותסנינים אל שטח חילוף הגזים עולה. הנוזלים מצטברים בנאדיות, ולכן השטח שבו ניתן לשחלף גזים קטן משמעותית — ומנגנון הנשימה נפגע.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 720 300" role="img" aria-label="נאדית תקינה מול נאדית ב-ARDS">
+          <defs>
+            <marker id="ch16-arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-field"/></marker>
+          </defs>
+          <text x="540" y="24" text-anchor="middle" direction="rtl" class="t-b">נאדית תקינה</text>
+          <circle cx="540" cy="130" r="90" class="f-card"/>
+          <text x="540" y="110" text-anchor="middle" direction="rtl">אוויר</text>
+          <line x1="540" y1="150" x2="540" y2="224" class="s-field" marker-end="url(#ch16-arr5)"/>
+          <text x="552" y="196" text-anchor="start" direction="ltr" class="t-field">O2</text>
+          <rect x="430" y="228" width="220" height="30" rx="15" class="f-blood-o"/>
+          <text x="540" y="284" text-anchor="middle" direction="rtl" class="t-sm">נימי דם — החמצן עובר בקלות</text>
+
+          <text x="180" y="24" text-anchor="middle" direction="rtl" class="t-b">נאדית ב-ARDS</text>
+          <path d="M 92.25 110 A 90 90 0 1 0 267.75 110 Z" class="f-alarm-soft"/>
+          <circle cx="180" cy="130" r="90" class="s-alarm"/>
+          <circle cx="180" cy="130" r="96" class="s-alarm"/>
+          <text x="180" y="80" text-anchor="middle" direction="rtl">אוויר</text>
+          <text x="180" y="150" text-anchor="middle" direction="rtl" class="t-alarm">נוזל עשיר בחלבון</text>
+          <line x1="180" y1="164" x2="180" y2="222" class="ln-dash"/>
+          <line x1="168" y1="188" x2="192" y2="204" class="s-alarm"/>
+          <line x1="192" y1="188" x2="168" y2="204" class="s-alarm"/>
+          <text x="204" y="200" text-anchor="start" direction="ltr" class="t-alarm">O2</text>
+          <rect x="70" y="232" width="220" height="30" rx="15" class="f-blood-o"/>
+          <text x="180" y="288" text-anchor="middle" direction="rtl" class="t-sm">דופן עבה ונוזל — החמצן לא עובר</text>
+        </svg>
+      </div>
+      <figcaption><b>למה חמצן לא עוזר מספיק ב-ARDS.</b> משמאל: הנאדית מוצפת בנוזל עשיר בחלבון והממברנה מעובה, כך שהחמצן <b>אינו מצליח לעבור את הממברנה</b> — גם כשמגדילים את ריכוזו באוויר.</figcaption>
+    </figure>
+
+    <h4>מה גורם לנאדיות להיהרס כל כך</h4>
+    <ul>
+      <li>נזק ישיר לריאה כתוצאה מטראומה</li>
+      <li>אספירציה שמכניסה לתוך הריאות חומצות קיבה</li>
+      <li>זיהום מפושט שפוגע ברקמת הריאה — <b>ספסיס</b> (המקור מציין: גורם המוות מספר 3 בישראל), הרס הנאדיות מהדלקת</li>
+      <li>שאיפת גזים ועשן (נזק לרקמת הריאה)</li>
+      <li>מינון יתר של סמים</li>
+      <li>לאחר חיבור למכונת לב-ריאה</li>
+      <li>תפליט פלאורלי</li>
+    </ul>
+
+    <h4>ARDS מול בצקת ריאות קרדיוגנית מול אמפיזמה</h4>
+    <p>ניתן לדמות את ARDS לבצקת ריאות — שתיהן "ריאות מלאות בנוזל". אבל המנגנון שונה, ולכן גם הטיפול:</p>
+    <div class="compare">
+      <div><h5>בצקת ריאות קלאסית</h5><ul>
+        <li>נגרמת מאי-ספיקת לב: <b>עלייה חדה בלחץ בתוך כלי הדם הריאתיים</b></li>
+        <li>הלחץ על דפנות כלי הדם דוחף נוזלים לריאות</li>
+        <li>טיפול תרופתי שמוריד את הלחץ בכלי הדם הריאתיים <b>פותר את הבעיה</b></li>
+      </ul></div>
+      <div><h5>ARDS</h5><ul>
+        <li>הנוזלים מגיעים לריאות <b>כתוצאה מנזק ברקמת הריאה</b>, לא מלחץ</li>
+        <li>פגיעה דו-צדדית, חריפה מאוד, דלקתית, דיפוזית בחדירות כלי הדם</li>
+        <li>טיפול להורדת לחץ בכלי הדם <b>איננו יעיל</b></li>
+      </ul></div>
+      <div><h5>אמפיזמה (COPD)</h5><ul>
+        <li>גם בה יש נזק לרקמת הריאה — אבל אין הצפה בנוזלים</li>
+        <li>התשובה במילה אחת: <b>זמן</b>. אמפיזמה מתפתחת על פני שנים של עישון, והגוף מפתח מנגנוני הגנה ומעבה את דופן הנאדית</li>
+        <li>ARDS מתפתח בטווח של <b>שעות עד מספר מועט של ימים</b> — אין לגוף זמן להיערך</li>
+      </ul></div>
+    </div>
+
+    <h4>איך ייראה חולה ב-ARDS</h4>
+    <ul>
+      <li>קוצר נשימה קיצוני; נשימה מחרחרת מאוד — עד מצב קיצוני של העדר מוחלט של כניסת אוויר.</li>
+      <li>אי-ספיקה נשימתית קשה עד כדי ירידה ברמת ההכרה.</li>
+      <li>קריסת הריאות / כשל נשימתי; בשלבים מתקדמים — חנק ומוות.</li>
+      <li>לרוב <b>סטורציה נמוכה מההתחלה, ואין חמצון למרות העשרה בחמצן</b>.</li>
+    </ul>
+    <div class="callout must"><span class="tag">חובה לזכור — אבחנה מבדלת חשובה לטיפול</span>
+      <ul>
+        <li>זמן הופעה: <mark>6–72 שעות</mark></li>
+        <li>מצב נשימתי חמור <b>מקדים</b> (טראומה, אספירציה, ספסיס, שאיפת עשן...)</li>
+        <li>סטורציה נמוכה מההתחלה — אין חמצון למרות העשרה בחמצן</li>
+        <li>ירידה בכניסת אוויר, הידרדרות מהירה ואי-ספיקה נשימתית</li>
+      </ul>
+    </div>
+
+    <h4>פרדוקס החמצן</h4>
+    <p>בחלל הנאדית של חולה ARDS מצטברים כמויות גדולות של חומרים רעלניים, שבעת המגע לחמצן הופכים לחומרים מחמצנים. אלה עלולים לפגוע ברקמת הריאה שגם כך פגועה. כלומר: <b>החמצן שאנו נותנים יציל את חייו בטווח הקצר, אבל יחמיר את מצבו בטווח הארוך</b>.</p>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p>היות וכמעט תמיד נפגוש חולה זה בסיטואציה של סטורציה נמוכה ונאלץ להנשימו, <b>אנו נותנים חמצן בריכוז גבוה ללא התחשבות בפרדוקס החמצן</b> — אם לא נעשה כך, החולה ימות בטווח המיידי. ברמת בית החולים ייעשה שיקול האם ניתן להוריד את רמת החמצן מבלי לסכן את החולה, וכמובן יבוצע ניסיון לטפל בגורם.</p>
+      <ul>
+        <li>טיפול סימפטומטי, <b>חמצן בזרימה גבוהה</b>.</li>
+        <li><b>PEEP:</b> מתחילים עם <b>5</b>, ואין בעיה לעלות <b>עד 10</b> ס"מ מים.</li>
+        <li><b>טובוס:</b> ב-ARDS הטובוס פותר <b>90%</b> מהבעיה, וה-PEEP פותר את ה-<b>10%</b> הנוספים.</li>
+      </ul>
+    </div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>הסכנות: קריסת המערכת הנשימתית; <b>80% יזדקקו להנשמה מכנית</b>; מצוקה נשימתית ניכרת; דה-סטורציה; ירידה ברמת ההכרה. גם אחרי ההחלמה יש הרס יחסי של סורפקטנט, פגיעה באלסטיות של הריאה ופגיעה תפקודית.</p>
+    </div>
+
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p>הטיפול הטוב ביותר הוא להחליף את הריאות ב<b>אקמו (ECMO)</b> — מכשיר שמחזור הדם עובר דרכו ומחמצן את הדם (ומסלק את הפחמן הדו-חמצני); אפשר להשתמש בו ימים עד שבועות, ויש כאלה שמשתמשים במכשיר עד להשתלת ריאות. הבעיה — מחסור במכשירים, ולא כל בתי החולים מחזיקים אותם במלאי זמין. אפשרות נוספת שמוצגת: חמצן בזרימה גבוהה דרך קנולת אף <span class="en">(High Flow)</span>. בצילום חזה רואים הצללות מפושטות בשתי הריאות.</p>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li><b>תמותה:</b> עמ' 4 — "עד 90% לפי מחקרים"; עמ' 18 — 30%–60%. לפי המצגת עצמה, 30%–60% הוא הנתון של "סכנות".</li>
+        <li><b>סוג הכשל:</b> עמ' 14 — "אי-ספיקה נשימתית קשה (<span class="en">Type 2</span> היפרקרביה)". בדרך כלל ARDS נלמד ככשל <b>היפוקסמי</b> (סוג 1); ההיפרקרביה מופיעה בשלב מאוחר. גם הטבלה באנגלית בעמ' 10 מציינת <span class="en">Hypercapnia &amp; Severe Hypoxia</span>.</li>
+        <li>עמ' 13: תפליט פלאורלי ברשימת הגורמים ל-ARDS — לא שגרתי.</li>
+      </ul>
+    </div>
+
+    <!-- ============ MECHANICAL VENTILATION ============ -->
+    <h3>הנשמה מלאכותית: למה, מתי ולמי</h3>
+    <p>נושא הטיפול בחולה המונשם לרוב לא נלמד באופן ממצה, והצוותים מוצאים את עצמם עם חולים מורכבים בלי ידע מספק. הטיפול בחולה מונשם <b>טרום בית חולים שונה</b> מהטיפול בבית החולים, ודורש שליטה באנטומיה, בפיזיולוגיה ובפתולוגיה של דרכי האוויר.</p>
+
+    <h4>האינדיקציות העיקריות</h4>
+    <ul>
+      <li><b>שליטה והגנה על נתיב האוויר</b> — טראומה, נשימתי, נוירולוגי, סיבה אחרת.</li>
+      <li><b>הבטחת חמצון ואוורור</b> במטופלים עם אי-ספיקה נשימתית היפוקסמית, היפרקרבית או משולבת, או להבטחת פיצוי רספירטורי הולם לחמצת מטבולית.</li>
+      <li><b>חולה לא יציב המודינמית</b> — שליטה במצב הסירקולטורי ע"י הפחתת preload–afterload, וכן הגדלת כמות החמצן הזמינה לאיברים החיוניים ע"י הפחתת עבודת הנשימה וצריכת החמצן של שריר הנשימה.</li>
+    </ul>
+    <p><b>מי זקוק להנשמה פולשנית?</b> חוסר הכרה; החייאה; אירוע מוחי או פגיעה נוירולוגית אחרת; טראומה ופגיעות גוף מורכבות; אי-ספיקה נשימתית (אסתמה, COPD, בצקת ריאות, PE); אי-יציבות המודינמית (שוק, ירידה בפרפוזיה); איום על נתיב האוויר; מחלות שריר-עצב (ALS, שיתוק מיתרי הקול, בצקת לרינגיאלית).</p>
+    <div class="callout must"><span class="tag">חובה לזכור — מתי להנשים</span>
+      <p>אין קונטרה-אינדיקציות מוחלטות להנשמה פולשנית. הכלל המוביל: <mark>אם יש ספק — אין ספק.</mark> מוטב להנשים מוקדם מדי ולגמול בהמשך, מאשר להתעכב עם ההנשמה וליצור נזק בלתי הפיך.</p>
+    </div>
+    <p><b>סיכונים שאסור להתעלם מהם:</b> חוסר מיומנות ומקצועיות; תנאים לא נאותים בשטח (לחץ, סטרס, משפחה); כישלון בביצוע; נזק לנתיב האוויר וטראומה; שימוש לא נכון במכשירי הנשמה; התדרדרות; מוות; וסיכוי שהמטופל יהפוך למונשם כרוני ולא יצליח להיגמל. יש להפעיל שיקול קליני בכל מקרה לגופו ולקבל החלטה במהירות. <b>לחולה יש זכות לבקש להימנע מהנשמה פולשנית ומהארכת חייו</b>; שאלו מה הפרוגנוזה והאם הפעולה תציל את חייו — "האינטובציה הצליחה, החולה מת" איננה הצלחה.</p>
+
+    <h4>נפח או לחץ: איך מגדירים נשימה</h4>
+    <p>הגדרת הנשימה הבודדת היא עניין של <b>נפח</b> או <b>לחץ</b>: מגדירים אחד מהם, והשני הוא התוצאה.</p>
+    <div class="compare">
+      <div><h5>Volume Control — הגדרת נפח</h5><ul>
+        <li>מגדירים את נפח האוויר בכל נשימה — <span class="en">Tidal Volume</span></li>
+        <li>הלחץ הוא התוצאה — ותלוי בהיענות הריאתית ובהתנגדות דרכי האוויר</li>
+        <li>מחוץ ליחידה לטיפול נמרץ זוהי ההגדרה הנפוצה ביותר</li>
+        <li>הגבלה אוטומטית: המנשם מוגדר מראש ללחץ מרבי שמעבר לו <b>יפסיק</b> להזרים — כדי למנוע ברוטראומה ("בלון מפוצץ")</li>
+      </ul></div>
+      <div><h5>Pressure Control — הגדרת לחץ</h5><ul>
+        <li>מגדירים את הלחץ שאליו רוצים להגיע באינספיריום; המנשם יזרים נפח עד שיווצר הלחץ</li>
+        <li>הנפח הוא התוצאה: היענות ירודה (למשל ILD) ‏&rlm;←&rlm; נפחים קטנים ("בלון עם גומי עבה"); היענות גבוהה (אמפיזמה) ‏&rlm;←&rlm; נפחים גבוהים ("בלון גדול מאוד")</li>
+        <li>פחות נפוצה במחלקות; שכיחה יותר בחדרי ניתוח ובטיפול נמרץ</li>
+        <li>נשתדל לחץ שיא אינספיריום <b>פחות מ-30 ס"מ מים</b></li>
+      </ul></div>
+    </div>
+    <p>דוגמה להגבלה האוטומטית מהמצגת: הוגדר Control Volume של <span class="num">700</span> מ"ל לנשימה, אבל בחולה עם היענות ריאתית ירודה כבר בנפח של <span class="num">400</span> מ"ל נוצר לחץ גבוה מאוד (למשל <span class="num">50</span> ס"מ מים) — המנשם יפסיק להזרים ולא יאפשר לחצים גבוהים יותר, כדי למנוע נזק לריאות.</p>
+
+    <h4>כמה נפח לתת: Tidal Volume</h4>
+    <div class="doses">
+      <article class="dose"><header><h5>נפח נשימה (TV)</h5><span class="ind">Volume Control</span></header>
+        <div class="big">6–8 <small>מ"ל/ק"ג</small></div>
+        <dl><dt>נוסחה (מבוגרים)</dt><dd>(גובה בס"מ − <span class="en">100) × 7</span></dd><dt>מומלץ בהגדרה</dt><dd>400–500 מ"ל לנשימה בודדת</dd><dt>לזכור</dt><dd>אין קשר למשקל האמיתי — עודף שומן לא מגדיל את נפח הריאות</dd></dl>
+        <div class="calc">אישה בגובה 160 ס"מ ‏&rlm;←&rlm; <span class="en">(160 − 100) × 7 = 420</span> מ"ל</div></article>
+      <article class="dose"><header><h5>נפח דקה (MV)</h5><span class="ind">אוורור</span></header>
+        <div class="big">MV = TV × RR</div>
+        <dl><dt>משמעות</dt><dd>האוורור נקבע ע"י ה-MV; ככל שהאוורור גדל, ה-CO<sub>2</sub> בדם יורד</dd><dt>להגדלת אוורור</dt><dd>מתחילים בד"כ מהעלאת RR (בניטור כליאת אוויר); אפשר במקביל להעלות PS ו/או TV (בניטור לחצי שיא)</dd></dl>
+        <div class="calc">12 נשימות × 500 מ"ל = 6 ליטר לדקה</div></article>
+    </div>
+    <p>נקודה חשובה: את ה-6–8 מ"ל/ק"ג מחשבים לפי <b>משקל אידיאלי</b>, ולכן הנוסחה מבוססת על הגובה. למטופל שוקל <span class="num">120</span> ק"ג לא נותנים <span class="num">900</span> מ"ל — הריאות שלו לא גדולות יותר. להשגת אוורור תקין יש להגיע לנפחי הנשמה גבוהים ו/או ללחצים גבוהים — ולכן <b>מוטב להוריד מעט את יעד האוורור כל עוד הוא נשמר</b>.</p>
+
+    <h4>מצבי הנשמה <span class="en">(Modes)</span></h4>
+    <p>אפשר לסדר את המצבים על ציר של חלוקת העבודה בין המנשם לחולה: בקצה אחד CPAP (החולה עושה את כל העבודה), בקצה השני AC/Control (המנשם עושה הכול), ובאמצע SIMV ו-PS.</p>
+    <div class="tbl-wrap"><table class="data"><caption>מצבי ההנשמה במנשם (עמ' 14–17)</caption>
+      <thead><tr><th>מצב</th><th>מי יוזם</th><th>איך זה עובד</th><th>מתי / למי</th></tr></thead>
+      <tbody>
+        <tr><th>CMV <span class="en">Continuous Mandatory</span></th><td>המכונה</td><td>מגדירים קצב נשימות עם נפח או לחץ; המנשם מזרים בלי התחשבות במאמץ החולה. 12 נשימות של 500 מ"ל ‏&rlm;←&rlm; כל 5 שניות, MV של 6 ליטר</td><td>רק לחולים מורדמים עמוק ו/או משותקים, או במוות מוחי. <b>זוהי השיטה שמופעלת מחוץ לבתי חולים</b></td></tr>
+        <tr><th>AC <span class="en">Assist Control</span></th><td>החולה</td><td>מוגדר מספר מינימלי של נשימות מנדטוריות (נגד אפניאה); כל נשימה שהחולה יוזם (לחץ שלילי בצנרת) מקבלת את מלוא התמיכה המוגדרת</td><td><span class="alarm-t">החולה "מאבד עליה שליטה"</span> — 18 נשימות × TV 500 = MV של 9 ליטר. הרבה נשימות ‏&rlm;←&rlm; בססת נשימתית</td></tr>
+        <tr><th>SIMV <span class="en">Synchronized Intermittent Mandatory</span></th><td>משולב</td><td>המכונה מוודאת מינימום נשימות מנדטוריות (למשל 12 בנפח 450 מ"ל); אם החולה יוזם — "מתלבשת" על נשימתו כמו AC; אם לא יוזם (אפניאה) — יוזמת בעצמה כמו CMV</td><td><b>השיטה הנפוצה ביותר מחוץ לטיפול נמרץ, וברירת המחדל</b> בהגדרה ראשונה; נוחה גם למטופלים ערים</td></tr>
+        <tr><th>PS <span class="en">Pressure Support</span></th><td>החולה</td><td>לנשימות שאינן מנדטוריות — "דחיפה" של לחץ חיובי מעבר ללחץ השלילי שהחולה מייצר, כמו הורה שדוחף ילד בנדנדה</td><td>מידה מסוימת של 5–7 ס"מ מים נדרשת לכל חולה מונשם; אפשר להתחיל ב-12 ולהוריד בהדרגה</td></tr>
+      </tbody></table></div>
+
+    <h4>PEEP ו-FiO<sub>2</sub> — שני הכפתורים של החמצון</h4>
+    <p>שני הפרמטרים העיקריים שמשפיעים על החמצון במטופל מונשם הם <b>אחוז החמצן הנשאף (FiO<sub>2</sub>)</b> וערך ה-<b>PEEP</b>.</p>
+    <dl class="kv">
+      <dt>PEEP</dt><dd><span class="en">Positive End Expiratory Pressure</span> (ובשמו האחר CPAP) — הלחץ המינימלי שנשאר בריאות בסוף האקספיריום, כדי להבטיח שהנאדיות לא יקרסו לחלוטין (אטלקטזיס). <b>מינימום 5 ס"מ מים</b> כדי לפצות על התנגדות הטובוס — וזו ברירת המחדל בתחילת ההנשמה.</dd>
+      <dt>FiO<sub>2</sub></dt><dd>אחוז החמצן המינימלי הנדרש כדי לשמור על סטורציה מעל 90%. מתחילים מ-<b>100%</b> ויורדים בהדרגה עד <b>40%</b>, כל עוד הסטורציה נשמרת בין <b>90%–96%</b>.</dd>
+    </dl>
+    <ul>
+      <li>כשיש בעיה חמצונית — <b>שקלו להעלות גם את ה-PEEP</b>, ולא רק את אחוז החמצן.</li>
+      <li>אבל: <span class="alarm-t">ככל שמעלים PEEP, ההחזר הוורידי ללב יורד ולחץ הדם צפוי לרדת</span>. נטרו תמיד, ואם יש ירידה בלחץ הדם — הורידו את ה-PEEP.</li>
+      <li>בחולים עם מחלה אסימטרית (צד אחד) — לפעמים עדיף להשכיב על <b>הצד הבריא</b>: לריאה הבריאה תהיה יותר זרימת דם ופחות אוורור, והחולה — להיפך.</li>
+    </ul>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>הגבול העליון של PEEP לא אחיד: עמ' 24 — "ניתן לעלות בזהירות עד 10–12 ס"מ מים"; עמ' 25 — "ברוב המקרים אפשר לעלות עד 10 ללא קושי, למעט במטופלים תלויי preload"; מצגת ARDS עמ' 19 — "עד 10". בשטח, עם CPAP, הפרוטוקול קובע <b>מקסימום 10</b> (ו-5 ב-COPD) — ראו בהמשך.</p>
+    </div>
+
+    <h4>איך מודדים חמצון: PaO<sub>2</sub>, סטורציה ומדד P/F</h4>
+    <p>רמת החמצן משמשת גם <b>כיעד</b> (חייבים לשמור על רמה מינימלית לתפקוד הרקמות) וגם <b>כמדד</b> (כמה טובה או פגועה יכולת החמצון של הריאות). המדד האמין ביותר הוא הלחץ החלקי של החמצן בדם העורקי (PaO<sub>2</sub>): ערכים תקינים באוויר חדר <b>75–100 mmHg</b>; <span class="alarm-t">ערכים מתחת ל-30 אינם מאפשרים חיים</span>.</p>
+    <div class="tbl-wrap"><table class="data"><caption>סטורציה לעומת PaO<sub>2</sub> (עמ' 21)</caption>
+      <thead><tr><th>PaO<sub>2</sub> (mmHg)</th><th>Sat O<sub>2</sub> (%)</th></tr></thead>
+      <tbody>
+        <tr><td class="hl">60</td><td class="hl">90</td></tr>
+        <tr><td>50</td><td>80</td></tr>
+        <tr><td>40</td><td>70</td></tr>
+      </tbody></table></div>
+    <p>הטבלה מסבירה למה <b>90% הוא קו אדום</b>: מתחת לו, כל ירידה קטנה בסטורציה מייצגת ירידה גדולה בחמצן בדם.</p>
+    <p>אבל סטורציה ו-PaO<sub>2</sub> לבד הם מדד לא מספיק טוב לתפקוד הריאות, כי הם לא לוקחים בחשבון כמה חמצן נשאף. האם מטופל עם סטורציה 92% באוויר חדר מחומצן טוב יותר ממטופל עם 95% במסכה של 100%? ברור שכן. לכן מתקננים: <mark>P/F = PaO<sub>2</sub> / FiO<sub>2</sub></mark>.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 720 230" role="img" aria-label="סולם מדד P/F מ-0 עד 500 בקנה מידה, עם שתי הדוגמאות">
+          <text x="120" y="66" text-anchor="middle" direction="rtl" class="t-alarm">קשה</text>
+          <text x="240" y="66" text-anchor="middle" direction="rtl" class="t-b">בינונית</text>
+          <text x="360" y="66" text-anchor="middle" direction="rtl" class="t-b">קלה</text>
+          <text x="540" y="66" text-anchor="middle" direction="rtl" class="t-field">תקין</text>
+          <rect x="60" y="80" width="120" height="44" class="f-alarm"/>
+          <rect x="180" y="80" width="120" height="44" class="f-alarm-soft"/>
+          <rect x="300" y="80" width="120" height="44" class="f-hl"/>
+          <rect x="420" y="80" width="240" height="44" class="f-field-soft"/>
+          <line x1="60" y1="124" x2="60" y2="134" class="ln"/>
+          <line x1="180" y1="124" x2="180" y2="134" class="ln"/>
+          <line x1="300" y1="124" x2="300" y2="134" class="ln"/>
+          <line x1="420" y1="124" x2="420" y2="134" class="ln"/>
+          <line x1="540" y1="124" x2="540" y2="134" class="ln"/>
+          <line x1="660" y1="124" x2="660" y2="134" class="ln"/>
+          <text x="60" y="152" text-anchor="middle" direction="ltr" class="t-sm">0</text>
+          <text x="180" y="152" text-anchor="middle" direction="ltr" class="t-sm">100</text>
+          <text x="300" y="152" text-anchor="middle" direction="ltr" class="t-sm">200</text>
+          <text x="420" y="152" text-anchor="middle" direction="ltr" class="t-sm">300</text>
+          <text x="540" y="152" text-anchor="middle" direction="ltr" class="t-sm">400</text>
+          <text x="660" y="152" text-anchor="middle" direction="ltr" class="t-sm">500</text>
+          <line x1="360" y1="128" x2="360" y2="182" class="s-alarm"/>
+          <circle cx="360" cy="102" r="6" class="f-alarm"/>
+          <text x="360" y="200" text-anchor="middle" direction="ltr" class="t-b">250/1 = 250</text>
+          <line x1="631" y1="128" x2="631" y2="182" class="s-field"/>
+          <circle cx="631" cy="102" r="6" class="f-field"/>
+          <text x="660" y="200" text-anchor="end" direction="ltr" class="t-b">100/0.21 ≈ 476</text>
+        </svg>
+      </div>
+      <figcaption><b>מדד P/F בקנה מידה (עמ' 22–23).</b> מטופל עם PaO<sub>2</sub> של 100 באוויר חדר (21%) — P/F ≈ 476, תקין. מטופל עם PaO<sub>2</sub> של 250 שמונשם ב-100% חמצן — P/F של 250 בלבד: פגיעה קלה, למרות ש"המספר" שלו גבוה יותר. מעל 300 תקין; 200–300 פגיעה קלה; 100–200 בינונית; מתחת ל-100 קשה.</figcaption>
+    </figure>
+    <p>בחולה מונשם, <b>ירידה במדד ה-P/F</b> מעידה על ירידה בתפקוד הריאות, ולעתים מבשרת על תחילתה של דלקת ריאות או סיבוך ARDS.</p>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>עמ' 22: הדוגמה 100/0.21 מוצגת כ"בערך 500" — החישוב המדויק הוא <b>כ-476</b> (עדיין תקין). עמ' 23: הדרגות "200–300 קלה" ו-"100–200 בינונית" חופפות בגבולות — 200 ו-100 נמצאים בשתי דרגות.</p>
+    </div>
+
+    <h4>מכניקת הנשימה: יחס I:E</h4>
+    <dl class="kv">
+      <dt>Inspiratory flow</dt><dd>קצב זרימת האוויר מהמנשם אל החולה בזמן האינספיריום</dd>
+      <dt>Inspiratory time</dt><dd>משך הזמן המוקצה לאינספיריום בכל נשימה</dd>
+      <dt>I:E ratio</dt><dd>היחס בין זמן האינספיריום לזמן האקספיריום במחזור הנשימה; נקבע ע"י המפעיל ונמצא בקשר ישיר ל-Inspiratory flow</dd>
+    </dl>
+    <p>היחס הפיזיולוגי עומד על <b>1:2</b>. בחולים עם COPD או אסתמה היחס יכול להגיע ל-<b>1:4 ויותר</b> — כי האוויר יוצא לאט דרך דרכי אוויר צרות, וצריך לתת לו זמן לצאת.</p>
+    <div class="doses">
+      <article class="dose"><header><h5>חישוב I:E</h5><span class="ind">דוגמה מהמצגת, SIMV</span></header>
+        <div class="big">60 ÷ RR <small>= שניות לכל נשימה</small></div>
+        <dl><dt>נתונים</dt><dd>TV = 500 מ"ל, RR = 10, I:E = 1:2</dd><dt>מחזור</dt><dd><span class="en">60/10 = 6</span> שניות לנשימה</dd><dt>חלוקה</dt><dd>6 שניות ÷ 3 חלקים = 2 שניות לחלק</dd></dl>
+        <div class="calc">2 שניות אינספיריום + 4 שניות אקספיריום</div></article>
+    </div>
+
+    <h4>מה עם הלחץ? Peak מול Plateau</h4>
+    <dl class="kv">
+      <dt>Pressure Plateau (Ppl)</dt><dd>לחץ סטטי — הלחץ במערכת בזמן שאין בה זרימה (אחרי סוף האינספיריום ולפני תחילת האקספיריום). מושפע רק מההיענות הריאתית ומנפח האוויר שהוכנס לריאות. ההיענות יורדת בבצקת ריאות, ARDS, דלקת ריאות קשה, מחלה רסטרקטיבית, השמנה חולנית ותפליטים פלאורליים. <b>מחקרים מצאו חשיבות רבה בשמירה על Ppl נמוכים מ-30 ס"מ מים.</b></dd>
+      <dt>Peak pressure</dt><dd>הלחץ המקסימלי שנוצר בזמן הזרמת האוויר דרך דרכי האוויר. מהווה סיכום של לחץ הפלאטו <b>ושל הלחץ הדינמי</b> — הלחץ שנגרם מהתנגדות לזרימת האוויר ומקוטר הטובוס ודרכי האוויר.</dd>
+    </dl>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>הגבול 30 ס"מ מים מוצמד לשני לחצים שונים: עמ' 12 — לחץ <b>שיא</b> (Peak) מתחת ל-30; עמ' 30 — לחץ <b>פלאטו</b> (Ppl) מתחת ל-30. מכיוון שלפי עמ' 30 Peak = פלאטו + לחץ דינמי, Peak תמיד גבוה מהפלאטו — כך שאלה לא אותו כלל. הנתון המבוסס-מחקר במצגת הוא לגבי הפלאטו.</p>
+    </div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 700 370" role="img" aria-label="גרפים סכמטיים של לחץ, זרימה ונפח במחזור נשימה של מנשם">
+          <line x1="280" y1="22" x2="280" y2="350" class="ln-dash"/>
+          <line x1="340" y1="22" x2="340" y2="350" class="ln-dash"/>
+          <line x1="520" y1="22" x2="520" y2="350" class="ln-dash"/>
+          <text x="180" y="18" text-anchor="middle" direction="ltr" class="t-b">A</text>
+          <text x="310" y="18" text-anchor="middle" direction="ltr" class="t-b">B</text>
+          <text x="430" y="18" text-anchor="middle" direction="ltr" class="t-b">C</text>
+          <text x="590" y="18" text-anchor="middle" direction="ltr" class="t-b">D</text>
+
+          <line x1="80" y1="30" x2="80" y2="120" class="ln-soft"/>
+          <line x1="80" y1="120" x2="660" y2="120" class="ln-soft"/>
+          <text x="72" y="80" text-anchor="end" direction="ltr" class="t-sm">Pressure</text>
+          <path d="M80 108 L84 96 L280 40 L286 62 L340 62 C 380 100, 440 108, 520 108 L660 108" class="s-zone" fill="none"/>
+          <text x="262" y="36" text-anchor="end" direction="ltr" class="t-sm">Peak</text>
+          <text x="313" y="82" text-anchor="middle" direction="ltr" class="t-sm">Plateau</text>
+          <text x="655" y="100" text-anchor="end" direction="ltr" class="t-sm">PEEP</text>
+
+          <line x1="80" y1="150" x2="80" y2="250" class="ln-soft"/>
+          <line x1="80" y1="200" x2="660" y2="200" class="ln-soft"/>
+          <text x="72" y="204" text-anchor="end" direction="ltr" class="t-sm">Flow</text>
+          <path d="M80 200 L84 160 L280 160 L284 200 L340 200 L344 242 C 380 216, 450 202, 520 200 L660 200" class="s-field" fill="none"/>
+
+          <line x1="80" y1="270" x2="80" y2="340" class="ln-soft"/>
+          <line x1="80" y1="340" x2="660" y2="340" class="ln-soft"/>
+          <text x="72" y="310" text-anchor="end" direction="ltr" class="t-sm">Volume</text>
+          <path d="M80 340 L280 282 L340 282 C 380 322, 440 338, 520 340 L660 340" class="s-alarm" fill="none"/>
+        </svg>
+      </div>
+      <figcaption><b>מחזור נשימה במנשם (עמ' 31–32).</b> <b>A — אינספיריום:</b> זרימה חיובית, הלחץ עולה עד ה-Peak והנפח עד ה-Tidal Volume. <b>B — שלב שחלוף הגזים:</b> הזרימה מתאפסת, הלחץ קבוע על ה-Plateau והנפח קבוע. <b>C — אקספיריום:</b> זרימה שלילית שקטנה עד אפס, הלחץ יורד עד ה-PEEP והנפח עד אפס. <b>D — מנוחה:</b> זרימה ונפח באפס, הלחץ על ה-PEEP. בכליאת אוויר (עמ' 33) הזרימה בגרף לא חוזרת לאפס לפני שהנשימה הבאה מתחילה.</figcaption>
+    </figure>
+
+    <h4>לחץ לא מבוקר גורם לנזק</h4>
+    <dl class="kv">
+      <dt>Barotrauma</dt><dd>נזק לנאדיות הנגרם מלחץ מוגבר</dd>
+      <dt>Volutrauma</dt><dd>נזק לנאדיות הנגרם ממתיחה מוגזמת</dd>
+      <dt>Atelectotrauma</dt><dd>נזק לנאדיות הנגרם מאטלקטזיס — קריסה וניפוח חוזרים ונשנים של הנאדית</dd>
+    </dl>
+
+    <h4>מה הלחץ החיובי עושה ללב</h4>
+    <p>בנשימה רגילה האוויר נשאב פנימה בלחץ שלילי; בהנשמה הוא נדחף בלחץ חיובי. לכך שתי השפעות המודינמיות הפוכות:</p>
+    <div class="compare">
+      <div><h5>ירידה ב-Preload — הסיכון</h5><ul>
+        <li>לחץ חיובי בנאדיות ‏&rlm;←&rlm; נפח ריאות עולה ‏&rlm;←&rlm; הלב נלחץ ‏&rlm;←&rlm; ההחזר הוורידי יורד ‏&rlm;←&rlm; נפח פעימה ותפוקת לב יורדים ‏&rlm;←&rlm; <b>לחץ הדם עלול לרדת</b></li>
+        <li>אפשר למזער עם נוזלים IV</li>
+        <li><span class="alarm-t">רגישים במיוחד:</span> היפובולמיה, טמפונדה, PE, כליאת אוויר קשה</li>
+      </ul></div>
+      <div><h5>ירידה ב-Afterload — היתרון</h5><ul>
+        <li>התרחבות הריאה מעלה את הלחץ סביב הלב ועוזרת "לשאוב" דם החוצה מבית החזה ‏&rlm;←&rlm; afterload של חדר שמאל יורד</li>
+        <li>בחולה היפרוולמי עם אי-ספיקת לב סיסטולית — נפח הפעימה יכול להשתפר</li>
+        <li>לכן לחץ חיובי <b>מועיל מאוד בבצקת ריאות קרדיוגנית</b>: מוריד גם preload (גודש) וגם afterload</li>
+      </ul></div>
+    </div>
+
+    <!-- ============ NIV ============ -->
+    <h3>הנשמה לא פולשנית: CPAP, BiPAP ו-High Flow</h3>
+    <p><b>הנשמה לא פולשנית</b> <span class="en">(NIPPV – NonInvasive Positive Pressure Ventilation)</span> מתייחסת להנשמה בלחץ חיובי הניתנת באמצעות ממשק לא פולשני — מסכת פנים, מסכת אף, קסדה — בניגוד להנשמה דרך ממשק פולשני (טובוס, טרכאוסטומיה). השימוש בה כאלטרנטיבה לאינטובציה נמצא בעלייה מתמדת: בהשוואה לטיפול תרופתי, ובחלק מהמחקרים גם בהשוואה להנשמה פולשנית, היא <b>מגדילה את השרידות ומפחיתה סיבוכים</b> בחלק מהחולים עם אי-ספיקה נשימתית חדה.</p>
+    <p>היא מעניקה את אותם יתרונות פיזיולוגיים — הפחתת עבודת הנשימה ושיפור בחילוף הגזים — ובנוסף חוסכת מהחולה את אי-הנעימות והסיבוכים של הטובוס. <b>האינדיקציות העיקריות: COPD ובצקת ראות על רקע קרדיאלי.</b></p>
+    <div class="tbl-wrap"><table class="data"><caption>המטרה של לחץ חיובי לא פולשני לפי המחלה (עמ' 10)</caption>
+      <thead><tr><th>מצב</th><th>המטרה</th></tr></thead>
+      <tbody>
+        <tr><th>אסתמה או COPD</th><td>להפחית את רמת ה-CO<sub>2</sub> ע"י הקלת העומס על שרירי הנשימה והעצמת האוורור האלבאולרי, ובכך לייצב את ה-pH העורקי עד לחלוף הבעיה</td></tr>
+        <tr><th>אי-ספיקה נשימתית היפוקסמית</th><td>להבטיח חמצון מספק עד לחלוף הבעיה הראשונית</td></tr>
+        <tr><th>בצקת ריאות על רקע לבבי</th><td>שיפור החמצון, הקלת עומס עבודת הנשימה והעלאת תפוקת הלב</td></tr>
+      </tbody></table></div>
+
+    <div class="compare">
+      <div><h5>CPAP</h5><ul>
+        <li><span class="en">Continuous Positive Airway Pressure</span></li>
+        <li>כל הליך הנשימה מתרחש באמצעות <b>נשימותיו העצמוניות של החולה</b>; לחץ חיובי <b>אחד</b> לאורך כל מחזור הנשימה</li>
+        <li>מסכה אטומה + חמצן בריכוז גבוה + PEEP של 5, 7.5 או 10 ס"מ מים</li>
+        <li><b>יעיל בעיקר בבצקת ריאות</b> או מקרים אחרים של הפרעה חמצונית הומוגנית</li>
+      </ul></div>
+      <div><h5>BiPAP</h5><ul>
+        <li><span class="en">Bilevel Positive Airway Pressure</span></li>
+        <li>שני לחצים: גבוה באינספיריום <b>(iPAP)</b>, נמוך באקספיריום <b>(ePAP = PEEP)</b></li>
+        <li>ההפרש ביניהם הוא למעשה pressure support — לרוב 3–10 ס"מ מים, והוא קובע את נפח הנשימה</li>
+        <li>אם שני הלחצים זהים — חזרנו ל-CPAP</li>
+        <li><b>יעיל בעיקר בהפרעה אוורורית (COPD, אסתמה)</b>; ברירת מחדל: <b>iPAP=12, ePAP=5</b></li>
+      </ul></div>
+      <div><h5>High Flow Nasal Cannula</h5><ul>
+        <li>חמצן בריכוז גבוה וזרימה גבוהה מאוד, מחומם ומועשר בלחות</li>
+        <li>זרימה <b>עד 60 ליטר לדקה</b> — כמעט 100% חמצן באוויר הנשאף</li>
+        <li>אפקט אוורורי קל ו-PEEP שקול של 3–5 ס"מ מים</li>
+        <li>נוחות: אפשר לדבר, לאכול ולשתות; מתאים להפרעה חמצונית מבודדת שצפויה להימשך זמן רב</li>
+      </ul></div>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>מצגת ה-CPAP (עמ' 4) מפרשת CPAP כ-<span class="en">"Continuous Positive Pressure Ventilation"</span>. הפירוש המקובל — וגם זה שבמצגת ההנשמה המלאכותית (עמ' 34) — הוא <span class="en">Continuous Positive <b>Airway</b> Pressure</span>.</p>
+    </div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>הנשמה לא פולשנית היא כלי מצוין בחולים נבחרים, אבל <b>לא מתאימה לכולם</b> ואין להשתמש בה כשיש התוויה מוחלטת להנשמה פולשנית. קונטרה-אינדיקציות: הפרעה אנטומית, מצב הכרה ירוד, אי-יכולת לשמור על נתיב אוויר, אי-יציבות המודינמית, או צורך בבידוד אוויר.</p>
+    </div>
+
+    <!-- ============ PROTOCOL ============ -->
+    <h3>בשטח: פרוטוקול CPAP ובצקת ריאות (איחוד הצלה)</h3>
+    <h4>מי מתאים ל-CPAP</h4>
+    <div class="compare">
+      <div><h5>התאמה והתוויה</h5><ul>
+        <li><b>אי-ספיקה נשימתית:</b> סטורציה מתחת ל-<b>94%</b> עם חמצן במסכה, כולל סימנים למצוקה נשימתית (טכיפניאה, טכיקרדיה, רטרקציות, שימוש בשרירי עזר)</li>
+        <li>מטופל <b>בהכרה, משתף פעולה</b>, באי-ספיקה נשימתית חריפה או מאיימת</li>
+      </ul></div>
+      <div><h5>התוויות נגד</h5><ul>
+        <li>חוסר הכרה, מעורפל, לא משתף פעולה</li>
+        <li>אס"ק נשימתית על רקע טראומה</li>
+        <li><b>נשימות מתחת ל-8</b>; <b>ל"ד סיסטולי מתחת ל-100</b></li>
+        <li>חוסר יכולת ליצור אטימת מסיכה; כוויות בפנים ו/או בדרכי אוויר עליונות</li>
+        <li><b>פנאומוטורקס ספונטני (בעבר ובהווה)</b></li>
+        <li>דימום פעיל מהאף; לוע / דרכי עיכול עליונות / דרכי נשימה (ניתוח); הקאות ו/או ריבוי הפרשות מדרכי נשימה עליונות</li>
+      </ul></div>
+    </div>
+    <p><b>גורמים החוזים הצלחה:</b> מטופל מתחת לגיל 70, עם מיעוט מחלות רקע, במצב נוירולוגי תקין, נתיב אוויר פתוח, מסוגל לבלוע ולהשתעל, יציב המודינמית, ומדגים שיפור משמעותי תוך מספר דקות מתחילת הטיפול. <b>ניטור:</b> מצב הכרה, סטורציה, דופק, לחץ דם וקצב נשימות.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 720 460" role="img" aria-label="תרשים זרימה של פרוטוקול CPAP">
+          <defs>
+            <marker id="ch16-arr6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-zone"/></marker>
+            <marker id="ch16-arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-alarm"/></marker>
+            <marker id="ch16-arr8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="f-field"/></marker>
+          </defs>
+          <rect x="200" y="10" width="320" height="44" rx="8" class="f-card"/>
+          <text x="360" y="37" text-anchor="middle" direction="rtl" class="t-b">אי-ספיקה נשימתית · הערכה ומדדים</text>
+          <line x1="360" y1="56" x2="360" y2="74" class="s-zone" marker-end="url(#ch16-arr6)"/>
+          <rect x="200" y="78" width="320" height="56" rx="8" class="f-hl"/>
+          <text x="360" y="101" text-anchor="middle" direction="rtl" class="t-b">מתאים ל-CPAP?</text>
+          <text x="360" y="122" text-anchor="middle" direction="rtl" class="t-sm">בהכרה, משתף, ללא התוויות נגד</text>
+          <line x1="522" y1="106" x2="548" y2="106" class="s-alarm" marker-end="url(#ch16-arr7)"/>
+          <text x="535" y="98" text-anchor="middle" direction="rtl" class="t-alarm">לא</text>
+          <rect x="552" y="82" width="158" height="48" rx="8" class="f-alarm-soft"/>
+          <text x="631" y="102" text-anchor="middle" direction="rtl" class="t-sm">פרוטוקול הפסקת</text>
+          <text x="631" y="120" text-anchor="middle" direction="rtl" class="t-sm">נשימה מאיימת</text>
+          <line x1="360" y1="136" x2="360" y2="160" class="s-field" marker-end="url(#ch16-arr8)"/>
+          <text x="374" y="153" text-anchor="start" direction="rtl" class="t-field">כן</text>
+          <rect x="200" y="164" width="320" height="44" rx="8" class="f-field-soft"/>
+          <text x="360" y="191" text-anchor="middle" direction="rtl" class="t-b">מסכת CPAP · PEEP של 5 ס"מ מים</text>
+          <line x1="360" y1="210" x2="360" y2="232" class="s-zone" marker-end="url(#ch16-arr6)"/>
+          <rect x="200" y="236" width="320" height="44" rx="8" class="f-card"/>
+          <text x="360" y="263" text-anchor="middle" direction="rtl" class="t-b">מדדים כל 5–10 דק' · הערכה חוזרת</text>
+          <line x1="300" y1="282" x2="130" y2="310" class="s-field" marker-end="url(#ch16-arr8)"/>
+          <line x1="360" y1="282" x2="360" y2="310" class="s-zone" marker-end="url(#ch16-arr6)"/>
+          <line x1="420" y1="282" x2="590" y2="310" class="s-alarm" marker-end="url(#ch16-arr7)"/>
+          <rect x="30" y="314" width="200" height="40" rx="8" class="f-field-soft"/>
+          <text x="130" y="339" text-anchor="middle" direction="rtl" class="t-b">שיפור</text>
+          <rect x="260" y="314" width="200" height="40" rx="8" class="f-zone-soft"/>
+          <text x="360" y="339" text-anchor="middle" direction="rtl" class="t-b">ללא שינוי</text>
+          <rect x="490" y="314" width="200" height="40" rx="8" class="f-alarm-soft"/>
+          <text x="590" y="339" text-anchor="middle" direction="rtl" class="t-alarm">החמרה</text>
+          <line x1="130" y1="356" x2="130" y2="378" class="s-field" marker-end="url(#ch16-arr8)"/>
+          <line x1="360" y1="356" x2="360" y2="378" class="s-zone" marker-end="url(#ch16-arr6)"/>
+          <line x1="590" y1="356" x2="590" y2="378" class="s-alarm" marker-end="url(#ch16-arr7)"/>
+          <rect x="30" y="382" width="200" height="56" rx="8" class="f-card"/>
+          <text x="130" y="404" text-anchor="middle" direction="rtl" class="t-b">פינוי</text>
+          <text x="130" y="426" text-anchor="middle" direction="rtl" class="t-sm">הורדת PEEP ב-2.5 כל 10 דק'</text>
+          <rect x="260" y="382" width="200" height="56" rx="8" class="f-card"/>
+          <text x="360" y="404" text-anchor="middle" direction="rtl" class="t-b">העלה PEEP ב-2.5</text>
+          <text x="360" y="426" text-anchor="middle" direction="rtl" class="t-sm">עד 10 · ב-COPD עד 5</text>
+          <rect x="490" y="382" width="200" height="56" rx="8" class="f-alarm-soft"/>
+          <text x="590" y="404" text-anchor="middle" direction="rtl" class="t-sm">פרוטוקול הפסקת</text>
+          <text x="590" y="426" text-anchor="middle" direction="rtl" class="t-sm">נשימה מאיימת</text>
+        </svg>
+      </div>
+      <figcaption><b>פרוטוקול שימוש ב-CPAP (UH 2023, עמ' 28–29), מקוצר.</b> מכל שלב, אם אין שיפור במידה או שיש החמרה — עוברים לפרוטוקול הפסקת נשימה מאיימת. במצב "ללא שינוי" מעלים PEEP, מבצעים הערכה חוזרת ושוקלים התחלת פינוי.</figcaption>
+    </figure>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div><b>מיידי:</b> דאג לבטיחות, הושב את המטופל, הערכה ראשונה, סימנים חיוניים, חמצן בריכוז מקסימלי, חבר מוניטור, השג גישה ורידית, טפל תרופתית בהתאם לפרוטוקול.</div></li>
+        <li><div><b>חבר מסכת CPAP:</b> לפי התוויות, שלול התוויות נגד, הסבר למטופל על המכשיר. כוון את ה-<mark>PEEP ל-5 ס"מ מים</mark> בתחילת הטיפול ועקוב אחר תגובת המטופל.</div></li>
+        <li><div><b>ניטור תגובה:</b> קח סימנים חיוניים כל 5–10 דקות. העלה את ה-PEEP למדדים בדרגות של <b>2.5</b> כל פעם עד <mark>מקסימום 10 ס"מ מים</mark>. <b>בחולי COPD / אמפיזמה — הגבל PEEP למקסימום 5 ס"מ מים.</b></div></li>
+        <li><div><b>מקור חמצן:</b> מסכת ה-CPAP מתחברת ליציאה הרגילה של מיכל החמצן; כוון את קצב הזרימה ל-<b>15 LPM</b>. שים לב ללחץ החמצן במיכל ודאג למיכל חלופי לפינוי.</div></li>
+        <li><div><b>דיווח:</b> העבר דיווח למלר"ד המקבל על הגעת מטופל במצוקה נשימתית המטופל ב-CPAP.</div></li>
+        <li><div><b>המשך טיפול:</b> במידה ונראה שיפור במצב, ניתן לשקול הורדת ה-PEEP ב-<b>2.5</b> ס"מ מים כל <b>10 דקות</b>. כל מרכיבי המסיכה חד-פעמיים.</div></li>
+      </ol>
+    </div>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p>CPAP: <mark>סטורציה מתחת ל-94% עם מסכה</mark> · התחלה ב-<b>PEEP 5</b> · עלייה ב-<b>2.5</b> · מקסימום <b>10</b> (COPD: <b>5</b>) · חמצן <b>15 LPM</b> · <span class="alarm-t">לא בל"ד סיסטולי מתחת ל-100, לא בנשימות מתחת ל-8, לא בפנאומוטורקס ספונטני</span>.</p>
+    </div>
+    <p>למה דווקא ל"ד מתחת ל-100 ופנאומוטורקס? כל מה שלמדנו על הלחץ החיובי מתחבר כאן: הלחץ מוריד preload — ובמטופל שלחץ הדם שלו כבר נמוך זה עלול להפיל אותו; והלחץ דוחף אוויר דרך קרע בריאה — וזה עלול להפוך פנאומוטורקס לטנשן. ב-COPD הריאות כבר מנופחות וכלואות-אוויר, ולכן ה-PEEP מוגבל.</p>
+
+    <h4>בצקת ריאות — איפה ה-CPAP נכנס</h4>
+    <p>הפרוטוקול של בצקת ריאות הוא המקום הטבעי ביותר ל-CPAP. עקרונות הטיפול לפי הפרוטוקול: <b>שיפור חמצון ואוורור, הורדת PreLoad, הורדת AfterLoad, הורדת עודפי נוזלים (משתנים)</b>. גורמי סיכון: אי-ספיקת לב (איסכמיה, מחלת מסתמים, הפרעות קצב), יתר לחץ דם, עירוי דם, אי-ספיקת כליות. הערכת חומרה: אירועים קודמים של בצקת ריאות, טיפול תרופתי קבוע, אשפוזים או ביקור במלר"ד בשנה האחרונה, הזדקקות להנשמה בעבר.</p>
+    <ol class="steps">
+      <li><div>הערכה ראשונית (הכרה, נתיב אוויר, נשימה, סטורציה, דופק) ואנמנזה.</div></li>
+      <li><div>הושב את המטופל במידת האפשר, בצע האזנה, <b>שקול מתן חמצן</b> (בקוצר נשימה משמעותי, ירידה בסטורציה מתחת ל-94%, סימני פרפוזיה ירודה).</div></li>
+      <li><div>מוניטור, גישה ורידית, אק"ג. במידה ויש חשד לאוטם ימני או אחורי — חיבורי אק"ג מתאימים.</div></li>
+      <li><div>במידת הצורך <b>חבר ל-CPAP</b>; שקול מעבר לפרוטוקול הפסקת נשימה מאיימת. במידה ויש צורך להנשים — שימוש במחבר PEEP.</div></li>
+      <li><div><b>ל"ד סיסטולי מעל 100?</b> כן: ניטרטים SL, פוסיד IV, שקול ניטרטים IV. לא: הערך סימני הלם קרדיוגני, פוסיד IV, שקול דופמין IV.</div></li>
+      <li><div>הערך סימני ACS וטפל במידת הצורך.</div></li>
+      <li><div><b>שיפור?</b> כן: פנה בדחיפות לבית החולים תוך ניטור, מדדים כל 5–10 דק', שקול דיווח למלר"ד. לא: שקול מעבר לפרוטוקול הפסקת נשימה מאיימת.</div></li>
+    </ol>
+
+    <div class="doses">
+      <article class="dose"><header><h5>ניטרטים SL</h5><span class="ind">בצקת ריאות, ל"ד סיסטולי מעל 100</span></header>
+        <div class="big">1 <small>לחיצה (פאף)</small></div>
+        <dl><dt>תכשיר</dt><dd>איזוקט 1.25 מ"ג או ניטרולינגואל 0.4 מ"ג בכל לחיצה</dd><dt>חזרות</dt><dd>עד 3 מנות, בהפרש של 3–5 דקות בין מנה למנה</dd><dt>התוויות נגד</dt><dd>אוטם ימני, ל"ד סיסטולי נמוך מ-90 ממ"כ, ויאגרה/סיאליס ב-24 השעות האחרונות</dd><dt>הכנה</dt><dd>לחיצה ראשונה לאוויר החדר כדי למלא את קשית הבקבוקון; המטופל פותח פה, מרסס מתחת ללשון</dd></dl>
+        <div class="calc">איזוקט: 3 לחיצות ‏&rlm;←&rlm; 3.75 מ"ג לכל היותר</div></article>
+      <article class="dose"><header><h5>איזוקט IV</h5><span class="ind">שקול, ל"ד סיסטולי מעל 100</span></header>
+        <div class="big">20–200 <small>מק"ג/דקה בטפטוף</small></div>
+        <dl><dt>טפטוף</dt><dd>מינונים עולים עד להשגת שיפור; צורת הופעה 10 מ"ג ב-10 מ"ל; לשאוב 2 מ"ל לשקית סליין 100 מ"ל</dd><dt>או בהזלפה</dt><dd>1–2 מ"ג (כל 5–10 דקות), מהול בריכוז 50%: 10 מ"ל במזרק 20 מ"ל + 10 מ"ל סליין</dd><dt>לפני ואחרי</dt><dd>מדידת ל"ד</dd></dl>
+        <div class="calc">2 מ"ג ב-100 מ"ל = 20 מק"ג/מ"ל ‏&rlm;←&rlm; 20 מק"ג/דקה = 1 מ"ל/דקה</div></article>
+      <article class="dose"><header><h5>פוסיד</h5><span class="ind">בצקת ריאות</span></header>
+        <div class="big">1 <small>מ"ג/ק"ג IV</small></div>
+        <dl><dt>מקסימום</dt><dd>120 מ"ג</dd><dt>נוטלים קבוע</dt><dd>ניתן להכפיל את המינון</dd><dt>צורת הופעה</dt><dd>20 מ"ג, 2 מ"ל באמפולה</dd></dl>
+        <div class="calc">מטופל 70 ק"ג ‏&rlm;←&rlm; 70 מ"ג = 7 מ"ל</div></article>
+      <article class="dose"><header><h5>דופמין</h5><span class="ind">ל"ד סיסטולי מתחת ל-100, סימני הלם</span></header>
+        <div class="big">5–20 <small>מק"ג/ק"ג/דקה IV</small></div>
+        <dl><dt>מטרה</dt><dd>ל"ד סיסטולי מעל 90 ממ"כ, במינון הנמוך ביותר</dd><dt>הכנה</dt><dd>2 אמפולות (200 מ"ג, 5 מ"ל כל אחת) לשקית 500 מ"ל סליין 0.9% ‏&rlm;←&rlm; 800 מק"ג/מ"ל; בטפטוף, לחשב טיפות לדקה</dd><dt>דגש</dt><dd>לאחר כשלון בטיפול בנוזלים</dd></dl>
+        <div class="calc">70 ק"ג × 5 מק"ג = 350 מק"ג/דקה ‏&rlm;←&rlm; כ-0.44 מ"ל/דקה</div></article>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>פוסיד בחולים שנוטלים את התרופה בקביעות: בצד התרשים (עמ' 20) — "יש להכפיל את המינון"; בהערות (עמ' 22) — "ניתן להכפיל את המינון היומי". הניסוחים שונים (חובה מול אפשרות). ההגבלה של 120 מ"ג מקסימום מופיעה בשניהם.</p>
+    </div>
+
+    <div class="recap"><span class="tag">בשורה התחתונה</span>
+      <ol>
+        <li>תסחיף ריאתי: קריש (לרוב DVT) שנתקע בעורק הריאה — היפוקסמיה ועומס על חדר ימין; קוצר נשימה <b>פתאומי</b> + גורם סיכון = חשד; חמצן ופינוי מהיר. לא מאובחן — כ-30% תמותה.</li>
+        <li>תפליט פלאורלי הוא סימן למחלה: טרנסודט (עני בחלבון, סיסטמי) מול אקסודט (עשיר בחלבון, מקומי); בשטח — חמצן, ופוסיד רק אם הסיבה לבבית.</li>
+        <li>חזה אוויר ספונטני: גברים גבוהים ורזים, עישון; כאב חזה 90%, קוצר נשימה 80%, הדיות בצד הפגוע. החמרה = טנשן — ניקוז במחט; לחץ חיובי מחמיר.</li>
+        <li>היפרוונטילציה: CO<sub>2</sub> יורד ‏&rlm;←&rlm; בססת ‏&rlm;←&rlm; עקצוצים וכיווץ אצבעות. אבחנה של שלילה; לעולם לא שקית באוטם, הרעלה או מצב סוכרתי. כחלון = משהו אחר.</li>
+        <li>CO: חסר צבע וריח, זיקה להמוגלובין פי 240; COHb תקין 1–2.5% (מעשנים עד 7–10%), כרונית 20–25%, חריפה 30–40%. בטיחות, חמצן בריכוז גבוה, תא לחץ.</li>
+        <li>ARDS: נזק לנאדיות ‏&rlm;←&rlm; נוזל עשיר בחלבון; 6–72 שעות אחרי אירוע מקדים; סטורציה נמוכה שלא מגיבה לחמצן. בשטח — חמצן גבוה למרות פרדוקס החמצן, PEEP 5 עד 10.</li>
+        <li>הנשמה: TV של 6–8 מ"ל/ק"ג אידיאלי = (גובה − <span class="en">100) × 7</span>; MV = TV × RR; PEEP מינימום 5; FiO<sub>2</sub> מ-100% עד 40% כל עוד הסטורציה 90%–96%; פלאטו מתחת ל-30.</li>
+        <li>P/F = PaO<sub>2</sub>/FiO<sub>2</sub>: מעל 300 תקין, 200–300 קל, 100–200 בינוני, מתחת ל-100 קשה.</li>
+        <li>CPAP (UH): סטורציה מתחת ל-94% עם מסכה, בהכרה ומשתף; PEEP 5 ‏&rlm;←&rlm; עלייה ב-2.5 עד 10 (COPD עד 5); 15 LPM; לא בל"ד סיסטולי מתחת ל-100, נשימות מתחת ל-8 או פנאומוטורקס.</li>
+        <li>בצקת ריאות: ל"ד סיסטולי מעל 100 ‏&rlm;←&rlm; ניטרטים SL + פוסיד 1 מ"ג/ק"ג (מקס' 120); מתחת ל-100 ‏&rlm;←&rlm; פוסיד ושקול דופמין 5–20 מק"ג/ק"ג/דקה.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="end">סיכום קורס פרמדיק · סיכום לימודי לקורס פרמדיק מספר 5. אינו מחליף את הפרוטוקולים הרשמיים.</footer>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a, .strip a'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.chapter'));
+  if (!('IntersectionObserver' in window) || !secs.length) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

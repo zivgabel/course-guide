@@ -1,0 +1,1746 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="סיכום קורס פרמדיק – פרק ב׳ · החייאה בסיסית וניהול נתיב אוויר">
+<title>נתיב אוויר · סיכום קורס פרמדיק</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Miriam+Libre:wght@400;700&family=Suez+One&display=swap">
+<style>
+/* Layout: one reading column (~68ch) with wide breakouts for tables and figures; a colour-tape rail
+   (one colour zone per chapter) runs down the inline-end edge as navigation, and becomes a thin
+   sticky strip on phones. Highlight system: lime marker = must know, magenta = red flag, slate
+   chart-paper in Miriam Libre = hospital-level knowledge, teal = what the paramedic does in the field. */
+:root {
+  --paper: #F6F8FA;
+  --card: #FFFFFF;
+  --ink: #142030;
+  --ink-2: #4B5969;
+  --ink-3: #7A8796;
+  --rule: #D8DFE7;
+  --hl: #E4FF3F;
+  --hl-ink: #182000;
+  --alarm: #D90F64;
+  --alarm-bg: #FFE6F0;
+  --field: #0A7A72;
+  --field-bg: #E1F3F1;
+  --hosp: #56688A;
+  --hosp-bg: #EEF1F7;
+  --hosp-grid: rgba(86,104,138,.10);
+  --z-grey: #8E959C;
+  --z-pink: #F08DBA;
+  --z-red: #E0312C;
+  --z-purple: #8A4FBF;
+  --z-yellow: #F2C200;
+  --z-white: #E6EAEE;
+  --z-blue: #2C78DD;
+  --z-orange: #F0832A;
+  --z-green: #2BA14D;
+  --zone: var(--z-grey);
+
+  --f-display: "Suez One", "Frank Ruhl Libre", serif;
+  --f-body: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --f-ui: "IBM Plex Sans Hebrew", "Segoe UI", Arial, sans-serif;
+  --f-hosp: "Miriam Libre", "IBM Plex Sans Hebrew", Arial, sans-serif;
+
+  --t-xs: .78rem; --t-sm: .9rem; --t-base: 1.1rem; --t-md: 1.3rem; --t-lg: 1.65rem; --t-xl: 2.3rem; --t-xxl: clamp(2.6rem, 7vw, 4.6rem);
+  --col: 44rem;
+  --wide: 62rem;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--f-body); font-size: var(--t-base); line-height: 1.75;
+  direction: rtl; text-align: start;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+[data-zone="grey"]{--zone:var(--z-grey)} [data-zone="pink"]{--zone:var(--z-pink)} [data-zone="red"]{--zone:var(--z-red)}
+[data-zone="purple"]{--zone:var(--z-purple)} [data-zone="yellow"]{--zone:var(--z-yellow)} [data-zone="white"]{--zone:var(--z-white)}
+[data-zone="blue"]{--zone:var(--z-blue)} [data-zone="orange"]{--zone:var(--z-orange)} [data-zone="green"]{--zone:var(--z-green)}
+
+.page { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1100px) { .page { padding-left: max(96px, env(safe-area-inset-left, 0px)); } }
+.flow { max-width: var(--col); margin-inline: auto; }
+.flow > * + * { margin-block-start: 1em; }
+.flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses {
+  --bw: min(var(--wide), calc(100vw - 200px));
+  width: var(--bw); max-width: none; margin-inline: calc((100% - var(--bw)) / 2);
+}
+@media (max-width: 1000px) { .flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses { width: 100%; margin-inline: 0; } }
+
+a { color: inherit; text-decoration-color: var(--zone); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--field); outline-offset: 2px; border-radius: 4px; }
+h2, h3, h4 { text-wrap: balance; line-height: 1.25; }
+h3 { font-family: var(--f-ui); font-weight: 700; font-size: var(--t-lg); margin-block-start: 2.4em; letter-spacing: -.01em; }
+h3::before { content: ""; display: inline-block; width: .55em; height: .55em; background: var(--zone); border-radius: 2px; margin-inline-end: .45em; vertical-align: .12em; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+h4 { font-family: var(--f-ui); font-weight: 600; font-size: var(--t-md); margin-block-start: 1.8em; color: var(--ink); }
+p, li { text-wrap: pretty; }
+ul, ol { padding-inline-start: 1.3em; }
+li + li { margin-block-start: .3em; }
+li::marker { color: var(--ink-3); }
+strong, b { font-weight: 700; }
+abbr, .en { font-family: var(--f-ui); font-size: .92em; direction: ltr; unicode-bidi: isolate; }
+.num { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-weight: 600; unicode-bidi: isolate; }
+
+/* ---------- highlight system ---------- */
+mark { background: linear-gradient(transparent 12%, var(--hl) 12%, var(--hl) 88%, transparent 88%); color: var(--hl-ink); padding-inline: .15em; border-radius: 2px; font-weight: 600; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.alarm-t { color: var(--alarm); font-weight: 700; }
+
+.callout { border-radius: var(--r); padding: 1rem 1.15rem 1.05rem; position: relative; }
+.callout > .tag { display: inline-flex; align-items: center; gap: .4em; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .06em; padding: .2em .65em; border-radius: 99px; margin-block-end: .5rem; }
+.callout > :last-child { margin-block-end: 0; }
+.callout p { margin: .35em 0; }
+.callout ul, .callout ol { margin: .35em 0; }
+.tag svg { width: 1.05em; height: 1.05em; }
+
+.must { background: var(--hl); color: var(--hl-ink); }
+.must > .tag { background: var(--hl-ink); color: var(--hl); }
+.must mark { background: var(--hl-ink); color: var(--hl); }
+
+.redflag { background: var(--alarm-bg); border: 2px solid var(--alarm); }
+.redflag > .tag { background: var(--alarm); color: #fff; }
+
+.field { background: var(--field-bg); border-inline-start: 5px solid var(--field); border-radius: 4px var(--r) var(--r) 4px; }
+.field > .tag { background: var(--field); color: var(--card); }
+
+.hosp, .hosp-i { font-family: var(--f-hosp); color: var(--hosp); }
+.hosp { font-size: .9rem; line-height: 1.7; background-color: var(--hosp-bg);
+  background-image: linear-gradient(var(--hosp-grid) 1px, transparent 1px), linear-gradient(90deg, var(--hosp-grid) 1px, transparent 1px);
+  background-size: 14px 14px; border: 1px dashed var(--hosp); border-radius: 6px; }
+.hosp > .tag { background: transparent; color: var(--hosp); border: 1px solid var(--hosp); font-family: var(--f-hosp); }
+.hosp-i { font-size: .92em; background: var(--hosp-bg); padding: .05em .4em; border-radius: 4px; border: 1px dashed var(--hosp); }
+
+.note-src { background: transparent; border: 1px solid var(--rule); font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); }
+.note-src > .tag { background: var(--ink-2); color: var(--paper); }
+
+.recap { background: var(--card); border: 1px solid var(--rule); border-top: 6px solid var(--zone); border-radius: var(--r); padding: 1.1rem 1.3rem; }
+.recap > .tag { background: var(--ink); color: var(--paper); }
+.recap ol, .recap ul { font-family: var(--f-ui); font-size: .98rem; }
+
+/* ---------- steps (real sequences only) ---------- */
+ol.steps { list-style: none; padding: 0; counter-reset: s; display: grid; gap: .55rem; font-family: var(--f-ui); font-size: 1rem; line-height: 1.6; }
+ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 2rem 1fr; gap: .7rem; align-items: start; margin: 0; }
+ol.steps > li::before { content: counter(s); width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--field); color: var(--card); font-weight: 700; font-variant-numeric: tabular-nums; }
+ol.steps > li > * { min-width: 0; }
+
+/* ---------- definitions ---------- */
+dl.kv { display: grid; grid-template-columns: minmax(7rem, max-content) 1fr; gap: .45rem 1.1rem; margin: 0; }
+dl.kv dt { font-family: var(--f-ui); font-weight: 700; }
+dl.kv dd { margin: 0; min-width: 0; }
+@media (max-width: 520px) { dl.kv { grid-template-columns: 1fr; } dl.kv dd { margin-block-end: .5rem; } }
+
+/* ---------- tables ---------- */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: var(--r); background: var(--card); }
+table.data { border-collapse: collapse; width: 100%; font-family: var(--f-ui); font-size: .95rem; line-height: 1.5; font-variant-numeric: tabular-nums; }
+table.data caption { caption-side: top; text-align: start; padding: .8rem 1rem .4rem; font-weight: 700; font-size: var(--t-sm); color: var(--ink-2); letter-spacing: .02em; }
+table.data th, table.data td { padding: .6rem .9rem; text-align: start; vertical-align: top; border-block-end: 1px solid var(--rule); }
+table.data thead th { background: color-mix(in srgb, var(--zone) 18%, var(--card)); font-weight: 700; white-space: nowrap; }
+table.data tbody th { font-weight: 600; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+table.data tbody tr:last-child > * { border-block-end: 0; }
+table.data td.hl { background: var(--hl); color: var(--hl-ink); font-weight: 700; }
+table.data td.hosp-c { font-family: var(--f-hosp); color: var(--hosp); font-size: .88rem; }
+
+/* ---------- compare ---------- */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.compare > div { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem 1.15rem; }
+.compare > div > h5 { margin: 0 0 .5rem; font-family: var(--f-ui); font-size: var(--t-md); font-weight: 700; padding-block-end: .45rem; border-block-end: 3px solid var(--zone); }
+.compare ul { margin: 0; font-size: 1rem; }
+
+/* ---------- dose cards ---------- */
+.doses { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+.dose { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
+.dose > header { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; padding: .7rem 1rem; background: color-mix(in srgb, var(--zone) 14%, var(--card)); border-block-end: 1px solid var(--rule); }
+.dose > header h5 { margin: 0; font-family: var(--f-ui); font-size: 1.1rem; font-weight: 700; }
+.dose > header .ind { font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-2); text-align: end; }
+.dose .big { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 700; padding: .7rem 1rem .1rem; line-height: 1.3; }
+.dose .big small { font-size: .9rem; font-weight: 500; color: var(--ink-2); }
+.dose dl { margin: 0; padding: .4rem 1rem .9rem; display: grid; grid-template-columns: max-content 1fr; gap: .25rem .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.45; }
+.dose dt { color: var(--ink-3); }
+.dose dd { margin: 0; min-width: 0; }
+.dose .calc { margin-top: auto; border-block-start: 1px dashed var(--rule); padding: .6rem 1rem; font-family: var(--f-ui); font-size: .9rem; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+.dose .calc::before { content: "דוגמה · "; font-weight: 700; color: var(--field); }
+
+/* ---------- mnemonic ---------- */
+.mnemonic { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; font-family: var(--f-ui); }
+.mnemonic li { margin: 0; flex: 1 1 9rem; min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: .6rem .8rem; font-size: .92rem; line-height: 1.45; }
+.mnemonic li b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 1.7rem; line-height: 1; color: var(--ink); margin-block-end: .25rem; }
+
+/* ---------- figures / svg ---------- */
+figure { margin-block: 1.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem; }
+figure > .svg-box { overflow-x: auto; }
+figure svg { display: block; width: 100%; height: auto; max-width: 100%; margin-inline: auto; }
+figure.narrow svg { max-width: 30rem; }
+figcaption { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); margin-block-start: .7rem; line-height: 1.55; }
+figcaption b { color: var(--ink); }
+svg text { font-family: var(--f-ui); fill: var(--ink); font-size: 14px; }
+svg .t-sm { font-size: 12px; fill: var(--ink-2); }
+svg .t-b { font-weight: 700; }
+svg .t-alarm { fill: var(--alarm); font-weight: 700; }
+svg .t-field { fill: var(--field); font-weight: 700; }
+svg .t-hosp { font-family: var(--f-hosp); fill: var(--hosp); }
+svg .ln { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+svg .ln-soft { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+svg .ln-dash { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-dasharray: 5 5; }
+svg .f-card { fill: var(--card); stroke: var(--rule); stroke-width: 1.5; }
+svg .f-soft { fill: color-mix(in srgb, var(--ink) 7%, var(--card)); }
+svg .f-zone { fill: var(--zone); }
+svg .f-zone-soft { fill: color-mix(in srgb, var(--zone) 25%, var(--card)); }
+svg .f-hl { fill: var(--hl); }
+svg .f-alarm { fill: var(--alarm); }
+svg .f-alarm-soft { fill: var(--alarm-bg); stroke: var(--alarm); stroke-width: 1.5; }
+svg .f-field { fill: var(--field); }
+svg .f-field-soft { fill: var(--field-bg); stroke: var(--field); stroke-width: 1.5; }
+svg .f-hosp-soft { fill: var(--hosp-bg); stroke: var(--hosp); stroke-width: 1.2; stroke-dasharray: 4 3; }
+svg .s-alarm { stroke: var(--alarm); stroke-width: 2.5; fill: none; }
+svg .s-field { stroke: var(--field); stroke-width: 2.5; fill: none; }
+svg .s-zone { stroke: var(--zone); stroke-width: 3; fill: none; }
+svg .f-blood-o { fill: #D7263D; } svg .f-blood-d { fill: #5B5BD6; }
+svg .f-skin { fill: color-mix(in srgb, #E8B897 70%, var(--card)); }
+
+/* ---------- chapter frame ---------- */
+.chapter { padding-block: 4rem 2rem; border-block-start: 1px solid var(--rule); }
+.ch-head { max-width: var(--col); margin-inline: auto; margin-block-end: 2rem; }
+.ch-zone { display: flex; align-items: center; gap: .7rem; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .1em; color: var(--ink-2); }
+.ch-zone::before { content: ""; width: 3.2rem; height: .9rem; background: var(--zone); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.ch-head h2 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xl); margin: .5rem 0 .6rem; letter-spacing: -.005em; }
+.ch-lede { font-size: 1.22rem; color: var(--ink-2); margin: 0; line-height: 1.6; }
+.ch-src { margin-block-start: .9rem; font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-3); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 3.5rem 2.5rem; }
+.hero-in { max-width: var(--wide); margin-inline: auto; }
+.eyebrow { font-family: var(--f-ui); font-size: var(--t-xs); letter-spacing: .14em; font-weight: 700; color: var(--ink-2); }
+.hero h1 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xxl); line-height: 1.02; margin: .6rem 0 1rem; letter-spacing: -.01em; }
+.hero h1 .w { display: block; color: var(--ink-2); font-size: .42em; line-height: 1.3; margin-block-start: .5rem; font-family: var(--f-body); font-weight: 500; }
+.tape { display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px var(--rule); margin-block: 2rem 1.2rem; }
+.tape a { display: flex; flex-direction: column; justify-content: space-between; gap: .9rem; padding: .7rem .6rem .75rem; background: var(--zone); color: #10161E; text-decoration: none; min-height: 8.5rem; min-width: 0; font-family: var(--f-ui); position: relative; transition: filter .15s; }
+.tape a:hover { filter: brightness(1.06) saturate(1.1); }
+.tape a[data-zone="purple"], .tape a[data-zone="red"], .tape a[data-zone="blue"], .tape a[data-zone="green"], .tape a[data-zone="grey"] { color: #fff; }
+.tape a::after { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 9px; background: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 10px); opacity: .45; }
+.tape .n { font-family: var(--f-display); font-size: 1.9rem; line-height: 1; margin-block-start: .5rem; }
+.tape .l { font-size: .82rem; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
+@media (max-width: 860px) { .tape { grid-template-columns: repeat(3, 1fr); } .tape a { min-height: 6rem; } }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.5; }
+.legend > div { min-width: 0; display: flex; flex-direction: column; gap: .35rem; }
+.legend .sw { font-weight: 700; }
+.legend .callout { padding: .7rem .85rem; }
+.hero-note { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); margin-block-start: 1.4rem; max-width: 52rem; }
+
+/* ---------- rail nav ---------- */
+.rail { display: none; }
+@media (min-width: 1100px) {
+  .rail { display: flex; flex-direction: column; position: fixed; left: max(24px, env(safe-area-inset-left, 0px)); top: 50%; transform: translateY(-50%); z-index: 5; border-radius: 5px; overflow: visible; box-shadow: 0 0 0 1px var(--rule); }
+  .rail a { width: 34px; height: 46px; background: var(--zone); display: grid; place-items: center; font-family: var(--f-ui); font-size: .78rem; font-weight: 700; color: rgba(16,22,30,.75); text-decoration: none; position: relative; transition: width .18s; }
+  .rail a:first-child { border-radius: 5px 5px 0 0; } .rail a:last-child { border-radius: 0 0 5px 5px; }
+  .rail a.on { width: 50px; box-shadow: 0 0 0 2px var(--ink); z-index: 1; color: #10161E; }
+  .rail a .lbl { position: absolute; left: calc(100% + 10px); white-space: nowrap; background: var(--ink); color: var(--paper); padding: .25rem .6rem; border-radius: 5px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .15s; }
+  .rail a:hover .lbl, .rail a:focus-visible .lbl { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .rail a, .tape a { transition: none; } }
+.strip { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); height: 7px; }
+.strip a { background: var(--zone); opacity: .55; }
+.strip a.on { opacity: 1; }
+@media (min-width: 1100px) { .strip { display: none; } }
+
+/* ---------- volume bar (multi-page course guide) ---------- */
+.vols { display: flex; flex-wrap: wrap; gap: .35rem .5rem; align-items: center; max-width: var(--wide); margin: 0 auto; padding: 1rem 0 0; font-family: var(--f-ui); font-size: var(--t-xs); }
+.vols a { color: var(--ink-2); text-decoration: none; padding: .25rem .65rem; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--rule); white-space: nowrap; }
+.vols a:hover { color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink-3); }
+.vols a.home { font-weight: 700; color: var(--ink); }
+.vols a.on, .vols a.home.on { background: var(--ink); color: var(--paper); box-shadow: none; }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; margin-block: 2rem; }
+.vcard { display: flex; flex-direction: column; background: var(--card); border-radius: 8px; box-shadow: 0 0 0 1px var(--rule); overflow: hidden; color: var(--ink); text-decoration: none; transition: box-shadow .15s; }
+.vcard:hover { box-shadow: 0 0 0 2px var(--ink-3); }
+.vcard .bar { display: grid; grid-auto-flow: column; height: 10px; }
+.vcard .bar span { background: var(--zone); }
+.vcard .in { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .4rem; }
+.vcard .k { font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .08em; color: var(--ink-3); }
+.vcard h2 { font-family: var(--f-display); font-weight: 400; font-size: 1.6rem; line-height: 1.15; margin: 0; }
+.vcard ol { margin: .3rem 0 0; padding-inline-start: 1.2rem; font-family: var(--f-ui); font-size: .9rem; line-height: 1.5; color: var(--ink-2); }
+@media (prefers-reduced-motion: reduce) { .vcard { transition: none; } }
+
+footer.end { padding-block: 3rem 4rem; text-align: center; font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); border-block-start: 1px solid var(--rule); }
+body{margin:0}
+</style>
+<script data-goatcounter="https://zivgabel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<nav class="strip" aria-hidden="true" style="--n:2"><a href="#ch8" data-zone="red" tabindex="-1"></a><a href="#ch9" data-zone="blue" tabindex="-1"></a></nav>
+<nav class="rail" aria-label="פרקים"><a href="#ch8" data-zone="red">1<span class="lbl">ניהול נתיב אוויר: בסיסי, מתקדם, אינטובציה ו-LMA</span></a><a href="#ch9" data-zone="blue">2<span class="lbl">אנאפילקסיס וחנק מגוף זר</span></a></nav>
+
+<div class="page">
+<nav class="vols" aria-label="חלקי הסיכום"><a class="home" href="index.html">סיכום הקורס</a><a href="basic.html">מדעי היסוד</a><a class="on" href="airway.html">נתיב אוויר</a><a href="conscious.html">שינויים בהכרה</a><a href="inter.html">פרמקולוגיה ואנמנזה</a><a href="resp.html">נשימה</a><a href="cardio.html">קרדיולוגיה</a><a href="trauma.html">טראומה</a><a href="peds.html">ילדים ותינוקות</a><a href="obgyn.html">גניקולוגיה ומיילדות</a><a href="pop.html">אוכלוסיות שונות</a></nav>
+<header class="hero">
+  <div class="hero-in">
+    <div class="eyebrow">סיכום קורס פרמדיק · פרק ב׳ · החייאה בסיסית וניהול נתיב אוויר</div>
+    <h1>נתיב אוויר<span class="w">2 פרקים · מצגות הקורס ופרוטוקולי איחוד הצלה</span></h1>
+    <nav class="tape" aria-label="תוכן העניינים" style="--n:2"><a href="#ch8" data-zone="red"><span class="n">1</span><span class="l">ניהול נתיב אוויר: בסיסי, מתקדם, אינטובציה ו-LMA</span></a><a href="#ch9" data-zone="blue"><span class="n">2</span><span class="l">אנאפילקסיס וחנק מגוף זר</span></a></nav>
+    <div class="legend" aria-label="מקרא">
+      <div><span class="sw">מרקר = חובה לדעת</span><div class="callout must" style="padding:.55rem .8rem">ערך, סף או מינון <mark>שנשאלים במבחן</mark></div></div>
+      <div><span class="sw">ורוד = דגל אדום</span><div class="callout redflag" style="padding:.55rem .8rem">סימן סכנה שמחייב פעולה מיידית</div></div>
+      <div><span class="sw">טורקיז = מה עושים בשטח</span><div class="callout field" style="padding:.55rem .8rem">פעולות הפרמדיק, לפי הסדר</div></div>
+      <div><span class="sw">נייר מילימטרי = בית חולים</span><div class="callout hosp" style="padding:.55rem .8rem">בירור וטיפול בבית החולים, לידיעה כללית</div></div>
+    </div>
+    <p class="hero-note">הסיכום מבוסס על מצגות הקורס ועל פרוטוקולי איחוד הצלה (UH ACLS 2023). כשהמצגות סותרות זו את זו או את הפרוטוקול, זה מסומן במסגרת "שימו לב למקור".</p>
+  </div>
+</header>
+
+<main>
+<section class="chapter" id="ch8" data-zone="red">
+  <header class="ch-head">
+    <div class="ch-zone">פרק ב׳ · החייאה בסיסית וניהול נתיב אוויר · פרק 1</div>
+    <h2>ניהול נתיב אוויר: בסיסי, מתקדם, אינטובציה ו-LMA</h2>
+    <p class="ch-lede">מהאנטומיה של דרכי האוויר, דרך פתיחה ידנית ומנתבים, ועד אינטובציה, מסכת גרון, RSI/DSI ונתיב אוויר כירורגי. כך עובדים לפי הסדר: קודם חמצון, אחר כך נתיב אוויר מתקדם, ותמיד עם תוכנית חלופית.</p>
+    <div class="ch-src">מקור: ניהול נתיב אויר בסיסי (38 עמ׳) · ניהול נתיב אויר מתקדם (55 עמ׳) · אנטובציה (32 עמ׳) · LMA (26 עמ׳) · נתיב אויר מתקדם ומבצעי (14 עמ׳) · פרוטוקול איחוד הצלה UH_ACLS_2023 עמ׳ 30–33 (הפסקת נשימה מאיימת)</div>
+  </header>
+  <div class="flow">
+
+    <h3>אנטומיה של דרכי האוויר: מה צריך לזכור לשטח</h3>
+    <p>מערכת הנשימה מחולקת לשני חלקים. <b>מערכת הנשימה העליונה</b> <span class="en">(Upper Respiratory System)</span> כוללת את האף, הלוע והגרון. <b>מערכת הנשימה התחתונה</b> <span class="en">(Lower Respiratory System)</span> כוללת את קנה הנשימה, הסימפונות והריאות. כמעט כל הפעולות בפרק הזה מתרחשות בחלק העליון, כי שם קורות רוב החסימות.</p>
+    <p>חלוקה נוספת היא לפי תפקיד:</p>
+    <div class="compare">
+      <div><h5>חלק מוביל <span class="en">(Conducting Portion)</span></h5>
+        <ul>
+          <li>נפח של כ-<mark>150 סמ״ק</mark> <span class="en">(CC 150)</span>.</li>
+          <li>אף, לוע, גרון, קנה נשימה, ברונכיולים, סימפונות טרמינליים.</li>
+          <li>מוביל אוויר בלבד ולא מתבצע בו שחלוף גזים.</li>
+        </ul></div>
+      <div><h5>חלק נשימתי <span class="en">(Respiratory Portion)</span></h5>
+        <ul>
+          <li>נפח של כ-<b>5–6 ליטר</b>.</li>
+          <li><span class="en">Respiratory Bronchioles</span>, <span class="en">Alveolus Duct</span>, <span class="en">Alveolus Sac</span>, <span class="en">Alveoli</span>.</li>
+          <li>כאן מתבצע שחלוף הגזים.</li>
+        </ul></div>
+    </div>
+    <p><b>למה זה חשוב לפרמדיק:</b> כ-150 סמ״ק מכל נשימה רק ממלאים את "הצנרת" ולא מגיעים לאלוואולי. לכן נשימות שטוחות ומהירות מאווררות בעיקר את החלק המוביל ומעט מאוד את האלוואולי. זו אחת הסיבות שמטופל עם קצב נשימה גבוה ונפח קטן יכול להיות בהיפוקסיה גם כשהוא "נושם".</p>
+
+    <h4>האף והלוע</h4>
+    <p>שלד האף החיצוני בנוי מ<b>עצם האף</b> <span class="en">(Nasal Bone)</span>, מ<b>סחוס האף</b> <span class="en">(Nasal Cartilage)</span> ומעור ובלוטות שומן. בתוך מערות האף נמצאות קונכיות <span class="en">(Conchae / Turbinates)</span> עשירות בכלי דם. זו הסיבה שמנתב או טובוס דרך האף עלולים לגרום לדימום.</p>
+    <p>ה<b>לוע</b> <span class="en">(Pharynx)</span> מחולק לשלושה חלקים, מלמעלה למטה:</p>
+    <dl class="kv">
+      <dt><span class="en">Nasopharynx</span></dt><dd>מאחורי האף, מעל החך הרך.</dd>
+      <dt><span class="en">Oropharynx</span></dt><dd>מאחורי חלל הפה. כאן "נופל" בסיס הלשון אצל מחוסר הכרה.</dd>
+      <dt><span class="en">Laryngopharynx</span></dt><dd>ה-<span class="en">Hypopharynx</span>. מתפצל קדימה לגרון ולקנה, ואחורה לוושט.</dd>
+    </dl>
+
+    <h4>הגרון <span class="en">(Larynx)</span></h4>
+    <p>הגרון בנוי משישה סחוסים: שלושה יחידים ושלושה זוגיים.</p>
+    <div class="tbl-wrap"><table class="data"><caption>סחוסי הגרון</caption>
+      <thead><tr><th>סחוס</th><th>יחיד / זוג</th><th>מה חשוב לדעת</th></tr></thead>
+      <tbody>
+        <tr><th><span class="en">Thyroid Cartilage</span></th><td>יחיד</td><td>"תפוחית אדם". הנקודה הבולטת הראשונה שממששים בצוואר.</td></tr>
+        <tr><th><span class="en">Epiglottis Cartilage</span></th><td>יחיד</td><td>המכסה שסוגר את פתח הגרון בבליעה. נקודת הייחוס בלרינגוסקופיה.</td></tr>
+        <tr><th><span class="en">Cricoid Cartilage</span></th><td>יחיד</td><td>מתחת לתירואיד. בין שניהם עוברת הממברנה הקריקו-תירואידית, אתר הניקוב בנתיב אוויר כירורגי.</td></tr>
+        <tr><th><span class="en">Arytenoid Cartilage</span></th><td>זוג</td><td rowspan="3">סחוסים קטנים בחלק האחורי של פתח הגרון. רואים חלק מהם דרך הלרינגוסקופ.</td></tr>
+        <tr><th><span class="en">Cuneiform Cartilage</span></th><td>זוג</td></tr>
+        <tr><th><span class="en">Corniculate Cartilage</span></th><td>זוג</td></tr>
+      </tbody></table></div>
+
+    <figure><div class="svg-box"><svg viewBox="0 0 700 340" role="img" aria-label="מבט קדמי על הגרון: עצם ההיואיד, סחוס התירואיד, הממברנה הקריקו-תירואידית, סחוס הקריקואיד וטבעות הקנה">
+      <defs><marker id="ch8-arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M1,1 L9,5 L1,9" class="s-alarm"/></marker></defs>
+      <rect x="170" y="30" width="180" height="16" rx="8" class="f-soft"/>
+      <path d="M190,68 L330,68 L320,140 L260,176 L200,140 Z" class="f-zone-soft"/>
+      <path d="M190,68 L330,68 L320,140 L260,176 L200,140 Z" fill="none" class="ln-soft"/>
+      <rect x="220" y="180" width="80" height="20" rx="4" class="f-alarm-soft"/>
+      <rect x="205" y="204" width="110" height="26" rx="8" class="f-zone-soft"/>
+      <rect x="220" y="238" width="80" height="12" rx="5" class="f-soft"/>
+      <rect x="220" y="256" width="80" height="12" rx="5" class="f-soft"/>
+      <rect x="220" y="274" width="80" height="12" rx="5" class="f-soft"/>
+      <rect x="220" y="292" width="80" height="12" rx="5" class="f-soft"/>
+      <rect x="220" y="310" width="80" height="12" rx="5" class="f-soft"/>
+      <circle cx="260" cy="190" r="5" class="f-alarm"/>
+      <line x1="350" y1="38" x2="405" y2="38" class="ln-soft"/>
+      <text x="410" y="43" direction="rtl" text-anchor="end">עצם ההיואיד</text>
+      <line x1="325" y1="105" x2="405" y2="105" class="ln-soft"/>
+      <text x="410" y="110" direction="rtl" text-anchor="end">סחוס התירואיד (תפוחית אדם)</text>
+      <line x1="300" y1="190" x2="405" y2="190" class="ln-soft"/>
+      <text x="410" y="195" direction="rtl" text-anchor="end" class="t-alarm">ממברנה קריקו-תירואידית</text>
+      <line x1="315" y1="217" x2="405" y2="222" class="ln-soft"/>
+      <text x="410" y="227" direction="rtl" text-anchor="end">סחוס הקריקואיד</text>
+      <line x1="300" y1="280" x2="405" y2="280" class="ln-soft"/>
+      <text x="410" y="285" direction="rtl" text-anchor="end">טבעות קנה הנשימה</text>
+      <line x1="150" y1="190" x2="248" y2="190" class="s-alarm" marker-end="url(#ch8-arr1)"/>
+      <text x="140" y="186" direction="rtl" text-anchor="start" class="t-alarm">אתר הניקוב</text>
+      <text x="140" y="204" direction="rtl" text-anchor="start" class="t-sm">מחט / קוניוטומיה</text>
+    </svg></div>
+      <figcaption><b>הגרון במבט קדמי (סכמטי).</b> ממששים מלמעלה למטה: הבליטה של סחוס התירואיד, שקע רך, ואחריו הטבעת הקשה של הקריקואיד. השקע הרך הוא הממברנה הקריקו-תירואידית, דרכה מבצעים החדרת מחט וקוניוטומיה.</figcaption></figure>
+
+    <p><b>מיתרי הקול</b> נראים בלרינגוסקופיה כשני פסים לבנים בצורת V הפוכה. בין המיתרים האמיתיים <span class="en">(Vocal Folds)</span> נמצא הפתח, <span class="en">Rima Glottidis</span>. מעליהם ומהצדדים נמצאים המיתרים הכוזבים <span class="en">(Ventricular Folds)</span>. הטובוס צריך לעבור בדיוק בין המיתרים האמיתיים.</p>
+    <p>לגרון שלושה תפקידים: <b>השמעת קולות</b>, <b>הובלת אוויר</b>, ו<b>רפלקס בליעה</b> שמונע כניסת נוזלים לקנה. אצל מטופל מחוסר הכרה רפלקס ההגנה נחלש. לכן מחוסר הכרה בסכנה כפולה: לשון שחוסמת, וגם הפרשות או קיא שנשאפים לריאות.</p>
+
+    <h3>חסימות בדרכי האוויר <span class="en">(Airway Obstruction)</span></h3>
+    <p>המצגת מונה שבעה גורמים לחסימה:</p>
+    <div class="tbl-wrap"><table class="data"><caption>גורמים לחסימת דרכי אוויר ומה מאפיין כל אחד</caption>
+      <thead><tr><th>גורם</th><th>פרטים מהמקור</th></tr></thead>
+      <tbody>
+        <tr><th>צניחת לשון</th><td>במחוסר הכרה שוכב על הגב הלשון צונחת אחורה לאורופרינקס. מתוקנת בפתיחה ידנית ובמנתב.</td></tr>
+        <tr><th>גוף זר</th><td>כל דבר שנכנס לפה: אוכל, משחקים ועוד. (חנק מגוף זר מפורט בפרק הבא בחלק זה.)</td></tr>
+        <tr><th>טראומה</th><td>גוף זר בטראומה: הקאה, קריש דם, שיניים, עצמות שבורות, עיוות הגרון.</td></tr>
+        <tr><th>לרינגוספזם <span class="en">(Laryngeal Spasm)</span></th><td>אנפילקסיס ורגישות לחומרים ותרופות, שאיפת עשן, חומרים רעילים.</td></tr>
+        <tr><th>אספירציה</th><td>שאיפת אוכל, קיא, שיניים, הפרשות וכדומה לקנה. הסכנות: חנק, נזק לאלוואולי ופגיעה בשחלוף הגזים, בצקת, דלקת.</td></tr>
+        <tr><th>בצקת בגרון</th><td>למשל באנפילקסיס או בכוויות. נתיב האוויר עלול להיסגר בהדרגה.</td></tr>
+        <tr><th>אפיגלוטיטיס בילדים</th><td>דלקת של המכסה. נחשבת גם כהתוויה לאינטובציה מניעתית.</td></tr>
+      </tbody></table></div>
+
+    <h3>פתיחת נתיב אוויר ידנית</h3>
+    <p>ניהול נתיב אוויר ידני יעיל מאוד ואינו דורש שום ציוד. כל התמרונים פועלים באותו עיקרון: <b>מושכים את הלסת התחתונה קדימה</b>, ואיתה את הלשון שמחוברת אליה, וכך בסיס הלשון מתרחק מהקיר האחורי של הלוע.</p>
+    <div class="compare">
+      <div><h5>הטיית ראש / הרמת סנטר</h5>
+        <p><span class="en">Head-Tilt / Chin-Lift</span></p>
+        <ul>
+          <li>יד אחת על המצח מטה את הראש.</li>
+          <li>יד שנייה על הסנטר מרימה אותו.</li>
+          <li>התוצאה: הרמת הלשון ופתיחת דרכי האוויר.</li>
+        </ul></div>
+      <div><h5>דחיפת לסת <span class="en">(Jaw-Thrust)</span></h5>
+        <ul>
+          <li>החולה שוכב על הגב.</li>
+          <li>המטפל מאחורי הראש, על הברכיים.</li>
+          <li>האצבעות על זוויות הלסת התחתונה.</li>
+          <li>דוחפים את הלסת קדימה ומטים את הראש אחורה.</li>
+        </ul></div>
+      <div><h5>הרמת לסת <span class="en">(Jaw-Lift)</span></h5>
+        <ul>
+          <li>החולה שוכב על הגב, המטפל בצד החולה.</li>
+          <li>יד אחת על המצח.</li>
+          <li>יד שנייה תופסת את הלסת ומרימה אותה קדימה ומעלה.</li>
+        </ul></div>
+      <div><h5>דחיפת לסת מותאמת (טראומה)</h5>
+        <p><span class="en">Modified Jaw-Thrust</span></p>
+        <ul>
+          <li>המטפל מאחורי הראש.</li>
+          <li>הראש בתנוחה ישרה, <b>ללא הטיה</b> (ניטרלי).</li>
+          <li>דוחפים את הלסת עם האצבעות קדימה ולמעלה.</li>
+        </ul></div>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>בחשד לפגיעה בעמוד השדרה הצווארי <span class="alarm-t">לא מטים את הראש</span>. משתמשים בדחיפת לסת מותאמת, שפותחת את נתיב האוויר כשהראש נשאר ניטרלי.</p></div>
+
+    <h3>עזרים בסיסיים: מנתב אוויר פומי ואפי</h3>
+    <p>בניהול נתיב אוויר בסיסי מכני יש שני סוגים של מנתב אוויר: <b>מנתב פומי</b> <span class="en">(Oropharyngeal Airway)</span> ו<b>מנתב אפי</b> <span class="en">(Nasopharyngeal Airway)</span>.</p>
+
+    <h4>מנתב אוויר פומי <span class="en">(OPA)</span></h4>
+    <p>צינור מעוקל שעוזר למנוע צניחה של בסיס הלשון, כלומר שומר את בסיס הלשון רחוק מהאורופרינקס.</p>
+    <div class="compare">
+      <div><h5>יתרונות</h5><ul>
+        <li>מונע צניחה של בסיס הלשון.</li>
+        <li>האוויר עובר מסביבו וגם דרכו.</li>
+        <li>מונע סגירה של הפה על ידי השיניים והשפתיים.</li>
+        <li>עוזר למחוסרי הכרה שנושמים באופן ספונטני או שזקוקים להנשמה מכנית.</li>
+        <li>מקל על הסקשן: הקטטר נכנס משני צדדיו בחופשיות.</li>
+        <li>מונע נשיכה בזמן פרכוסים, ומגן על הטובוס מפני נשיכה.</li>
+      </ul></div>
+      <div><h5>חסרונות</h5><ul>
+        <li>אינו מבודד את הטרכיאה.</li>
+        <li>אי אפשר להחדיר אותו כשהשיניים סגורות בספזם.</li>
+        <li>יכול לחסום את דרכי האוויר אם לא משתמשים בו נכון.</li>
+        <li>יכול לזוז ולצאת ממקומו בקלות.</li>
+      </ul></div>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>אסור להשתמש במנתב פומי</b> בחולה <b>בהכרה</b>, או בחולה <b>מעורפל הכרה עם רפלקס הקאה</b> <span class="en">(Gag Reflex)</span>.</p>
+      <p>סכנות המנתב: חסימת נתיב אוויר, פציעת דרכי אוויר, <span class="alarm-t">גירוי הקאה</span>, גירוי עצב הוואגוס, וכיווץ וספזם של דרכי אוויר (לרינגוספזם).</p></div>
+
+    <div class="tbl-wrap"><table class="data"><caption>גודלי מנתב אוויר פומי</caption>
+      <thead><tr><th>גודל מנתב</th><th>מיועד ל</th></tr></thead>
+      <tbody>
+        <tr><th><span class="en">00, 0</span></th><td>תינוקות עד גיל שנה</td></tr>
+        <tr><th><span class="en">1, 2</span></th><td>ילדים מגיל 1 עד 8 שנים</td></tr>
+        <tr><th><span class="en">3, 4</span></th><td>מבוגרים</td></tr>
+      </tbody></table></div>
+    <p><b>מדידה</b> (שתי שיטות): <mark>מזווית הפה עד קצה האוזן</mark>, בעיקר במבוגרים, או <b>מאמצע הפה עד זווית הלסת</b>, בעיקר בילדים. מנתב קצר מדי דוחף את הלשון אחורה במקום להרחיק אותה. מנתב ארוך מדי עלול ללחוץ על האפיגלוטיס ולחסום.</p>
+    <p><b>מתי מחדירים:</b> כל חולה מחוסר הכרה שלא נושם; כל חולה מחוסר הכרה שנושם אבל נמצא בסכנה לחסימת דרכי אוויר; כל חולה מונשם.</p>
+    <p><b>למה המנתב נפלט מהפה:</b> מנתב גדול מדי, החדרה בצורה הפוכה, הקאות, החולה דוחף אותו בעצמו, או הטיית ראש לא מספקת. חולה שמתחיל לפלוט את המנתב ייתכן שחוזר אליו רפלקס ההקאה. זה סימן שצריך להוציא אותו.</p>
+
+    <h4>מנתב אוויר אפי <span class="en">(NPA)</span></h4>
+    <p>צינור פלסטיק קשיח בצורת קשת, באורך של כ-<b>17–20 ס״מ</b>. מכניסים אותו דרך האף עד בסיס הלשון (הגרון), והוא מפריד בין הלשון לקיר הגרון האחורי. מחדירים אותו <b>כשאין אפשרות להחדיר מנתב פומי</b>, או כשיש שינויים במבנה האנטומי בפה.</p>
+    <div class="compare">
+      <div><h5>יתרונות</h5><ul>
+        <li>החדרה מהירה וקלה.</li>
+        <li>עובר את בסיס הלשון.</li>
+        <li><mark>אפשר להחדיר אותו גם כשיש רפלקס הקאה</mark>.</li>
+        <li>אפשר להשתמש בו כשיש ריסוק של הפה, הלשון ועצמות המנדיבולה והמקסילה.</li>
+      </ul></div>
+      <div><h5>חסרונות</h5><ul>
+        <li>קוטר קטן יותר מהמנתב הפומי.</li>
+        <li>לא מגיע לטרכיאה.</li>
+        <li>קשה לבצע דרכו סקשן, בגלל הקוטר הקטן.</li>
+        <li>סכנה לדימומים דרך האף.</li>
+      </ul></div>
+    </div>
+
+    <h3>אינטובציה אנדוטרכיאלית: מה, מתי ולמה</h3>
+    <p><b>הגדרה:</b> פעולה רפואית פולשנית בשלב ה-<span class="en">Airway</span>. במהלכה מוחדר צינור (טובוס) אל קנה הנשימה, כדי להבטיח את נתיב האוויר ולאפשר אליו גישה ישירה. היכולת לבצע אינטובציה תלויה בהכרת האנטומיה והפיזיולוגיה של מערכת הנשימה, יחד עם יכולת טכנית גבוהה.</p>
+
+    <div class="compare">
+      <div><h5>התוויות (הוריות)</h5><ul>
+        <li>דום לב או דום נשימה.</li>
+        <li>חוסר הכרה עם אובדן או פגיעה ברפלקס ההקאה <span class="en">(Gag Reflex)</span>.</li>
+        <li>ירידה משמעותית בנפח הדקה <span class="en">(MV)</span>, כלומר בנפח או בקצב הנשימה, עקב פגיעה במרכז הנשימה או במנגנון הנשימה.</li>
+        <li>חסימה קיימת או מאיימת: גוף זר, טראומה, בצקת, אנפילקסיס.</li>
+        <li>אינטובציה מניעתית <span class="en">(Preventive)</span>: כוויות בדרכי הנשימה, היפותרמיה, אפיגלוטיטיס.</li>
+        <li>הנשמת יתר <span class="en">(Hyperventilation)</span>.</li>
+        <li>חולים היפוקסמיים (ובהכרה ירודה היפוקסית) עם פגיעה באברי מטרה.</li>
+        <li>חולים או פצועים שצריכים הנשמה.</li>
+      </ul></div>
+      <div><h5>יתרונות</h5><ul>
+        <li>מבודדת את הטרכיאה ושומרת על דרכי אוויר פתוחים.</li>
+        <li>הנשמה אפקטיבית עם 100% חמצן.</li>
+        <li>מונעת אספירציה והתרחבות (ניפוח) של הקיבה.</li>
+        <li>מאפשרת סקשן ישיר ועמוק מהסימפונות.</li>
+        <li>מאפשרת מתן תרופות דרך הטובוס כשאין וריד פתוח.</li>
+        <li>שליטה על נפח וקצב הנשימה דרך מכונת הנשמה.</li>
+        <li>אפשרות להנשים בלחץ חיובי ולהשתמש ב-<span class="en">PEEP</span> (לחץ סוף נשיפתי חיובי).</li>
+      </ul></div>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>התוויות נגד ומצבים לזהירות:</b></p>
+      <ul>
+        <li>אין צוות מיומן ומתאים.</li>
+        <li>החולה בהכרה (בלי סדציה מתאימה, ראו RSI/DSI בהמשך).</li>
+        <li>זהירות כשחושדים ב<b>חזה אוויר</b>: הנשמה בלחץ חיובי עלולה להחמיר אותו.</li>
+        <li>יש בעיה טכנית בביצוע.</li>
+      </ul></div>
+
+    <h3>הציוד לאינטובציה</h3>
+    <p>רשימת הציוד מהמצגת: לרינגוסקופ, טובוס, מוליך מתכת <span class="en">(Stylet / Guide)</span>, מזרק 10 סמ״ק, שרוך לקיבוע, מלקחי מגיל, משחת שימון, ערכת אמבו, סקשן, מיכל חמצן, סטטוסקופ, ציוד הגנה אישי (כפפות ומסכת פנים), ומנתב אוויר.</p>
+
+    <h4>לרינגוסקופ</h4>
+    <p>מכשיר שמאפשר להסתכל אל אזור תיבת הקול <span class="en">(Larynx)</span>: הוא מרים את הלשון ואת מכסה הגרון <span class="en">(Epiglottis)</span> וכך מאפשר להחדיר את הטובוס. הוא משמש גם לזיהוי והוצאה של גוף זר מדרכי הנשימה העליונות. הלרינגוסקופ בנוי משני חלקים:</p>
+    <dl class="kv">
+      <dt>ידית</dt><dd>מכילה סוללות שמזינות את המנורה בלהב. המנורה מאירה את דרכי הנשימה העליונות.</dd>
+      <dt>להב</dt><dd>החלק שמוחדר ללוע. מרים את הלשון ואת האפיגלוטיס כדי שאפשר יהיה לראות את מיתרי הקול. יש להבים בגדלים <b>0 עד 4</b>.</dd>
+    </dl>
+    <div class="compare">
+      <div><h5>להב מעוקל · <span class="en">Macintosh</span></h5><ul>
+        <li>מוחדר לאזור ה-<span class="en">Vallecula</span>, השקע שבין בסיס הלשון לאפיגלוטיס.</li>
+        <li>מרים את הלשון ובצורה עקיפה את האפיגלוטיס.</li>
+        <li>אין מגע עם האפיגלוטיס, ולכן <b>הגירוי להקאה קטן</b>.</li>
+      </ul></div>
+      <div><h5>להב ישר · <span class="en">Miller</span></h5><ul>
+        <li>מוחדר עד מתחת לאפיגלוטיס ומרים אותו ישירות.</li>
+        <li><b>סבירות גדולה להקאה</b>, כי רצפטורי גירוי ההקאה נמצאים בחלק האחורי של האפיגלוטיס.</li>
+      </ul></div>
+    </div>
+
+    <figure><div class="svg-box"><svg viewBox="0 0 680 340" role="img" aria-label="השוואה בין מיקום קצה להב מקינטוש בוולקולה לבין להב מילר שמרים את האפיגלוטיס ישירות">
+      <g>
+        <ellipse cx="115" cy="150" rx="80" ry="58" class="f-skin"/>
+        <text x="100" y="165" direction="rtl" text-anchor="middle">לשון</text>
+        <polygon points="208,232 219,232 238,152 228,149" class="f-zone"/>
+        <rect x="240" y="205" width="36" height="85" rx="6" class="f-zone-soft"/>
+        <rect x="285" y="215" width="30" height="75" rx="6" class="f-soft"/>
+        <path d="M30,35 Q150,55 203,186 L195,190 Q138,68 26,47 Z" class="f-field"/>
+        <circle cx="200" cy="190" r="5" class="f-hl"/>
+        <line x1="150" y1="235" x2="198" y2="196" class="ln-soft"/>
+        <text x="140" y="250" direction="ltr" text-anchor="middle" class="t-sm">Vallecula</text>
+        <line x1="270" y1="138" x2="236" y2="150" class="ln-soft"/>
+        <text x="295" y="134" direction="rtl" text-anchor="middle" class="t-sm">אפיגלוטיס</text>
+        <text x="258" y="308" direction="rtl" text-anchor="middle" class="t-sm">קנה</text>
+        <text x="300" y="308" direction="rtl" text-anchor="middle" class="t-sm">וושט</text>
+        <text x="165" y="332" direction="rtl" text-anchor="middle" class="t-b">להב מעוקל (Macintosh)</text>
+      </g>
+      <g transform="translate(350,0)">
+        <ellipse cx="115" cy="150" rx="80" ry="58" class="f-skin"/>
+        <text x="90" y="185" direction="rtl" text-anchor="middle">לשון</text>
+        <polygon points="208,232 219,232 238,152 228,149" class="f-zone"/>
+        <rect x="240" y="205" width="36" height="85" rx="6" class="f-zone-soft"/>
+        <rect x="285" y="215" width="30" height="75" rx="6" class="f-soft"/>
+        <path d="M28,36 L244,150 L238,160 L24,48 Z" class="f-field"/>
+        <circle cx="241" cy="156" r="5" class="f-hl"/>
+        <line x1="268" y1="128" x2="244" y2="148" class="ln-soft"/>
+        <text x="290" y="122" direction="rtl" text-anchor="middle" class="t-sm">אפיגלוטיס</text>
+        <text x="258" y="308" direction="rtl" text-anchor="middle" class="t-sm">קנה</text>
+        <text x="300" y="308" direction="rtl" text-anchor="middle" class="t-sm">וושט</text>
+        <text x="165" y="332" direction="rtl" text-anchor="middle" class="t-b">להב ישר (Miller)</text>
+      </g>
+    </svg></div>
+      <figcaption><b>היכן נמצא קצה הלהב (סכמטי, מבט צד, הפנים משמאל).</b> במקינטוש הקצה (נקודה צהובה) יושב בוולקולה, לפני האפיגלוטיס, והרמת בסיס הלשון מרימה את האפיגלוטיס בעקיפין. במילר הקצה עובר מתחת לאפיגלוטיס ומרים אותו ישירות, ולכן יש יותר מגע עם רצפטורי ההקאה.</figcaption></figure>
+
+    <h4>הטובוס <span class="en">(Endotracheal Tube)</span></h4>
+    <p>חלקי הטובוס: פתח חיצוני עם <b>מחבר 15 מ״מ</b> לאמבו, <b>בלונית אטימה</b> <span class="en">(Cuff)</span> בקצה התחתון, <b>בלונית ביקורת</b> <span class="en">(Pilot Balloon)</span> שמראה אם ה-Cuff מנופח, ו<b>שסתום ניפוח</b> שאליו מחברים מזרק 10 סמ״ק. אורך הטובוסים הוא <b>35–37 ס״מ</b>.</p>
+    <div class="tbl-wrap"><table class="data"><caption>גודל טובוס (קוטר פנימי, מ״מ) לפי גיל</caption>
+      <thead><tr><th>גיל</th><th>מספר טובוס</th></tr></thead>
+      <tbody>
+        <tr><th>ילוד ופג</th><td>2.5–3.5</td></tr>
+        <tr><th>תינוק עד שנה</th><td>3.5–4.0</td></tr>
+        <tr><th>ילד (1–8)</th><td>4.0–6.0</td></tr>
+        <tr><th>מבוגר</th><td>7.0–9.0</td></tr>
+        <tr><th>אישה</th><td>7.0–8.0</td></tr>
+        <tr><th>גבר</th><td>7.5–8.5</td></tr>
+        <tr><th>מבוגר במצב חירום</th><td class="hl">7.5 (ראו הערת מקור)</td></tr>
+      </tbody></table></div>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>נוסחה כללית לגודל טובוס בילד:</b> <mark>(גיל החולה + <span class="en">16) ÷ 4</span></mark>.</p>
+      <p>דוגמה: ילד בן 4 ‏←‏ <span class="en">(4 + 16) ÷ 4</span> = <b>5.0</b>. ילד בן 8 ‏←‏ <span class="en">(8 + 16) ÷ 4</span> = <b>6.0</b>.</p>
+      <p><b>ילודים, תינוקות ופעוטות (עד גיל 3):</b> לפי קוטר הזרת או קוטר הנחיר.</p>
+      <p>טובוסים קטנים, <b>עד מספר 5.5</b>, הם ללא בלונית אטימה. אצל ילדים הסחוס הקריקואידי (החלק הצר בגרון) אוטם את המרווח.</p></div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>"ניהול נתיב אויר מתקדם" (עמ׳ 6) קובע שבמצב חירום במבוגרים גודל הטובוס הוא <b>7.5</b>. מצגת "אנטובציה" (עמ׳ 10) קובעת ש"הגודל המוכן לפעולה בד״כ הוא <b>8</b> מ״מ". שני הערכים נמצאים בטווח למבוגרים. בעמודי הפרוטוקול שנקראו לפרק אין גודל ברירת מחדל, ולכן כדאי לברר עם המדריכים איזה ערך נדרש במבחן.</p></div>
+
+    <h4>שאר הציוד ותפקידו</h4>
+    <dl class="kv">
+      <dt>מוליך מתכת <span class="en">(Stylet)</span></dt><dd>מוחדר לתוך הטובוס ומשמש "לעיצוב" צורתו, כדי להקל על ההחדרה. <span class="alarm-t">צריך לוודא שהמוליך לא בולט מקצה הטובוס</span>, כדי למנוע פציעה בלוע. מוציאים אותו בתום האינטובציה.</dd>
+      <dt>משחת שימון</dt><dd>משחה מסיסה במים שמקלה על החדרת הטובוס. אין להשתמש במשחה על בסיס נפט, כי היא מזיקה לטובוס.</dd>
+      <dt>מזרק 10 סמ״ק</dt><dd>לניפוח בלונית האטימה.</dd>
+      <dt>שרוך לקיבוע</dt><dd>בלונית האטימה <b>אינה</b> מקבעת את הטובוס. תפקידה למנוע דליפת אוויר ואספירציה. את הטובוס מקבעים בשרוך.</dd>
+      <dt>מנתב אוויר</dt><dd>מונע מהחולה "לנשוך" את הטובוס.</dd>
+      <dt>מלקחי מגיל <span class="en">(Magill Forceps)</span></dt><dd>מלקחיים מעוקלים שמסייעים בכיוון הטובוס באינטובציה דרך האף, ומשמשים להוצאת גופים זרים מדרכי הנשימה העליונות.</dd>
+      <dt>סטטוסקופ</dt><dd>להאזנה לקביעת מיקום הטובוס.</dd>
+      <dt>ערכת אמבו / סקשן</dt><dd>מפוח ושתי מסכות, סקשן וקטטרים לשאיבה בגדלים שונים.</dd>
+      <dt>ערכת חמצן</dt><dd>לחמצון החולה לפני האינטובציה ואחריה.</dd>
+    </dl>
+
+    <h3>שלבי ביצוע אינטובציה</h3>
+    <p>לפני שמתחילים מעריכים אם האינטובציה צפויה להיות קשה. המצגת מציגה את <b>סולם מלמפטי</b> <span class="en">(Mallampati Score)</span>, שבודק כמה מהלוע נראה כשהפה פתוח. ככל שהדרגה גבוהה יותר, רואים פחות ומצפים לאינטובציה קשה יותר.</p>
+    <div class="tbl-wrap"><table class="data"><caption>סולם מלמפטי</caption>
+      <thead><tr><th>דרגה</th><th>מה רואים</th></tr></thead>
+      <tbody>
+        <tr><th><span class="en">Class I</span></th><td>החך הרך נראה במלואו</td></tr>
+        <tr><th><span class="en">Class II</span></th><td>הענבל <span class="en">(Uvula)</span> נראה במלואו</td></tr>
+        <tr><th><span class="en">Class III</span></th><td>רואים רק את בסיס הענבל</td></tr>
+        <tr><th><span class="en">Class IV</span></th><td>החך הרך לא נראה בכלל</td></tr>
+      </tbody></table></div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div><b>בדיקת ציוד</b>: האור בלרינגוסקופ, וניפוח הבלונית לבדיקת דליפה.</div></li>
+        <li><div><b>התמגנות אישית</b>: כפפות ומסכת פנים.</div></li>
+        <li><div><b>תנוחת חולה</b> מתאימה (בתמונות במצגת יש כרית מתחת לראש).</div></li>
+        <li><div><b>הנשמה בעזרת אמבו</b> כמה דקות לפני האינטובציה. לפי הפרוטוקול: פרה-אוקסיגנציה <mark>2 דקות</mark> לפני ניסיונות ביצוע נתיב אוויר מתקדם.</div></li>
+        <li><div>הטיית הראש אחורה עם פתיחת הפה.</div></li>
+        <li><div>ניקוי הפרשות או גוף זר, אם צריך.</div></li>
+        <li><div>אוחזים את הלרינגוסקופ <b>ביד שמאל</b> ומכניסים את הלהב <b>מצד ימין של הפה</b>.</div></li>
+        <li><div>מזיזים את הלהב שמאלה ומרימים את בסיס הלשון כדי לראות את האפיגלוטיס.</div></li>
+        <li><div>מקדמים את הלהב כך שהקצה שלו יהיה מעל האפיגלוטיס.</div></li>
+        <li><div>מרימים <b>בזווית של 45 מעלות קדימה ולמעלה</b> את הלשון והלסת, עד שמזהים את מיתרי הקול ואת פתח הטרכיאה.</div></li>
+        <li><div>מכניסים את הטובוס <b>ביד ימין</b>. כשהקצה עבר בין מיתרי הקול מקדמים עוד <mark>כ-2.5 ס״מ</mark> (עד הפס השחור).</div></li>
+        <li><div>מוציאים את המוליך, מחזיקים את הטובוס במקום שלא יזוז, מחברים אמבו ומנפחים את הבלונית.</div></li>
+        <li><div><b>האזנה</b> בסטטוסקופ לוידוא מיקום ועומק הטובוס (ראו הסעיף הבא).</div></li>
+        <li><div>קשירת הטובוס וקיבועו.</div></li>
+        <li><div>החדרת מנתב אוויר.</div></li>
+      </ol></div>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>משך ניסיון אינטובציה: <mark>מקסימום 30 שניות</mark>.</b> אם לא הצלחת, מפסיקים, מנשימים שוב באמבו ומחמצנים, ורק אז מנסים שוב. כל שנייה בלי הנשמה היא שנייה של ירידה בסטורציה.</p></div>
+    <p><b>כללים חשובים באינטובציה</b> (מהמצגת): משך של 30 שניות; שימוש בציוד שמתאים לגיל ולגודל החולה; מיומנות ויכולת טכנית; קור רוח ושליטה עצמית; עבודה בסדר נכון; ניטור מתמיד של החולה; שימוש תקין בתרופות.</p>
+    <p><b>תמרון סליק</b> <span class="en">(Sellick)</span>: המצגת מציגה אותו בתמונה בלבד, לחץ באצבעות על הגרון בקדמת הצוואר. באותו הקשר מופיעה רשימה של מטופלים שבהם קשה למצוא את התירואיד בצוואר: <b>שמנים מאוד, נשים, ילדים ותינוקות</b>. אצל אותם מטופלים קשה גם לזהות את נקודות הציון לנתיב אוויר כירורגי.</p>
+
+    <h3>וידוא מיקום הטובוס</h3>
+    <p>טובוס בוושט מנשים את הקיבה ולא את הריאות. אם לא מזהים את זה מיד, המטופל נכנס להיפוקסיה עמוקה. טובוס עמוק מדי נכנס בדרך כלל לברונכוס הימני, שהוא רחב יותר וישר יותר, ואז רק ריאה אחת מאווררת <span class="en">(One Lung Intubation)</span>.</p>
+    <figure><div class="svg-box"><svg viewBox="0 0 660 350" role="img" aria-label="מיקום נכון של טובוס מעל הקרינה לעומת טובוס עמוק מדי בברונכוס הימני">
+      <g>
+        <rect x="130" y="60" width="60" height="165" class="f-zone-soft"/>
+        <polygon points="130,220 160,220 125,300 98,292" class="f-zone-soft"/>
+        <polygon points="160,220 190,220 255,282 236,298" class="f-zone-soft"/>
+        <polygon points="130,84 156,94 130,104" class="f-zone"/>
+        <polygon points="190,84 164,94 190,104" class="f-zone"/>
+        <rect x="150" y="30" width="20" height="150" rx="4" class="f-card"/>
+        <rect x="143" y="120" width="34" height="38" rx="14" class="f-field-soft"/>
+        <line x1="150" y1="89" x2="170" y2="89" class="ln"/>
+        <text x="122" y="99" direction="rtl" text-anchor="start" class="t-sm">מיתרי הקול</text>
+        <text x="200" y="94" direction="rtl" text-anchor="end" class="t-sm">פס שחור במיתרים</text>
+        <text x="200" y="144" direction="rtl" text-anchor="end" class="t-sm">בלונית מתחת למיתרים</text>
+        <text x="200" y="190" direction="rtl" text-anchor="end" class="t-field">קצה מעל הקרינה</text>
+        <text x="105" y="320" direction="rtl" text-anchor="middle" class="t-sm">ריאה ימין</text>
+        <text x="250" y="320" direction="rtl" text-anchor="middle" class="t-sm">ריאה שמאל</text>
+        <text x="160" y="344" direction="rtl" text-anchor="middle" class="t-b">מיקום נכון</text>
+      </g>
+      <g transform="translate(340,0)">
+        <rect x="130" y="60" width="60" height="165" class="f-zone-soft"/>
+        <polygon points="130,220 160,220 125,300 98,292" class="f-zone-soft"/>
+        <polygon points="160,220 190,220 255,282 236,298" class="f-zone-soft"/>
+        <polygon points="130,84 156,94 130,104" class="f-zone"/>
+        <polygon points="190,84 164,94 190,104" class="f-zone"/>
+        <polygon points="150,30 170,30 170,212 141,272 123,264 150,208" class="f-card"/>
+        <rect x="143" y="168" width="34" height="38" rx="14" class="f-alarm-soft"/>
+        <text x="122" y="99" direction="rtl" text-anchor="start" class="t-sm">מיתרי הקול</text>
+        <text x="118" y="182" direction="rtl" text-anchor="start" class="t-alarm">טובוס בברונכוס</text>
+        <text x="118" y="200" direction="rtl" text-anchor="start" class="t-alarm">הימני</text>
+        <text x="105" y="320" direction="rtl" text-anchor="middle" class="t-sm">ריאה ימין</text>
+        <text x="250" y="320" direction="rtl" text-anchor="middle" class="t-alarm">שמאל לא מאווררת</text>
+        <text x="160" y="344" direction="rtl" text-anchor="middle" class="t-b">עמוק מדי</text>
+      </g>
+    </svg></div>
+      <figcaption><b>עומק הטובוס (סכמטי, מבט קדמי: ימין המטופל בצד שמאל של התמונה).</b> בטובוס במיקום נכון הבלונית יושבת מתחת למיתרים, הפס השחור נמצא בגובה המיתרים והקצה מעל הקרינה. טובוס שהתקדם יותר מדי גולש לברונכוס הימני. במצב כזה שומעים כניסת אוויר רק מימין. לכן מאזינים לשתי הריאות בנפרד.</figcaption></figure>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>וידוא מיקום לפי הפרוטוקול:</b></p>
+      <ol class="steps">
+        <li><div><b>האזנה</b>: קודם מעל הקיבה (שם צריך להיות שקט), אחר כך ריאה שמאל, ואחר כך ריאה ימין.</div></li>
+        <li><div><b>מדידת סטורציה וחיבור קפנוגרף</b>. לפי מצגת "נתיב אוויר מתקדם ומבצעי": <mark>קפנוגרפיה <span class="en">(ETCO2)</span> היא חובה</mark>.</div></li>
+        <li><div><b>קיבוע</b> יעיל וחזק של הטובוס.</div></li>
+      </ol>
+      <p>סימנים נוספים למיקום נכון לפי המצגות: ראייה ישירה של הטובוס נכנס בין מיתרי הקול, עליית בית החזה, קולות נשימה דו-צדדיים, ואדים בתוך הטובוס.</p></div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>ב"ניהול נתיב אויר מתקדם" (עמ׳ 21), ברשימה "איך מזהים מיקום נכון", מופיע הפריט "לראות תכולת קיבה בתוך הטובוס". זו כנראה טעות בשקף: תכולת קיבה בטובוס מעידה דווקא על <b>טובוס בוושט</b> או על אספירציה. היא אינה סימן למיקום נכון.</p></div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>DOPE: בכל החמרה במצב של חולה מונשם</b> (לפי הפרוטוקול):</p>
+      <ul class="mnemonic">
+        <li><b>D</b><span class="en">Displacement</span>: האם הטובוס עדיין במקומו? בודקים קולות, עליית בית חזה, מנשך.</li>
+        <li><b>O</b><span class="en">Obstruction</span>: האם הטובוס חסום? קינק בטובוס, ריר, מוקוס וכו׳.</li>
+        <li><b>P</b><span class="en">Pneumothorax</span>: קולות נשימה ועליית בית חזה. אם יש בעיה, שוקלים החדרת NA.</li>
+        <li><b>E</b><span class="en">Equipment</span>: האם כל הציוד מחובר? יש נתק? אם יש בעיה, עוברים להנשמה ידנית באמבו ומסיכה ומחפשים אחר הבעיה.</li>
+      </ul></div>
+
+    <h3>סיבוכי אינטובציה</h3>
+    <p>לפי מצגת "אנטובציה", <b>רוב הסיבוכים הם תוצאה של רשלנות, חוסר מיומנות או חוסר זהירות של המטפל</b>. ממזגים את רשימות המצגות:</p>
+    <div class="tbl-wrap"><table class="data"><caption>סיבוכים אפשריים באינטובציה</caption>
+      <thead><tr><th>סיבוך</th><th>מה קורה / למה</th></tr></thead>
+      <tbody>
+        <tr><th>היפוקסיה</th><td class="hl">ניסיונות ממושכים וכושלים באינטובציה</td></tr>
+        <tr><th>טובוס בוושט</th><td>הטובוס מוחדר לוושט במקום לקנה הנשימה</td></tr>
+        <tr><th>טובוס בריאה אחת (עמוק)</th><td>אינטובציה עמוקה מדי לתוך הברונכוס הימני</td></tr>
+        <tr><th>חבלה במבנים אנטומיים</th><td>פגיעה טראומטית בחלל הפה, בלוע או במיתרי הקול. דימומים</td></tr>
+        <tr><th>גירוי וגאלי, הקאה והפרעות קצב</th><td>עקב לחץ בחלל הלוע</td></tr>
+        <tr><th>השלפות הטובוס</th><td>אי הקפדה בקיבוע</td></tr>
+        <tr><th>חזה אוויר</th><td>הנשמה בלחץ אצל נפגעי חזה וחולי <span class="en">COPD</span></td></tr>
+      </tbody></table></div>
+    <p>מצגת "נתיב אוויר מתקדם ומבצעי" מוסיפה את <b>הסיבוכים הקריטיים</b>: היפוקסיה, <b>היפוטנשיה</b> (אחרי תרופות ההשראה), אספירציה וכישלון אינטובציה. היא מונה גם את <b>הטעויות הקטלניות</b>: חמצון לא מספיק לפני, אין <span class="en">Plan B</span>, בחירת תרופות שגויה, ואין שימוש בקפנוגרפיה.</p>
+
+    <h3>אינטובציה בפצוע טראומה ואינטובציה נזאלית</h3>
+    <h4>פצוע טראומה <span class="en">(Intubation in Trauma Patient)</span></h4>
+    <ul>
+      <li>מקבעים את הראש והצוואר בצורה ניטרלית.</li>
+      <li><b>אינטובציה לתוך קנה הנשימה (דרך הפה) היא המועדפת בפצוע טראומה.</b></li>
+      <li><span class="alarm-t">צווארון לא נותן קיבוע מלא של עמ״ש</span>. לכן מוסיפים <span class="en">Head-Vice</span>.</li>
+    </ul>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div>איש צוות אחד מקבע את הראש והצוואר. איש צוות אחר מחמצן את הפצוע.</div></li>
+        <li><div>מתחילים את האינטובציה <b>תוך כדי קיבוע הראש והצוואר</b>.</div></li>
+        <li><div>מכניסים את הטובוס לתוך קנה הנשימה.</div></li>
+        <li><div>מוודאים את מיקום הטובוס.</div></li>
+        <li><div>מקבעים: צווארון, ובנוסף <span class="en">Head-Vice</span>.</div></li>
+      </ol></div>
+
+    <h4>אינטובציה נזאלית</h4>
+    <p>אפשר לבצע אותה <b>בשיטה עיוורת</b> או <b>בעזרת לרינגוסקופ</b> ומלקחי מגיל, שמכוונים את קצה הטובוס לפתח הקנה.</p>
+    <div class="compare">
+      <div><h5>מתי</h5><ul>
+        <li>פצוע טראומה עם פגיעה בעמוד שדרה צווארי.</li>
+        <li>פצוע עם פגיעה בפנים ובפה.</li>
+        <li>כל פצוע או חולה עם נעילת לסתות.</li>
+      </ul></div>
+      <div><h5>אסור</h5><ul>
+        <li><span class="alarm-t">שברים באף</span>.</li>
+        <li><span class="alarm-t">שבר בבסיס הגולגולת</span>. הטובוס עלול לחדור דרך השבר.</li>
+      </ul></div>
+    </div>
+
+    <h3>כשהאינטובציה קשה: בוז׳י, להבים מיוחדים ונתיבים חלופיים</h3>
+    <h4>בוז׳י <span class="en">(Eschman Stylet / Gum Elastic Bougie)</span></h4>
+    <p>מוט גמיש עם קצה מעוקל, שמיועד ל<b>העברה "עיוורת" בין מיתרי הקול</b> כשלא רואים אותם היטב. אחרי שהבוז׳י בתוך הקנה, משחילים עליו את הטובוס.</p>
+    <ol class="steps">
+      <li><div><b>שלב א׳</b>: מעבירים את הבוז׳י מתחת לאפיגלוטיס.</div></li>
+      <li><div><b>שלב ב׳</b>: עוזר משחיל את הטיוב על הבוז׳י.</div></li>
+      <li><div><b>שלב ג׳</b>: לפני המעבר במיתרים מסובבים את הטיוב <b>רבע סיבוב נגד כיוון השעון</b>.</div></li>
+      <li><div>מקדמים את הטיוב על גבי הבוז׳י.</div></li>
+    </ol>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>הבוז׳י לפי הפרוטוקול:</b> מתאים <mark>לטובוסים מעל 6 מ״מ</mark> ("מטובוס 6 ומעלה"). מומלץ לשקול אותו כבר בניסיון הראשון אם צופים אינטובציה קשה. רצוי לעבור אליו אחרי ניסיון אינטובציה אחד שלא צלח.</p></div>
+    <p><b>להב <span class="en">Truview</span></b>: להב עם אופטיקה שמאפשרת "לראות מעבר לפינה", ויש לו חיבור לחמצן לאורך הלהב. הפרוטוקול ממליץ גם <b>לשקול שימוש בווידאו-לרינגוסקופ</b>.</p>
+
+    <h4>מסכת גרון <span class="en">(Laryngeal Mask Airway, LMA)</span></h4>
+    <p>צינור בגודל ובקוטר משתנים. בקצה התחתון שלו יש בלונית בצורת ביצית, שמתיישבת מעל פתח הגרון ואוטמת אותו. צינור צדדי משמש לניפוח הבלונית, והקצה העליון מתחבר לאמבו. ה-LMA בשימוש החל משנת 1988, ונפוצה יותר בהרדמה כללית ובחדרי ניתוח.</p>
+    <div class="compare">
+      <div><h5>היתרונות</h5><ul>
+        <li>קלה לביצוע.</li>
+        <li>לא צריך מכשור מיוחד או מיומנות גבוהה.</li>
+        <li>ההחדרה עיוורת, בלי לרינגוסקופ.</li>
+      </ul></div>
+      <div><h5>המגבלות</h5><ul>
+        <li><b>אינה תחליף לצינור תוך-קני</b>.</li>
+        <li>אין הגנה מוחלטת על נתיב האוויר. סיכון לאספירציה פחות ממסיכה ויותר מטיוב.</li>
+        <li>צריך סדציה.</li>
+        <li>לא פותרת בעיות במיתרי הקול או בקנה.</li>
+      </ul></div>
+    </div>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p>ה-LMA <mark>אינה הגנה על דרכי האוויר, היא הגנה מפני היפוקסיה</mark>. הדרך הבטוחה לשמור על נתיב אוויר היא אינטובציה.</p></div>
+
+    <div class="tbl-wrap"><table class="data"><caption>מסכת גרון: מידה, משקל ונפח בלונית מקסימלי (שתי המצגות)</caption>
+      <thead><tr><th>מידה</th><th>מצגת "LMA" (עמ׳ 18)</th><th>"נתיב אויר מתקדם" (עמ׳ 38)</th><th>נפח מקסימלי לבלונית (עמ׳ 39)</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td>&lt;6.5 ק״ג</td><td>עד 7 ק״ג</td><td>5 מ״ל</td></tr>
+        <tr><th>1½</th><td>6.5–12 ק״ג</td><td>—</td><td>—</td></tr>
+        <tr><th>2</th><td>12–20 ק״ג</td><td>7–20 ק״ג</td><td>10 מ״ל</td></tr>
+        <tr><th>2½</th><td>20–30 ק״ג</td><td>20–30 ק״ג</td><td>15 מ״ל</td></tr>
+        <tr><th>3</th><td>30–50 ק״ג</td><td>30–40 ק״ג</td><td>20 מ״ל</td></tr>
+        <tr><th>4</th><td>50–70 ק״ג</td><td>מעל 40 ק״ג</td><td>30 מ״ל</td></tr>
+        <tr><th>5</th><td>70–100 ק״ג</td><td>מבוגרים</td><td>40 מ״ל</td></tr>
+        <tr><th>6</th><td>&gt;100 ק״ג</td><td>—</td><td>—</td></tr>
+      </tbody></table></div>
+
+    <figure><div class="svg-box"><svg viewBox="0 0 820 280" role="img" aria-label="תרשים בקנה מידה של טווחי המשקל לכל מידת LMA בשתי המצגות">
+      <text x="770" y="36" direction="rtl" text-anchor="start" class="t-b">מצגת "LMA": שמונה מידות</text>
+      <rect x="110" y="48" width="39" height="40" class="f-zone-soft"/>
+      <rect x="149" y="48" width="33" height="40" class="f-card"/>
+      <rect x="182" y="48" width="48" height="40" class="f-zone-soft"/>
+      <rect x="230" y="48" width="60" height="40" class="f-card"/>
+      <rect x="290" y="48" width="120" height="40" class="f-zone-soft"/>
+      <rect x="410" y="48" width="120" height="40" class="f-card"/>
+      <rect x="530" y="48" width="180" height="40" class="f-zone-soft"/>
+      <rect x="710" y="48" width="60" height="40" class="f-soft"/>
+      <text x="129" y="73" direction="ltr" text-anchor="middle">1</text>
+      <text x="165" y="73" direction="ltr" text-anchor="middle">1½</text>
+      <text x="206" y="73" direction="ltr" text-anchor="middle">2</text>
+      <text x="260" y="73" direction="ltr" text-anchor="middle">2½</text>
+      <text x="350" y="73" direction="ltr" text-anchor="middle">3</text>
+      <text x="470" y="73" direction="ltr" text-anchor="middle" class="t-b">4</text>
+      <text x="620" y="73" direction="ltr" text-anchor="middle">5</text>
+      <text x="740" y="73" direction="ltr" text-anchor="middle">6</text>
+      <text x="770" y="124" direction="rtl" text-anchor="start" class="t-b">"נתיב אויר מתקדם": שש מידות</text>
+      <rect x="110" y="136" width="42" height="40" class="f-zone-soft"/>
+      <rect x="152" y="136" width="78" height="40" class="f-card"/>
+      <rect x="230" y="136" width="60" height="40" class="f-zone-soft"/>
+      <rect x="290" y="136" width="60" height="40" class="f-card"/>
+      <rect x="350" y="136" width="420" height="40" class="f-zone-soft"/>
+      <text x="131" y="161" direction="ltr" text-anchor="middle">1</text>
+      <text x="191" y="161" direction="ltr" text-anchor="middle">2</text>
+      <text x="260" y="161" direction="ltr" text-anchor="middle">2½</text>
+      <text x="320" y="161" direction="ltr" text-anchor="middle">3</text>
+      <text x="560" y="161" direction="rtl" text-anchor="middle" class="t-b">4 (מעל 40 ק״ג)</text>
+      <line x1="110" y1="196" x2="770" y2="196" class="ln"/>
+      <line x1="110" y1="196" x2="110" y2="203" class="ln"/>
+      <line x1="170" y1="196" x2="170" y2="203" class="ln"/>
+      <line x1="230" y1="196" x2="230" y2="203" class="ln"/>
+      <line x1="290" y1="196" x2="290" y2="203" class="ln"/>
+      <line x1="350" y1="196" x2="350" y2="203" class="ln"/>
+      <line x1="410" y1="196" x2="410" y2="203" class="ln"/>
+      <line x1="470" y1="196" x2="470" y2="203" class="ln"/>
+      <line x1="530" y1="196" x2="530" y2="203" class="ln"/>
+      <line x1="590" y1="196" x2="590" y2="203" class="ln"/>
+      <line x1="650" y1="196" x2="650" y2="203" class="ln"/>
+      <line x1="710" y1="196" x2="710" y2="203" class="ln"/>
+      <line x1="770" y1="196" x2="770" y2="203" class="ln"/>
+      <text x="110" y="220" direction="ltr" text-anchor="middle" class="t-sm">0</text>
+      <text x="170" y="220" direction="ltr" text-anchor="middle" class="t-sm">10</text>
+      <text x="230" y="220" direction="ltr" text-anchor="middle" class="t-sm">20</text>
+      <text x="290" y="220" direction="ltr" text-anchor="middle" class="t-sm">30</text>
+      <text x="350" y="220" direction="ltr" text-anchor="middle" class="t-sm">40</text>
+      <text x="410" y="220" direction="ltr" text-anchor="middle" class="t-sm">50</text>
+      <text x="470" y="220" direction="ltr" text-anchor="middle" class="t-sm">60</text>
+      <text x="530" y="220" direction="ltr" text-anchor="middle" class="t-sm">70</text>
+      <text x="590" y="220" direction="ltr" text-anchor="middle" class="t-sm">80</text>
+      <text x="650" y="220" direction="ltr" text-anchor="middle" class="t-sm">90</text>
+      <text x="710" y="220" direction="ltr" text-anchor="middle" class="t-sm">100</text>
+      <text x="770" y="220" direction="ltr" text-anchor="middle" class="t-sm">110</text>
+      <text x="440" y="256" direction="rtl" text-anchor="middle">משקל המטופל (ק״ג)</text>
+    </svg></div>
+      <figcaption><b>מידות LMA לפי משקל, בקנה מידה (6 פיקסלים לכל ק״ג).</b> עד 30 ק״ג שתי המצגות כמעט זהות. מעל 30 ק״ג הן נפרדות: במצגת "LMA" מידה 4 מתאימה ל-50–70 ק״ג, ובמצגת השנייה מידה 4 מתאימה לכל מי ששוקל מעל 40 ק״ג (ומידה 5 "למבוגרים" בלי טווח משקל). מידה 6 (מעל 100 ק״ג) מוצגת עד קצה הציר בלבד. הפרוטוקול קובע ש<b>מידה 4 מתאימה לרוב המטופלים הבוגרים</b>.</figcaption></figure>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>טבלאות המידות סותרות זו את זו מעל 30 ק״ג. לפי "נתיב אויר מתקדם" (עמ׳ 38), מטופל של 45 ק״ג מקבל מידה 4. לפי "LMA" (עמ׳ 18) הוא מקבל מידה 3. בשטח עובדים לפי הפרוטוקול (עמ׳ 31): "יש לזכור לבחור מידה מתאימה, כאשר <b>מידה 4 מתאימה לרוב המטופלים הבוגרים</b>", ומנפחים את הבלונית לפי הנחיות היצרן שעל האריזה או המכשיר.</p></div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>שלבי החדרת מסכת גרון</b> (לפי "נתיב אויר מתקדם"):</p>
+      <ol class="steps">
+        <li><div><b>בדיקת הבלונית</b>: מנפחים אותה במזרק ובודקים אם יש דליפת אוויר. פוסלים בלונית דולפת.</div></li>
+        <li><div><b>מרוקנים את הבלונית לחלוטין</b> במזרק לפני ההחדרה.</div></li>
+        <li><div>משמנים במשחת שימון והרדמה ("עזראקאין") את <b>החלק האחורי</b> של הבלונית בלבד, לא את החלק הקדמי.</div></li>
+        <li><div>מקבעים את הראש לאחור באקסטנציה.</div></li>
+        <li><div>מחזיקים את המסכה ביד ימין לפני הבלונית, באגודל ובאצבע המראה. יד שמאל מונחת מאחורי הראש באזור האוקסיפיטלי.</div></li>
+        <li><div>דוחפים ומחדירים את המסכה כלפי מטה, לכיוון החיך הקשה, בעזרת האצבע המראה.</div></li>
+        <li><div>אוחזים ביד ימין את הקצה העליון סמוך לקצה הפה, כדי שהמסכה לא תצא ממקומה. <b>הקו השחור חייב לפנות לכיוון השפה העליונה</b>.</div></li>
+        <li><div>מנפחים את הבלונית בנפח המתאים.</div></li>
+        <li><div>מחברים מקור הנשמה: אמבו או מכונת הנשמה.</div></li>
+        <li><div>מאזינים לריאות.</div></li>
+        <li><div>מחדירים מנתב אוויר, כדי למנוע נשיכה וחסימה של הצינור.</div></li>
+        <li><div>מקבעים את הצינור.</div></li>
+      </ol></div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <ul>
+        <li><b>לא להזיז ולא לסובב את המסכה</b>, כי היא עלולה להיחסם. אם המסכה זזה או יצאה, מחדירים אותה מחדש.</li>
+        <li>צריך לשמור על רמת הרדמה: הרדמה שטחית עלולה לגרום לשיעול ולהוצאת המסכה, או לפגיעה בלרינקס ובמיתרי הקול.</li>
+        <li>משאירים את מנתב האוויר בפה עד שמוציאים את המסכה.</li>
+        <li>לא מרוקנים את הבלונית ולא מוציאים את המנתב לפני חזרה מלאה של הרפלקסים הלרינגליים וחזרת המונשם להכרה.</li>
+        <li>בזמן הוצאת המסכה מרוקנים את הבלונית מהאוויר.</li>
+      </ul>
+      <p>לפי הפרוטוקול, ב-LMA אין צורך לוודא מיקום כמו באינטובציה, אבל <b>צריך להעריך את יעילות ההנשמה</b>: עליית בית החזה וערכי הסטורציה.</p></div>
+
+    <h4>נתיבים חלופיים נוספים</h4>
+    <div class="compare">
+      <div><h5>קומביטיוב <span class="en">(Combitube)</span></h5><ul>
+        <li>צינור כפול עם שתי בלוניות. ניתן להכניס באופן עיוור, ומומלץ להיעזר בלרינגוסקופ.</li>
+        <li><span class="alarm-t">לא מתאים לילדים</span>.</li>
+        <li><span class="alarm-t">לא מכניסים אם יש פגיעה בוושט</span> (כגון בליעת חומצה).</li>
+        <li>סיכון לקרעים ולאמפיזמה (8 מקרים מתוך 1139).</li>
+        <li>תקלות אפשריות: בלבול בין הבלונים, טיוב עמוק מדי, טראומה לוושט.</li>
+        <li>מוצר דומה שמוצג במצגת: <span class="en">EasyTube</span>.</li>
+      </ul></div>
+      <div><h5>Intubating LMA</h5><ul>
+        <li>מסכת גרון שדרכה אפשר להשחיל טובוס.</li>
+        <li><span class="hosp-i">מחקר בבית חולים אוניברסיטאי, 257 מקרים</span>: 111 אחרי כישלון באינטובציה רגילה, 70 עם עמ״ש צווארי לא יציב, 14 עם עמ״ש צווארי אחרי קיבוע, 50 עם גידולים ועיוותים בדרכי האוויר, 12 במסגרת סטראוטקטית.</li>
+        <li><span class="hosp-i">הצלחה בהכנסת LMA: 100%. אינטובציה דרך ה-LMA: 96.5% באופן עיוור, 100% עם סיב אופטי</span>.</li>
+      </ul></div>
+    </div>
+
+    <h3>RSI ו-DSI: אינטובציה בגישה מבצעית</h3>
+    <p>אצל מטופל שעדיין יש לו טונוס, רפלקסים או הכרה חלקית אי אפשר להחדיר טובוס בלי תרופות. מצגת "נתיב אוויר מתקדם ומבצעי" מציגה שתי גישות:</p>
+    <dl class="kv">
+      <dt>RSI</dt><dd><span class="en">Rapid Sequence Intubation</span>, אינטובציה מהירה. השראה ושיתוק מיידי, <b>ללא הנשמת ביניים</b>.</dd>
+      <dt>DSI</dt><dd><span class="en">Delayed Sequence Intubation</span>, אינטובציה מושהית. סדציה ‏←‏ חמצון ‏←‏ מעבר ל-RSI.</dd>
+    </dl>
+    <div class="compare">
+      <div><h5>זיהוי נתיב אוויר בסיכון</h5><ul>
+        <li>סטרידור, צרידות.</li>
+        <li>בצקת בלשון או בפנים.</li>
+        <li>פיח בפה, כוויות פנים.</li>
+        <li>אנפילקסיס עם אנגיואדמה.</li>
+        <li>ירידה מהירה במצב הנשימתי.</li>
+        <li>כל איום על נתיב האוויר שמחייב התערבות מיידית.</li>
+      </ul></div>
+      <div><h5>מתי RSI</h5><ul>
+        <li>פגיעת כוויות בפנים (בצקת מתקדמת).</li>
+        <li>אנפילקסיס עם החמרה מהירה.</li>
+        <li><mark>GCS ≤ 8</mark>.</li>
+        <li>כשל נשימתי.</li>
+        <li>טראומה קשה.</li>
+        <li>כשכל שנייה קריטית.</li>
+      </ul></div>
+      <div><h5>מתי DSI</h5><ul>
+        <li>חולה אגרסיבי שלא מאפשר חמצון.</li>
+        <li>היפוקסיה קשה (סטורציה נמוכה).</li>
+        <li>אי אפשר לבצע <span class="en">Preoxygenation</span>.</li>
+        <li>חשש לקריסה בזמן אינטובציה.</li>
+      </ul></div>
+    </div>
+
+    <figure><div class="svg-box"><svg viewBox="0 0 760 250" role="img" aria-label="שלבי RSI ושלבי DSI בסדר כרונולוגי מימין לשמאל">
+      <defs><marker id="ch8-arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M1,1 L9,5 L1,9" class="ln"/></marker></defs>
+      <text x="750" y="28" direction="ltr" text-anchor="end" class="t-b">RSI</text>
+      <text x="712" y="28" direction="rtl" text-anchor="start" class="t-sm">שיתוק מיידי, ללא הנשמת ביניים</text>
+      <rect x="614" y="42" width="136" height="58" rx="10" class="f-zone-soft"/>
+      <rect x="464" y="42" width="136" height="58" rx="10" class="f-zone-soft"/>
+      <rect x="314" y="42" width="136" height="58" rx="10" class="f-zone-soft"/>
+      <rect x="164" y="42" width="136" height="58" rx="10" class="f-zone-soft"/>
+      <rect x="14" y="42" width="136" height="58" rx="10" class="f-hl"/>
+      <text x="682" y="68" direction="rtl" text-anchor="middle" class="t-b">הכנה</text>
+      <text x="682" y="88" direction="ltr" text-anchor="middle" class="t-sm">+ Plan B/C</text>
+      <text x="532" y="68" direction="rtl" text-anchor="middle" class="t-b">חמצון מקדים</text>
+      <text x="532" y="88" direction="ltr" text-anchor="middle" class="t-sm">Preoxygenation</text>
+      <text x="382" y="68" direction="rtl" text-anchor="middle" class="t-b">השראה + שיתוק</text>
+      <text x="382" y="88" direction="ltr" text-anchor="middle" class="t-sm">Induction</text>
+      <text x="232" y="68" direction="rtl" text-anchor="middle" class="t-b">אינטובציה</text>
+      <text x="232" y="88" direction="ltr" text-anchor="middle" class="t-sm">Intubation</text>
+      <text x="82" y="68" direction="rtl" text-anchor="middle" class="t-b">אימות</text>
+      <text x="82" y="88" direction="rtl" text-anchor="middle" class="t-sm">קפנוגרפיה</text>
+      <line x1="612" y1="71" x2="602" y2="71" class="ln" marker-end="url(#ch8-arr3)"/>
+      <line x1="462" y1="71" x2="452" y2="71" class="ln" marker-end="url(#ch8-arr3)"/>
+      <line x1="312" y1="71" x2="302" y2="71" class="ln" marker-end="url(#ch8-arr3)"/>
+      <line x1="162" y1="71" x2="152" y2="71" class="ln" marker-end="url(#ch8-arr3)"/>
+      <text x="750" y="148" direction="ltr" text-anchor="end" class="t-b">DSI</text>
+      <text x="712" y="148" direction="rtl" text-anchor="start" class="t-sm">מאפשר חמצון לפני שיתוק</text>
+      <rect x="614" y="162" width="136" height="58" rx="10" class="f-field-soft"/>
+      <rect x="464" y="162" width="136" height="58" rx="10" class="f-field-soft"/>
+      <rect x="314" y="162" width="136" height="58" rx="10" class="f-field-soft"/>
+      <rect x="164" y="162" width="136" height="58" rx="10" class="f-zone-soft"/>
+      <text x="682" y="188" direction="rtl" text-anchor="middle" class="t-b">סדציה</text>
+      <text x="682" y="208" direction="ltr" text-anchor="middle" class="t-sm">Ketamine</text>
+      <text x="532" y="188" direction="rtl" text-anchor="middle" class="t-b">שיפור חמצון</text>
+      <text x="532" y="208" direction="ltr" text-anchor="middle" class="t-sm">NRB / BVM</text>
+      <text x="382" y="188" direction="rtl" text-anchor="middle" class="t-b">ייצוב סטורציה</text>
+      <text x="382" y="208" direction="ltr" text-anchor="middle" class="t-sm">SpO2</text>
+      <text x="232" y="196" direction="rtl" text-anchor="middle" class="t-b">מעבר ל-RSI</text>
+      <line x1="612" y1="191" x2="602" y2="191" class="ln" marker-end="url(#ch8-arr3)"/>
+      <line x1="462" y1="191" x2="452" y2="191" class="ln" marker-end="url(#ch8-arr3)"/>
+      <line x1="312" y1="191" x2="302" y2="191" class="ln" marker-end="url(#ch8-arr3)"/>
+    </svg></div>
+      <figcaption><b>RSI מול DSI (קוראים מימין לשמאל).</b> ב-RSI עוברים ישר מחמצון מקדים להשראה ולשיתוק, ולכן החמצון המקדים הוא כל "הרזרבה". DSI מוסיף לפני כן שלב של סדציה בקטמין, כדי שמטופל אגרסיבי או היפוקסי יקבל מסכה ויגיע לסטורציה יציבה, ורק אז ממשיכים ל-RSI. האימות בקפנוגרפיה (מסומן בצהוב) הוא חובה.</figcaption></figure>
+    <p><b>RSI = סטנדרט זהב</b>: שליטה מלאה ומהירה. <b>DSI = כלי למצבים מורכבים</b>: מאפשר חמצון לפני שיתוק. תמיד חושבים צעד קדימה.</p>
+
+    <div class="callout redflag"><span class="tag">דגל אדום · Case מבצעי</span>
+      <p>חולה עם אנפילקסיס ואנגיואדמה, סטרידור וקושי בדיבור. ההחלטה: <b>RSI מוקדם</b>, כי נתיב האוויר הולך להיסגר. אם מחכים עד שהחולה מפסיק לנשום, הבצקת כבר עלולה למנוע אינטובציה.</p></div>
+
+    <h4>התרופות לפי הפרוטוקול</h4>
+    <p>מצגת "נתיב אוויר מתקדם ומבצעי" מאפיינת את התרופות כך: <span class="en">Ketamine</span> מתאים להיפוטנשיה, <span class="en">Etomidate</span> יציב המודינמית, ו-<span class="en">Rocuronium</span> נותן שיתוק ארוך. המינונים מגיעים מהפרוטוקול (עמ׳ 30–33):</p>
+    <div class="doses">
+      <article class="dose"><header><h5>דורמיקום (מידזולם)</h5><span class="ind">סדציה</span></header>
+        <div class="big">0.1–0.2 <small>מ״ג/ק״ג IV/IO</small></div>
+        <dl><dt>מקסימום</dt><dd>10 מ״ג למנה</dd>
+          <dt>צורה</dt><dd>אמפולה 5 מ״ג, 1 מ״ל</dd>
+          <dt>הכנה</dt><dd>1 מ״ל + 4 מ״ל סליין = 1 מ״ג/מ״ל</dd>
+          <dt>חזרה</dt><dd>שקול מנה נוספת אחרי 2–3 דק׳. המשך סדציה: 2.5–5 מ״ג כל 15–20 דק׳</dd>
+          <dt>עם קטמין</dt><dd>שקול 1–2.5 מ״ג IV</dd>
+          <dt>אסור</dt><dd>ל״ד סיסטולי נמוך מ-90</dd></dl>
+        <div class="calc">70 ק״ג ‏←‏ 7–14 מ״ג, אבל מקסימום 10 מ״ג ‏←‏ 7–10 מ״ל מהמהול</div></article>
+      <article class="dose"><header><h5>אטומידאט</h5><span class="ind">השראה</span></header>
+        <div class="big">0.2–0.3 <small>מ״ג/ק״ג IV, חד פעמי</small></div>
+        <dl><dt>מקסימום</dt><dd>60 מ״ג (30 מ״ל, 3 אמפולות)</dd>
+          <dt>צורה</dt><dd>אמפולה 20 מ״ג ב-10 מ״ל = 2 מ״ג/מ״ל</dd>
+          <dt>מתן</dt><dd>לנער לפני שאיבה. בולוס איטי (30–60 שניות) עד השגת סדציה</dd>
+          <dt>נגד</dt><dd>שוק ספטי, רגישות ידועה, ירידה ידועה/אפשרית בפעילות אדרנו-קורטיקלית, ילדים מתחת לגיל 10</dd></dl>
+        <div class="calc">70 ק״ג ‏←‏ 14–21 מ״ג ‏←‏ 7–10.5 מ״ל</div></article>
+      <article class="dose"><header><h5>קטאמין</h5><span class="ind">השראה / DSI</span></header>
+        <div class="big">2–3 <small>מ״ג/ק״ג IV/IO</small></div>
+        <dl><dt>צורה</dt><dd>פלאקון 500 מ״ג ב-10 מ״ל</dd>
+          <dt>הכנה</dt><dd>4 מ״ל למזרק 10 מ״ל + סליין = 20 מ״ג/מ״ל</dd>
+          <dt>חזרה IV</dt><dd>0.5 מ״ג/ק״ג אחרי 10–15 דק׳</dd>
+          <dt>IM</dt><dd>4–5 מ״ג/ק״ג. חזרה IM: 2–4 מ״ג/ק״ג</dd>
+          <dt>יתרון</dt><dd>ניתן גם כשל״ד סיסטולי נמוך מ-90. תרופת בחירה בטראומה ובברונכוספזם/אסתמה</dd></dl>
+        <div class="calc">80 ק״ג × 2 מ״ג/ק״ג = 160 מ״ג ‏←‏ 8 מ״ל (כמו בפרוטוקול)</div></article>
+      <article class="dose"><header><h5>אטרופין</h5><span class="ind">תוספת לקטאמין</span></header>
+        <div class="big">0.01 <small>מ״ג/ק״ג</small></div>
+        <dl><dt>מינימום</dt><dd>0.1 מ״ג</dd>
+          <dt>מקסימום</dt><dd>0.5 מ״ג</dd>
+          <dt>מטרה</dt><dd>מניעת ריור יתר</dd>
+          <dt>הערה</dt><dd>שקול בלבד. לא מומלץ באופן רוטיני</dd></dl>
+        <div class="calc">30 ק״ג ‏←‏ 0.3 מ״ג. 70 ק״ג ‏←‏ 0.7 מ״ג, ולכן נותנים את המקסימום 0.5 מ״ג</div></article>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <ul>
+        <li><b>יש למדוד לחץ דם לאחר כל מנה של תרופה</b> (הפרוטוקול).</li>
+        <li>מוודאים שציוד ההחייאה נמצא בסביבת החולה.</li>
+        <li>במטופל עם לחץ דם נמוך נותנים נוזלים לפני התרופות, למעט במקרים של אי ספיקת לב.</li>
+        <li>לאטומידאט יש השפעה קצרת טווח. ייתכן שיהיה צורך בדורמיקום אחרי האינטובציה כדי שהמטופל יישאר מורדם.</li>
+        <li>לאטומידאט יש אפקט אמנסטי ואין לו אפקט אנלגטי. לכן משלבים טיפול אנלגטי מתאים לפני או אחרי השימוש בו.</li>
+        <li>באטומידאט שוקלים להפחית את המינון בקשישים או במטופלים עם דיכוי ב-CNS מסיבה כלשהי.</li>
+      </ul></div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li><b>זמן חמצון מקדים:</b> "נתיב אוויר מתקדם ומבצעי" (עמ׳ 6) כותבת <span class="en">Preoxygenation</span> של <b>3–5 דקות</b>. הפרוטוקול (עמ׳ 30) כותב "בצע פרה-אוקסיגנציה למשך <b>2 דק׳</b> לפני ניסיונות ביצוע נת״א מתקדם". בשטח עובדים לפי הפרוטוקול.</li>
+        <li><b>רוקורוניום:</b> המצגת (עמ׳ 6, 9) מזכירה רוקורוניום לשיתוק ב-RSI, אבל בעמודי הפרוטוקול של הפרק (30–33) אין לו מינון. לכן לא מופיע כאן מינון.</li>
+      </ul></div>
+
+    <h3>האלגוריתם: הפסקת נשימה מאיימת</h3>
+    <p><b>הערכה ראשונית</b> לפי הפרוטוקול: ציאנוזיס, שרירי עזר לנשימה, קולות בנשימה, <mark>נשימה מתחת ל-8 בדקה</mark> או העדר נשימה, הערכת דופק והכרה.</p>
+    <figure><div class="svg-box"><svg viewBox="0 0 640 740" role="img" aria-label="אלגוריתם הפסקת נשימה מאיימת לפי פרוטוקול איחוד הצלה">
+      <defs><marker id="ch8-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M1,1 L9,5 L1,9" class="ln"/></marker></defs>
+      <rect x="170" y="16" width="300" height="44" rx="8" class="f-card"/>
+      <text x="320" y="44" direction="rtl" text-anchor="middle" class="t-b">בצע סיוע נשימתי עם אמבו</text>
+      <line x1="320" y1="60" x2="320" y2="82" class="ln" marker-end="url(#ch8-arr2)"/>
+      <rect x="170" y="84" width="300" height="44" rx="8" class="f-card"/>
+      <text x="320" y="112" direction="rtl" text-anchor="middle">השג גישה ורידית ובצע סדציה</text>
+      <line x1="320" y1="128" x2="320" y2="150" class="ln" marker-end="url(#ch8-arr2)"/>
+      <rect x="170" y="152" width="300" height="44" rx="8" class="f-card"/>
+      <text x="320" y="180" direction="rtl" text-anchor="middle">שקול אינטובציה / LMA</text>
+      <line x1="320" y1="196" x2="320" y2="214" class="ln" marker-end="url(#ch8-arr2)"/>
+      <polygon points="320,216 430,262 320,308 210,262" class="f-hl"/>
+      <text x="320" y="258" direction="rtl" text-anchor="middle" class="t-b">נתיב מתקדם</text>
+      <text x="320" y="277" direction="rtl" text-anchor="middle" class="t-b">הצליח?</text>
+      <polyline points="210,262 160,262 160,422" class="s-field"/>
+      <line x1="160" y1="410" x2="160" y2="422" class="ln" marker-end="url(#ch8-arr2)"/>
+      <text x="186" y="252" direction="rtl" text-anchor="middle" class="t-field">כן</text>
+      <polyline points="430,262 480,262 480,328" class="s-alarm"/>
+      <line x1="480" y1="318" x2="480" y2="328" class="ln" marker-end="url(#ch8-arr2)"/>
+      <text x="456" y="252" direction="rtl" text-anchor="middle" class="t-alarm">לא</text>
+      <rect x="360" y="330" width="240" height="44" rx="8" class="f-card"/>
+      <text x="480" y="358" direction="rtl" text-anchor="middle">שקול שימוש בבוז׳י</text>
+      <line x1="480" y1="374" x2="480" y2="402" class="ln" marker-end="url(#ch8-arr2)"/>
+      <polygon points="480,404 570,446 480,488 390,446" class="f-hl"/>
+      <text x="480" y="451" direction="rtl" text-anchor="middle" class="t-b">הצליח?</text>
+      <line x1="390" y1="446" x2="282" y2="446" class="s-field" marker-end="url(#ch8-arr2)"/>
+      <text x="336" y="436" direction="rtl" text-anchor="middle" class="t-field">כן</text>
+      <rect x="40" y="424" width="240" height="44" rx="8" class="f-field-soft"/>
+      <text x="160" y="452" direction="rtl" text-anchor="middle" class="t-b">וודא מיקום טובוס</text>
+      <line x1="160" y1="468" x2="160" y2="498" class="ln" marker-end="url(#ch8-arr2)"/>
+      <rect x="40" y="500" width="240" height="64" rx="8" class="f-field-soft"/>
+      <text x="160" y="527" direction="rtl" text-anchor="middle">שקול המשך סדציה / דורמיקום</text>
+      <text x="160" y="549" direction="rtl" text-anchor="middle" class="t-sm">אם ניתן קטמין</text>
+      <line x1="480" y1="488" x2="480" y2="518" class="s-alarm" marker-end="url(#ch8-arr2)"/>
+      <text x="496" y="508" direction="rtl" text-anchor="middle" class="t-alarm">לא</text>
+      <rect x="360" y="520" width="240" height="44" rx="8" class="f-card"/>
+      <text x="480" y="548" direction="rtl" text-anchor="middle">המשך הנשמה: אמבו + AW</text>
+      <line x1="480" y1="564" x2="480" y2="586" class="ln" marker-end="url(#ch8-arr2)"/>
+      <rect x="360" y="588" width="240" height="44" rx="8" class="f-alarm-soft"/>
+      <text x="480" y="616" direction="rtl" text-anchor="middle" class="t-alarm">שקול קוניוטומיה</text>
+      <line x1="480" y1="632" x2="480" y2="654" class="ln" marker-end="url(#ch8-arr2)"/>
+      <rect x="360" y="656" width="240" height="44" rx="8" class="f-card"/>
+      <text x="480" y="684" direction="rtl" text-anchor="middle">דיווח לבית החולים</text>
+      <line x1="160" y1="564" x2="160" y2="638" class="ln" marker-end="url(#ch8-arr2)"/>
+      <line x1="360" y1="678" x2="282" y2="678" class="ln" marker-end="url(#ch8-arr2)"/>
+      <rect x="40" y="640" width="240" height="80" rx="8" class="f-zone-soft"/>
+      <text x="160" y="668" direction="rtl" text-anchor="middle" class="t-b">פינוי דחוף לבית החולים</text>
+      <text x="160" y="690" direction="rtl" text-anchor="middle" class="t-sm">ניטור וטיפול, מדדים כל 5–10 דק׳</text>
+      <text x="160" y="708" direction="rtl" text-anchor="middle" class="t-sm">שקול דיווח למלר״ד</text>
+    </svg></div>
+      <figcaption><b>הפסקת נשימה מאיימת (פרוטוקול איחוד הצלה, עמ׳ 30, מעובד).</b> מסלול הצלחה בירוק, מסלול כישלון באדום. בסיוע נשימתי: נשימה כל 5–6 שניות (10–12 הנשמות בדקה). בדיווח: מבקשים הגעת רופא מרדים למלר״ד.</figcaption></figure>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>חמצון לפני הכול</b> (הפרוטוקול, עמ׳ 31). מוודאים שהמטופל מקבל חמצן בצורה טובה:</p>
+      <dl class="kv">
+        <dt>חמצון פסיבי</dt><dd>הצמדת מסיכת המפוח לפני המטופל כשהיא מחוברת לשקית העשרה. בדרך כלל כשהמטופל נושם במהירות ועדיין בהכרה.</dd>
+        <dt>חמצון אקטיבי</dt><dd>הנשמה מסייעת בין הנשימות העצמוניות של המטופל (אם הוא נושם באיטיות), או ניסיון להוסיף סיוע נשימתי מסונכרן עם נשימותיו. בדרך כלל במטופל בהכרה ירודה.</dd>
+      </dl>
+      <p>אם המטופל מתנגד לסיוע הנשימתי, מפסיקים ומנסים שוב אחרי כמה דקות, עד שההתנגדות נפסקת. <b>מוודאים שבית החזה עולה</b> בזמן ההנשמה. החלופה לאינטובציה היא הנשמה עם מפוח, מסיכה וחמצן.</p>
+      <p><b>LMA לפי הפרוטוקול:</b> אם האינטובציה נכשלה בשני ניסיונות (כולל ניסיון אחד עם וידאו-לרינגוסקופ או בוז׳י), או אם צופים נתיב אוויר קשה, אפשר להיעזר ב-LMA.</p></div>
+
+    <h3>נתיב אוויר כירורגי <span class="en">(Surgical Airway)</span></h3>
+    <p>החדרת קטטר דרך העור אל הטרכיאה. לפעולה יש חשיבות רבה בהצלת חיים במקרים ספציפיים, והיא דורשת יכולת טכנית גבוהה. שני סוגים של <span class="en">Cricothyrotomy</span>: החדרת מחט <span class="en">(Needle Cricothyrotomy / Jet Insufflation)</span> ו<b>קוניוטומיה</b> <span class="en">(Coniotomy)</span>.</p>
+    <p><b>מצבים שבהם עושים נתיב אוויר כירורגי</b> (המצגת): טראומה לפנים או לדרכי נשימה עליונות; בצקת מאיימת במיתרי הקול עקב אנפילקסיס; גוף זר תקוע; כוויות בדרכי נשימה עליונות; אפיגלוטיטיס; ספזם של דרכי נשימה עליונות. בכל המצבים האלה יש חסימה <b>מעל</b> הממברנה הקריקו-תירואידית, ולכן עוקפים אותה מתחת.</p>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>לפי הפרוטוקול, אפשר לשקול קוניוטומיה רק אם כל התנאים מתקיימים:</b></p>
+      <ol>
+        <li>בוצעו <mark>3 ניסיונות אינטובציה</mark> לא מוצלחים.</li>
+        <li>בוצע שימוש בבוז׳י.</li>
+        <li>בוצע שימוש בווידאו-לרינגוסקופ.</li>
+        <li>בוצע ניסיון להחדרת LMA.</li>
+        <li>בית החזה אינו מתרומם למרות הנשמה טובה באמבו ומסיכה + AW.</li>
+      </ol></div>
+
+    <div class="compare">
+      <div><h5>החדרת מחט <span class="en">(Needle Cricothyrotomy)</span></h5>
+        <ol>
+          <li>משכיבים את החולה בתנוחה מתאימה על הגב, עם הטיית הראש והצוואר אחורה.</li>
+          <li>מרימים ומותחים את הלסת התחתונה למעלה ביד אחת.</li>
+          <li>ביד השנייה מזהים וממקמים את מקום החדירה: בין הסחוס הטירואידלי לסחוס הקריקואידלי, דרך הממברנה הקריקוטירואידלית.</li>
+          <li>מנקים עם פולידין.</li>
+          <li>מחדירים את המחט <b>בזווית של 45 מעלות לכיוון הרגליים</b>.</li>
+          <li>שואבים אוויר לוידוא מיקום נכון.</li>
+          <li>מחברים צינור חמצן.</li>
+        </ol></div>
+      <div><h5>קוניוטומיה <span class="en">(Coniotomy)</span></h5>
+        <ol>
+          <li>משכיבים את החולה בתנוחה מתאימה.</li>
+          <li>מזהים את המקום.</li>
+          <li>מנקים את האיזור.</li>
+          <li>מקבעים את העור.</li>
+          <li>מבצעים <b>חתך רוחבי</b> בעור.</li>
+          <li>מחדירים את המוליך בזווית כלפי מטה.</li>
+          <li>משחילים את הקנולה על גבי המוליך.</li>
+          <li>מקבעים את הקנולה.</li>
+          <li>מחברים את קצה הקנולה לאמבו או למכונת הנשמה.</li>
+        </ol></div>
+    </div>
+    <div class="tbl-wrap"><table class="data"><caption>ההבדל בין מחט לקוניוטומיה</caption>
+      <thead><tr><th>מאפיין</th><th>מחט</th><th>קוניוטומיה</th></tr></thead>
+      <tbody>
+        <tr><th>מה מספקת</th><td>אך ורק חימצון</td><td class="hl">חימצון ואיוורור</td></tr>
+        <tr><th>נפח וקצב נשימה</th><td>—</td><td>שולטת בנפח ובקצב הנשימה</td></tr>
+        <tr><th>סקשן</th><td>—</td><td>אפשר לעשות סקשן</td></tr>
+        <tr><th>CO<sub>2</sub></th><td>צבירת CO<sub>2</sub> בריאות</td><td>—</td></tr>
+        <tr><th>תרופות</th><td>—</td><td>אפשר לתת תרופות</td></tr>
+      </tbody></table></div>
+    <p><b>למה המחט רק מחמצנת:</b> דרך מחט דקה אפשר להכניס חמצן בלחץ, אבל לא מספיק אוויר יוצא בחזרה. לכן ה-CO<sub>2</sub> מצטבר. המחט היא פתרון גישור קצר, והקוניוטומיה היא נתיב אוויר של ממש.</p>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>סיבוכי נתיב אוויר כירורגי:</b> דימום באיזור הכניסה; <span class="alarm-t">חדירה למקום הלא נכון</span> (וושט, מדיאסטינום); פגיעה במיתרי הקול; אמפיזמה תת-עורית.</p></div>
+
+    <div class="recap"><span class="tag">בשורה התחתונה</span>
+      <ol>
+        <li>מחוסר הכרה בסכנה כפולה: הלשון צונחת ורפלקסי ההגנה נחלשים. פותחים ידנית, ובחשד לפגיעת צוואר משתמשים בדחיפת לסת מותאמת בלי הטיה.</li>
+        <li>מנתב פומי רק בלי רפלקס הקאה. מודדים מזווית הפה עד קצה האוזן. מנתב אפי מתאים גם כשיש רפלקס הקאה.</li>
+        <li>גודל טובוס בילד: (גיל + <span class="en">16) ÷ 4</span>. טובוסים עד 5.5 הם ללא בלונית.</li>
+        <li>לרינגוסקופ ביד שמאל, להב מצד ימין של הפה, הרמה ב-45° קדימה ולמעלה. הטובוס עובר 2.5 ס״מ מעבר למיתרים.</li>
+        <li>ניסיון אינטובציה נמשך מקסימום 30 שניות. לפניו מבצעים פרה-אוקסיגנציה של 2 דק׳ לפי הפרוטוקול.</li>
+        <li>וידוא מיקום: האזנה לקיבה, לשמאל ולימין, סטורציה וקפנוגרפיה (חובה), קיבוע. בכל החמרה בודקים DOPE.</li>
+        <li>בוז׳י מתאים לטובוס 6 ומעלה, ורצוי לעבור אליו אחרי ניסיון כושל אחד. LMA אחרי שני ניסיונות כושלים. מידה 4 מתאימה לרוב המבוגרים.</li>
+        <li>LMA היא הגנה מפני היפוקסיה, לא הגנה על נתיב האוויר. נשאר סיכון לאספירציה.</li>
+        <li>RSI כשצריך שליטה מיידית. DSI (סדציה בקטמין, חמצון, ואז RSI) כשאי אפשר לחמצן. מודדים לחץ דם אחרי כל מנת תרופה.</li>
+        <li>קוניוטומיה רק אחרי 3 ניסיונות, בוז׳י, וידאו-לרינגוסקופ ו-LMA, כשבית החזה לא עולה. מחט מספקת רק חמצון, וקוניוטומיה מספקת חמצון ואיוורור.</li>
+      </ol></div>
+
+  </div>
+</section>
+
+<section class="chapter" id="ch9" data-zone="blue">
+  <header class="ch-head">
+    <div class="ch-zone">פרק ב׳ · החייאה בסיסית וניהול נתיב אוויר · פרק 2</div>
+    <h2>אנאפילקסיס וחנק מגוף זר</h2>
+    <p class="ch-lede">שני מצבים שבהם נתיב האוויר נסגר תוך דקות: אנאפילקסיס, תגובה אלרגית מערכתית שסוגרת את דרכי האוויר ומפילה את לחץ הדם, וחנק מגוף זר, חסימה מכנית שבה הידיים שלך הן הטיפול. בשניהם הזמן קובע: זיהוי מהיר ופעולה לפי הסדר מצילים חיים.</p>
+    <div class="ch-src">מקור: 07 - אנאפילקסיס.pdf (עמ׳ 1–22); 08 - גוף זר.pdf (עמ׳ 1–13); UH_ACLS_2023.pdf (איחוד הצלה), עמ׳ 18–19 (חנק מגוף זר), 34–36 (אנאפילקסיס)</div>
+  </header>
+  <div class="flow">
+
+    <h3>חלק א׳: אנאפילקסיס – מה זה?</h3>
+    <p>אנאפילקסיס <span class="en">(Anaphylaxis)</span> היא <mark>תגובה אלרגית חריפה ומולטי-מערכתית</mark>. היא נובעת מחדירה של אלרגן כלשהו לגוף, ומתגובת יתר של המערכת החיסונית אליו. הבעיה איננה האלרגן עצמו, אלא התגובה המוגזמת של הגוף: אותם מנגנונים שאמורים להגן עלינו מרחיבים את כלי הדם ומצרים את דרכי האוויר בבת אחת.</p>
+    <p>במצגת מוזכר גם המונח <span class="en">Pseudoanaphylactic / Anaphylactoid</span>: תגובה שנראית כמו אנאפילקסיס אך לא עוברת דרך מנגנון הרגישות הקלאסי (נוגדני IgE). מבחינת הפרמדיק בשטח ההבחנה הזאת לא משנה דבר: מטפלים לפי התמונה הקלינית.</p>
+
+    <h4>מושגי יסוד</h4>
+    <dl class="kv">
+      <dt>נוגדן <span class="en">(Antibody)</span></dt><dd>חלבון שהגוף מייצר בתגובה לחדירת גורם זר.</dd>
+      <dt>אנטיגן <span class="en">(Antigen)</span></dt><dd>הגורם הזר שחודר לגוף.</dd>
+      <dt>אלרגן <span class="en">(Allergen)</span></dt><dd>חומר זר שחודר לגוף וגורם לתגובה אלרגית.</dd>
+      <dt>בזופילים <span class="en">(Basophils)</span></dt><dd>תאי דם לבנים הנמצאים במקומות מסוימים בגוף ומכוונים לאיתור אלרגנים.</dd>
+      <dt>תאי פיטום <span class="en">(Mast cells)</span></dt><dd>תאים הנמצאים בכל הגוף וקשורים, בין השאר, להתפתחות תגובה אלרגית ולהפרשת היסטמין.</dd>
+    </dl>
+
+    <h4>דרכי חשיפה נפוצות</h4>
+    <ul>
+      <li><b>תרופות</b> – למשל אנטיביוטיקה ואספירין.</li>
+      <li><b>לטקס</b> – בדרך כלל לא קטלני.</li>
+      <li><b>עקיצות בעלי חיים</b> – דבורים, צרעות וכדומה.</li>
+      <li><b>מאכלים שונים</b>.</li>
+    </ul>
+    <p>הדרך שבה האלרגן נכנס (בליעה, שאיפה, הזרקה) חשובה: היא משפיעה על עוצמת התגובה ועל מהירות הופעתה, ולכן היא חלק מהאנמנזה.</p>
+
+    <h3>מה קורה בגוף: פתופיזיולוגיה</h3>
+    <p>אנאפילקסיס מתרחשת בשני שלבים. ב<b>חשיפה הראשונה</b> הגוף "דוגם" את החלבון הזר ומייצר נוגדן <span class="en">IgE</span> ספציפי נגדו. הנוגדנים מתיישבים על פני תאי ה-<span class="en">MAST</span> ומחכים. בחשיפה <b>החוזרת</b> האלרגן נקשר לנוגדני ה-<span class="en">IgE</span> שעל התא, והתא "מתפוצץ" ומשחרר את תכולתו: מדיאטורים שונים, <mark>ובעיקר היסטמין</mark> (וגם לויקוטריאנים).</p>
+    <p>זו הסיבה שמטופל יכול לספר "אכלתי את זה כבר פעם ולא קרה כלום": החשיפה הראשונה רק יצרה את הרגישות.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 720 360" role="img" aria-label="מנגנון האנאפילקסיס: מחשיפה לאלרגן דרך תאי MAST והיסטמין ועד ההשפעה על ריאות, לב, כלי דם ועור">
+          <defs>
+            <marker id="ch9-arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" class="f-zone"/>
+            </marker>
+          </defs>
+          <rect x="555" y="30" width="150" height="80" rx="10" class="f-card"/>
+          <text x="630" y="63" text-anchor="middle" direction="rtl" class="t-b">חשיפה ראשונה</text>
+          <text x="630" y="85" text-anchor="middle" direction="rtl">לאלרגן</text>
+          <rect x="375" y="30" width="150" height="80" rx="10" class="f-card"/>
+          <text x="450" y="63" text-anchor="middle" direction="rtl" class="t-b">רגישות:</text>
+          <text x="450" y="85" text-anchor="middle" direction="rtl">נוצר IgE ספציפי</text>
+          <rect x="195" y="30" width="150" height="80" rx="10" class="f-zone-soft"/>
+          <text x="270" y="55" text-anchor="middle" direction="rtl" class="t-b">חשיפה חוזרת:</text>
+          <text x="270" y="77" text-anchor="middle" direction="rtl">האלרגן נקשר</text>
+          <text x="270" y="97" text-anchor="middle" direction="rtl">ל-IgE על תאי MAST</text>
+          <rect x="15" y="30" width="150" height="80" rx="10" class="f-alarm-soft"/>
+          <text x="90" y="55" text-anchor="middle" direction="rtl" class="t-b">פירוק התא:</text>
+          <text x="90" y="77" text-anchor="middle" direction="rtl">שחרור היסטמין</text>
+          <text x="90" y="97" text-anchor="middle" direction="rtl">ומדיאטורים</text>
+          <line x1="553" y1="70" x2="529" y2="70" class="ln" marker-end="url(#ch9-arr1)"/>
+          <line x1="373" y1="70" x2="349" y2="70" class="ln" marker-end="url(#ch9-arr1)"/>
+          <line x1="193" y1="70" x2="169" y2="70" class="ln" marker-end="url(#ch9-arr1)"/>
+          <path d="M90,112 L90,135 L630,135" class="ln"/>
+          <line x1="90" y1="135" x2="90" y2="156" class="ln" marker-end="url(#ch9-arr1)"/>
+          <line x1="270" y1="135" x2="270" y2="156" class="ln" marker-end="url(#ch9-arr1)"/>
+          <line x1="450" y1="135" x2="450" y2="156" class="ln" marker-end="url(#ch9-arr1)"/>
+          <line x1="630" y1="135" x2="630" y2="156" class="ln" marker-end="url(#ch9-arr1)"/>
+          <rect x="555" y="160" width="150" height="100" rx="10" class="f-soft"/>
+          <text x="630" y="188" text-anchor="middle" direction="rtl" class="t-b">ריאות</text>
+          <text x="630" y="213" text-anchor="middle" direction="rtl" class="t-sm">כיווץ סימפונות</text>
+          <text x="630" y="235" text-anchor="middle" direction="rtl" class="t-sm">בצקת, שיעול, צרידות</text>
+          <rect x="375" y="160" width="150" height="100" rx="10" class="f-soft"/>
+          <text x="450" y="188" text-anchor="middle" direction="rtl" class="t-b">לב</text>
+          <text x="450" y="213" text-anchor="middle" direction="rtl" class="t-sm">ירידה בתפוקת הלב</text>
+          <text x="450" y="235" text-anchor="middle" direction="rtl" class="t-sm">ירידה בכוח ההתכווצות</text>
+          <rect x="195" y="160" width="150" height="100" rx="10" class="f-soft"/>
+          <text x="270" y="188" text-anchor="middle" direction="rtl" class="t-b">כלי דם</text>
+          <text x="270" y="213" text-anchor="middle" direction="rtl" class="t-sm">הרחבת כלי דם</text>
+          <text x="270" y="235" text-anchor="middle" direction="rtl" class="t-sm">דליפת נוזל לרקמה</text>
+          <rect x="15" y="160" width="150" height="100" rx="10" class="f-soft"/>
+          <text x="90" y="188" text-anchor="middle" direction="rtl" class="t-b">עור</text>
+          <text x="90" y="213" text-anchor="middle" direction="rtl" class="t-sm">בצקת בפנים ובעיניים</text>
+          <text x="90" y="235" text-anchor="middle" direction="rtl" class="t-sm">פריחה, גרד</text>
+          <rect x="15" y="290" width="690" height="52" rx="10" class="f-alarm-soft"/>
+          <text x="360" y="322" text-anchor="middle" direction="rtl" class="t-alarm">התוצאה: נתיב אוויר נסגר + לחץ הדם קורס (שוק)</text>
+        </svg>
+      </div>
+      <figcaption><b>מהאלרגן אל ההלם.</b> הרגישות נוצרת בחשיפה הראשונה; בחשיפה החוזרת תאי ה-MAST מתפרקים ומשחררים היסטמין, שפועל בבת אחת על ארבע מערכות. שתי ההשפעות שהורגות הן היצרות דרכי האוויר וקריסת לחץ הדם.</figcaption>
+    </figure>
+
+    <h4>מה עושה ההיסטמין, מערכת אחרי מערכת</h4>
+    <div class="tbl-wrap"><table class="data"><caption>השפעות שחרור ההיסטמין ומה רואים בשטח</caption>
+      <thead><tr><th>מערכת</th><th>מה קורה</th><th>מה זה אומר לפרמדיק</th></tr></thead>
+      <tbody>
+        <tr><th>ריאות</th><td>הפרשת מוקוס, כיווץ שריר חלק בסימפונות, בצקת בקנה הנשימה</td><td>צפצופים, שיעול, צרידות, סטרידור</td></tr>
+        <tr><th>לב</th><td>ירידה בתפוקת הלב ובכוח ההתכווצות</td><td>דופק מהיר וחלש, ירידה בל"ד</td></tr>
+        <tr><th>כלי דם</th><td>הרחבת כלי דם, הגדלת חדירות (דליפה קפילרית), בריחת נוזל מתוך הכלי למרווח הבין-תאי</td><td>הנוזל "נעלם" מכלי הדם: זו הסיבה שנותנים נוזלים בכמויות גדולות</td></tr>
+        <tr><th>עור</th><td>בצקת בפנים ומסביב לעיניים, פריחה, גרד</td><td>הסימן הבולט ביותר, אבל לא המסוכן ביותר</td></tr>
+      </tbody></table></div>
+
+    <h3>רמות התגובה: מאלרגיה ועד שוק</h3>
+    <p>לא כל תגובה אלרגית היא אנאפילקסיס. המצגת מגדירה שלוש רמות:</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 720 270" role="img" aria-label="שלוש רמות תגובה להיסטמין: תגובה מקומית, אנאפילקסיס, שוק אנאפילקטי">
+          <defs>
+            <marker id="ch9-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" class="f-alarm"/>
+            </marker>
+          </defs>
+          <line x1="690" y1="30" x2="40" y2="30" class="s-alarm" marker-end="url(#ch9-arr2)"/>
+          <text x="365" y="52" text-anchor="middle" direction="rtl" class="t-alarm">הסכנה עולה</text>
+          <rect x="490" y="170" width="210" height="80" rx="8" class="f-field-soft"/>
+          <text x="595" y="200" text-anchor="middle" direction="rtl" class="t-b">תגובה מקומית</text>
+          <text x="595" y="225" text-anchor="middle" direction="rtl" class="t-sm">אלרגיה (למשל עקיצת דבורה)</text>
+          <rect x="260" y="125" width="210" height="125" rx="8" class="f-zone-soft"/>
+          <text x="365" y="160" text-anchor="middle" direction="rtl" class="t-b">אנאפילקסיס</text>
+          <text x="365" y="185" text-anchor="middle" direction="rtl" class="t-sm">מעורבות של לפחות</text>
+          <text x="365" y="205" text-anchor="middle" direction="rtl" class="t-sm">שתי מערכות</text>
+          <rect x="30" y="80" width="210" height="170" rx="8" class="f-alarm-soft"/>
+          <text x="135" y="115" text-anchor="middle" direction="rtl" class="t-alarm">שוק אנאפילקטי</text>
+          <text x="135" y="140" text-anchor="middle" direction="rtl" class="t-sm">נפילת לחץ דם</text>
+        </svg>
+      </div>
+      <figcaption><b>שלוש רמות תגובה.</b> רמת התגובה תלויה בדרך החשיפה, בכמות האלרגן ובחולה עצמו, וגם בזמן שעבר מהחשיפה. תגובה מקומית יכולה להתקדם; לכן מעריכים שוב ושוב.</figcaption>
+    </figure>
+
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>אנאפילקסיס = מעורבות של לפחות שתי מערכות.</b> שוק אנאפילקטי = אנאפילקסיס עם נפילת לחץ דם. בפרוטוקול, <mark>ל"ד סיסטולי נמוך מ-90 מ"מ כספית</mark> הוא אחד מסימני הירידה בפרפוזיה שמגדירים מצב קשה.</p>
+    </div>
+
+    <h3>איך זה נראה: סימנים וסימפטומים</h3>
+    <p>חשבו על המטופל לפי ABC, ואחר כך העור ומערכת העיכול:</p>
+    <div class="tbl-wrap"><table class="data"><caption>סימני אנאפילקסיס לפי מערכות (מצגת עמ׳ 9, 17)</caption>
+      <thead><tr><th>מערכת</th><th>סימנים</th></tr></thead>
+      <tbody>
+        <tr><th><span class="en">Airway</span></th><td class="hl">בצקות בפנים, בלשון, בדרכי האוויר העליונות והתחתונות; נפיחות שפתיים, לשון וגרון; צרידות, כאב בבליעה</td></tr>
+        <tr><th><span class="en">Breathing</span></th><td>צפצופים אקספירטוריים, אקספיריום מוארך, סטרידור, קוצר נשימה, שיעול</td></tr>
+        <tr><th><span class="en">Circulation</span></th><td>טכיקרדיה (דופק מהיר, ולעיתים איטי), נפילת ל"ד</td></tr>
+        <tr><th>עור</th><td>אורטיקריה <span class="en">(Urticaria)</span>: חרלת, גרד, סומק (flushing); נפיחות הלחמית</td></tr>
+        <tr><th>עיכול</th><td>כאבי בטן (התכווצויות), בחילות, הקאות, שלשולים</td></tr>
+        <tr><th>מערכת עצבים</th><td>סחרחורת, אובדן הכרה, בלבול, כאב ראש, חרדה</td></tr>
+      </tbody></table></div>
+    <p>התמונות במצגת חוזרות על אותו מוטיב: <b>אנגיואדמה</b> – נפיחות של השפתיים, הלשון והעפעפיים עד שהעיניים כמעט נסגרות – ולצידה חרלת על הגו והצוואר. מטופל שאוחז בגרונו או מגרד את עצמו בעוצמה הוא רמז מוקדם.</p>
+
+    <h4>חומרת ההתקף לפי הפרוטוקול</h4>
+    <p>הפרוטוקול של איחוד הצלה מחלק את המטופלים לשתי קבוצות טיפול (ועוד דום לב). החלוקה הזאת קובעת את הטיפול:</p>
+    <div class="compare">
+      <div><h5>התקף קל / בינוני</h5><ul>
+        <li>נפיחות, אנגיואדמה, אורטיקריה</li>
+        <li>נזלת, דמעות</li>
+        <li>קוצר נשימה (מלווה בצפצופים)</li>
+        <li>דופק מהיר, חולשה</li>
+        <li>בחילות וכאבי בטן</li>
+      </ul></div>
+      <div><h5>התקף קשה</h5><ul>
+        <li><span class="alarm-t">קוצר נשימה קשה / חריף</span></li>
+        <li><span class="alarm-t">סימנים להצרות דרכי נשימה עליונות (צרידות)</span></li>
+        <li>הקאות, שלשולים</li>
+        <li><b>סימני ירידה בפרפוזיה:</b> חיוורון, הזעה, שינויים במצב הכרה, דופק מהיר וחלש, ל"ד סיסטולי נמוך מ-90 מ"מ כספית</li>
+      </ul></div>
+    </div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><span class="alarm-t">צרידות מתקדמת, סטרידור, נפיחות גוברת בלשון</span> – אלה סימנים שנתיב האוויר הולך ונסגר. בצקת רק מחמירה עם הזמן; נתיב אוויר שקל לאבטח עכשיו עלול להיות בלתי אפשרי בעוד עשר דקות. בנוסף: <span class="alarm-t">שינוי במצב ההכרה, חיוורון והזעה</span> מסמנים שוק.</p>
+    </div>
+
+    <h3>טיפול בשטח לפי הפרוטוקול</h3>
+    <h4>אנמנזה ממוקדת – מה לשאול</h4>
+    <ul>
+      <li><b>גורם האירוע</b>: רקע של אלרגיות, חשיפה לאלרגן (מזון, עקיצת חרקים, תרופות וכו׳).</li>
+      <li><b>צורת החשיפה</b>: בליעה, שאיפה, הזרקה וכו׳.</li>
+      <li><b>כמה זמן חלף</b> מרגע החשיפה ועד הופעת הסימנים. התפתחות מהירה של סימנים מדאיגה.</li>
+      <li><b>שימוש באפיפן / אדרנלין בעבר</b> – בשימוש עצמי או על ידי צוות רפואי.</li>
+      <li>האם קיימים סימני אנאפילקסיס (מעורבות של יותר ממערכת אחת)?</li>
+    </ul>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div><b>הפסק את החשיפה</b> לגורם האלרגני ובמידת האפשר הרחק את המטופל מהאלרגן.</div></li>
+        <li><div><b>הערכה ראשונית ABC</b>: הכרה, נתיב אוויר, נשימה וסימני מצוקה נשימתית, סטורציה, דופק. במקביל אנמנזה מהירה.</div></li>
+        <li><div><b>איום על נתיב האוויר?</b> שקול מעבר לפרוטוקול הפסקת נשימה מאיימת ואינטובציה מוקדמת (קולות נשימה חריגים, נפיחות של הלשון).</div></li>
+        <li><div><b>שקול אדרנלין IM</b> – 0.3–0.5 מ"ג.</div></li>
+        <li><div><b>חמצן</b> במידת הצורך, <b>גישה ורידית</b>, <b>מוניטור ומד סטורציה</b>.</div></li>
+        <li><div>במידת האפשר <b>השכב את המטופל והרם רגליים</b>.</div></li>
+        <li><div><b>סווג חומרה</b> (קל/בינוני, קשה, דום לב) וטפל לפי הענף המתאים.</div></li>
+        <li><div><b>פינוי דחוף</b> לבית החולים תוך המשך ניטור וטיפול; הערך מדדים כל 5–10 דק׳; שקול העברת דיווח למלר"ד.</div></li>
+      </ol>
+    </div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 760 680" role="img" aria-label="תרשים זרימה מפושט של פרוטוקול אנאפילקסיס של איחוד הצלה">
+          <defs>
+            <marker id="ch9-arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" class="f-zone"/>
+            </marker>
+          </defs>
+          <rect x="190" y="15" width="380" height="44" rx="8" class="f-card"/>
+          <text x="380" y="43" text-anchor="middle" direction="rtl" class="t-b">הערכה ראשונית ABC + אנמנזה מהירה</text>
+          <line x1="380" y1="59" x2="380" y2="77" class="ln" marker-end="url(#ch9-arr3)"/>
+          <rect x="190" y="80" width="380" height="44" rx="8" class="f-card"/>
+          <text x="380" y="108" text-anchor="middle" direction="rtl">שקול פרוטוקול הפסקת נשימה מאיימת</text>
+          <line x1="380" y1="124" x2="380" y2="142" class="ln" marker-end="url(#ch9-arr3)"/>
+          <rect x="190" y="145" width="380" height="44" rx="8" class="f-hl"/>
+          <text x="380" y="173" text-anchor="middle" direction="rtl" class="t-b">שקול אדרנלין IM</text>
+          <line x1="380" y1="189" x2="380" y2="207" class="ln" marker-end="url(#ch9-arr3)"/>
+          <rect x="190" y="210" width="380" height="44" rx="8" class="f-card"/>
+          <text x="380" y="238" text-anchor="middle" direction="rtl">חמצן לפי צורך · וריד · מוניטור + סטורציה</text>
+          <path d="M380,254 L380,270 M130,270 L630,270" class="ln"/>
+          <line x1="130" y1="270" x2="130" y2="287" class="ln" marker-end="url(#ch9-arr3)"/>
+          <line x1="380" y1="270" x2="380" y2="287" class="ln" marker-end="url(#ch9-arr3)"/>
+          <line x1="630" y1="270" x2="630" y2="287" class="ln" marker-end="url(#ch9-arr3)"/>
+          <rect x="520" y="290" width="220" height="40" rx="8" class="f-field-soft"/>
+          <text x="630" y="316" text-anchor="middle" direction="rtl" class="t-b">התקף קל / בינוני</text>
+          <rect x="270" y="290" width="220" height="40" rx="8" class="f-zone-soft"/>
+          <text x="380" y="316" text-anchor="middle" direction="rtl" class="t-b">התקף קשה</text>
+          <rect x="20" y="290" width="220" height="40" rx="8" class="f-alarm-soft"/>
+          <text x="130" y="316" text-anchor="middle" direction="rtl" class="t-alarm">דום לב</text>
+          <rect x="520" y="345" width="220" height="110" rx="8" class="f-card"/>
+          <text x="630" y="375" text-anchor="middle" direction="rtl">ונטולין באינהלציה</text>
+          <text x="630" y="403" text-anchor="middle" direction="rtl">סולומדרול IV</text>
+          <text x="630" y="431" text-anchor="middle" direction="rtl">שקול נוזלים 1 ל׳/ש׳</text>
+          <rect x="270" y="345" width="220" height="110" rx="8" class="f-card"/>
+          <text x="380" y="370" text-anchor="middle" direction="rtl" class="t-b">אדרנלין IM</text>
+          <text x="380" y="393" text-anchor="middle" direction="rtl">ונטולין באינהלציה</text>
+          <text x="380" y="416" text-anchor="middle" direction="rtl">סולומדרול IV</text>
+          <text x="380" y="439" text-anchor="middle" direction="rtl">נוזלים 2–3 ל׳/ש׳</text>
+          <rect x="20" y="345" width="220" height="110" rx="8" class="f-card"/>
+          <text x="130" y="375" text-anchor="middle" direction="rtl" class="t-b">החייאה + אדרנלין IV</text>
+          <text x="130" y="403" text-anchor="middle" direction="rtl">נוזלים 4–5 ל׳/ש׳</text>
+          <text x="130" y="431" text-anchor="middle" direction="rtl">שקול סולומדרול</text>
+          <line x1="630" y1="330" x2="630" y2="342" class="ln"/>
+          <line x1="380" y1="330" x2="380" y2="342" class="ln"/>
+          <line x1="130" y1="330" x2="130" y2="342" class="ln"/>
+          <line x1="130" y1="455" x2="130" y2="477" class="ln" marker-end="url(#ch9-arr3)"/>
+          <rect x="20" y="480" width="220" height="50" rx="8" class="f-alarm-soft"/>
+          <text x="130" y="511" text-anchor="middle" direction="rtl" class="t-alarm">פרוטוקול דום לב</text>
+          <line x1="630" y1="455" x2="630" y2="477" class="ln" marker-end="url(#ch9-arr3)"/>
+          <rect x="520" y="480" width="220" height="70" rx="8" class="f-soft"/>
+          <text x="630" y="505" text-anchor="middle" direction="rtl" class="t-b">אין שיפור:</text>
+          <text x="630" y="530" text-anchor="middle" direction="rtl" class="t-sm">שקול אדרנלין IM, ונטולין, נוזלים</text>
+          <line x1="380" y1="455" x2="380" y2="477" class="ln" marker-end="url(#ch9-arr3)"/>
+          <rect x="270" y="480" width="220" height="70" rx="8" class="f-soft"/>
+          <text x="380" y="505" text-anchor="middle" direction="rtl" class="t-b">היפו-פרפוזיה:</text>
+          <text x="380" y="530" text-anchor="middle" direction="rtl" class="t-sm">שקול אדרנלין IV, נוזלים, דופמין IV</text>
+          <line x1="380" y1="550" x2="380" y2="572" class="ln" marker-end="url(#ch9-arr3)"/>
+          <line x1="630" y1="550" x2="630" y2="572" class="ln" marker-end="url(#ch9-arr3)"/>
+          <rect x="270" y="575" width="470" height="40" rx="8" class="f-field-soft"/>
+          <text x="505" y="601" text-anchor="middle" direction="rtl" class="t-field">שיפור: פינוי דחוף, מדדים כל 5–10 דק׳</text>
+          <rect x="270" y="625" width="470" height="40" rx="8" class="f-alarm-soft"/>
+          <text x="505" y="651" text-anchor="middle" direction="rtl" class="t-alarm">אין שיפור + מצוקה נשימתית: הפסקת נשימה מאיימת</text>
+        </svg>
+      </div>
+      <figcaption><b>פרוטוקול אנאפילקסיס, בקיצור (UH_ACLS_2023 עמ׳ 34).</b> בהתקף קשה ללא היפו-פרפוזיה עוברים לאותה תיבה של "אין שיפור" (שקול אדרנלין IM חוזר, ונטולין, נוזלים). לאחר שתי התיבות התחתונות שואלים שוב "שיפור?": כן – פינוי דחוף; לא, עם מצוקה נשימתית – מעבר לפרוטוקול הפסקת נשימה מאיימת.</figcaption>
+    </figure>
+
+    <p>שימו לב להיגיון: <b>אדרנלין</b> הוא התרופה היחידה שמטפלת בכל המנגנונים יחד – הוא מכווץ את כלי הדם המורחבים, מחזק את הלב ומרחיב את הסימפונות. <b>ונטולין</b> מטפל רק בברונכוספאזם, <b>סולומדרול</b> (סטרואיד) פועל לאט ומטרתו לרסן את התגובה החיסונית, ו<b>נוזלים</b> ממלאים מחדש את כלי הדם שהנוזל דלף מהם.</p>
+
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p>מתן <b>חמצן</b>: בסימני מצוקה נשימתית, בסימני פרפוזיה ירודה, או כשה<mark>סטורציה נמוכה מ-94%</mark> – במטרה לשמור על סטורציה מעל 94%.</p>
+      <p><b>נוזלים לפי חומרה:</b> קל/בינוני – שקול 1 ל׳/ש׳ · קשה – 2–3 ל׳/ש׳ · דום לב – 4–5 ל׳/ש׳.</p>
+    </div>
+
+    <h3>התרופות: מינונים והכנה</h3>
+    <div class="doses">
+      <article class="dose"><header><h5>אדרנלין IM</h5><span class="ind">התרופה המרכזית</span></header>
+        <div class="big">0.3–0.5 <small>מ"ג IM</small></div>
+        <dl><dt>חזרות</dt><dd>עד 3 מנות, בהפרש של 10 דקות ביניהן</dd>
+          <dt>צורת הופעה</dt><dd>1 מ"ג ב-1 מ"ל</dd>
+          <dt>הכנה</dt><dd>שאב 1 מ"ל למזרק 5 מ"ל והשלם עם 2 מ"ל סליין</dd>
+          <dt>זהירות</dt><dd>מעל גיל 40 או היסטוריה של IHD</dd></dl>
+        <div class="calc">1 מ"ג ב-3 מ"ל ‏←‏ כ-0.33 מ"ג/מ"ל ‏←‏ 0.3 מ"ג = 0.9 מ"ל; 0.5 מ"ג = 1.5 מ"ל</div></article>
+      <article class="dose"><header><h5>אדרנלין IV</h5><span class="ind">היפו-פרפוזיה</span></header>
+        <div class="big">50–100 <small>מק"ג IV, בולוס מהיר</small></div>
+        <dl><dt>חזרות</dt><dd>כל 5–10 דקות</dd>
+          <dt>הכנה</dt><dd>שאב 1 מ"ל למזרק 10 מ"ל והשלם עם 9 מ"ל סליין 0.9% ‏←‏ 100 מק"ג ב-1 מ"ל</dd></dl>
+        <div class="calc">100 מק"ג/מ"ל ‏←‏ 50 מק"ג = 0.5 מ"ל; 100 מק"ג = 1 מ"ל</div></article>
+      <article class="dose"><header><h5>אדרנלין בדום לב</h5><span class="ind">דום לב על רקע אנאפילקסיס</span></header>
+        <div class="big">1 <small>מ"ג IV כל 2 דקות</small></div>
+        <dl><dt>מתי</dt><dd>תוך כדי ביצוע פעולות החייאה</dd></dl></article>
+      <article class="dose"><header><h5>ונטולין</h5><span class="ind">ברונכוספאזם</span></header>
+        <div class="big">2.5 / 5 <small>מ"ג באינהלציה</small></div>
+        <dl><dt>מינון</dt><dd>התקף קל/בינוני 2.5 מ"ג; התקף קשה 5 מ"ג</dd>
+          <dt>חזרות</dt><dd>עד 3 מנות בהפרש של 20 דקות</dd>
+          <dt>צורת הופעה</dt><dd>בקבוקון 100 מ"ג ב-20 מ"ל (5 מ"ג = 1 מ"ל)</dd>
+          <dt>הכנה</dt><dd>שאב 0.5–1 מ"ל למזרק 5 מ"ל; מהול ב-2 מ"ל סליין 0.9%</dd>
+          <dt>מונשם</dt><dd>קושי בהנשמה אחרי אינטובציה: 5 מ"ג מהול ב-5 מ"ל סליין 0.9% לתוך הטובוס בקטטר</dd></dl>
+        <div class="calc">5 מ"ג/מ"ל ‏←‏ 2.5 מ"ג = 0.5 מ"ל; 5 מ"ג = 1 מ"ל</div></article>
+      <article class="dose"><header><h5>סולומדרול</h5><span class="ind">כל אנאפילקסיס (שקול בדום לב)</span></header>
+        <div class="big">125 <small>מ"ג IV</small></div>
+        <dl><dt>חזרות</dt><dd>מנה חד פעמית</dd>
+          <dt>צורת הופעה</dt><dd>פלאקון, 125 מ"ג אבקה + 2 מ"ל נוזל</dd>
+          <dt>הכנה</dt><dd>לחץ על הפקק כדי למסס את האבקה בנוזל, נער עד נוזל צלול ואחיד, שאב למזרק 2 מ"ל</dd></dl></article>
+      <article class="dose"><header><h5>דופמין</h5><span class="ind">היפו-פרפוזיה למרות נוזלים ואדרנלין</span></header>
+        <div class="big">5–20 <small>מק"ג/ק"ג/דקה IV</small></div>
+        <dl><dt>צורת הופעה</dt><dd>200 מ"ג ב-5 מ"ל</dd>
+          <dt>הכנה</dt><dd>2 אמפולות לשקית 500 מ"ל סליין 0.9% ‏←‏ 800 מק"ג/מ"ל</dd>
+          <dt>מתן</dt><dd>בטפטוף; חשב טיפות לדקה וכוון את בורר הזרימה</dd></dl>
+        <div class="calc">70 ק"ג × 5 מק"ג = 350 מק"ג/דקה ‏←‏ <span class="en">350 ÷ 800</span> ≈ 0.44 מ"ל/דקה</div></article>
+    </div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 760 270" role="img" aria-label="מהילת אדרנלין: IM במזרק 5 מיליליטר ו-IV במזרק 10 מיליליטר, בקנה מידה">
+          <text x="700" y="35" text-anchor="start" direction="rtl" class="t-b">IM: מזרק 5 מ"ל</text>
+          <rect x="650" y="50" width="50" height="40" class="f-alarm-soft"/>
+          <rect x="550" y="50" width="100" height="40" class="f-soft"/>
+          <rect x="550" y="50" width="150" height="40" fill="none" class="ln"/>
+          <text x="675" y="75" text-anchor="middle" direction="rtl" class="t-sm">1 מ"ל</text>
+          <text x="600" y="75" text-anchor="middle" direction="rtl" class="t-sm">2 מ"ל סליין</text>
+          <text x="530" y="75" text-anchor="start" direction="rtl">= 3 מ"ל, 1 מ"ג (כ-0.33 מ"ג למ"ל)</text>
+          <text x="700" y="145" text-anchor="start" direction="rtl" class="t-b">IV: מזרק 10 מ"ל</text>
+          <rect x="650" y="160" width="50" height="40" class="f-alarm-soft"/>
+          <rect x="200" y="160" width="450" height="40" class="f-soft"/>
+          <rect x="200" y="160" width="500" height="40" fill="none" class="ln"/>
+          <text x="675" y="185" text-anchor="middle" direction="rtl" class="t-sm">1 מ"ל</text>
+          <text x="425" y="185" text-anchor="middle" direction="rtl" class="t-sm">9 מ"ל סליין 0.9%</text>
+          <text x="700" y="235" text-anchor="start" direction="rtl">= 10 מ"ל, 1 מ"ג: 100 מק"ג בכל מ"ל</text>
+        </svg>
+      </div>
+      <figcaption><b>שתי מהילות, בקנה מידה.</b> הקטע הוורוד הוא אמפולת אדרנלין (1 מ"ג ב-1 מ"ל). ל-IM מוהלים לנפח 3 מ"ל; ל-IV מוהלים לנפח 10 מ"ל, כך שכל מ"ל מכיל 100 מק"ג. המינון ב-IV קטן פי 3–10 מהמינון ב-IM, כי הוא נכנס ישר לדם.</figcaption>
+    </figure>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><span class="alarm-t">אל תבלבל בין מינון IM למינון IV.</span> אמפולת אדרנלין לא מהולה (1 מ"ג/מ"ל) מתאימה ל-IM בלבד; ב-IV ניתנים 50–100 מק"ג (0.05–0.1 מ"ג) מהמהילה של 100 מק"ג/מ"ל. מתן מ"ג שלם לווריד במטופל עם דופק עלול לגרום להפרעת קצב ואיסכמיה. מ"ג שלם IV ניתן רק בדום לב.</p>
+      <p>זהירות יתרה באדרנלין <b>מעל גיל 40 או עם היסטוריה של מחלת לב איסכמית (IHD)</b> – אבל זהירות איננה ויתור: באנאפילקסיס אמיתית אדרנלין הוא הטיפול.</p>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>מצגת האנאפילקסיס (עמ׳ 15–16) מציגה גרסה ישנה ושונה של הטיפול. בכל מקרה של סתירה – <b>פועלים לפי הפרוטוקול</b> (UH_ACLS_2023 עמ׳ 34–36):</p>
+      <ul>
+        <li><b>חלוקה:</b> המצגת מחלקת לפי ל"ד 90 בלבד ("יציב" / "לא יציב"); הפרוטוקול מחלק לקל/בינוני, קשה ודום לב, ול"ד סיסטולי מתחת ל-90 הוא אחד מסימני הפרפוזיה הירודה במצב קשה.</li>
+        <li><b>אדרנלין IM:</b> במצגת "שקול 0.5mg"; בפרוטוקול 0.3–0.5 מ"ג, עד 3 מנות כל 10 דקות.</li>
+        <li><b>אדרנלין IV:</b> במצגת 0.2–0.5mg ומנת אחזקה 1–4mcg/min; בפרוטוקול 50–100 מק"ג בבולוס מהיר כל 5–10 דקות, ואם הפרפוזיה נשארת ירודה – דופמין 5–20 מק"ג/ק"ג/דקה.</li>
+        <li><b>ונטולין:</b> במצגת 5mg לכל ברונכוספאזם; בפרוטוקול 2.5 מ"ג בהתקף קל/בינוני ו-5 מ"ג בהתקף קשה.</li>
+        <li><b>זהירות באדרנלין:</b> המצגת כותבת "מעל גיל 40 <b>+</b> אנמנזה קרדיאלית"; הפרוטוקול כותב "מעל גיל 40 <b>או</b> היסטוריה של IHD".</li>
+        <li>המצגת דורשת "קבל אישור רפואי לפרוטוקול" במטופל יציב; דרישה כזאת לא מופיעה בעמודי הפרוטוקול שנקראו.</li>
+      </ul>
+    </div>
+
+    <h3>נתיב אוויר ודום לב באנאפילקסיס</h3>
+    <p>הבצקת היא מה שהופך אנאפילקסיס לקטלנית במהירות. הרקמה מסביב לגלוטיס מתנפחת, והפתח שדרכו צריך להעביר טובוס הולך וקטן. לכן ההמלצות במצגת (עמ׳ 12) הן:</p>
+    <ul>
+      <li>בבצקת בלשון + סטרידור – <mark>יש להיערך לאינטובציה מיידית</mark>.</li>
+      <li>שימוש בטובוס קטן <b>ב-2 מידות</b> מהרגיל.</li>
+      <li>להיות מוכנים לאינטובציה קשה.</li>
+      <li>במידת הצורך – קוניוטומיה <span class="en">(Cricothyrotomy)</span>: כשאין אפשרות להכניס לרינגוסקופ, או בלרינגוספאזם.</li>
+    </ul>
+    <p>בדום לב על רקע אנאפילקסיס (מצגת עמ׳ 14; פרוטוקול עמ׳ 34): מבצעים החייאה ועוברים לפרוטוקול דום לב, נותנים <b>אדרנלין 1 מ"ג IV כל 2 דקות</b>, נוזלים 4–5 ל׳/ש׳ ושוקלים סולומדרול. צפו לאינטובציה קשה: הבצקת לא נעלמת כשהלב נעצר.</p>
+    <p>פירוט טכני של אינטובציה, אינטובציה קשה וקוניוטומיה – בפרק ניהול נתיב האוויר.</p>
+
+    <h3>מקרה לתרגול</h3>
+    <p><b>המקרה (מצגת עמ׳ 16):</b> גבר בן 52 נעקץ על ידי דבורה כששהה בגינה. דקות אחרי העקיצה חש לחץ בבית החזה. כעת, כרבע שעה אחרי האירוע, הוא נרגש מאוד ופניו אדומות. דופק 124, מעט לא סדיר; 36 נשימות שטחיות; ל"ד 90/60.</p>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>התשובה במצגת, לפי הסדר:</b></p>
+      <ol class="steps">
+        <li><div>הרגעה.</div></li>
+        <li><div>חמצן.</div></li>
+        <li><div>מוניטור.</div></li>
+        <li><div>וריד.</div></li>
+        <li><div>מדידת סטורציה.</div></li>
+        <li><div>אדרנלין לשריר (IM).</div></li>
+        <li><div>פינוי מהיר תוך מוכנות להידרדרות: אדרנלין מוכן, ערכת אינטובציה.</div></li>
+      </ol>
+      <p>שימו לב לגיל ולתלונת הלחץ בחזה: זה בדיוק המטופל שבו "זהירות מעל גיל 40" רלוונטית – ועדיין הוא מקבל אדרנלין, כי ל"ד גבולי, טכיקרדיה וטכיפנאה מראים תגובה מערכתית.</p>
+    </div>
+
+    <h3>חלק ב׳: חנק מגוף זר – זיהוי וחומרה</h3>
+    <p>בחנק מגוף זר הבעיה מכנית: משהו תקוע בדרכי האוויר העליונות. שאלת המפתח היא אחת – <b>האם עוד עובר אוויר?</b> כל עוד המטופל משתעל ביעילות, השיעול שלו חזק יותר מכל מה שאנחנו יכולים לעשות מבחוץ.</p>
+    <h4>זיהוי מצב חנק</h4>
+    <ul>
+      <li><b>ידיים אוחזות בצוואר</b> – <mark>הסימן האוניברסלי לחנק</mark>.</li>
+      <li>המטופל אינו יכול לדבר / להשתעל.</li>
+      <li>המטופל מאדים / מכחיל.</li>
+      <li>בבדיקה גופנית (פרוטוקול): לפיתת צוואר, סטרידור (צפצוף/חרחור בזמן שאיפת אוויר), ציאנוזיס מרכזי (כחלון), שרירי עזר ומאמץ נשימתי.</li>
+    </ul>
+    <p>היו ערניים לסביבה: ראיות נסיבתיות (כמו אוכל) עשויות לסייע בזיהוי מהיר של מצב חנק, במיוחד בתינוקות שאינם יכולים לספר מה קרה.</p>
+
+    <div class="compare">
+      <div><h5>חסימה חלקית</h5><ul>
+        <li>המטופל <b>נושם</b></li>
+        <li>המטופל <b>משתעל ביעילות</b> (בדרך כלל)</li>
+        <li>נשמעים <b>צפצופים</b> מדרכי האוויר העליונות</li>
+        <li>פרוטוקול: הופעה פתאומית של שיעול / שיעול יעיל, קשיי נשימה, קשיי דיבור, לפיתת צוואר, סטרידור, שימוש בשרירי עזר</li>
+        <li><b>טיפול: עודד את המטופל להשתעל</b></li>
+      </ul></div>
+      <div><h5>חסימה מלאה</h5><ul>
+        <li>המטופל <b>אינו</b> יכול לנשום</li>
+        <li>המטופל <b>אינו</b> יכול לדבר</li>
+        <li>המטופל <b>אינו</b> מצליח להשתעל ביעילות</li>
+        <li>המטופל <span class="alarm-t">מכחיל (ציאנוזיס)</span></li>
+        <li><b>טיפול: התערבות מיידית – תמרון היימליך</b></li>
+      </ul></div>
+    </div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>בחסימה חלקית <span class="alarm-t">חל איסור לבצע טפיחות בגב</span> – רק עידוד לשיעול בעל פה. התערבות לא נחוצה עלולה להזיז את הגוף הזר ולהפוך חסימה חלקית למלאה.</p>
+      <p>סימני <b>החמרה</b> במהלך הפינוי: <span class="alarm-t">ירידה ברמת ההכרה, כחלון מרכזי</span>.</p>
+    </div>
+
+    <h4>מי בסיכון</h4>
+    <ul>
+      <li>ילדים מתחת לגיל 3.</li>
+      <li>קשישים מעל גיל 70.</li>
+      <li>ירידה במצב ההכרה (תרופות, סמים, אלכוהול).</li>
+    </ul>
+
+    <h3>טיפול במבוגר ובילד</h3>
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 720 570" role="img" aria-label="תרשים זרימה של פרוטוקול חנק מגוף זר במבוגר">
+          <defs>
+            <marker id="ch9-arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" class="f-zone"/>
+            </marker>
+            <marker id="ch9-arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" class="f-alarm"/>
+            </marker>
+            <marker id="ch9-arr6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" class="f-field"/>
+            </marker>
+          </defs>
+          <rect x="290" y="20" width="260" height="40" rx="8" class="f-card"/>
+          <text x="420" y="46" text-anchor="middle" direction="rtl" class="t-b">הערך מצב הכרה</text>
+          <path d="M290,40 L115,40 L115,245" class="s-alarm" marker-end="url(#ch9-arr5)"/>
+          <text x="200" y="32" text-anchor="middle" direction="rtl" class="t-alarm">אין הכרה</text>
+          <rect x="30" y="250" width="170" height="70" rx="8" class="f-alarm-soft"/>
+          <text x="115" y="280" text-anchor="middle" direction="rtl" class="t-alarm">עבור לפרוטוקול</text>
+          <text x="115" y="302" text-anchor="middle" direction="rtl" class="t-alarm">החייאה</text>
+          <line x1="420" y1="60" x2="420" y2="82" class="s-field" marker-end="url(#ch9-arr6)"/>
+          <text x="458" y="77" text-anchor="start" direction="rtl" class="t-field">יש</text>
+          <polygon points="420,85 510,120 420,155 330,120" class="f-hl"/>
+          <text x="420" y="125" text-anchor="middle" direction="rtl" class="t-b">חסימה מלאה?</text>
+          <line x1="510" y1="120" x2="557" y2="120" class="s-field" marker-end="url(#ch9-arr6)"/>
+          <text x="533" y="110" text-anchor="middle" direction="rtl" class="t-field">לא</text>
+          <rect x="560" y="100" width="150" height="40" rx="8" class="f-field-soft"/>
+          <text x="635" y="126" text-anchor="middle" direction="rtl" class="t-b">עודד שיעול</text>
+          <line x1="420" y1="155" x2="420" y2="182" class="s-alarm" marker-end="url(#ch9-arr5)"/>
+          <text x="458" y="175" text-anchor="start" direction="rtl" class="t-alarm">כן</text>
+          <rect x="320" y="185" width="200" height="40" rx="8" class="f-card"/>
+          <text x="420" y="211" text-anchor="middle" direction="rtl" class="t-b">תמרון היימליך</text>
+          <line x1="420" y1="225" x2="420" y2="242" class="ln" marker-end="url(#ch9-arr4)"/>
+          <polygon points="420,245 485,275 420,305 355,275" class="f-hl"/>
+          <text x="420" y="280" text-anchor="middle" direction="rtl" class="t-b">שיפור?</text>
+          <path d="M485,275 L635,275 L635,497" class="s-field" marker-end="url(#ch9-arr6)"/>
+          <text x="560" y="265" text-anchor="middle" direction="rtl" class="t-field">כן</text>
+          <line x1="420" y1="305" x2="420" y2="332" class="s-alarm" marker-end="url(#ch9-arr5)"/>
+          <text x="458" y="325" text-anchor="start" direction="rtl" class="t-alarm">לא</text>
+          <rect x="290" y="335" width="260" height="70" rx="8" class="f-card"/>
+          <text x="420" y="363" text-anchor="middle" direction="rtl">המשך היימליך</text>
+          <text x="420" y="388" text-anchor="middle" direction="rtl">שקול לרינגוסקופיה</text>
+          <line x1="420" y1="405" x2="420" y2="422" class="ln" marker-end="url(#ch9-arr4)"/>
+          <polygon points="420,425 485,455 420,485 355,455" class="f-hl"/>
+          <text x="420" y="460" text-anchor="middle" direction="rtl" class="t-b">שיפור?</text>
+          <path d="M355,455 L115,455 L115,325" class="s-alarm" marker-end="url(#ch9-arr5)"/>
+          <text x="240" y="445" text-anchor="middle" direction="rtl" class="t-alarm">לא</text>
+          <line x1="420" y1="485" x2="420" y2="497" class="s-field" marker-end="url(#ch9-arr6)"/>
+          <rect x="250" y="500" width="460" height="55" rx="8" class="f-field-soft"/>
+          <text x="480" y="524" text-anchor="middle" direction="rtl" class="t-field">פינוי דחוף, בישיבה</text>
+          <text x="480" y="545" text-anchor="middle" direction="rtl" class="t-sm">שקול חמצן · מדדים כל 5–10 דק׳ · דיווח למלר"ד</text>
+        </svg>
+      </div>
+      <figcaption><b>פרוטוקול חנק מגוף זר (UH_ACLS_2023 עמ׳ 18).</b> השאלה הראשונה היא הכרה, השנייה היא חסימה מלאה או חלקית. בחסימה מלאה ממשיכים בהיימליך כל עוד יש הכרה; אובדן הכרה בכל שלב מעביר להחייאה.</figcaption>
+    </figure>
+
+    <h4>תמרון היימליך: לחיצות ברום הבטן</h4>
+    <p>עומדים מאחורי המטופל (מול ילד – כורעים בגובהו), מקיפים אותו בידיים ומבצעים לחיצות ברום הבטן, פנימה ולמעלה. הלחיצה דוחפת את הסרעפת למעלה ויוצרת "שיעול מלאכותי": פרץ אוויר מהריאות שאמור להעיף את הגוף הזר החוצה.</p>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>מתי עוברים ללחיצות בבית החזה <span class="en">(Chest thrust)</span> במקום בבטן:</b></p>
+      <ul>
+        <li><b>נשים בהריון</b> – לחיצות במרכז בית החזה ולא בבטן.</li>
+        <li><b>עד גיל שנה</b> (ראו תינוקות בהמשך).</li>
+        <li><b>אנשים שמנים</b> שקיים קושי להקיפם (עמ׳ 18 מוסיף: אפשר לבצע לחיצות כנגד קיר).</li>
+        <li><b>מרותקים למיטה / לכיסא גלגלים</b>.</li>
+      </ul>
+      <p><b>ספק חמצן מוקדם ככל האפשר.</b></p>
+    </div>
+
+    <h4>אם הגוף הזר יצא</h4>
+    <div class="compare">
+      <div><h5>התרשם ממצב הנשימה</h5><ul>
+        <li>תן חמצן</li>
+        <li>הערך כחלון מרכזי / פריפרי</li>
+      </ul></div>
+      <div><h5>המשך בהערכה וטפל לפי הצורך</h5><ul>
+        <li>הערך דרכי אוויר</li>
+        <li>הערך נשימה</li>
+        <li>הערך פרפוזיה</li>
+        <li>פינוי לבית החולים, בישיבה, בניטור</li>
+      </ul></div>
+    </div>
+
+    <h4>אם המטופל איבד את הכרתו</h4>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div><b>התחל החייאה</b> וודא שעזרה בדרך.</div></li>
+        <li><div><b>בצע 30 עיסויים</b> – <mark>במקרה זה בלבד, ללא בדיקת דופק</mark>.</div></li>
+        <li><div><b>פתח נתיב אוויר והבט לפה.</b> אם נראה גוף זר – נסה להוציאו.</div></li>
+        <li><div><b>2 ניסיונות הנשמה.</b></div></li>
+        <li><div><b>המשך</b> עד יציאת הגוף הזר או עד התרוממות בית החזה בהנשמות.</div></li>
+      </ol>
+      <p>בפרמדיק: במטופל מחוסר הכרה או מעורפל הכרה ניתן לבצע <b>לרינגוסקופיה ולהשתמש במלקחיים ייעודיים (מגיל, <span class="en">Magill</span>)</b> אם הגוף הזר נצפה.</p>
+    </div>
+    <p>למה מתחילים בעיסויים בלי לבדוק דופק? העיסויים עצמם מעלים את הלחץ בבית החזה ופועלים כמו היימליך – הם עשויים לדחוף את הגוף הזר החוצה. מטופל שאיבד הכרה מחנק הוא בחזקת מי שצריך עיסויים מיד.</p>
+
+    <h3>גוף זר אצל תינוק</h3>
+    <p><b>חסימה חלקית בתינוק</b> (התינוק משתעל ביעילות ואינו מכחיל): <span class="alarm-t">התערבות שלא לצורך עלולה להביא להחמרה במצבו.</span> משגיחים, מעודדים ומפנים.</p>
+    <p><b>חסימה משמעותית בתינוק</b> (התינוק אינו נושם / אינו משתעל ביעילות ומכחיל): פועלים לפי <mark>שיטת ה-555</mark>.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 330" role="img" aria-label="מחזור 555 לחנק בתינוק: 5 טפיחות בין השכמות, 5 לחיצות בבית החזה, 5 שניות הבטה בפה">
+          <defs>
+            <marker id="ch9-arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" class="f-field"/>
+            </marker>
+          </defs>
+          <circle cx="320" cy="80" r="65" class="f-zone-soft"/>
+          <text x="320" y="75" text-anchor="middle" direction="rtl" class="t-b">5 טפיחות</text>
+          <text x="320" y="98" text-anchor="middle" direction="rtl" class="t-sm">בין השכמות</text>
+          <circle cx="140" cy="240" r="65" class="f-zone-soft"/>
+          <text x="140" y="235" text-anchor="middle" direction="rtl" class="t-b">5 לחיצות</text>
+          <text x="140" y="258" text-anchor="middle" direction="rtl" class="t-sm">בבית החזה</text>
+          <circle cx="500" cy="240" r="65" class="f-zone-soft"/>
+          <text x="500" y="230" text-anchor="middle" direction="rtl" class="t-b">5 שניות</text>
+          <text x="500" y="252" text-anchor="middle" direction="rtl" class="t-sm">הבט בפה; גוף זר</text>
+          <text x="500" y="270" text-anchor="middle" direction="rtl" class="t-sm">נראה? גרוף החוצה</text>
+          <line x1="265" y1="129" x2="195" y2="191" class="s-field" marker-end="url(#ch9-arr7)"/>
+          <line x1="213" y1="240" x2="425" y2="240" class="s-field" marker-end="url(#ch9-arr7)"/>
+          <line x1="445" y1="191" x2="375" y2="129" class="s-field" marker-end="url(#ch9-arr7)"/>
+          <text x="320" y="190" text-anchor="middle" direction="ltr" class="t-b">555</text>
+        </svg>
+      </div>
+      <figcaption><b>שיטת ה-555 בתינוק.</b> מחזור סגור של שלושה שלבים שחוזר על עצמו. אם התינוק מאבד הכרה – עוברים להחייאה מלאה.</figcaption>
+    </figure>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בשקופית ה-555 (גוף זר, עמ׳ 10) החצים מתחילים מ"במשך 5 שניות הבט בפה התינוק" וממשיכים לטפיחות וללחיצות, ואז חוזרים בלולאה. מכיוון שזה מחזור, הסדר זהה; בתרשים כאן הוא מוצג כלולאה שמתחילה בטפיחות. לחיצות בבית החזה מתאימות לגיל שנה ומטה גם לפי הפרוטוקול (עמ׳ 19).</p>
+    </div>
+
+    <h4>אם התינוק מאבד הכרה</h4>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div><b>התחל החייאה מלאה.</b></div></li>
+        <li><div><b>30 עיסויים</b> – במקרה זה בלבד, ללא בדיקת דופק.</div></li>
+        <li><div><b>פתח נתיב אוויר והבט לפה.</b> אם נראה גוף זר – נסה להוציאו.</div></li>
+        <li><div><b>2 ניסיונות הנשמה.</b></div></li>
+        <li><div><b>המשך</b> עד יציאת הגוף הזר <b>או</b> עד העברת התינוק לטיפול צוות ALS.</div></li>
+      </ol>
+    </div>
+
+    <h4>מקרה לתרגול</h4>
+    <p><b>המקרה (מצגת אנאפילקסיס, עמ׳ 20):</b> גבר בן 25 יושב במסעדה. לפתע הוא מחוויר, עומד ואוחז בגרונו, ועיניו בולטות. מיד לאחר מכן הוא צונח על הרצפה בדממה מוחלטת. האבחנה: <b>חנק מגוף זר</b>.</p>
+    <p><b>התשובה במצגת:</b> תמרון היימליך או לחיצות בית חזה. אם הגוף יוצא – המשך טיפול תומך בהתאם ופינוי. אם לא – לרינגוסקופיה והוצאת הגוף הזר עם מלקחי מגיל. אם זה לא מצליח – <span class="alarm-t">ביצוע קוניוטומיה!</span> אם הגוף הזר יצא – חמצן, הרגעה, פינוי לבית החולים.</p>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>במקרה המטופל "צונח על הרצפה" – כלומר ככל הנראה איבד הכרה. לפי הפרוטוקול (עמ׳ 18) ומצגת הגוף הזר (עמ׳ 8), מטופל ללא הכרה עובר <b>לפרוטוקול החייאה</b>: 30 עיסויים ללא בדיקת דופק, הבטה לפה, הנשמות; ובמטופל מחוסר הכרה מותר לבצע לרינגוסקופיה ומגיל (עמ׳ 19). תשובת התרגיל מתחילה בהיימליך, שמתאים לשלב שבו המטופל עוד עומד ובהכרה. קוניוטומיה מופיעה בתשובת התרגיל ובמצגת האנאפילקסיס (עמ׳ 12), אך לא בעמודי פרוטוקול החנק שנקראו.</p>
+    </div>
+
+    <div class="recap"><span class="tag">בשורה התחתונה</span>
+      <ol>
+        <li>אנאפילקסיס = תגובה אלרגית חריפה המערבת לפחות שתי מערכות; שוק אנאפילקטי = עם נפילת ל"ד.</li>
+        <li>המנגנון: חשיפה חוזרת ‏←‏ אלרגן נקשר ל-IgE על תאי MAST ‏←‏ היסטמין ‏←‏ כיווץ סימפונות, בצקת, הרחבת כלי דם ודליפה.</li>
+        <li>צרידות, סטרידור ונפיחות גוברת בלשון = שקול אינטובציה מוקדמת, טובוס קטן ב-2 מידות, היערכות לאינטובציה קשה.</li>
+        <li>אדרנלין IM 0.3–0.5 מ"ג, עד 3 מנות כל 10 דקות; IV 50–100 מק"ג בבולוס כל 5–10 דקות; דום לב 1 מ"ג כל 2 דקות.</li>
+        <li>ונטולין 2.5 מ"ג (קל/בינוני) או 5 מ"ג (קשה), עד 3 מנות כל 20 דקות; סולומדרול 125 מ"ג IV מנה אחת.</li>
+        <li>נוזלים: 1 ל׳/ש׳ (קל/בינוני, שקול) · 2–3 ל׳/ש׳ (קשה) · 4–5 ל׳/ש׳ (דום לב); דופמין 5–20 מק"ג/ק"ג/דקה רק אם הפרפוזיה ירודה למרות נוזלים ואדרנלין.</li>
+        <li>חמצן לשמירה על סטורציה מעל 94%; השכבה והרמת רגליים; הרחקה מהאלרגן.</li>
+        <li>חנק: ידיים על הצוואר = הסימן האוניברסלי. חסימה חלקית – עודד שיעול, אסור לטפוח על הגב; חסימה מלאה – היימליך.</li>
+        <li>לחיצות בבית החזה במקום בבטן: הריון, עד גיל שנה, שמנים שקשה להקיף, מרותקים למיטה/כיסא גלגלים.</li>
+        <li>אובדן הכרה מחנק: 30 עיסויים ללא בדיקת דופק, הבטה לפה, 2 הנשמות; תינוק בהכרה עם חסימה משמעותית – 555.</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+</main>
+<footer class="end">סיכום קורס פרמדיק · סיכום לימודי לקורס פרמדיק מספר 5. אינו מחליף את הפרוטוקולים הרשמיים.</footer>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a, .strip a'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.chapter'));
+  if (!('IntersectionObserver' in window) || !secs.length) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

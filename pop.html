@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="סיכום קורס פרמדיק – פרק 12 · מצבי חירום באוכלוסיות שונות">
+<title>אוכלוסיות שונות · סיכום קורס פרמדיק</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Miriam+Libre:wght@400;700&family=Suez+One&display=swap">
+<style>
+/* Layout: one reading column (~68ch) with wide breakouts for tables and figures; a colour-tape rail
+   (one colour zone per chapter) runs down the inline-end edge as navigation, and becomes a thin
+   sticky strip on phones. Highlight system: lime marker = must know, magenta = red flag, slate
+   chart-paper in Miriam Libre = hospital-level knowledge, teal = what the paramedic does in the field. */
+:root {
+  --paper: #F6F8FA;
+  --card: #FFFFFF;
+  --ink: #142030;
+  --ink-2: #4B5969;
+  --ink-3: #7A8796;
+  --rule: #D8DFE7;
+  --hl: #E4FF3F;
+  --hl-ink: #182000;
+  --alarm: #D90F64;
+  --alarm-bg: #FFE6F0;
+  --field: #0A7A72;
+  --field-bg: #E1F3F1;
+  --hosp: #56688A;
+  --hosp-bg: #EEF1F7;
+  --hosp-grid: rgba(86,104,138,.10);
+  --z-grey: #8E959C;
+  --z-pink: #F08DBA;
+  --z-red: #E0312C;
+  --z-purple: #8A4FBF;
+  --z-yellow: #F2C200;
+  --z-white: #E6EAEE;
+  --z-blue: #2C78DD;
+  --z-orange: #F0832A;
+  --z-green: #2BA14D;
+  --zone: var(--z-grey);
+
+  --f-display: "Suez One", "Frank Ruhl Libre", serif;
+  --f-body: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --f-ui: "IBM Plex Sans Hebrew", "Segoe UI", Arial, sans-serif;
+  --f-hosp: "Miriam Libre", "IBM Plex Sans Hebrew", Arial, sans-serif;
+
+  --t-xs: .78rem; --t-sm: .9rem; --t-base: 1.1rem; --t-md: 1.3rem; --t-lg: 1.65rem; --t-xl: 2.3rem; --t-xxl: clamp(2.6rem, 7vw, 4.6rem);
+  --col: 44rem;
+  --wide: 62rem;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--f-body); font-size: var(--t-base); line-height: 1.75;
+  direction: rtl; text-align: start;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+[data-zone="grey"]{--zone:var(--z-grey)} [data-zone="pink"]{--zone:var(--z-pink)} [data-zone="red"]{--zone:var(--z-red)}
+[data-zone="purple"]{--zone:var(--z-purple)} [data-zone="yellow"]{--zone:var(--z-yellow)} [data-zone="white"]{--zone:var(--z-white)}
+[data-zone="blue"]{--zone:var(--z-blue)} [data-zone="orange"]{--zone:var(--z-orange)} [data-zone="green"]{--zone:var(--z-green)}
+
+.page { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1100px) { .page { padding-left: max(96px, env(safe-area-inset-left, 0px)); } }
+.flow { max-width: var(--col); margin-inline: auto; }
+.flow > * + * { margin-block-start: 1em; }
+.flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses {
+  --bw: min(var(--wide), calc(100vw - 200px));
+  width: var(--bw); max-width: none; margin-inline: calc((100% - var(--bw)) / 2);
+}
+@media (max-width: 1000px) { .flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses { width: 100%; margin-inline: 0; } }
+
+a { color: inherit; text-decoration-color: var(--zone); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--field); outline-offset: 2px; border-radius: 4px; }
+h2, h3, h4 { text-wrap: balance; line-height: 1.25; }
+h3 { font-family: var(--f-ui); font-weight: 700; font-size: var(--t-lg); margin-block-start: 2.4em; letter-spacing: -.01em; }
+h3::before { content: ""; display: inline-block; width: .55em; height: .55em; background: var(--zone); border-radius: 2px; margin-inline-end: .45em; vertical-align: .12em; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+h4 { font-family: var(--f-ui); font-weight: 600; font-size: var(--t-md); margin-block-start: 1.8em; color: var(--ink); }
+p, li { text-wrap: pretty; }
+ul, ol { padding-inline-start: 1.3em; }
+li + li { margin-block-start: .3em; }
+li::marker { color: var(--ink-3); }
+strong, b { font-weight: 700; }
+abbr, .en { font-family: var(--f-ui); font-size: .92em; direction: ltr; unicode-bidi: isolate; }
+.num { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-weight: 600; unicode-bidi: isolate; }
+
+/* ---------- highlight system ---------- */
+mark { background: linear-gradient(transparent 12%, var(--hl) 12%, var(--hl) 88%, transparent 88%); color: var(--hl-ink); padding-inline: .15em; border-radius: 2px; font-weight: 600; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.alarm-t { color: var(--alarm); font-weight: 700; }
+
+.callout { border-radius: var(--r); padding: 1rem 1.15rem 1.05rem; position: relative; }
+.callout > .tag { display: inline-flex; align-items: center; gap: .4em; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .06em; padding: .2em .65em; border-radius: 99px; margin-block-end: .5rem; }
+.callout > :last-child { margin-block-end: 0; }
+.callout p { margin: .35em 0; }
+.callout ul, .callout ol { margin: .35em 0; }
+.tag svg { width: 1.05em; height: 1.05em; }
+
+.must { background: var(--hl); color: var(--hl-ink); }
+.must > .tag { background: var(--hl-ink); color: var(--hl); }
+.must mark { background: var(--hl-ink); color: var(--hl); }
+
+.redflag { background: var(--alarm-bg); border: 2px solid var(--alarm); }
+.redflag > .tag { background: var(--alarm); color: #fff; }
+
+.field { background: var(--field-bg); border-inline-start: 5px solid var(--field); border-radius: 4px var(--r) var(--r) 4px; }
+.field > .tag { background: var(--field); color: var(--card); }
+
+.hosp, .hosp-i { font-family: var(--f-hosp); color: var(--hosp); }
+.hosp { font-size: .9rem; line-height: 1.7; background-color: var(--hosp-bg);
+  background-image: linear-gradient(var(--hosp-grid) 1px, transparent 1px), linear-gradient(90deg, var(--hosp-grid) 1px, transparent 1px);
+  background-size: 14px 14px; border: 1px dashed var(--hosp); border-radius: 6px; }
+.hosp > .tag { background: transparent; color: var(--hosp); border: 1px solid var(--hosp); font-family: var(--f-hosp); }
+.hosp-i { font-size: .92em; background: var(--hosp-bg); padding: .05em .4em; border-radius: 4px; border: 1px dashed var(--hosp); }
+
+.note-src { background: transparent; border: 1px solid var(--rule); font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); }
+.note-src > .tag { background: var(--ink-2); color: var(--paper); }
+
+.recap { background: var(--card); border: 1px solid var(--rule); border-top: 6px solid var(--zone); border-radius: var(--r); padding: 1.1rem 1.3rem; }
+.recap > .tag { background: var(--ink); color: var(--paper); }
+.recap ol, .recap ul { font-family: var(--f-ui); font-size: .98rem; }
+
+/* ---------- steps (real sequences only) ---------- */
+ol.steps { list-style: none; padding: 0; counter-reset: s; display: grid; gap: .55rem; font-family: var(--f-ui); font-size: 1rem; line-height: 1.6; }
+ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 2rem 1fr; gap: .7rem; align-items: start; margin: 0; }
+ol.steps > li::before { content: counter(s); width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--field); color: var(--card); font-weight: 700; font-variant-numeric: tabular-nums; }
+ol.steps > li > * { min-width: 0; }
+
+/* ---------- definitions ---------- */
+dl.kv { display: grid; grid-template-columns: minmax(7rem, max-content) 1fr; gap: .45rem 1.1rem; margin: 0; }
+dl.kv dt { font-family: var(--f-ui); font-weight: 700; }
+dl.kv dd { margin: 0; min-width: 0; }
+@media (max-width: 520px) { dl.kv { grid-template-columns: 1fr; } dl.kv dd { margin-block-end: .5rem; } }
+
+/* ---------- tables ---------- */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: var(--r); background: var(--card); }
+table.data { border-collapse: collapse; width: 100%; font-family: var(--f-ui); font-size: .95rem; line-height: 1.5; font-variant-numeric: tabular-nums; }
+table.data caption { caption-side: top; text-align: start; padding: .8rem 1rem .4rem; font-weight: 700; font-size: var(--t-sm); color: var(--ink-2); letter-spacing: .02em; }
+table.data th, table.data td { padding: .6rem .9rem; text-align: start; vertical-align: top; border-block-end: 1px solid var(--rule); }
+table.data thead th { background: color-mix(in srgb, var(--zone) 18%, var(--card)); font-weight: 700; white-space: nowrap; }
+table.data tbody th { font-weight: 600; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+table.data tbody tr:last-child > * { border-block-end: 0; }
+table.data td.hl { background: var(--hl); color: var(--hl-ink); font-weight: 700; }
+table.data td.hosp-c { font-family: var(--f-hosp); color: var(--hosp); font-size: .88rem; }
+
+/* ---------- compare ---------- */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.compare > div { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem 1.15rem; }
+.compare > div > h5 { margin: 0 0 .5rem; font-family: var(--f-ui); font-size: var(--t-md); font-weight: 700; padding-block-end: .45rem; border-block-end: 3px solid var(--zone); }
+.compare ul { margin: 0; font-size: 1rem; }
+
+/* ---------- dose cards ---------- */
+.doses { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+.dose { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
+.dose > header { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; padding: .7rem 1rem; background: color-mix(in srgb, var(--zone) 14%, var(--card)); border-block-end: 1px solid var(--rule); }
+.dose > header h5 { margin: 0; font-family: var(--f-ui); font-size: 1.1rem; font-weight: 700; }
+.dose > header .ind { font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-2); text-align: end; }
+.dose .big { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 700; padding: .7rem 1rem .1rem; line-height: 1.3; }
+.dose .big small { font-size: .9rem; font-weight: 500; color: var(--ink-2); }
+.dose dl { margin: 0; padding: .4rem 1rem .9rem; display: grid; grid-template-columns: max-content 1fr; gap: .25rem .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.45; }
+.dose dt { color: var(--ink-3); }
+.dose dd { margin: 0; min-width: 0; }
+.dose .calc { margin-top: auto; border-block-start: 1px dashed var(--rule); padding: .6rem 1rem; font-family: var(--f-ui); font-size: .9rem; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+.dose .calc::before { content: "דוגמה · "; font-weight: 700; color: var(--field); }
+
+/* ---------- mnemonic ---------- */
+.mnemonic { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; font-family: var(--f-ui); }
+.mnemonic li { margin: 0; flex: 1 1 9rem; min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: .6rem .8rem; font-size: .92rem; line-height: 1.45; }
+.mnemonic li b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 1.7rem; line-height: 1; color: var(--ink); margin-block-end: .25rem; }
+
+/* ---------- figures / svg ---------- */
+figure { margin-block: 1.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem; }
+figure > .svg-box { overflow-x: auto; }
+figure svg { display: block; width: 100%; height: auto; max-width: 100%; margin-inline: auto; }
+figure.narrow svg { max-width: 30rem; }
+figcaption { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); margin-block-start: .7rem; line-height: 1.55; }
+figcaption b { color: var(--ink); }
+svg text { font-family: var(--f-ui); fill: var(--ink); font-size: 14px; }
+svg .t-sm { font-size: 12px; fill: var(--ink-2); }
+svg .t-b { font-weight: 700; }
+svg .t-alarm { fill: var(--alarm); font-weight: 700; }
+svg .t-field { fill: var(--field); font-weight: 700; }
+svg .t-hosp { font-family: var(--f-hosp); fill: var(--hosp); }
+svg .ln { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+svg .ln-soft { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+svg .ln-dash { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-dasharray: 5 5; }
+svg .f-card { fill: var(--card); stroke: var(--rule); stroke-width: 1.5; }
+svg .f-soft { fill: color-mix(in srgb, var(--ink) 7%, var(--card)); }
+svg .f-zone { fill: var(--zone); }
+svg .f-zone-soft { fill: color-mix(in srgb, var(--zone) 25%, var(--card)); }
+svg .f-hl { fill: var(--hl); }
+svg .f-alarm { fill: var(--alarm); }
+svg .f-alarm-soft { fill: var(--alarm-bg); stroke: var(--alarm); stroke-width: 1.5; }
+svg .f-field { fill: var(--field); }
+svg .f-field-soft { fill: var(--field-bg); stroke: var(--field); stroke-width: 1.5; }
+svg .f-hosp-soft { fill: var(--hosp-bg); stroke: var(--hosp); stroke-width: 1.2; stroke-dasharray: 4 3; }
+svg .s-alarm { stroke: var(--alarm); stroke-width: 2.5; fill: none; }
+svg .s-field { stroke: var(--field); stroke-width: 2.5; fill: none; }
+svg .s-zone { stroke: var(--zone); stroke-width: 3; fill: none; }
+svg .f-blood-o { fill: #D7263D; } svg .f-blood-d { fill: #5B5BD6; }
+svg .f-skin { fill: color-mix(in srgb, #E8B897 70%, var(--card)); }
+
+/* ---------- chapter frame ---------- */
+.chapter { padding-block: 4rem 2rem; border-block-start: 1px solid var(--rule); }
+.ch-head { max-width: var(--col); margin-inline: auto; margin-block-end: 2rem; }
+.ch-zone { display: flex; align-items: center; gap: .7rem; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .1em; color: var(--ink-2); }
+.ch-zone::before { content: ""; width: 3.2rem; height: .9rem; background: var(--zone); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.ch-head h2 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xl); margin: .5rem 0 .6rem; letter-spacing: -.005em; }
+.ch-lede { font-size: 1.22rem; color: var(--ink-2); margin: 0; line-height: 1.6; }
+.ch-src { margin-block-start: .9rem; font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-3); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 3.5rem 2.5rem; }
+.hero-in { max-width: var(--wide); margin-inline: auto; }
+.eyebrow { font-family: var(--f-ui); font-size: var(--t-xs); letter-spacing: .14em; font-weight: 700; color: var(--ink-2); }
+.hero h1 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xxl); line-height: 1.02; margin: .6rem 0 1rem; letter-spacing: -.01em; }
+.hero h1 .w { display: block; color: var(--ink-2); font-size: .42em; line-height: 1.3; margin-block-start: .5rem; font-family: var(--f-body); font-weight: 500; }
+.tape { display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px var(--rule); margin-block: 2rem 1.2rem; }
+.tape a { display: flex; flex-direction: column; justify-content: space-between; gap: .9rem; padding: .7rem .6rem .75rem; background: var(--zone); color: #10161E; text-decoration: none; min-height: 8.5rem; min-width: 0; font-family: var(--f-ui); position: relative; transition: filter .15s; }
+.tape a:hover { filter: brightness(1.06) saturate(1.1); }
+.tape a[data-zone="purple"], .tape a[data-zone="red"], .tape a[data-zone="blue"], .tape a[data-zone="green"], .tape a[data-zone="grey"] { color: #fff; }
+.tape a::after { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 9px; background: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 10px); opacity: .45; }
+.tape .n { font-family: var(--f-display); font-size: 1.9rem; line-height: 1; margin-block-start: .5rem; }
+.tape .l { font-size: .82rem; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
+@media (max-width: 860px) { .tape { grid-template-columns: repeat(3, 1fr); } .tape a { min-height: 6rem; } }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.5; }
+.legend > div { min-width: 0; display: flex; flex-direction: column; gap: .35rem; }
+.legend .sw { font-weight: 700; }
+.legend .callout { padding: .7rem .85rem; }
+.hero-note { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); margin-block-start: 1.4rem; max-width: 52rem; }
+
+/* ---------- rail nav ---------- */
+.rail { display: none; }
+@media (min-width: 1100px) {
+  .rail { display: flex; flex-direction: column; position: fixed; left: max(24px, env(safe-area-inset-left, 0px)); top: 50%; transform: translateY(-50%); z-index: 5; border-radius: 5px; overflow: visible; box-shadow: 0 0 0 1px var(--rule); }
+  .rail a { width: 34px; height: 46px; background: var(--zone); display: grid; place-items: center; font-family: var(--f-ui); font-size: .78rem; font-weight: 700; color: rgba(16,22,30,.75); text-decoration: none; position: relative; transition: width .18s; }
+  .rail a:first-child { border-radius: 5px 5px 0 0; } .rail a:last-child { border-radius: 0 0 5px 5px; }
+  .rail a.on { width: 50px; box-shadow: 0 0 0 2px var(--ink); z-index: 1; color: #10161E; }
+  .rail a .lbl { position: absolute; left: calc(100% + 10px); white-space: nowrap; background: var(--ink); color: var(--paper); padding: .25rem .6rem; border-radius: 5px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .15s; }
+  .rail a:hover .lbl, .rail a:focus-visible .lbl { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .rail a, .tape a { transition: none; } }
+.strip { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); height: 7px; }
+.strip a { background: var(--zone); opacity: .55; }
+.strip a.on { opacity: 1; }
+@media (min-width: 1100px) { .strip { display: none; } }
+
+/* ---------- volume bar (multi-page course guide) ---------- */
+.vols { display: flex; flex-wrap: wrap; gap: .35rem .5rem; align-items: center; max-width: var(--wide); margin: 0 auto; padding: 1rem 0 0; font-family: var(--f-ui); font-size: var(--t-xs); }
+.vols a { color: var(--ink-2); text-decoration: none; padding: .25rem .65rem; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--rule); white-space: nowrap; }
+.vols a:hover { color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink-3); }
+.vols a.home { font-weight: 700; color: var(--ink); }
+.vols a.on, .vols a.home.on { background: var(--ink); color: var(--paper); box-shadow: none; }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; margin-block: 2rem; }
+.vcard { display: flex; flex-direction: column; background: var(--card); border-radius: 8px; box-shadow: 0 0 0 1px var(--rule); overflow: hidden; color: var(--ink); text-decoration: none; transition: box-shadow .15s; }
+.vcard:hover { box-shadow: 0 0 0 2px var(--ink-3); }
+.vcard .bar { display: grid; grid-auto-flow: column; height: 10px; }
+.vcard .bar span { background: var(--zone); }
+.vcard .in { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .4rem; }
+.vcard .k { font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .08em; color: var(--ink-3); }
+.vcard h2 { font-family: var(--f-display); font-weight: 400; font-size: 1.6rem; line-height: 1.15; margin: 0; }
+.vcard ol { margin: .3rem 0 0; padding-inline-start: 1.2rem; font-family: var(--f-ui); font-size: .9rem; line-height: 1.5; color: var(--ink-2); }
+@media (prefers-reduced-motion: reduce) { .vcard { transition: none; } }
+
+footer.end { padding-block: 3rem 4rem; text-align: center; font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); border-block-start: 1px solid var(--rule); }
+body{margin:0}
+</style>
+<script data-goatcounter="https://zivgabel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<nav class="strip" aria-hidden="true" style="--n:1"><a href="#ch32" data-zone="red" tabindex="-1"></a></nav>
+<nav class="rail" aria-label="פרקים"><a href="#ch32" data-zone="red">1<span class="lbl">הגישה לחולה הגריאטרי</span></a></nav>
+
+<div class="page">
+<nav class="vols" aria-label="חלקי הסיכום"><a class="home" href="index.html">סיכום הקורס</a><a href="basic.html">מדעי היסוד</a><a href="airway.html">נתיב אוויר</a><a href="conscious.html">שינויים בהכרה</a><a href="inter.html">פרמקולוגיה ואנמנזה</a><a href="resp.html">נשימה</a><a href="cardio.html">קרדיולוגיה</a><a href="trauma.html">טראומה</a><a href="peds.html">ילדים ותינוקות</a><a href="obgyn.html">גניקולוגיה ומיילדות</a><a class="on" href="pop.html">אוכלוסיות שונות</a></nav>
+<header class="hero">
+  <div class="hero-in">
+    <div class="eyebrow">סיכום קורס פרמדיק · פרק 12 · מצבי חירום באוכלוסיות שונות</div>
+    <h1>אוכלוסיות שונות<span class="w">1 פרקים · מצגות הקורס ופרוטוקולי איחוד הצלה</span></h1>
+    <nav class="tape" aria-label="תוכן העניינים" style="--n:1"><a href="#ch32" data-zone="red"><span class="n">1</span><span class="l">הגישה לחולה הגריאטרי</span></a></nav>
+    <div class="legend" aria-label="מקרא">
+      <div><span class="sw">מרקר = חובה לדעת</span><div class="callout must" style="padding:.55rem .8rem">ערך, סף או מינון <mark>שנשאלים במבחן</mark></div></div>
+      <div><span class="sw">ורוד = דגל אדום</span><div class="callout redflag" style="padding:.55rem .8rem">סימן סכנה שמחייב פעולה מיידית</div></div>
+      <div><span class="sw">טורקיז = מה עושים בשטח</span><div class="callout field" style="padding:.55rem .8rem">פעולות הפרמדיק, לפי הסדר</div></div>
+      <div><span class="sw">נייר מילימטרי = בית חולים</span><div class="callout hosp" style="padding:.55rem .8rem">בירור וטיפול בבית החולים, לידיעה כללית</div></div>
+    </div>
+    <p class="hero-note">הסיכום מבוסס על מצגות הקורס ועל פרוטוקולי איחוד הצלה (UH ACLS 2023). כשהמצגות סותרות זו את זו או את הפרוטוקול, זה מסומן במסגרת "שימו לב למקור".</p>
+  </div>
+</header>
+
+<main>
+<section class="chapter" id="ch32" data-zone="red">
+  <header class="ch-head">
+    <div class="ch-zone">פרק 12 · מצבי חירום באוכלוסיות שונות · פרק 1</div>
+    <h2>הגישה לחולה הגריאטרי</h2>
+    <p class="ch-lede">הקשיש מגיע עם פחות רזרבה, יותר תרופות ומחלות שמסתתרות מאחורי תלונה "לא מוגדרת". הפרק מסביר מה משתנה בגוף המזדקן, איך מתאימים את ה-ABCDE, איך מבדילים דמנציה מדליריום, ואילו מצבים מסוכנים מתחפשים אצל קשישים לתמונה תמימה.</p>
+    <div class="ch-src">מקור: 01 - הגישה לחולה הגריאטרי.pdf, עמ' 1–31; UH_ACLS_2023.pdf (הגישה הכללית למטופל), עמ' 4–5</div>
+  </header>
+  <div class="flow">
+
+    <p>הקריאות לקשישים הן חלק גדול מהעבודה היומיומית בשטח. הבעיה היא לא רק הכמות: אצל קשיש המחלה נראית אחרת. אין חום בספסיס, אין כאב בחזה באוטם, אין רעד והזעה בהיפוגליקמיה. במקום הסימנים הקלאסיים מופיעים בלבול, חולשה או נפילה. הפרק בנוי סביב שאלה אחת: <b>מה השתנה אצל המטופל הזה, ולמה?</b></p>
+
+    <h3>האתגר הגריאטרי בשטח</h3>
+    <p>שלושה דברים הופכים את הקשיש למטופל קשה (עמ' 2):</p>
+    <ul>
+      <li><b>שכיחות גבוהה</b> של פניות למוקד 101.</li>
+      <li><b>מצגים קליניים אטיפיים ומסווים</b>: המחלה לא "מתנהגת" כמו בספר.</li>
+      <li><b>קושי מובנה להפריד מצב כרוני מאירוע אקוטי</b>: קשיש עם דמנציה, חולשה כרונית ולחץ דם גבוה ידוע, ומה מכל זה חדש היום?</li>
+    </ul>
+
+    <h4>הערכת ה-Baseline: הכלי החשוב ביותר</h4>
+    <p>כדי לדעת מה חדש, צריך לדעת מה היה "רגיל". לכן תשאול המשפחה או המטפל הוא <b>בעל חשיבות קריטית</b> (עמ' 3). שואלים: מה המצב המנטלי והתפקודי הרגיל שלו? האם הוא בדרך כלל מדבר, מזהה אנשים, הולך לבד, אוכל לבד?</p>
+
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><mark>כל שינוי מה-Baseline מוגדר כאירוע אקוטי</mark> עד שיוכח אחרת. "הוא תמיד מבולבל" זה לא תשובה. השאלה היא אם הוא מבולבל <b>יותר או אחרת</b> מהרגיל.</p>
+    </div>
+
+    <p>הסיבה פשוטה: קשיש עם דמנציה שהיה מדבר אתמול ושותק היום, או קשיש שהולך עם הליכון ופתאום לא קם מהמיטה, נמצא כנראה באירוע רפואי חריף (זיהום, היפוגליקמיה, אוטם, דימום). בלי Baseline אי אפשר לראות את זה, ומצב חריף נרשם בטעות כ"מצבו הרגיל".</p>
+
+    <h3>שינויים פיזיולוגיים בהזדקנות</h3>
+    <p>המצגת מונה שלושה שינויים מרכזיים (עמ' 4). כל אחד מהם מסביר חלק מה"אטיפיות" שנראה בהמשך:</p>
+    <dl class="kv">
+      <dt>ירידה ברזרבה האורגנית <span class="en">(Organ Reserve)</span></dt>
+      <dd>במנוחה האיברים מתפקדים, אבל אין להם מרווח להתמודד עם עומס. מחלה "קטנה" (דלקת בדרכי השתן, התייבשות) מספיקה כדי להפיל מערכת שלמה, ולכן ההידרדרות יכולה להיות מהירה.</dd>
+      <dt>תגובה סימפתטית מוחלשת</dt>
+      <dd>במצבי סטרס ושוק הגוף לא מגיב בטכיקרדיה, הזעה ורעד כמו אצל צעיר. הסימנים המוקדמים של שוק או של היפוגליקמיה פשוט לא מופיעים.</dd>
+      <dt>מערכת חיסון מדוכאת <span class="en">(Immunosenescence)</span></dt>
+      <dd>זיהומים שכיחים יותר, והגוף לא תמיד מייצר את התגובה הדלקתית המוכרת (חום, למשל). זה הבסיס ל"ספסיס אטיפי".</dd>
+    </dl>
+
+    <h4>התאמת סכמת ה-ABCDE לקשיש</h4>
+    <p>הסדר של הגישה לא משתנה. הגישה הכללית למטופל בפרוטוקול איחוד הצלה (עמ' 4) היא אותה גישה: בטיחות, הזמנת סיוע, מצב הכרה <span class="en">(AVPU)</span>, נתיב אוויר, נשימה, דופק ולחץ דם, אנמנזה. מה שמשתנה הוא <b>מה מחפשים בכל שלב</b> (עמ' 5 במצגת):</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 330" role="img" aria-label="התאמת סכמת ABCDE לקשיש: בכל שלב, מה שונה אצל הקשיש">
+          <rect x="430" y="20" width="190" height="60" rx="10" class="f-zone-soft"/>
+          <text x="525" y="56" text-anchor="middle" direction="rtl" class="t-b">A · נתיב אוויר</text>
+          <rect x="20" y="20" width="380" height="60" rx="10" class="f-card"/>
+          <text x="210" y="56" text-anchor="middle" direction="rtl">שיניים תותבות · קשיון צווארי</text>
+          <line x1="430" y1="50" x2="400" y2="50" class="ln-soft"/>
+
+          <rect x="430" y="95" width="190" height="60" rx="10" class="f-zone-soft"/>
+          <text x="525" y="131" text-anchor="middle" direction="rtl" class="t-b">B · נשימה</text>
+          <rect x="20" y="95" width="380" height="60" rx="10" class="f-card"/>
+          <text x="210" y="131" text-anchor="middle" direction="rtl">ירידה בהיענות דופן בית החזה</text>
+          <line x1="430" y1="125" x2="400" y2="125" class="ln-soft"/>
+
+          <rect x="430" y="170" width="190" height="60" rx="10" class="f-zone-soft"/>
+          <text x="525" y="206" text-anchor="middle" direction="rtl" class="t-b">C · סירקולציה</text>
+          <rect x="20" y="170" width="380" height="60" rx="10" class="f-alarm-soft"/>
+          <text x="210" y="206" text-anchor="middle" direction="rtl" class="t-alarm">ל"ד "תקין" עשוי להסוות שוק</text>
+          <line x1="430" y1="200" x2="400" y2="200" class="ln-soft"/>
+
+          <rect x="430" y="245" width="190" height="60" rx="10" class="f-zone-soft"/>
+          <text x="525" y="281" text-anchor="middle" direction="rtl" class="t-b">D · מצב הכרה</text>
+          <rect x="20" y="245" width="380" height="60" rx="10" class="f-field-soft"/>
+          <text x="210" y="281" text-anchor="middle" direction="rtl" class="t-field">השווה ל-Baseline: כל שינוי = אקוטי</text>
+          <line x1="430" y1="275" x2="400" y2="275" class="ln-soft"/>
+        </svg>
+      </div>
+      <figcaption><b>מה שונה בקשיש בכל שלב.</b> הסדר נשאר זהה, אבל בכל שלב יש "מלכודת" גריאטרית. בנתיב האוויר: שיניים תותבות וצוואר נוקשה שמקשה על פתיחה ומיקום. בנשימה: בית חזה פחות גמיש. בסירקולציה: לחץ דם שנראה תקין יכול להיות כבר נמוך ביחס לרגיל של המטופל.</figcaption>
+    </figure>
+
+    <ul>
+      <li><b>נתיב אוויר:</b> שיניים תותבות (רופפות או שבורות עלולות לחסום, ולהפריע בהנשמה במסכה) וקשיון צווארי שמגביל את הטיית הראש.</li>
+      <li><b>נשימה:</b> ירידה בהיענות דופן בית החזה. הקשיש מתעייף מהר יותר כשהוא נדרש לנשום מהר ועמוק.</li>
+      <li><b>סירקולציה:</b> <span class="alarm-t">לחץ דם "תקין" עשוי להסוות שוק</span>. קשיש עם יתר לחץ דם כרוני שנמדד אצלו 120 סיסטולי עלול להיות כבר בתת-לחץ ביחס לרגיל שלו, ובגלל התגובה הסימפתטית המוחלשת גם הדופק לא תמיד יעלה.</li>
+    </ul>
+
+    <div class="tbl-wrap"><table class="data"><caption>ספי הפרוטוקול בגישה הכללית (UH_ACLS_2023, עמ' 4), ומה לזכור בקשיש</caption>
+      <thead><tr><th>שלב</th><th>מה הפרוטוקול מגדיר</th><th>דגש בקשיש</th></tr></thead>
+      <tbody>
+        <tr><th>מצב נשימה</th><td>מתקשה, מתנשף, שרירי עזר, כחלון מרכזי, נשימות מעל 20 או פחות מ-12 לדקה</td><td>בית חזה פחות גמיש: עייפות נשימתית מגיעה מהר</td></tr>
+        <tr><th>מצוקה נשימתית</th><td class="hl">סטורציה מתחת ל-94%, קולות חריגים, נשימות מעל 30 או מתחת ל-8</td><td>היפוקסיה יכולה להתבטא רק בבלבול (ראו דליריום)</td></tr>
+        <tr><th>דופק ול"ד</th><td>נוכחות דופק פריפרי, קצב, סדירות. ל"ד סיסטולי מתחת ל-90: שקול החזר נוזלים</td><td>שוק יכול להופיע עוד לפני הסף. בנוזלים: זהירות מהצפת ריאות (עמ' 27)</td></tr>
+        <tr><th>אנמנזה</th><td>מחלות רקע, תרופות קבועות, אישונים, כוח גס, פציאליס, הפרעות דיבור, חום, סוכר</td><td>רשימת התרופות היא חלק מהאבחנה (פוליפרמסיה, נוגדי קרישה)</td></tr>
+      </tbody></table></div>
+
+    <h3>תקשורת עם הקשיש ואנמנזה</h3>
+    <p>האנמנזה בקשיש קשה במיוחד: שמיעה וראייה ירודות, דמנציה, אפאזיה אחרי אירוע מוחי, ובני משפחה לחוצים שעונים במקומו. הפרוטוקול נותן כללים ברורים (UH_ACLS_2023, עמ' 5):</p>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ul>
+        <li>מטופל <b>בהכרה</b>: דבר <b>עם</b> המטופל, לא מעל לראשו. מטופל <b>מחוסר הכרה</b>: דבר עם הנוכחים בזירה.</li>
+        <li>התמקם <b>בגובה העיניים</b>, דבר <b>לאט</b> ושמור על <b>קשר עין</b> (גם המצגת, עמ' 7).</li>
+        <li>שאל שאלות פתוחות, אפשר למטופל לענות במלואן, אל תתקוף ואל תאשים.</li>
+        <li>בקש <b>מכתב סיכום רפואי</b>, ושאל על <b>תרופות קבועות ומדדי בסיס</b>. זה ה-Baseline שלך.</li>
+        <li>אל תיקח כלום כמובן מאליו: בקש הסבר מפורט, תשאל גם את הנוכחים והקשב עד הסוף.</li>
+      </ul>
+    </div>
+
+    <p>חסמי תקשורת נפוצים בקשיש (עמ' 7): <b>אובדן כושר ביטוי (אפאזיה)</b> וחוסר הבנה, ו<b>חרדה ואגרסיביות</b> שהן לעיתים קרובות <b>ביטוי לכאב או מצוקה</b> שהמטופל לא מצליח להסביר במילים. קשיש עם דמנציה שמכה או צועק עלול לסבול משבר בירך, מעצירת שתן או מכאב בטן, ולא "להיות סתם קשה".</p>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>המלכודות באנמנזה לפי הפרוטוקול (עמ' 5): <b>קיבעון</b> לסיבת ההזנקה, <b>התעלמות ממצב החולה</b> בזמן לקיחת האנמנזה, <b>חיפזון</b> בקביעת אבחנה או אי-ביצוע אבחנה מבדלת, וחוסר עקביות. אצל קשיש "הזנקה לנפילה" יכולה להיות סינקופה מהפרעת קצב, אוטם שקט או ספסיס.</p>
+    </div>
+
+    <h3>דמנציה ודליריום</h3>
+
+    <h4>מה זו דמנציה</h4>
+    <p>דמנציה היא <b>תהליך ניווני כרוני ופרוגרסיבי של רקמת המוח</b> (עמ' 6). יש <b>פגיעה בסינפסות ומוות מפושט של תאי עצב</b>, כלומר ירידה הדרגתית בזיכרון, בשפה ובתפקוד. בסוג המוכר ביותר, <b>מחלת אלצהיימר</b>, מצטבר במוח <b>שקע חלבוני של <span class="en">Amyloid-beta</span> וטאו</b>. לפרמדיק לא חשוב לאבחן את סוג הדמנציה. חשוב לו לדעת שזה מצב <b>קבוע</b>, ולכן הוא מהווה את ה-Baseline שאליו משווים.</p>
+
+    <h4>דליריום: המצב שאסור לפספס</h4>
+    <p>דליריום הוא <b>מצב בלבולי אקוטי, תנודתי והפיך</b> (עמ' 8). הוא לא מחלה בפני עצמה אלא ביטוי של מוח "שקורס" תחת עומס של מחלה גופנית: זיהום, היפוקסיה, תרופה, היפוגליקמיה. בגלל הרזרבה המוחית הנמוכה, אצל קשיש (ובמיוחד קשיש עם דמנציה) לעיתים זה הסימן הראשון והיחיד למחלה.</p>
+
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><mark>דליריום בשטח הוא תמיד סימן למצב חירום רפואי חריף!</mark> (עמ' 8). המשימה היא לא "להרגיע את המבולבל" אלא לחפש את הסיבה.</p>
+    </div>
+
+    <div class="compare">
+      <div><h5>דמנציה</h5><ul>
+        <li>התפתחות <b>איטית</b> (חודשים–שנים)</li>
+        <li>כרונית ופרוגרסיבית</li>
+        <li>לפי השקף: <b>קבועה במהלך היום</b></li>
+        <li>תהליך ניווני של רקמת המוח</li>
+        <li>זה ה-Baseline של המטופל</li>
+      </ul></div>
+      <div><h5>דליריום</h5><ul>
+        <li>מצב בלבולי <b>אקוטי</b> (שעות–ימים)</li>
+        <li><b>תנודתי</b>: משתנה במהלך היום</li>
+        <li><b>הפיך</b> אם מטפלים בגורם</li>
+        <li>חוסר קשב מובהק</li>
+        <li><span class="alarm-t">מצב חירום רפואי חריף</span></li>
+      </ul></div>
+    </div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 280" role="img" aria-label="תרשים סכמטי: דמנציה יורדת לאט לאורך חודשים, דליריום צונח פתאום ומשתנה לאורך שעות">
+          <rect x="340" y="15" width="280" height="250" rx="10" class="f-card"/>
+          <text x="480" y="45" text-anchor="middle" direction="rtl" class="t-b">דמנציה · איטית ופרוגרסיבית</text>
+          <line x1="360" y1="215" x2="600" y2="215" class="ln-soft"/>
+          <line x1="360" y1="80" x2="600" y2="80" class="ln-dash"/>
+          <polyline points="360,80 420,92 480,112 540,142 600,180" class="ln"/>
+          <text x="480" y="245" text-anchor="middle" direction="rtl" class="t-sm">ציר זמן: חודשים–שנים</text>
+
+          <rect x="20" y="15" width="280" height="250" rx="10" class="f-card"/>
+          <text x="160" y="45" text-anchor="middle" direction="rtl" class="t-alarm">דליריום · אקוטי ותנודתי</text>
+          <line x1="40" y1="215" x2="280" y2="215" class="ln-soft"/>
+          <line x1="40" y1="80" x2="280" y2="80" class="ln-dash"/>
+          <text x="44" y="72" direction="ltr" class="t-sm">Baseline</text>
+          <polyline points="40,80 120,80 135,170 155,120 175,190 195,130 215,185 235,125 255,175 280,140" class="s-alarm"/>
+          <text x="160" y="245" text-anchor="middle" direction="rtl" class="t-sm">ציר זמן: שעות–ימים</text>
+        </svg>
+      </div>
+      <figcaption><b>שתי צורות של בלבול (סכמטי, לא בקנה מידה).</b> הקו המקווקו הוא ה-Baseline של המטופל. בדמנציה התפקוד יורד לאט לאורך חודשים ושנים. בדליריום יש צניחה חדה ביחס למצב הרגיל, ואחריה תנודות: רגע צלול, רגע מבולבל. זו הסיבה שבדיקה אחת "תקינה" לא שוללת דליריום.</figcaption>
+    </figure>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בעמ' 8 כתוב שדמנציה "קבועה במהלך היום", אבל בעמ' 21 מתוארת <b>תסמונת השקיעה</b> <span class="en">(Sundowning)</span>: החמרה חריפה בבלבול, אי-שקט ואגרסיביות בשעות הערב אצל חולי דמנציה. כלומר דמנציה <b>יכולה</b> להשתנות לאורך היום. ההבדל המעשי: ב-Sundowning ההחמרה חוזרת כל ערב ומוכרת למשפחה, ואילו שינוי חדש ולא מוכר מה-Baseline מחייב לחשוב על דליריום.</p>
+    </div>
+
+    <h4>זיהוי דליריום בכלי ה-CAM</h4>
+    <p>ה-<span class="en">CAM (Confusion Assessment Method)</span> הוא כלי לזיהוי דליריום <b>לשימוש בשטח</b> (עמ' 9). הוא בודק שלושה מאפיינים: שינוי אקוטי ותנודתי במצב המנטלי, חוסר קשב מובהק <span class="en">(Inattention)</span>, וחשיבה לא מאורגנת או רמת הכרה משתנה. בבניית הכלי, שני המאפיינים הראשונים הם חובה, ולצידם לפחות אחד משני האחרונים:</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 390" role="img" aria-label="אלגוריתם CAM: שינוי אקוטי ותנודתי, וגם חוסר קשב, וגם חשיבה לא מאורגנת או רמת הכרה משתנה, שווה דליריום">
+          <defs><marker id="ch32-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-field"/></marker></defs>
+          <rect x="150" y="20" width="340" height="50" rx="10" class="f-zone-soft"/>
+          <text x="320" y="51" text-anchor="middle" direction="rtl" class="t-b">1. שינוי אקוטי ותנודתי במצב המנטלי</text>
+          <line x1="320" y1="70" x2="320" y2="102" class="s-field" marker-end="url(#ch32-arr)"/>
+          <text x="365" y="92" text-anchor="middle" direction="rtl" class="t-field">וגם</text>
+
+          <rect x="150" y="105" width="340" height="50" rx="10" class="f-zone-soft"/>
+          <text x="320" y="136" text-anchor="middle" direction="rtl" class="t-b">2. חוסר קשב מובהק</text>
+          <line x1="320" y1="155" x2="320" y2="200" class="s-field"/>
+          <line x1="170" y1="200" x2="470" y2="200" class="s-field"/>
+          <line x1="170" y1="200" x2="170" y2="222" class="s-field" marker-end="url(#ch32-arr)"/>
+          <line x1="470" y1="200" x2="470" y2="222" class="s-field" marker-end="url(#ch32-arr)"/>
+          <text x="430" y="186" text-anchor="middle" direction="rtl" class="t-field">וגם אחד מהשניים</text>
+
+          <rect x="340" y="225" width="260" height="50" rx="10" class="f-card"/>
+          <text x="470" y="256" text-anchor="middle" direction="rtl">3. חשיבה לא מאורגנת</text>
+          <rect x="40" y="225" width="260" height="50" rx="10" class="f-card"/>
+          <text x="170" y="256" text-anchor="middle" direction="rtl">4. רמת הכרה משתנה</text>
+
+          <line x1="170" y1="275" x2="170" y2="297" class="s-field"/>
+          <line x1="470" y1="275" x2="470" y2="297" class="s-field"/>
+          <line x1="170" y1="297" x2="470" y2="297" class="s-field"/>
+          <line x1="320" y1="297" x2="320" y2="322" class="s-field" marker-end="url(#ch32-arr)"/>
+
+          <rect x="150" y="325" width="340" height="50" rx="10" class="f-alarm-soft"/>
+          <text x="320" y="356" text-anchor="middle" direction="rtl" class="t-alarm">דליריום = מצב חירום רפואי</text>
+        </svg>
+      </div>
+      <figcaption><b>מבנה ה-CAM.</b> המאפיינים כפי שמופיעים בעמ' 9. מטופל שמבולבל באופן פתאומי ומשתנה, ולא מצליח להחזיק קשב (למשל לא עוקב אחרי שאלה פשוטה), ובנוסף חושב באופן לא מאורגן או שרמת ההכרה שלו משתנה: מתייחסים אליו כדליריום ומחפשים את הסיבה.</figcaption>
+    </figure>
+
+    <h4>מה גורם לדליריום: WATCH FORCES</h4>
+    <p>המצגת משתמשת בראשי התיבות <span class="en">WATCH FORCES</span> לגורמי הדליריום (עמ' 10), ומפרטת ארבע קטגוריות:</p>
+    <ul class="mnemonic">
+      <li><b>I</b><span class="en">Infections</span> · זיהומים: ספסיס, דלקת בדרכי השתן <span class="en">(UTI)</span></li>
+      <li><b>W</b><span class="en">Withdrawal / Drugs</span> · גמילה או הרעלת תרופות</li>
+      <li><b>A</b><span class="en">Acute Metabolic</span> · היפוגליקמיה, היפותרמיה</li>
+      <li><b>H</b><span class="en">Hypoxia</span> · היפוקסיה, אוטם שקט, תסחיף ריאתי</li>
+    </ul>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בעמ' 10 מופיעות רק ארבע קטגוריות, ולא לפי סדר האותיות של <span class="en">WATCH FORCES</span>; שאר האותיות לא מפורטות במצגת. בשורת ההיפוקסיה כתוב "אוטם שקט (PE)": אוטם שקט הוא <span class="en">MI</span> (עמ' 30), ו-<span class="en">PE</span> הוא תסחיף ריאתי (עמ' 17). ככל הנראה הכוונה לשני גורמים נפרדים לירידה בחמצון המוח.</p>
+    </div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p>מול קשיש מבולבל, הגורמים של <span class="en">WATCH FORCES</span> מתורגמים לבדיקות פשוטות שכולן בידי הפרמדיק:</p>
+      <ol class="steps">
+        <li><div><b>Baseline:</b> לשאול את המשפחה אם הבלבול חדש, ומתי התחיל.</div></li>
+        <li><div><b>סטורציה</b> (היפוקסיה) ו<b>סוכר</b> (היפוגליקמיה), ומדידת <b>חום</b> (זיהום, היפותרמיה).</div></li>
+        <li><div><b>אק"ג 12 לידים</b> (אוטם שקט, הפרעות קצב).</div></li>
+        <li><div><b>רשימת תרופות</b>: תרופה חדשה, שינוי מינון, נטילה כפולה, תרופה אנטיכולינרגית.</div></li>
+        <li><div><b>חיפוש מקור זיהום</b>: שתן, ריאות, ופצעי לחץ בגב ובעקבים.</div></li>
+      </ol>
+    </div>
+
+    <h4>אגיטציה חריפה ותסמונת השקיעה</h4>
+    <p>תסמונת השקיעה היא <b>החמרה חריפה בבלבול, אי-שקט ואגרסיביות בערב</b> (עמ' 21), שנגרמת בגלל <b>עייפות ושיבוש השעון הביולוגי</b>. הגישה (עמ' 21):</p>
+    <ul>
+      <li><b>הפחתת גירויים</b>: פחות אנשים, פחות רעש ואור חזק.</li>
+      <li><b>קול מרגיע</b>, מדבר לאט ובגובה העיניים.</li>
+      <li><b>הימנעות מעימותים</b>: לא להתווכח עם המטופל ולא לתקן אותו בכוח.</li>
+    </ul>
+
+    <h3>חוסר ניידות וסיבוכיו</h3>
+    <p>קשיש מרותק למיטה הוא מטופל שבו כמה מערכות קורסות במקביל. כדאי להכיר את המנגנון, כי כל סיבוך כזה הוא גם סיבה אפשרית לקריאה (עמ' 11):</p>
+    <ul>
+      <li><b>דלדול שרירים מהיר <span class="en">(Sarcopenia)</span></b> תוך ימים של שכיבה.</li>
+      <li><b>פגיעה בניקוז הריאתי והיווצרות אטלקטזות</b>: הריאות לא נפתחות עד הסוף, הפרשות מצטברות.</li>
+      <li><b>סטזיס וסקולרי</b> וסיכון מוגבר לפקקת ורידים.</li>
+    </ul>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 310" role="img" aria-label="סיבוכי חוסר ניידות: שרירים, ריאות, ורידים ועור, והתוצאות של כל אחד">
+          <defs><marker id="ch32-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-alarm"/></marker></defs>
+          <rect x="190" y="15" width="260" height="50" rx="10" class="f-zone-soft"/>
+          <text x="320" y="46" text-anchor="middle" direction="rtl" class="t-b">חוסר ניידות · שכיבה ממושכת</text>
+          <line x1="320" y1="65" x2="320" y2="90" class="ln"/>
+          <line x1="90" y1="90" x2="561" y2="90" class="ln"/>
+          <line x1="561" y1="90" x2="561" y2="113" class="s-alarm" marker-end="url(#ch32-arr2)"/>
+          <line x1="404" y1="90" x2="404" y2="113" class="s-alarm" marker-end="url(#ch32-arr2)"/>
+          <line x1="247" y1="90" x2="247" y2="113" class="s-alarm" marker-end="url(#ch32-arr2)"/>
+          <line x1="90" y1="90" x2="90" y2="113" class="s-alarm" marker-end="url(#ch32-arr2)"/>
+
+          <rect x="491" y="116" width="140" height="46" rx="8" class="f-card"/>
+          <text x="561" y="145" text-anchor="middle" direction="rtl" class="t-b">שרירים וגידים</text>
+          <rect x="334" y="116" width="140" height="46" rx="8" class="f-card"/>
+          <text x="404" y="145" text-anchor="middle" direction="rtl" class="t-b">ריאות</text>
+          <rect x="177" y="116" width="140" height="46" rx="8" class="f-card"/>
+          <text x="247" y="145" text-anchor="middle" direction="rtl" class="t-b">ורידים</text>
+          <rect x="20" y="116" width="140" height="46" rx="8" class="f-card"/>
+          <text x="90" y="145" text-anchor="middle" direction="rtl" class="t-b">עור</text>
+
+          <line x1="561" y1="162" x2="561" y2="200" class="s-alarm" marker-end="url(#ch32-arr2)"/>
+          <line x1="404" y1="162" x2="404" y2="200" class="s-alarm" marker-end="url(#ch32-arr2)"/>
+          <line x1="247" y1="162" x2="247" y2="200" class="s-alarm" marker-end="url(#ch32-arr2)"/>
+          <line x1="90" y1="162" x2="90" y2="200" class="s-alarm" marker-end="url(#ch32-arr2)"/>
+
+          <rect x="491" y="203" width="140" height="70" rx="8" class="f-alarm-soft"/>
+          <text x="561" y="232" text-anchor="middle" direction="rtl">סרקופניה</text>
+          <text x="561" y="256" text-anchor="middle" direction="rtl">קיבוע מפרקים</text>
+          <rect x="334" y="203" width="140" height="70" rx="8" class="f-alarm-soft"/>
+          <text x="404" y="232" text-anchor="middle" direction="rtl">אטלקטזות</text>
+          <text x="404" y="256" text-anchor="middle" direction="rtl">דלקת ריאות</text>
+          <rect x="177" y="203" width="140" height="70" rx="8" class="f-alarm-soft"/>
+          <text x="247" y="232" text-anchor="middle" direction="rtl">פקקת ורידים</text>
+          <text x="247" y="256" text-anchor="middle" direction="rtl">תסחיף ריאתי</text>
+          <rect x="20" y="203" width="140" height="70" rx="8" class="f-alarm-soft"/>
+          <text x="90" y="232" text-anchor="middle" direction="rtl">פצע לחץ</text>
+          <text x="90" y="256" text-anchor="middle" direction="rtl">ספסיס</text>
+          <text x="320" y="298" text-anchor="middle" direction="rtl" class="t-sm">כל סיבוך בשורה התחתונה הוא סיבה אפשרית לקריאה</text>
+        </svg>
+      </div>
+      <figcaption><b>מפל הסיבוכים של חוסר ניידות (עמ' 11–17).</b> שכיבה ממושכת פוגעת בארבע מערכות במקביל: השרירים מתדלדלים והמפרקים מתקבעים, הריאות לא מתנקזות, הדם עומד בוורידים, והעור נלחץ על בליטות גרמיות. כל אחד מהם מוביל לסיבוך מסכן חיים.</figcaption>
+    </figure>
+
+    <h4>פצעי לחץ <span class="en">(Pressure Ulcers)</span></h4>
+    <p>המנגנון (עמ' 12): <b>לחץ ממושך על בליטות גרמיות</b>, בעיקר <b>סקרום ועקבים</b>, <b>חוסם את זרימת הדם הקפילרית</b>. הרקמה שמתחת נשארת בלי חמצן, וזה מוביל ל<b>איסכמיה ונמק</b>. <b>תת-תזונה ורטיבות</b> מאיצות את הפגיעה (עור דק ולח נפגע מהר יותר ומחלים לאט).</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 310" role="img" aria-label="ארבע דרגות של פצע לחץ: מאדמומיות בעור ועד הרס רקמה עמוק שחושף עצם">
+          <text x="555" y="40" text-anchor="middle" direction="rtl" class="t-b">דרגה 1</text>
+          <text x="400" y="40" text-anchor="middle" direction="rtl" class="t-b">דרגה 2</text>
+          <text x="245" y="40" text-anchor="middle" direction="rtl" class="t-b">דרגה 3</text>
+          <text x="90" y="40" text-anchor="middle" direction="rtl" class="t-b">דרגה 4</text>
+
+          <rect x="485" y="60" width="140" height="20" class="f-skin"/>
+          <rect x="485" y="80" width="140" height="50" class="f-soft"/>
+          <rect x="485" y="130" width="140" height="40" class="f-hl"/>
+          <rect x="485" y="170" width="140" height="40" class="f-alarm-soft"/>
+          <rect x="485" y="210" width="140" height="30" class="f-card"/>
+          <ellipse cx="555" cy="63" rx="42" ry="5" class="f-blood-o"/>
+
+          <rect x="330" y="60" width="140" height="20" class="f-skin"/>
+          <rect x="330" y="80" width="140" height="50" class="f-soft"/>
+          <rect x="330" y="130" width="140" height="40" class="f-hl"/>
+          <rect x="330" y="170" width="140" height="40" class="f-alarm-soft"/>
+          <rect x="330" y="210" width="140" height="30" class="f-card"/>
+          <polygon points="370,60 380,98 420,98 430,60" class="f-blood-o"/>
+
+          <rect x="175" y="60" width="140" height="20" class="f-skin"/>
+          <rect x="175" y="80" width="140" height="50" class="f-soft"/>
+          <rect x="175" y="130" width="140" height="40" class="f-hl"/>
+          <rect x="175" y="170" width="140" height="40" class="f-alarm-soft"/>
+          <rect x="175" y="210" width="140" height="30" class="f-card"/>
+          <polygon points="205,60 220,165 270,165 285,60" class="f-blood-o"/>
+
+          <rect x="20" y="60" width="140" height="20" class="f-skin"/>
+          <rect x="20" y="80" width="140" height="50" class="f-soft"/>
+          <rect x="20" y="130" width="140" height="40" class="f-hl"/>
+          <rect x="20" y="170" width="140" height="40" class="f-alarm-soft"/>
+          <rect x="20" y="210" width="140" height="30" class="f-card"/>
+          <polygon points="50,60 65,214 115,214 130,60" class="f-blood-o"/>
+
+          <text x="555" y="262" text-anchor="middle" direction="rtl" class="t-sm">אדמומיות</text>
+          <text x="400" y="262" text-anchor="middle" direction="rtl" class="t-sm">עור חלקי</text>
+          <text x="245" y="262" text-anchor="middle" direction="rtl" class="t-sm">עד שומן</text>
+          <text x="90" y="262" text-anchor="middle" direction="rtl" class="t-sm">שריר, גיד, עצם</text>
+          <line x1="20" y1="276" x2="315" y2="276" class="s-alarm"/>
+          <text x="167" y="298" text-anchor="middle" direction="rtl" class="t-alarm">דרגות 3–4: שער כניסה לחיידקים</text>
+        </svg>
+      </div>
+      <figcaption><b>דירוג פצעי לחץ (עמ' 13).</b> השכבות מלמעלה למטה: אפידרמיס, דרמיס, שומן תת-עורי, שריר ועצם. ככל שהדרגה עולה, הפצע (באדום) חודר לשכבות עמוקות יותר. בדרגות 3–4 נפתח מעבר ישיר לחיידקים אל הרקמות העמוקות ואל זרם הדם.</figcaption>
+    </figure>
+
+    <div class="tbl-wrap"><table class="data"><caption>דירוג פצעי לחץ קליני (עמ' 13)</caption>
+      <thead><tr><th>דרגה</th><th>מה רואים</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td><b>אדמומיות שאינה נעלמת בלחיצה</b> (העור שלם)</td></tr>
+        <tr><th>2</th><td><b>אובדן חלקי</b> של עובי העור, שלפוחית</td></tr>
+        <tr><th>3</th><td class="hl">אובדן <b>מלא</b> של עובי העור, שומן תת-עורי חשוף</td></tr>
+        <tr><th>4</th><td class="hl">הרס רקמה עמוק, <b>חשיפת שריר, גיד או עצם</b></td></tr>
+      </tbody></table></div>
+
+    <h4>פצע לחץ כמקור לספסיס</h4>
+    <p>פצעים בדרגה <mark>3–4 הם שער כניסה ישיר לחיידקים</mark> (עמ' 14). מעבר לזיהום מקומי יש <b>סכנת <span class="en">Osteomyelitis</span></b> (זיהום עצם) <b>ובקטרמיה</b>. הזיהוי בשטח: <b>חום או היפותרמיה, טכיקרדיה ולחץ דם נמוך</b>.</p>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p>בקשיש מרותק למיטה עם חום, חולשה או בלבול, <b>הפוך אותו בזהירות ובדוק את הגב, הסקרום והעקבים</b>. פצע לחץ עמוק הוא לעיתים מקור הזיהום שאף אחד לא חשב לבדוק, והמשפחה לא תמיד תספר עליו.</p>
+    </div>
+
+    <h4>דלקת ריאות מאספירציה</h4>
+    <p>בקשיש יש <b>פגיעה ברפלקס הבליעה ובהגנה על נתיב האוויר</b> (אחרי אירוע מוחי, בדמנציה מתקדמת, בשכיבה). התוצאה: <b>שאיפת תוכן קיבה או הפרשות ארוכות טווח לריאות</b> (עמ' 16). הזיהוי: <b>חרחורים דו-צדדיים, היפוקסיה, ושיעול לאחר האכלה</b>. משפחה שמספרת ש"הוא משתעל כל פעם שהוא אוכל" נותנת רמז חשוב.</p>
+
+    <h4>סיבוכי DVT ותסחיף ריאתי <span class="en">(Pulmonary Embolism)</span></h4>
+    <p><b>חוסר תנועה</b> הוא אחד מרכיבי <b>טריאדת וירכו</b>: הוא גורם לסטזיס וסקולרי (עמ' 17). נוצר <b>קריש דם בוורידי הרגליים או האגן</b>, ש<b>נודד לעורקי הריאה</b>.</p>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>קשיש מרותק עם <b>קוצר נשימה פתאומי וטכיקרדיה, ללא ממצא האזנתי</b> (עמ' 17). ריאות "נקיות" בהאזנה לא מרגיעות: הן בדיוק מה שמצפים לראות בתסחיף ריאתי.</p>
+    </div>
+
+    <h4>אתגרי הובלה וקיבוע <span class="en">(Contractures)</span></h4>
+    <p>שכיבה ממושכת גורמת ל<b>התקצרות קבועה של גידים ושרירים</b> ול<b>קיבעון של המפרקים במצב מכופף (פלקציה)</b> (עמ' 18). זה משנה את ההובלה: לא תמיד אפשר להשכיב את המטופל ישר על אלונקה או על לוח.</p>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><span class="alarm-t">אסור להפעיל כוח ליישור הגפיים בעת קיבוע</span> (עמ' 18). העצמות של קשיש מרותק דלות ושבירות, ויישור בכוח יכול לגרום לשבר. מקבעים את המטופל במצב שבו הוא נמצא, עם ריפוד.</p>
+    </div>
+
+    <h3>מצבים נפשיים בגיל המבוגר</h3>
+
+    <h4>דיכאון בגיל המבוגר ומצגים סומטיים</h4>
+    <p>דיכאון <b>אינו חלק טבעי מתהליך ההזדקנות</b> (עמ' 19). הקושי הוא שקשישים מציגים אותו בעיקר כ<b>תלונות גופניות</b>: כאב כרוני ועייפות. התוצאה היא <b>תת-אבחון חמור המוביל להידרדרות תפקודית</b>. המצגים הסומטיים לפי מערכות:</p>
+    <div class="tbl-wrap"><table class="data"><caption>מצגים סומטיים של דיכאון בקשיש (עמ' 19)</caption>
+      <thead><tr><th>מערכת</th><th>תלונות אופייניות</th></tr></thead>
+      <tbody>
+        <tr><th>שרירים ושלד</th><td>כיווץ שרירים כרוני, כאבי גב, כאבי צוואר ולסתות</td></tr>
+        <tr><th>עיכול</th><td>כאבי בטן, בחילות, שלשולים, או תסמונת המעי הרגיז <span class="en">(IBS)</span></td></tr>
+        <tr><th>לב וכלי דם</th><td>דפיקות לב מואצות (פלפיטציות), תחושת מחנק או לחץ בחזה</td></tr>
+        <tr><th>כללי</th><td>כאבי ראש מסוג <span class="en">Tension headaches</span></td></tr>
+      </tbody></table></div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>"לחץ בחזה" או "דפיקות לב" בקשיש מדוכא <b>אינם אבחנה של דיכאון בשטח</b>. דיכאון הוא אבחנת הוצאה. קודם שוללים סיבה לבבית (אק"ג 12 לידים), במיוחד כשאוטם בקשיש ממילא מתבטא באופן לא טיפוסי (עמ' 30).</p>
+    </div>
+
+    <h4>גורמי סיכון לאובדנות בקשישים</h4>
+    <ul>
+      <li><b>שיעור ההתאבדויות שהצליחו גבוה מאוד</b> בהשוואה לצעירים (עמ' 20).</li>
+      <li>קשישים <b>משתמשים באמצעים קטלניים יותר ומבצעים פחות ניסיונות נפל</b>, כלומר הניסיון הראשון הוא לעיתים האחרון.</li>
+      <li><b>גורמי סיכון:</b> מין זכר, בדידות, מחלה כרונית, אלמנות טרייה.</li>
+    </ul>
+    <p>בשטח: קשיש אלמן לאחרונה, בודד וחולה כרוני שמדבר על כך ש"נמאס לו" הוא מטופל בסיכון אובדני. לא עוזבים אותו בבית בלי לשתף גורם מטפל.</p>
+
+    <h4>פסיכוזה בגיל המבוגר <span class="en">(Late-Onset)</span></h4>
+    <p>הופעה של <b>דלוזיות או הלוצינציות לראשונה בגיל מבוגר</b> (עמ' 21). הדלוזיות הנפוצות: <b>מחשבות רדיפה וחשדנות</b> ("השכנים גונבים ממני"). הנקודה החשובה: <mark>פסיכוזה חדשה בקשיש מחייבת שלילת סיבה אורגנית/רפואית אקוטית</mark>. לפני שמניחים מחלה פסיכיאטרית, חושבים על דליריום ועל גורמיו.</p>
+
+    <h3>תרופות בקשיש</h3>
+
+    <h4>פוליפרמסיה <span class="en">(Polypharmacy)</span></h4>
+    <p>ההגדרה: <mark>נטילת 5 תרופות או יותר במקביל באופן קבוע</mark> (עמ' 22). הבעיות:</p>
+    <ul>
+      <li><b>סיכון אקספוננציאלי לאינטראקציות בין-תרופתיות</b>: כל תרופה נוספת מגדילה את מספר הצירופים האפשריים בהרבה, לא בתרופה אחת.</li>
+      <li><b>טעויות נטילה</b>: שכחת מינון, מינון כפול, שכחה. קשיש עם דמנציה שלקח את כדורי הבוקר פעמיים הוא תרחיש שכיח.</li>
+    </ul>
+
+    <h4>שינויים פרמקוקינטיים בקשיש</h4>
+    <p>הגוף המזדקן מטפל בתרופות אחרת (עמ' 23), ולכן אותה תרופה באותו מינון "חזקה" יותר וארוכה יותר:</p>
+    <div class="tbl-wrap"><table class="data"><caption>שינויים פרמקוקינטיים (עמ' 23) ומשמעותם</caption>
+      <thead><tr><th>שינוי</th><th>התוצאה</th><th>למה זה חשוב</th></tr></thead>
+      <tbody>
+        <tr><th>ירידה ב-<span class="en">GFR</span> ובפירוק הכבדי</th><td>הארכת זמן מחצית החיים</td><td>התרופה מצטברת, ההשפעה נמשכת זמן רב יותר</td></tr>
+        <tr><th>עלייה באחוז השומן וירידה במים</th><td>שינוי נפח הפיזור</td><td>תרופה מסיסת מים מגיעה לריכוז גבוה יותר</td></tr>
+        <tr><th>תרופות מסיסות שומן</th><td>נאגרות בשומן</td><td>פעולה לזמן ממושך</td></tr>
+      </tbody></table></div>
+
+    <h4>קריטריוני בירס <span class="en">(Beers Criteria)</span></h4>
+    <p><b>רשימה רשמית של תרופות שאינן מומלצות לקשישים</b> (עמ' 24). היא כוללת תרופות <b>המגבירות סיכון לנפילות או לדליריום</b>. דוגמאות: <b>תרופות נוגדות דיכאון טריציקליות</b> ו<b>בנזודיאזפינים</b>. משמעות לשטח: כשמוצאים תרופות כאלה ברשימת התרופות של קשיש שנפל או מבולבל, הן חשודות מיידיות.</p>
+
+    <h4>תסמונת אנטיכולינרגית חבויה</h4>
+    <p>נגרמת <b>מריבוי תרופות בעלות השפעה חוסמת אצטילכולין</b> (עמ' 25). כל תרופה לבד אולי חלשה, אבל יחד הן מצטברות. המצג הקלאסי:</p>
+    <ul>
+      <li><b>יבש כמו עצם</b> (עור ורירים יבשים, לא מזיע)</li>
+      <li><b>אדום כמו סלק</b> (הסמקה)</li>
+      <li><b>עיוור כמו עטלף</b> (אישונים מורחבים, ראייה מטושטשת)</li>
+    </ul>
+    <p>בקשישים המצג שכיח יותר כ<b>אצירת שתן, עצירות קשה, טכיקרדיה ובלבול</b> (עמ' 25). כלומר דליריום עם בטן תפוחה ושלפוחית מלאה, אצל קשיש עם רשימת תרופות ארוכה.</p>
+
+    <h4>הרעלת דיגוקסין סמויה</h4>
+    <p>לדיגוקסין <b>חלון תרפויטי צר מאוד</b> (עמ' 26): המרחק בין מינון יעיל למינון רעיל קטן. אצל קשיש <b>פינוי כלייתי ירוד מעלה רמות</b> גם בלי שינוי במינון.</p>
+    <div class="compare">
+      <div><h5>סימנים קליניים</h5><ul>
+        <li>בחילות והקאות</li>
+        <li>חוסר תיאבון</li>
+        <li>ראייה צהובה</li>
+      </ul></div>
+      <div><h5>באק"ג</h5><ul>
+        <li>הפרעות קצב</li>
+        <li>צניחות <span class="en">ST</span> אופייניות</li>
+      </ul></div>
+    </div>
+    <p>קשיש עם בחילות, חוסר תיאבון והפרעת קצב, שנוטל דיגוקסין: לחשוב על הרעלה, גם אם הוא לוקח את אותו מינון שנים.</p>
+
+    <h3>הצגות אטיפיות מסוכנות</h3>
+    <p>זה לב הפרק. ארבעה מצבים מסכני חיים שבקשיש נראים אחרת לגמרי. הטבלה מסכמת, ומתחתיה ההסבר:</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>מה מצפים לראות, ומה רואים בפועל בקשיש</caption>
+      <thead><tr><th>מצב</th><th>הקלאסיקה (מבוגר צעיר)</th><th>בקשיש</th><th>מה עושים</th></tr></thead>
+      <tbody>
+        <tr><th>ספסיס (עמ' 27)</th><td>חום</td><td class="hl">היעדר חום, לעיתים היפותרמיה. טכיפניאה, נפילת ל"ד או דליריום</td><td>לא לשלול זיהום בגלל היעדר חום. נוזלים בזהירות</td></tr>
+        <tr><th>היפוגליקמיה (עמ' 28)</th><td>רעד, הזעה, טכיקרדיה</td><td class="hl">רק איבוד הכרה או חסר נוירולוגי אקוטי</td><td>סוכר בכל שינוי הכרה או "שבץ"</td></tr>
+        <tr><th>חבלת ראש (עמ' 29)</th><td>מנגנון בעל אנרגיה גבוהה</td><td class="hl">נפילה פשוטה מהגובה עשויה להיות קטלנית</td><td>נוגדי קרישה: פינוי דחוף ל-CT</td></tr>
+        <tr><th>אוטם (עמ' 30)</th><td>כאב חזה טיפוסי</td><td class="hl">מעל 30% ללא כאב. חולשה קיצונית או התעלפות</td><td>אק"ג 12 לידים בכל תלונה לא מוגדרת</td></tr>
+      </tbody></table></div>
+
+    <h4>ספסיס אטיפי בקשיש</h4>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><mark>היעדר חום אינו שולל זיהום!</mark> שכיח למצוא היפותרמיה (עמ' 27).</p>
+    </div>
+    <p>בגלל מערכת החיסון המדוכאת, הגוף לא תמיד מייצר חום. לפעמים הוא אפילו מתקרר. הסימנים היחידים יכולים להיות <b>טכיפניאה, נפילת לחץ דם או דליריום</b>. קשיש שנושם מהר ומבולבל הוא חשוד לספסיס עד שיוכח אחרת, גם במדחום תקין.</p>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><b>חשיבות מתן נוזלים זהיר בשל חשש להצפת ריאות</b> (עמ' 27). הלב והכליות של הקשיש לא תמיד יודעים לטפל בעומס נוזלים, ובולוס אגרסיבי יכול להפוך שוק ספטי לבצקת ריאות. נותנים נוזלים לפי הפרוטוקול, ובודקים ריאות וסטורציה לאורך הדרך.</p>
+    </div>
+
+    <h4>היפוגליקמיה ממוסכת</h4>
+    <p>הרעד, ההזעה והדופק המהיר בהיפוגליקמיה הם תגובה אדרנרגית: הגוף משחרר אדרנלין כשהסוכר יורד. בקשיש יש <b>ירידה בתגובה האדרנרגית הגופנית לירידת סוכר</b> (עמ' 28), ו<b>קשישים במיוחד תחת חוסמי בטא לא יציגו רעד או זיעה</b> (החוסם משתיק בדיוק את התגובה הזאת).</p>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>בקשיש <b>המצג היחיד</b> של היפוגליקמיה יכול להיות <b>איבוד הכרה או חסר נוירולוגי אקוטי</b> (עמ' 28). קשיש עם "שבץ" שלא נבדק לו סוכר עלול לקבל אבחנה וטיפול שגויים. <span class="alarm-t">סוכר נמדד בכל שינוי הכרה וכל חסר נוירולוגי.</span></p>
+    </div>
+
+    <h4>חבלות ראש ותרופות נוגדות קרישה</h4>
+    <p><b>נפילה פשוטה מהגובה עשויה להיות קטלנית</b> (עמ' 29). הסיבה אנטומית: <b>אטרופיה מוחית מותחת ורידים</b>. המוח המזדקן מצטמק, נוצר רווח בינו לבין הגולגולת, והוורידים המגשרים ביניהם נמתחים. תנועה חדה של הראש קורעת אותם, וזה <b>סיכון ל-<span class="en">Subdural</span></b> (דימום תת-קשיתי). בגלל הרווח, הדימום יכול להצטבר לאט ולהתבטא רק אחרי שעות.</p>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><mark>נטילת מדללי דם חדשים מחייבת פינוי דחוף ל-CT מוחי</mark> (עמ' 29), גם כשהמטופל נראה טוב אחרי הנפילה.</p>
+    </div>
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span><p>CT מוחי הוא הבירור בבית החולים. תפקיד הפרמדיק: לזהות נטילת נוגדי קרישה ולפנות בדחיפות.</p></div>
+
+    <h4>אוטם שקט בשריר הלב <span class="en">(Silent MI)</span></h4>
+    <p><mark>מעל 30% מהקשישים אינם חווים כאב טיפוסי בחזה</mark> באוטם (עמ' 30). התלונות החלופיות: <b>חולשה קיצונית פתאומית או התעלפות</b>.</p>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>חובה לבצע אק"ג 12 לידים בכל תלונה לא מוגדרת</b> אצל קשיש (עמ' 30): "חולשה", "לא מרגיש טוב", נפילה, התעלפות, בלבול חדש.</p>
+    </div>
+
+    <h3>סוף החיים: חוק החולה הנוטה למות וטפסי DNR</h3>
+    <p>חלק מהקריאות לקשישים הן בסוף החיים, והפרמדיק צריך לדעת מה החוק מאפשר (עמ' 31):</p>
+    <dl class="kv">
+      <dt>חולה נוטה למות</dt>
+      <dd>חולה <b>בשלב סופני, עד 6 חודשי חיים</b>.</dd>
+      <dt>זכות המטופל</dt>
+      <dd><b>להימנע מהארכת חיים מלאכותית</b>.</dd>
+      <dt>חובת הפרמדיק</dt>
+      <dd><mark>לוודא קיום טופס DNR מקורי וחתום כחוק</mark>.</dd>
+    </dl>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>אמירה בעל-פה של בן משפחה ("הוא לא רצה החייאה") <b>אינה</b> תחליף לטופס. לפי המצגת, חובה לוודא שקיים טופס DNR <b>מקורי וחתום כחוק</b>.</p>
+    </div>
+
+    <div class="recap"><span class="tag">בשורה התחתונה</span>
+      <ol>
+        <li>Baseline מהמשפחה או המטפל: כל שינוי ממנו מוגדר כאירוע אקוטי.</li>
+        <li>רזרבה נמוכה, תגובה סימפתטית מוחלשת וחיסון מדוכא: לכן המחלה בקשיש אטיפית.</li>
+        <li>ABCDE: שיניים תותבות וקשיון צווארי, בית חזה פחות גמיש, ל"ד "תקין" שמסווה שוק.</li>
+        <li>דמנציה: איטית וכרונית. דליריום: אקוטי, תנודתי, הפיך, ותמיד מצב חירום רפואי.</li>
+        <li>CAM: שינוי אקוטי ותנודתי, חוסר קשב, וחשיבה לא מאורגנת או הכרה משתנה.</li>
+        <li>פצעי לחץ בדרגה 3–4 הם שער לספסיס. מקבעים בלי ליישר גפיים בכוח.</li>
+        <li>פוליפרמסיה = 5 תרופות ומעלה. בנזודיאזפינים וטריציקליים מעלים סיכון לנפילות ודליריום.</li>
+        <li>ספסיס בלי חום (לעיתים היפותרמיה), ונוזלים בזהירות בגלל הצפת ריאות.</li>
+        <li>היפוגליקמיה בלי רעד והזעה (בעיקר עם חוסמי בטא), ואוטם בלי כאב במעל 30%: סוכר ואק"ג 12 לידים לכל תלונה לא מוגדרת.</li>
+        <li>נפילה פשוטה + מדללי דם = פינוי דחוף ל-CT מוחי. DNR רק בטופס מקורי וחתום כחוק.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="end">סיכום קורס פרמדיק · סיכום לימודי לקורס פרמדיק מספר 5. אינו מחליף את הפרוטוקולים הרשמיים.</footer>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a, .strip a'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.chapter'));
+  if (!('IntersectionObserver' in window) || !secs.length) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

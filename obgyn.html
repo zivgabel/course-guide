@@ -1,0 +1,1820 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="סיכום קורס פרמדיק – פרק 11 · מצבי חירום בגניקולוגיה ומיילדות">
+<title>גניקולוגיה ומיילדות · סיכום קורס פרמדיק</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Miriam+Libre:wght@400;700&family=Suez+One&display=swap">
+<style>
+/* Layout: one reading column (~68ch) with wide breakouts for tables and figures; a colour-tape rail
+   (one colour zone per chapter) runs down the inline-end edge as navigation, and becomes a thin
+   sticky strip on phones. Highlight system: lime marker = must know, magenta = red flag, slate
+   chart-paper in Miriam Libre = hospital-level knowledge, teal = what the paramedic does in the field. */
+:root {
+  --paper: #F6F8FA;
+  --card: #FFFFFF;
+  --ink: #142030;
+  --ink-2: #4B5969;
+  --ink-3: #7A8796;
+  --rule: #D8DFE7;
+  --hl: #E4FF3F;
+  --hl-ink: #182000;
+  --alarm: #D90F64;
+  --alarm-bg: #FFE6F0;
+  --field: #0A7A72;
+  --field-bg: #E1F3F1;
+  --hosp: #56688A;
+  --hosp-bg: #EEF1F7;
+  --hosp-grid: rgba(86,104,138,.10);
+  --z-grey: #8E959C;
+  --z-pink: #F08DBA;
+  --z-red: #E0312C;
+  --z-purple: #8A4FBF;
+  --z-yellow: #F2C200;
+  --z-white: #E6EAEE;
+  --z-blue: #2C78DD;
+  --z-orange: #F0832A;
+  --z-green: #2BA14D;
+  --zone: var(--z-grey);
+
+  --f-display: "Suez One", "Frank Ruhl Libre", serif;
+  --f-body: "Frank Ruhl Libre", "David", "Times New Roman", serif;
+  --f-ui: "IBM Plex Sans Hebrew", "Segoe UI", Arial, sans-serif;
+  --f-hosp: "Miriam Libre", "IBM Plex Sans Hebrew", Arial, sans-serif;
+
+  --t-xs: .78rem; --t-sm: .9rem; --t-base: 1.1rem; --t-md: 1.3rem; --t-lg: 1.65rem; --t-xl: 2.3rem; --t-xxl: clamp(2.6rem, 7vw, 4.6rem);
+  --col: 44rem;
+  --wide: 62rem;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0D131A; --card: #141C26; --ink: #E5ECF4; --ink-2: #A6B3C3; --ink-3: #7D8B9C; --rule: #283443;
+  --alarm: #FF4C93; --alarm-bg: #3A1126; --field: #45CFC2; --field-bg: #0E2A29;
+  --hosp: #9DACCB; --hosp-bg: #18202E; --hosp-grid: rgba(157,172,203,.08);
+  --z-white: #D9DFE6; --z-grey: #9AA2AA; color-scheme: dark }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--f-body); font-size: var(--t-base); line-height: 1.75;
+  direction: rtl; text-align: start;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+[data-zone="grey"]{--zone:var(--z-grey)} [data-zone="pink"]{--zone:var(--z-pink)} [data-zone="red"]{--zone:var(--z-red)}
+[data-zone="purple"]{--zone:var(--z-purple)} [data-zone="yellow"]{--zone:var(--z-yellow)} [data-zone="white"]{--zone:var(--z-white)}
+[data-zone="blue"]{--zone:var(--z-blue)} [data-zone="orange"]{--zone:var(--z-orange)} [data-zone="green"]{--zone:var(--z-green)}
+
+.page { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1100px) { .page { padding-left: max(96px, env(safe-area-inset-left, 0px)); } }
+.flow { max-width: var(--col); margin-inline: auto; }
+.flow > * + * { margin-block-start: 1em; }
+.flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses {
+  --bw: min(var(--wide), calc(100vw - 200px));
+  width: var(--bw); max-width: none; margin-inline: calc((100% - var(--bw)) / 2);
+}
+@media (max-width: 1000px) { .flow > .wide, .flow > figure, .flow > .tbl-wrap, .flow > .compare, .flow > .doses { width: 100%; margin-inline: 0; } }
+
+a { color: inherit; text-decoration-color: var(--zone); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--field); outline-offset: 2px; border-radius: 4px; }
+h2, h3, h4 { text-wrap: balance; line-height: 1.25; }
+h3 { font-family: var(--f-ui); font-weight: 700; font-size: var(--t-lg); margin-block-start: 2.4em; letter-spacing: -.01em; }
+h3::before { content: ""; display: inline-block; width: .55em; height: .55em; background: var(--zone); border-radius: 2px; margin-inline-end: .45em; vertical-align: .12em; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+h4 { font-family: var(--f-ui); font-weight: 600; font-size: var(--t-md); margin-block-start: 1.8em; color: var(--ink); }
+p, li { text-wrap: pretty; }
+ul, ol { padding-inline-start: 1.3em; }
+li + li { margin-block-start: .3em; }
+li::marker { color: var(--ink-3); }
+strong, b { font-weight: 700; }
+abbr, .en { font-family: var(--f-ui); font-size: .92em; direction: ltr; unicode-bidi: isolate; }
+.num { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-weight: 600; unicode-bidi: isolate; }
+
+/* ---------- highlight system ---------- */
+mark { background: linear-gradient(transparent 12%, var(--hl) 12%, var(--hl) 88%, transparent 88%); color: var(--hl-ink); padding-inline: .15em; border-radius: 2px; font-weight: 600; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.alarm-t { color: var(--alarm); font-weight: 700; }
+
+.callout { border-radius: var(--r); padding: 1rem 1.15rem 1.05rem; position: relative; }
+.callout > .tag { display: inline-flex; align-items: center; gap: .4em; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .06em; padding: .2em .65em; border-radius: 99px; margin-block-end: .5rem; }
+.callout > :last-child { margin-block-end: 0; }
+.callout p { margin: .35em 0; }
+.callout ul, .callout ol { margin: .35em 0; }
+.tag svg { width: 1.05em; height: 1.05em; }
+
+.must { background: var(--hl); color: var(--hl-ink); }
+.must > .tag { background: var(--hl-ink); color: var(--hl); }
+.must mark { background: var(--hl-ink); color: var(--hl); }
+
+.redflag { background: var(--alarm-bg); border: 2px solid var(--alarm); }
+.redflag > .tag { background: var(--alarm); color: #fff; }
+
+.field { background: var(--field-bg); border-inline-start: 5px solid var(--field); border-radius: 4px var(--r) var(--r) 4px; }
+.field > .tag { background: var(--field); color: var(--card); }
+
+.hosp, .hosp-i { font-family: var(--f-hosp); color: var(--hosp); }
+.hosp { font-size: .9rem; line-height: 1.7; background-color: var(--hosp-bg);
+  background-image: linear-gradient(var(--hosp-grid) 1px, transparent 1px), linear-gradient(90deg, var(--hosp-grid) 1px, transparent 1px);
+  background-size: 14px 14px; border: 1px dashed var(--hosp); border-radius: 6px; }
+.hosp > .tag { background: transparent; color: var(--hosp); border: 1px solid var(--hosp); font-family: var(--f-hosp); }
+.hosp-i { font-size: .92em; background: var(--hosp-bg); padding: .05em .4em; border-radius: 4px; border: 1px dashed var(--hosp); }
+
+.note-src { background: transparent; border: 1px solid var(--rule); font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); }
+.note-src > .tag { background: var(--ink-2); color: var(--paper); }
+
+.recap { background: var(--card); border: 1px solid var(--rule); border-top: 6px solid var(--zone); border-radius: var(--r); padding: 1.1rem 1.3rem; }
+.recap > .tag { background: var(--ink); color: var(--paper); }
+.recap ol, .recap ul { font-family: var(--f-ui); font-size: .98rem; }
+
+/* ---------- steps (real sequences only) ---------- */
+ol.steps { list-style: none; padding: 0; counter-reset: s; display: grid; gap: .55rem; font-family: var(--f-ui); font-size: 1rem; line-height: 1.6; }
+ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 2rem 1fr; gap: .7rem; align-items: start; margin: 0; }
+ol.steps > li::before { content: counter(s); width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; background: var(--field); color: var(--card); font-weight: 700; font-variant-numeric: tabular-nums; }
+ol.steps > li > * { min-width: 0; }
+
+/* ---------- definitions ---------- */
+dl.kv { display: grid; grid-template-columns: minmax(7rem, max-content) 1fr; gap: .45rem 1.1rem; margin: 0; }
+dl.kv dt { font-family: var(--f-ui); font-weight: 700; }
+dl.kv dd { margin: 0; min-width: 0; }
+@media (max-width: 520px) { dl.kv { grid-template-columns: 1fr; } dl.kv dd { margin-block-end: .5rem; } }
+
+/* ---------- tables ---------- */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: var(--r); background: var(--card); }
+table.data { border-collapse: collapse; width: 100%; font-family: var(--f-ui); font-size: .95rem; line-height: 1.5; font-variant-numeric: tabular-nums; }
+table.data caption { caption-side: top; text-align: start; padding: .8rem 1rem .4rem; font-weight: 700; font-size: var(--t-sm); color: var(--ink-2); letter-spacing: .02em; }
+table.data th, table.data td { padding: .6rem .9rem; text-align: start; vertical-align: top; border-block-end: 1px solid var(--rule); }
+table.data thead th { background: color-mix(in srgb, var(--zone) 18%, var(--card)); font-weight: 700; white-space: nowrap; }
+table.data tbody th { font-weight: 600; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+table.data tbody tr:last-child > * { border-block-end: 0; }
+table.data td.hl { background: var(--hl); color: var(--hl-ink); font-weight: 700; }
+table.data td.hosp-c { font-family: var(--f-hosp); color: var(--hosp); font-size: .88rem; }
+
+/* ---------- compare ---------- */
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.compare > div { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem 1.15rem; }
+.compare > div > h5 { margin: 0 0 .5rem; font-family: var(--f-ui); font-size: var(--t-md); font-weight: 700; padding-block-end: .45rem; border-block-end: 3px solid var(--zone); }
+.compare ul { margin: 0; font-size: 1rem; }
+
+/* ---------- dose cards ---------- */
+.doses { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+.dose { min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
+.dose > header { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; padding: .7rem 1rem; background: color-mix(in srgb, var(--zone) 14%, var(--card)); border-block-end: 1px solid var(--rule); }
+.dose > header h5 { margin: 0; font-family: var(--f-ui); font-size: 1.1rem; font-weight: 700; }
+.dose > header .ind { font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-2); text-align: end; }
+.dose .big { font-family: var(--f-ui); font-variant-numeric: tabular-nums; font-size: 1.5rem; font-weight: 700; padding: .7rem 1rem .1rem; line-height: 1.3; }
+.dose .big small { font-size: .9rem; font-weight: 500; color: var(--ink-2); }
+.dose dl { margin: 0; padding: .4rem 1rem .9rem; display: grid; grid-template-columns: max-content 1fr; gap: .25rem .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.45; }
+.dose dt { color: var(--ink-3); }
+.dose dd { margin: 0; min-width: 0; }
+.dose .calc { margin-top: auto; border-block-start: 1px dashed var(--rule); padding: .6rem 1rem; font-family: var(--f-ui); font-size: .9rem; background: color-mix(in srgb, var(--ink) 3%, var(--card)); }
+.dose .calc::before { content: "דוגמה · "; font-weight: 700; color: var(--field); }
+
+/* ---------- mnemonic ---------- */
+.mnemonic { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; font-family: var(--f-ui); }
+.mnemonic li { margin: 0; flex: 1 1 9rem; min-width: 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: .6rem .8rem; font-size: .92rem; line-height: 1.45; }
+.mnemonic li b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 1.7rem; line-height: 1; color: var(--ink); margin-block-end: .25rem; }
+
+/* ---------- figures / svg ---------- */
+figure { margin-block: 1.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r); padding: 1rem; }
+figure > .svg-box { overflow-x: auto; }
+figure svg { display: block; width: 100%; height: auto; max-width: 100%; margin-inline: auto; }
+figure.narrow svg { max-width: 30rem; }
+figcaption { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); margin-block-start: .7rem; line-height: 1.55; }
+figcaption b { color: var(--ink); }
+svg text { font-family: var(--f-ui); fill: var(--ink); font-size: 14px; }
+svg .t-sm { font-size: 12px; fill: var(--ink-2); }
+svg .t-b { font-weight: 700; }
+svg .t-alarm { fill: var(--alarm); font-weight: 700; }
+svg .t-field { fill: var(--field); font-weight: 700; }
+svg .t-hosp { font-family: var(--f-hosp); fill: var(--hosp); }
+svg .ln { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+svg .ln-soft { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-linecap: round; }
+svg .ln-dash { stroke: var(--ink-3); stroke-width: 1.5; fill: none; stroke-dasharray: 5 5; }
+svg .f-card { fill: var(--card); stroke: var(--rule); stroke-width: 1.5; }
+svg .f-soft { fill: color-mix(in srgb, var(--ink) 7%, var(--card)); }
+svg .f-zone { fill: var(--zone); }
+svg .f-zone-soft { fill: color-mix(in srgb, var(--zone) 25%, var(--card)); }
+svg .f-hl { fill: var(--hl); }
+svg .f-alarm { fill: var(--alarm); }
+svg .f-alarm-soft { fill: var(--alarm-bg); stroke: var(--alarm); stroke-width: 1.5; }
+svg .f-field { fill: var(--field); }
+svg .f-field-soft { fill: var(--field-bg); stroke: var(--field); stroke-width: 1.5; }
+svg .f-hosp-soft { fill: var(--hosp-bg); stroke: var(--hosp); stroke-width: 1.2; stroke-dasharray: 4 3; }
+svg .s-alarm { stroke: var(--alarm); stroke-width: 2.5; fill: none; }
+svg .s-field { stroke: var(--field); stroke-width: 2.5; fill: none; }
+svg .s-zone { stroke: var(--zone); stroke-width: 3; fill: none; }
+svg .f-blood-o { fill: #D7263D; } svg .f-blood-d { fill: #5B5BD6; }
+svg .f-skin { fill: color-mix(in srgb, #E8B897 70%, var(--card)); }
+
+/* ---------- chapter frame ---------- */
+.chapter { padding-block: 4rem 2rem; border-block-start: 1px solid var(--rule); }
+.ch-head { max-width: var(--col); margin-inline: auto; margin-block-end: 2rem; }
+.ch-zone { display: flex; align-items: center; gap: .7rem; font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .1em; color: var(--ink-2); }
+.ch-zone::before { content: ""; width: 3.2rem; height: .9rem; background: var(--zone); border-radius: 3px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.ch-head h2 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xl); margin: .5rem 0 .6rem; letter-spacing: -.005em; }
+.ch-lede { font-size: 1.22rem; color: var(--ink-2); margin: 0; line-height: 1.6; }
+.ch-src { margin-block-start: .9rem; font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-3); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: 3.5rem 2.5rem; }
+.hero-in { max-width: var(--wide); margin-inline: auto; }
+.eyebrow { font-family: var(--f-ui); font-size: var(--t-xs); letter-spacing: .14em; font-weight: 700; color: var(--ink-2); }
+.hero h1 { font-family: var(--f-display); font-weight: 400; font-size: var(--t-xxl); line-height: 1.02; margin: .6rem 0 1rem; letter-spacing: -.01em; }
+.hero h1 .w { display: block; color: var(--ink-2); font-size: .42em; line-height: 1.3; margin-block-start: .5rem; font-family: var(--f-body); font-weight: 500; }
+.tape { display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 1px var(--rule); margin-block: 2rem 1.2rem; }
+.tape a { display: flex; flex-direction: column; justify-content: space-between; gap: .9rem; padding: .7rem .6rem .75rem; background: var(--zone); color: #10161E; text-decoration: none; min-height: 8.5rem; min-width: 0; font-family: var(--f-ui); position: relative; transition: filter .15s; }
+.tape a:hover { filter: brightness(1.06) saturate(1.1); }
+.tape a[data-zone="purple"], .tape a[data-zone="red"], .tape a[data-zone="blue"], .tape a[data-zone="green"], .tape a[data-zone="grey"] { color: #fff; }
+.tape a::after { content: ""; position: absolute; inset: 0 auto auto 0; width: 100%; height: 9px; background: repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 10px); opacity: .45; }
+.tape .n { font-family: var(--f-display); font-size: 1.9rem; line-height: 1; margin-block-start: .5rem; }
+.tape .l { font-size: .82rem; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
+@media (max-width: 860px) { .tape { grid-template-columns: repeat(3, 1fr); } .tape a { min-height: 6rem; } }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .8rem; font-family: var(--f-ui); font-size: .92rem; line-height: 1.5; }
+.legend > div { min-width: 0; display: flex; flex-direction: column; gap: .35rem; }
+.legend .sw { font-weight: 700; }
+.legend .callout { padding: .7rem .85rem; }
+.hero-note { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); margin-block-start: 1.4rem; max-width: 52rem; }
+
+/* ---------- rail nav ---------- */
+.rail { display: none; }
+@media (min-width: 1100px) {
+  .rail { display: flex; flex-direction: column; position: fixed; left: max(24px, env(safe-area-inset-left, 0px)); top: 50%; transform: translateY(-50%); z-index: 5; border-radius: 5px; overflow: visible; box-shadow: 0 0 0 1px var(--rule); }
+  .rail a { width: 34px; height: 46px; background: var(--zone); display: grid; place-items: center; font-family: var(--f-ui); font-size: .78rem; font-weight: 700; color: rgba(16,22,30,.75); text-decoration: none; position: relative; transition: width .18s; }
+  .rail a:first-child { border-radius: 5px 5px 0 0; } .rail a:last-child { border-radius: 0 0 5px 5px; }
+  .rail a.on { width: 50px; box-shadow: 0 0 0 2px var(--ink); z-index: 1; color: #10161E; }
+  .rail a .lbl { position: absolute; left: calc(100% + 10px); white-space: nowrap; background: var(--ink); color: var(--paper); padding: .25rem .6rem; border-radius: 5px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .15s; }
+  .rail a:hover .lbl, .rail a:focus-visible .lbl { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .rail a, .tape a { transition: none; } }
+.strip { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; display: grid; grid-template-columns: repeat(var(--n, 9), minmax(0, 1fr)); height: 7px; }
+.strip a { background: var(--zone); opacity: .55; }
+.strip a.on { opacity: 1; }
+@media (min-width: 1100px) { .strip { display: none; } }
+
+/* ---------- volume bar (multi-page course guide) ---------- */
+.vols { display: flex; flex-wrap: wrap; gap: .35rem .5rem; align-items: center; max-width: var(--wide); margin: 0 auto; padding: 1rem 0 0; font-family: var(--f-ui); font-size: var(--t-xs); }
+.vols a { color: var(--ink-2); text-decoration: none; padding: .25rem .65rem; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--rule); white-space: nowrap; }
+.vols a:hover { color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink-3); }
+.vols a.home { font-weight: 700; color: var(--ink); }
+.vols a.on, .vols a.home.on { background: var(--ink); color: var(--paper); box-shadow: none; }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; margin-block: 2rem; }
+.vcard { display: flex; flex-direction: column; background: var(--card); border-radius: 8px; box-shadow: 0 0 0 1px var(--rule); overflow: hidden; color: var(--ink); text-decoration: none; transition: box-shadow .15s; }
+.vcard:hover { box-shadow: 0 0 0 2px var(--ink-3); }
+.vcard .bar { display: grid; grid-auto-flow: column; height: 10px; }
+.vcard .bar span { background: var(--zone); }
+.vcard .in { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .4rem; }
+.vcard .k { font-family: var(--f-ui); font-size: var(--t-xs); font-weight: 700; letter-spacing: .08em; color: var(--ink-3); }
+.vcard h2 { font-family: var(--f-display); font-weight: 400; font-size: 1.6rem; line-height: 1.15; margin: 0; }
+.vcard ol { margin: .3rem 0 0; padding-inline-start: 1.2rem; font-family: var(--f-ui); font-size: .9rem; line-height: 1.5; color: var(--ink-2); }
+@media (prefers-reduced-motion: reduce) { .vcard { transition: none; } }
+
+footer.end { padding-block: 3rem 4rem; text-align: center; font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); border-block-start: 1px solid var(--rule); }
+body{margin:0}
+</style>
+<script data-goatcounter="https://zivgabel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<nav class="strip" aria-hidden="true" style="--n:2"><a href="#ch30" data-zone="red" tabindex="-1"></a><a href="#ch31" data-zone="blue" tabindex="-1"></a></nav>
+<nav class="rail" aria-label="פרקים"><a href="#ch30" data-zone="red">1<span class="lbl">מבוא לגניקולוגיה, היריון ורעלת היריון</span></a><a href="#ch31" data-zone="blue">2<span class="lbl">קבלת לידה, סיבוכי לידה והחייאת יילוד</span></a></nav>
+
+<div class="page">
+<nav class="vols" aria-label="חלקי הסיכום"><a class="home" href="index.html">סיכום הקורס</a><a href="basic.html">מדעי היסוד</a><a href="airway.html">נתיב אוויר</a><a href="conscious.html">שינויים בהכרה</a><a href="inter.html">פרמקולוגיה ואנמנזה</a><a href="resp.html">נשימה</a><a href="cardio.html">קרדיולוגיה</a><a href="trauma.html">טראומה</a><a href="peds.html">ילדים ותינוקות</a><a class="on" href="obgyn.html">גניקולוגיה ומיילדות</a><a href="pop.html">אוכלוסיות שונות</a></nav>
+<header class="hero">
+  <div class="hero-in">
+    <div class="eyebrow">סיכום קורס פרמדיק · פרק 11 · מצבי חירום בגניקולוגיה ומיילדות</div>
+    <h1>גניקולוגיה ומיילדות<span class="w">2 פרקים · מצגות הקורס ופרוטוקולי איחוד הצלה</span></h1>
+    <nav class="tape" aria-label="תוכן העניינים" style="--n:2"><a href="#ch30" data-zone="red"><span class="n">1</span><span class="l">מבוא לגניקולוגיה, היריון ורעלת היריון</span></a><a href="#ch31" data-zone="blue"><span class="n">2</span><span class="l">קבלת לידה, סיבוכי לידה והחייאת יילוד</span></a></nav>
+    <div class="legend" aria-label="מקרא">
+      <div><span class="sw">מרקר = חובה לדעת</span><div class="callout must" style="padding:.55rem .8rem">ערך, סף או מינון <mark>שנשאלים במבחן</mark></div></div>
+      <div><span class="sw">ורוד = דגל אדום</span><div class="callout redflag" style="padding:.55rem .8rem">סימן סכנה שמחייב פעולה מיידית</div></div>
+      <div><span class="sw">טורקיז = מה עושים בשטח</span><div class="callout field" style="padding:.55rem .8rem">פעולות הפרמדיק, לפי הסדר</div></div>
+      <div><span class="sw">נייר מילימטרי = בית חולים</span><div class="callout hosp" style="padding:.55rem .8rem">בירור וטיפול בבית החולים, לידיעה כללית</div></div>
+    </div>
+    <p class="hero-note">הסיכום מבוסס על מצגות הקורס ועל פרוטוקולי איחוד הצלה (UH ACLS 2023). כשהמצגות סותרות זו את זו או את הפרוטוקול, זה מסומן במסגרת "שימו לב למקור".</p>
+  </div>
+</header>
+
+<main>
+<section class="chapter" id="ch30" data-zone="red">
+  <header class="ch-head">
+    <div class="ch-zone">פרק 11 · מצבי חירום בגניקולוגיה ומיילדות · פרק 1</div>
+    <h2>מבוא לגניקולוגיה, היריון ורעלת היריון</h2>
+    <p class="ch-lede">מה קורה בגוף מההפריה ועד הלידה, איך נראה היריון תקין ואיך נראה תינוק תקין בשנה הראשונה. אחר כך שלושת המצבים בהיריון שהורגים נשים: היריון מחוץ לרחם, דימום וגינלי ורעלת היריון. אלה מצבים שהפרמדיק חייב לחשוד בהם כבר בשטח.</p>
+    <div class="ch-src">מקור: ״מבוא לגניקולוגיה״ (עמ׳ 1–36), ״היריון ולידה״ (עמ׳ 1–40), פרוטוקול איחוד הצלה UH_ACLS_2023 עמ׳ 62–64 (אקלמפסיה / פרהאקלמפסיה)</div>
+  </header>
+  <div class="flow">
+
+    <h3>אנטומיה של מערכת הרבייה</h3>
+    <p>כדי להבין מאיפה מדממת אישה בהיריון ולמה כאב בצד אחד של הבטן התחתונה מדאיג, צריך לדעת מה נמצא בתוך האגן. הקורס מחלק את מערכת המין הנקבית לשתי קבוצות.</p>
+    <div class="compare">
+      <div><h5>אברי מין חיצוניים</h5><ul>
+        <li>השפתיים הגדולות <span class="en">(Labia Majora)</span></li>
+        <li>השפתיים הקטנות <span class="en">(Labia Minora)</span></li>
+        <li>הדגדגן <span class="en">(Clitoris)</span></li>
+        <li>פתח הנרתיק <span class="en">(Vulva)</span></li>
+        <li>קרום הבתולים <span class="en">(Hymen)</span></li>
+        <li>שדיים <span class="en">(Mammary Glands)</span></li>
+      </ul></div>
+      <div><h5>אברי מין פנימיים</h5><ul>
+        <li>שחלות <span class="en">(Ovaries)</span>: שם מבשילה הביצית ומשם היא משתחררת בביוץ.</li>
+        <li>חצוצרות <span class="en">(Fallopian Tubes)</span>: הצינור שמוביל מהשחלה לרחם. בקצה שליד השחלה יש ״אצבעות״ <span class="en">(Fimbriae)</span>, והחלק הרחב נקרא אמפולה <span class="en">(Ampulla)</span>.</li>
+        <li>רחם <span class="en">(Uterus)</span>: איבר שרירי. השכבה הפנימית היא הדופן <span class="en">(Endometrium)</span>, שבה העובר משתרש. מתחתיה שכבת השריר <span class="en">(Myometrium)</span> ומבחוץ הקרום <span class="en">(Perimetrium)</span>.</li>
+        <li>צוואר הרחם <span class="en">(Cervix)</span> ונרתיק <span class="en">(Vagina)</span>.</li>
+      </ul></div>
+    </div>
+    <p>מבחינה מרחבית, הרחם יושב באגן בין שלפוחית השתן (מלפנים) לחלחולת <span class="en">(Rectum)</span> (מאחור). לכן רחם גדל לוחץ על השלפוחית, ולכן דימום בחלל הבטן יכול לגרות איברים שכנים.</p>
+    <p>במערכת הרבייה הגברית מוצגים האשכים <span class="en">(Testicle)</span>, יותרת האשך <span class="en">(Epididymis)</span>, צינור הזרע <span class="en">(Vas deferens)</span>, שלפוחית הזרע <span class="en">(Seminal vesicle)</span>, הערמונית <span class="en">(Prostate)</span>, השופכה <span class="en">(Urethra)</span> והפין. לתא הזרע יש ראש, חלק אמצעי וזנב.</p>
+
+    <h3>מביוץ להשרשה: ההפריה ותחילת ההיריון</h3>
+    <h4>המסע של הזרע</h4>
+    <ul>
+      <li>זרמה ממוצעת מכילה <span class="num">40–150</span> מיליון תאי זרע. רובם לא שורדים את הדרך, ורק מאות בודדות מגיעות בסוף לביצית.</li>
+      <li>תא זרע חיוני יכול להגיע לביצית תוך כמה שעות. אצל תא זרע ירוד הדרך יכולה להימשך כמה ימים.</li>
+      <li>תא זרע תקין שורד במערכת המין הנקבית <span class="num">48–72</span> שעות.</li>
+    </ul>
+    <h4>ביוץ, הפריה והשרשה</h4>
+    <ol class="steps">
+      <li><div><b>ביוץ.</b> הביצית הבשלה יוצאת מהשחלה אל החצוצרה.</div></li>
+      <li><div><b>הפריה בחצוצרה.</b> המפגש בין הזרע לביצית קורה בחצוצרה. ברגע שתא זרע אחד חודר, מעטפת הביצית משתנה ותאי זרע נוספים כבר לא יכולים להיכנס. אם לא הייתה הפריה, הביצית מתפרקת. בהפריה נקבעים המין והמטען הגנטי של העובר, משילוב המטען של הזרע והביצית.</div></li>
+      <li><div><b>חלוקות בדרך.</b> הביצית המופרית מתחלקת מהר, וצבר התאים ממשיך להתחלק בזמן שהוא נע לאורך החצוצרה לכיוון הרחם.</div></li>
+      <li><div><b>כניסה לרחם.</b> העובר מגיע לרחם <mark>3–4 ימים אחרי ההפריה</mark>. בשלב הזה יש בו כמה עשרות תאים והוא נקרא בלסטולה.</div></li>
+      <li><div><b>השרשה.</b> העובר נצמד לדופן הפנימית של הרחם (אנדומטריום), משתרש בה וממשיך להתפתח. חלק מהתאים יוצרים את השליה וחלק את העובר עצמו.</div></li>
+    </ol>
+    <figure><div class="svg-box"><svg viewBox="0 0 760 330" role="img" aria-label="מסלול הביצית מהשחלה דרך החצוצרה אל הרחם, והמקום השכיח של היריון מחוץ לרחם">
+      <defs><marker id="ch30-arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="f-field"/></marker></defs>
+      <path d="M300 110 Q380 92 460 110 L442 228 Q380 262 318 228 Z" class="f-zone-soft"/>
+      <path d="M300 110 Q380 92 460 110 L442 228 Q380 262 318 228 Z" class="ln" fill="none"/>
+      <rect x="358" y="248" width="44" height="40" rx="10" class="f-soft"/>
+      <path d="M302 118 C 260 98 200 92 160 112 C 140 122 132 136 135 150" class="s-zone" fill="none"/>
+      <path d="M458 118 C 500 98 560 92 600 112 C 620 122 628 136 625 150" class="s-zone" fill="none"/>
+      <ellipse cx="150" cy="175" rx="34" ry="20" class="f-card"/>
+      <ellipse cx="610" cy="175" rx="34" ry="20" class="f-card"/>
+      <circle cx="170" cy="158" r="6" class="f-hl"/>
+      <circle cx="205" cy="99" r="8" class="f-hl"/>
+      <circle cx="250" cy="98" r="6" class="f-field-soft"/>
+      <circle cx="285" cy="106" r="6" class="f-field-soft"/>
+      <circle cx="380" cy="175" r="11" class="f-field"/>
+      <path d="M215 80 Q 272 52 330 84" class="s-field" fill="none" marker-end="url(#ch30-arr1)"/>
+      <path d="M335 125 L 366 165" class="s-field" fill="none" marker-end="url(#ch30-arr1)"/>
+      <circle cx="545" cy="101" r="10" class="f-alarm"/>
+      <text x="272" y="44" direction="rtl" text-anchor="middle" class="t-field">3–4 ימים</text>
+      <text x="215" y="145" direction="rtl" text-anchor="middle" class="t-b">הפריה</text>
+      <text x="150" y="220" direction="rtl" text-anchor="middle">ביוץ (שחלה)</text>
+      <text x="610" y="220" direction="rtl" text-anchor="middle">שחלה</text>
+      <text x="380" y="215" direction="rtl" text-anchor="middle" class="t-b">השרשה</text>
+      <text x="380" y="312" direction="rtl" text-anchor="middle">צוואר הרחם</text>
+      <text x="560" y="64" direction="rtl" text-anchor="middle" class="t-alarm">היריון מחוץ לרחם: 95% בחצוצרה</text>
+    </svg></div>
+      <figcaption><b>מהביוץ להשרשה.</b> הביצית יוצאת מהשחלה, מופרית בחצוצרה (באמפולה), מתחלקת בדרך ומגיעה לרחם 3–4 ימים אחרי ההפריה, שם היא משתרשת בדופן. אם היא נתקעת ומשתרשת בדרך, זה היריון מחוץ לרחם (הנקודה האדומה), ב-95% מהמקרים בחצוצרה.</figcaption></figure>
+
+    <h4>ההורמון של ההיריון: HCG</h4>
+    <p>בערך שלושה שבועות אחרי ההפריה האישה מגלה שהווסת שלה מאחרת. הסיבה היא ההורמון <span class="en">Human Chorionic Gonadotropin (HCG)</span>, שמופרש מתאי העובר. ההורמון מאותת לגופיף הצהוב להמשיך להפריש אסטרוגן ופרוגסטרון. כך הווסת לא מגיעה ונשמרים התנאים שהעובר צריך עד שהשליה נוצרת. אפשר לזהות HCG בדם ובשתן <mark>מתחילת השבוע השלישי</mark>. ערכת היריון ביתית מכילה קיסם שמשנה צבע כשיש HCG בשתן.</p>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>״מבוא לגניקולוגיה״ עמ׳ 11 לא מציין ממתי סופרים את ״השבוע השלישי״ (מההפריה או מהווסת האחרונה). בעמ׳ 9 העובר נכנס לרחם ״3–4 ימים״ אחרי ההפריה, ובעמ׳ 13 ״ארבעה ימים״, ליד תמונה שמסומנת ״שבוע 3״.</p>
+    </div>
+
+    <h3>העובר ושלבי ההיריון</h3>
+    <h4>מה יש בתוך הרחם</h4>
+    <dl class="kv">
+      <dt>העובר</dt><dd>נמצא בתוך הרחם, עטוף בשק השפיר.</dd>
+      <dt>מי השפיר</dt><dd>הנוזל שבתוך השק, שהעובר צף בו.</dd>
+      <dt>חבל הטבור</dt><dd><mark>שני עורקים ווריד אחד</mark>. הוא מחבר את העובר לשליה.</dd>
+      <dt>השליה</dt><dd>האיבר שדרכו העובר מקבל דם, חמצן ומזון מהאם. היא מתחילה לפעול בסביבות שבוע 12.</dd>
+    </dl>
+
+    <h4>שלושה טרימסטרים</h4>
+    <p>נהוג לחלק את ההיריון לשלושה ״שלישים״ (טרימסטרים). שתי המצגות בפרק משתמשות בגבולות שונים לטרימסטר השני והשלישי:</p>
+    <figure><div class="svg-box"><svg viewBox="0 0 680 190" role="img" aria-label="השוואת חלוקת הטרימסטרים בין שתי המצגות, בקנה מידה של שבועות">
+      <text x="340" y="36" direction="rtl" text-anchor="middle" class="t-b">״מבוא לגניקולוגיה״ (עמ׳ 12, 17, 19)</text>
+      <rect x="60" y="46" width="160" height="34" class="f-soft"/>
+      <rect x="220" y="46" width="213" height="34" class="f-zone-soft"/>
+      <rect x="433" y="46" width="187" height="34" class="f-field-soft"/>
+      <text x="140" y="68" direction="ltr" text-anchor="middle">I · 1–12</text>
+      <text x="326" y="68" direction="ltr" text-anchor="middle">II · 13–28</text>
+      <text x="526" y="68" direction="ltr" text-anchor="middle">III · 29+</text>
+      <text x="340" y="104" direction="rtl" text-anchor="middle" class="t-b">״היריון ולידה״ (עמ׳ 1)</text>
+      <rect x="60" y="114" width="160" height="34" class="f-soft"/>
+      <rect x="220" y="114" width="160" height="34" class="f-zone-soft"/>
+      <rect x="380" y="114" width="240" height="34" class="f-field-soft"/>
+      <text x="140" y="136" direction="ltr" text-anchor="middle">I · 1–12</text>
+      <text x="300" y="136" direction="ltr" text-anchor="middle">II · 13–24</text>
+      <text x="500" y="136" direction="ltr" text-anchor="middle">III · 25–42</text>
+      <line x1="60" y1="156" x2="620" y2="156" class="ln-soft"/>
+      <text x="60" y="176" direction="ltr" text-anchor="middle" class="t-sm">0</text>
+      <text x="220" y="176" direction="ltr" text-anchor="middle" class="t-sm">12</text>
+      <text x="380" y="176" direction="ltr" text-anchor="middle" class="t-sm">24</text>
+      <text x="433" y="176" direction="ltr" text-anchor="middle" class="t-sm">28</text>
+      <text x="620" y="176" direction="ltr" text-anchor="middle" class="t-sm">42</text>
+      <text x="660" y="176" direction="rtl" text-anchor="middle" class="t-sm">שבוע</text>
+    </svg></div>
+      <figcaption><b>שתי חלוקות לטרימסטרים, בקנה מידה.</b> הטרימסטר הראשון זהה בשתיהן (עד שבוע 12). הגבול בין השני לשלישי הוא שבוע 28/29 במצגת אחת ושבוע 24/25 בשנייה.</figcaption></figure>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>״מבוא לגניקולוגיה״ (עמ׳ 12, 17, 19): טרימסטר ראשון עד שבוע 12, שני 13–28, שלישי משבוע 29 עד הסוף. ״היריון ולידה״ (עמ׳ 1): 1–12, 13–24, 25–42. כדאי לברר מול המדריכים איזו חלוקה תופיע במבחן.</p>
+    </div>
+
+    <h4>התפתחות העובר לפי שבועות</h4>
+    <div class="tbl-wrap"><table class="data"><caption>אבני דרך בהתפתחות העובר (״מבוא לגניקולוגיה״ עמ׳ 13–20)</caption>
+      <thead><tr><th>שבוע</th><th>גודל / משקל</th><th>מה קורה</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td>—</td><td>מפגש הזרע עם הביצית. הביצית המופרית מתחלקת לכ-100 תאים: חלקם יוצרים את השליה וחלקם את העובר.</td></tr>
+        <tr><th>5</th><td>1.5–2.5 מ״מ</td><td class="hl">הלב מתחיל לפעום. הגוף בנוי משלוש שכבות, ומכל אחת מתפתחת מערכת אחרת.</td></tr>
+        <tr><th>6</th><td>כ-8 מ״מ</td><td>הכבד והכליות מצטרפים לאיברים המתפקדים. מהשבוע הזה רואים באולטרסאונד את ניצני הידיים והרגליים.</td></tr>
+        <tr><th>7</th><td>—</td><td>נראה ״זנב״ קטן (קצה עמוד השדרה). הלב מתחלק לארבעה חדרים.</td></tr>
+        <tr><th>8</th><td>13–16 מ״מ (כמו דובדבן)</td><td>הראש גדול יחסית כי המוח גדל מהר. העובר זז לבד, אבל עדיין לא מרגישים.</td></tr>
+        <tr><th>9</th><td>כ-2.3 ס״מ, כ-2 גרם</td><td>מתחילים להיווצר המפרקים העיקריים. גם הסרעפת, השריר החשוב בנשימה, מתחילה להתפתח.</td></tr>
+        <tr><th>10</th><td>—</td><td>האצבעות נפרדות, העצמות מתקשות והכליות מתחילות לייצר שתן.</td></tr>
+        <tr><th>12</th><td>כ-7 ס״מ, כ-14 גרם</td><td>כל האיברים והמערכות כבר נוצרו. השליה מתחילה לפעול.</td></tr>
+        <tr><th>20</th><td>—</td><td>יש מחזורי שינה וערות. העובר שומע, ובעיקר את קול האם.</td></tr>
+        <tr><th>25</th><td>כ-700 גרם, אורך 23 ס״מ</td><td>היקף בטן כ-20 ס״מ, עצם הירך 4.5 ס״מ.</td></tr>
+        <tr><th>30</th><td>יותר מ-1.5 ק״ג</td><td>בשלב הזה כל משקל בין 1 ל-2 ק״ג נחשב תקין.</td></tr>
+        <tr><th>35</th><td>כ-2.5 ק״ג</td><td>היקף ראש כ-32 ס״מ, היקף בטן כ-30 ס״מ, עצמות הגפיים 5–7 ס״מ.</td></tr>
+        <tr><th>38</th><td>כ-3 ק״ג, אורך כ-50 ס״מ</td><td>המשקל צפוי להכפיל את עצמו בשלושת החודשים שאחרי הלידה.</td></tr>
+        <tr><th>40</th><td class="hl">ממוצע 3.5 ק״ג</td><td>הראש כבר באגן. הקוטר הבין-קודקודי כ-9.5 ס״מ. ראש העובר עובר כיפוף, סיבוב ומתיחה בתעלת הלידה.</td></tr>
+      </tbody></table></div>
+    <figure><div class="svg-box"><svg viewBox="0 0 680 340" role="img" aria-label="משקל העובר לפי שבוע היריון, בקנה מידה">
+      <line x1="80" y1="280" x2="630" y2="280" class="ln-soft"/>
+      <line x1="80" y1="55" x2="80" y2="280" class="ln-soft"/>
+      <line x1="80" y1="225" x2="630" y2="225" class="ln-dash"/>
+      <line x1="80" y1="170" x2="630" y2="170" class="ln-dash"/>
+      <line x1="80" y1="115" x2="630" y2="115" class="ln-dash"/>
+      <line x1="80" y1="60" x2="630" y2="60" class="ln-dash"/>
+      <text x="68" y="285" direction="ltr" text-anchor="end" class="t-sm">0</text>
+      <text x="68" y="230" direction="ltr" text-anchor="end" class="t-sm">1</text>
+      <text x="68" y="175" direction="ltr" text-anchor="end" class="t-sm">2</text>
+      <text x="68" y="120" direction="ltr" text-anchor="end" class="t-sm">3</text>
+      <text x="68" y="65" direction="ltr" text-anchor="end" class="t-sm">4</text>
+      <text x="42" y="40" direction="rtl" text-anchor="middle" class="t-sm">ק״ג</text>
+      <text x="80" y="300" direction="ltr" text-anchor="middle" class="t-sm">10</text>
+      <text x="170" y="300" direction="ltr" text-anchor="middle" class="t-sm">15</text>
+      <text x="260" y="300" direction="ltr" text-anchor="middle" class="t-sm">20</text>
+      <text x="350" y="300" direction="ltr" text-anchor="middle" class="t-sm">25</text>
+      <text x="440" y="300" direction="ltr" text-anchor="middle" class="t-sm">30</text>
+      <text x="530" y="300" direction="ltr" text-anchor="middle" class="t-sm">35</text>
+      <text x="620" y="300" direction="ltr" text-anchor="middle" class="t-sm">40</text>
+      <text x="350" y="326" direction="rtl" text-anchor="middle">שבוע היריון</text>
+      <polyline points="116,279 350,241.5 440,197.5 530,142.5 584,115 620,87.5" class="s-zone" fill="none"/>
+      <circle cx="116" cy="279" r="5" class="f-zone"/>
+      <circle cx="350" cy="241.5" r="5" class="f-zone"/>
+      <circle cx="440" cy="197.5" r="5" class="f-zone"/>
+      <circle cx="530" cy="142.5" r="5" class="f-zone"/>
+      <circle cx="584" cy="115" r="5" class="f-zone"/>
+      <circle cx="620" cy="87.5" r="5" class="f-zone"/>
+      <text x="125" y="262" direction="rtl" text-anchor="middle" class="t-sm">14 גרם</text>
+      <text x="345" y="216" direction="rtl" text-anchor="middle" class="t-sm">700 גרם</text>
+      <text x="412" y="180" direction="rtl" text-anchor="middle" class="t-sm">מעל 1.5 ק״ג</text>
+      <text x="515" y="128" direction="rtl" text-anchor="middle" class="t-sm">2.5 ק״ג</text>
+      <text x="560" y="100" direction="rtl" text-anchor="middle" class="t-sm">3 ק״ג</text>
+      <text x="610" y="74" direction="rtl" text-anchor="middle" class="t-b">3.5 ק״ג</text>
+    </svg></div>
+      <figcaption><b>משקל העובר, בקנה מידה.</b> הנקודות לקוחות מהמצגת: שבוע 12 (כ-14 גרם), 25 (כ-700 גרם), 30 (מעל 1.5 ק״ג), 35 (כ-2.5), 38 (כ-3), 40 (ממוצע 3.5). רוב המשקל מצטבר בטרימסטר האחרון, ולכן פג שנולד מוקדם קטן מאוד.</figcaption></figure>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>״מבוא לגניקולוגיה״ עמ׳ 20, שבוע 35: ״הרקות שלו הן כבר בקוטר של 9 ס״מ״. הניסוח לא ברור (כנראה הכוונה לקוטר הראש). לשבוע 40 באותו עמוד מופיע קוטר בין-קודקודי של כ-9.5 ס״מ.</p>
+    </div>
+
+    <h4>גובה קרקעית הרחם: איך מעריכים את שבוע ההיריון במבט</h4>
+    <p>בשטח לא תמיד יש לאישה תיק מעקב, והיא לא תמיד יכולה לענות. מיקום קרקעית הרחם <span class="en">(Fundus)</span> ביחס לנקודות ציון בבטן נותן הערכה גסה לשבוע ההיריון:</p>
+    <div class="tbl-wrap"><table class="data"><caption>התפתחות הרחם – נקודות ציון (״מבוא לגניקולוגיה״ עמ׳ 21)</caption>
+      <thead><tr><th>שבוע</th><th>איפה הקרקעית</th></tr></thead>
+      <tbody>
+        <tr><th>12</th><td>אפשר למשש אותה מעבר לעצם הפוביס</td></tr>
+        <tr><th>20</th><td class="hl">בגבול התחתון של הטבור</td></tr>
+        <tr><th>28</th><td>באמצע הדרך בין הטבור לקסיפואיד</td></tr>
+        <tr><th>34</th><td>קצת מתחת לקסיפואיד</td></tr>
+        <tr><th>40</th><td>ירידה קלה: העובר מתמקם באגן</td></tr>
+      </tbody></table></div>
+    <figure class="narrow"><div class="svg-box"><svg viewBox="0 0 680 420" role="img" aria-label="גובה קרקעית הרחם לפי שבוע היריון ביחס לפוביס, לטבור ולקסיפואיד">
+      <rect x="170" y="40" width="300" height="360" rx="50" class="f-skin"/>
+      <path d="M308 60 L320 72 L332 60" class="ln" fill="none"/>
+      <circle cx="320" cy="232" r="6" class="ln" fill="none"/>
+      <path d="M270 390 Q320 374 370 390" class="ln" fill="none"/>
+      <path d="M275 380 C 275 333.3, 365 333.3, 365 380" class="ln" fill="none"/>
+      <path d="M235 380 C 235 190.7, 405 190.7, 405 380" class="ln" fill="none"/>
+      <path d="M210 380 C 210 73.3, 430 73.3, 430 380" class="ln" fill="none"/>
+      <path d="M195 380 C 195 -13.3, 445 -13.3, 445 380" class="ln" fill="none"/>
+      <path d="M185 380 C 185 20, 455 20, 455 380" class="s-alarm" fill="none" stroke-dasharray="7 5"/>
+      <text x="320" y="364" direction="ltr" text-anchor="middle" class="t-b">12</text>
+      <text x="320" y="258" direction="ltr" text-anchor="middle" class="t-b">20</text>
+      <text x="320" y="170" direction="ltr" text-anchor="middle" class="t-b">28</text>
+      <text x="320" y="102" direction="ltr" text-anchor="middle" class="t-b">34</text>
+      <text x="320" y="130" direction="ltr" text-anchor="middle" class="t-alarm">40</text>
+      <text x="570" y="70" direction="rtl" text-anchor="middle">קסיפואיד</text>
+      <text x="570" y="237" direction="rtl" text-anchor="middle">טבור</text>
+      <text x="570" y="392" direction="rtl" text-anchor="middle">עצם הפוביס</text>
+      <line x1="480" y1="66" x2="520" y2="66" class="ln-dash"/>
+      <line x1="480" y1="232" x2="540" y2="232" class="ln-dash"/>
+      <line x1="480" y1="388" x2="515" y2="388" class="ln-dash"/>
+      <text x="90" y="200" direction="rtl" text-anchor="middle" class="t-sm">קו מקווקו:</text>
+      <text x="90" y="218" direction="rtl" text-anchor="middle" class="t-sm">שבוע 40</text>
+    </svg></div>
+      <figcaption><b>גובה קרקעית הרחם.</b> כל קשת היא שבוע. בשבוע 20 הקרקעית בגובה הטבור, בשבוע 34 היא כמעט בקסיפואיד, ובשבוע 40 היא יורדת מעט (קו מקווקו) כשהעובר מתמקם באגן. כלל אצבע לשטח: רחם שמגיע לטבור או מעליו = היריון של יותר מ-20 שבועות. זה גם הסף של רעלת היריון.</figcaption></figure>
+
+    <h3>שינויים פיזיולוגיים אצל האישה ההרה</h3>
+    <p>הגוף של האישה משתנה בהיריון כדי להתאים את עצמו לתקופת ההיריון, ללידה ולמשכב הלידה. השינויים האלה משנים גם את מה שהפרמדיק רואה במדדים:</p>
+    <div class="tbl-wrap"><table class="data"><caption>שינויים פיזיולוגיים בהיריון (״מבוא לגניקולוגיה״ עמ׳ 22, ״היריון ולידה״ עמ׳ 2) ומה הם אומרים בשטח</caption>
+      <thead><tr><th>שינוי</th><th>מה זה אומר לפרמדיק</th></tr></thead>
+      <tbody>
+        <tr><th>עלייה בקצב הלב (בערך <span class="num">+20</span>)</th><td>דופק מעט מהיר הוא חלק מהבסיס. מצד שני, טכיקרדיה היא סימן מוקדם להלם, ולכן לא ממהרים להסביר אותה ב״זה רק ההיריון״.</td></tr>
+        <tr><th>עלייה בנפח הדם</th><td>האישה יכולה לאבד הרבה דם לפני שלחץ הדם יורד. כשלחץ הדם כבר נפל, ההלם מתקדם.</td></tr>
+        <tr><th>ירידה בלחץ הדם</th><td>לחץ דם ״רגיל״ אצל הרה אמור להיות נמוך מעט. לכן לחץ דם גבוה בהיריון הוא ממצא שצריך לחשוב עליו (ראו רעלת היריון).</td></tr>
+        <tr><th>שינוי בזווית הלב</th><td>הרחם הגדל דוחף את הסרעפת והלב כלפי מעלה, כך שתמונת ה-ECG יכולה להשתנות מעט.</td></tr>
+        <tr><th>עלייה בקצב הנשימה, לחץ על הסרעפת</th><td>פחות מקום לריאות. קוצר נשימה קל שכיח, ומאגר החמצן קטן יותר.</td></tr>
+        <tr><th>האטת פעולות המעיים</th><td>הקיבה מתרוקנת לאט, ולכן יש סיכון להקאה ולאספירציה, במיוחד בירידה בהכרה ובפרכוס.</td></tr>
+        <tr><th>עלייה במשקל</th><td>חשוב לנשיאה, לפינוי ולניהול נתיב אוויר.</td></tr>
+      </tbody></table></div>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p>ברוב הטיפולים בפרק הזה מופיעה אותה הוראה: <b>להשכיב את המטופלת על צד שמאל</b> (או בהטיה לשמאל). ההסבר: בשכיבה על הגב הרחם הכבד לוחץ על הווריד הנבוב התחתון, החזרה הוורידית ללב יורדת ולחץ הדם יכול לצנוח. בהטיה לשמאל הרחם זז מהווריד.</p>
+    </div>
+
+    <h3>מעקב היריון</h3>
+    <p>תיק המעקב של האישה מספר לנו מה כבר ידוע: גיל ההיריון, מספר עוברים, תנוחה, סוכרת היריון, בעיות שנמצאו. אין צורך לזכור את כל הבדיקות, אבל כדאי להכיר את המונחים.</p>
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p><b>לפני ההיריון:</b> חיסון אדמת, בדיקות גנטיות.</p>
+      <div class="tbl-wrap"><table class="data"><caption>מעקב היריון (״מבוא לגניקולוגיה״ עמ׳ 23)</caption>
+        <thead><tr><th>שבוע</th><th>בדיקה</th></tr></thead>
+        <tbody>
+          <tr><th>6–12</th><td class="hosp-c">שק היריון + דופק (גרידה)</td></tr>
+          <tr><th>11–14</th><td class="hosp-c">שקיפות עורפית (תסמונת דאון)</td></tr>
+          <tr><th>10–13</th><td class="hosp-c">סיסי שליה (מעל גיל 35)</td></tr>
+          <tr><th>14–16</th><td class="hosp-c">סקירת מערכות מוקדמת</td></tr>
+          <tr><th>16–18</th><td class="hosp-c">חלבון עוברי בדם האם</td></tr>
+          <tr><th>16–20</th><td class="hosp-c">בדיקת מי שפיר (מעל גיל 35)</td></tr>
+          <tr><th>19–24</th><td class="hosp-c">סקירת מערכות מאוחרת</td></tr>
+          <tr><th>24–28</th><td class="hosp-c">העמסת סוכר, דם ושתן</td></tr>
+          <tr><th>30–34</th><td class="hosp-c">הערכת משקל, מצג, מנח</td></tr>
+          <tr><th>35–37</th><td class="hosp-c">נוכחות GBS</td></tr>
+          <tr><th>עד 40</th><td class="hosp-c">לחץ דם, משקל, חלבון בשתן, בצקות</td></tr>
+        </tbody></table></div>
+    </div>
+    <p>שימו לב לשורה האחרונה: עד סוף ההיריון בודקים <b>לחץ דם, חלבון בשתן ובצקות</b>. אלה בדיוק סימני רעלת היריון. אם אישה מספרת שאמרו לה במעקב שיש לה לחץ דם גבוה או חלבון בשתן, זה מידע חשוב.</p>
+
+    <h3>תשאול היולדת ושלבי הלידה בקצרה</h3>
+    <p>את קבלת הלידה עצמה, את טיפול הוולד ואת סיבוכי הלידה מכסה הפרק הבא. כאן רק מה שצריך כדי להבין את האישה ההרה שפוגשים בשטח.</p>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>כללי ברזל:</b> המקום הטבעי של הלידה הוא בית החולים. <mark>לא מעכבים יולדת בבית בשביל קבלת לידה, אלא אם יש סימנים לתחילת תהליך הלידה.</mark> התשאול והאנמנזה הם חלק חשוב בהצלחת הלידה.</p>
+    </div>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>מה שואלים את היולדת:</b></p>
+      <ul>
+        <li>באיזה שבוע את בהיריון?</li>
+        <li>זה ההיריון הראשון? (מספר היריונות, לידות, הפלות)</li>
+        <li>היו בעיות בהיריון? (מעקב, בדיקה אחרונה אצל רופא נשים, סיבוכים, שמירת היריון)</li>
+        <li>מה ידוע על העובר? (עובר אחד או יותר, האם הראש למטה)</li>
+        <li>צירים: יש? כמה זמן כל ציר, כמה זמן בין צירים, עד כמה הם חזקים ואיפה כואב?</li>
+        <li>ירידת מים: יש? מתי? כמה?</li>
+        <li>דימום: יש? מתי? כמה? באיזו עוצמה?</li>
+      </ul>
+    </div>
+    <div class="tbl-wrap"><table class="data"><caption>שלבי הלידה (״היריון ולידה״ עמ׳ 10)</caption>
+      <thead><tr><th>שלב</th><th>מתחיל</th><th>נגמר</th><th>משך</th></tr></thead>
+      <tbody>
+        <tr><th>ראשון</th><td>התכווצויות הרחם / מחיקת צוואר הרחם וירידת מים</td><td>—</td><td>7–12 שעות, במיוחד בלידה ראשונה. משתנה לפי מספר הלידות</td></tr>
+        <tr><th>שני</th><td>אחרי סיום השלב הראשון, עם צירים חזקים וקרובים</td><td>בהוצאת העובר</td><td>כשעה בהיריון ראשון</td></tr>
+        <tr><th>שלישי</th><td>אחרי לידת העובר</td><td>בירידת השליה</td><td>כמה דקות ועד חצי שעה אחרי הלידה</td></tr>
+      </tbody></table></div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>מצגת ״היריון ולידה״ עמ׳ 11–20 מכסה גם את קבלת הלידה, טיפול בוולד וטבלת אפגר. הפרק הבא מפרט אותם. שימו לב: טבלאות האפגר בעמ׳ 17 ו-18 לא תואמות. בעמ׳ 17 ״חיוור, כחלון״, ״לא מגיב״ ו״רפוי״ מקבלים 1, ובעמ׳ 18 אותם ממצאים מקבלים 0. בעמ׳ 17 גם מופיעה נשימה <span class="en">20 = 1</span> ו-30–<span class="en">40 = 2</span>, שלא מופיע בעמ׳ 18.</p>
+    </div>
+
+    <h3>מהלידה והלאה: פגים, תסמונת דאון והתינוק בשנה הראשונה</h3>
+    <h4>אינקובטור: ״רחם מלאכותי״</h4>
+    <p>אינקובטור מייצר תנאים מתאימים יותר לוולד שמתקשה להתמודד עם התנאים בחוץ, בעיקר פג. כל אחת מהמטרות שלו עונה על מערכת שעוד לא הבשילה:</p>
+    <div class="tbl-wrap"><table class="data"><caption>למה אינקובטור (״מבוא לגניקולוגיה״ עמ׳ 25)</caption>
+      <thead><tr><th>מטרה</th><th>מה עוד לא מפותח</th><th>הפתרון</th></tr></thead>
+      <tbody>
+        <tr><th>הקלה על הנשימה</th><td>הריאות</td><td>סיוע בחמצן</td></tr>
+        <tr><th>הקלה על עיניים ואוזניים</th><td>העיניים והאוזניים</td><td>כיסוי, כדי למנוע נזק</td></tr>
+        <tr><th>שמירה על חום הגוף</th><td>העור עוד לא עבה מספיק</td><td>מקום חמים ונעים</td></tr>
+        <tr><th>מניעת זיהום</th><td>מערכת החיסון</td><td>סינון האוויר</td></tr>
+        <tr><th>מניעת צהבת</th><td>—</td><td>תאורה מיוחדת</td></tr>
+      </tbody></table></div>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p>אין לנו אינקובטור באמבולנס, אבל הרשימה הזו אומרת מה צריך לעשות בשבילו: <b>לשמור על חום</b> (לייבש, לעטוף, לכסות את הראש, לחמם את הרכב), להיות מוכנים לתמיכה נשימתית ולצמצם מגע ללא כפפות. פג מאבד חום מהר מאוד בגלל העור הדק.</p>
+    </div>
+
+    <h4>תסמונת דאון</h4>
+    <p>תסמונת דאון היא טריזומיה של כרומוזום 21 (שלושה עותקים במקום שניים). היא מאותרת במעקב ההיריון, למשל בבדיקת השקיפות העורפית בשבועות 11–14. הסימנים החיצוניים שמוצגים בקורס:</p>
+    <ul>
+      <li>אף ופנים שטוחים, עיניים מלוכסנות כלפי מעלה.</li>
+      <li>קפל כף יד יחיד, ואצבע חמישית קצרה שמתעקלת פנימה.</li>
+      <li>רווח גדול בין הבוהן לאצבע השנייה ברגל, וקפלי עור מוגברים בכף הרגל.</li>
+    </ul>
+    <p>המצגת שואלת ״אז מה עושים עם זה?!״ ועונה בתמונות של אנשים עם תסמונת דאון שעובדים, מתחרים בספורט ונואמים. המסר לפרמדיק: לפנות למטופל עצמו, להסביר לו בגובה העיניים ולא לדבר רק עם המלווה.</p>
+
+    <h4>התפתחות התינוק בשנה הראשונה</h4>
+    <p>למה זה רלוונטי לפרמדיק? כדי להעריך תינוק צריך לדעת מה נורמלי לגילו. תינוק בן 8 חודשים שבוכה כשזר מתקרב מתנהג כצפוי. תינוק באותו גיל שלא מגיב לאמא שלו מדאיג. השקפים נותנים טווחים מעט שונים לאותן אבני דרך, וכאן הם מוצגים זה לצד זה:</p>
+    <div class="tbl-wrap"><table class="data"><caption>אבני דרך מוטוריות בחודשים, לפי שלושת השקפים (״מבוא לגניקולוגיה״ עמ׳ 29–31)</caption>
+      <thead><tr><th>אבן דרך</th><th>טבלה, עמ׳ 29</th><th>איור בעברית, עמ׳ 30</th><th>איור באנגלית, עמ׳ 31</th></tr></thead>
+      <tbody>
+        <tr><th>שליטה בראש</th><td>הרמת ראש ושכיבה על הבטן: עד גיל 4</td><td>מחזיק את הראש: 0–3</td><td>3–5</td></tr>
+        <tr><th>התהפכות</th><td>4–6</td><td>4–5</td><td>3–5</td></tr>
+        <tr><th>הזדקפות על הידיים</th><td>—</td><td>5–7</td><td>4–6</td></tr>
+        <tr><th>זחילה על הבטן</th><td>זחילת בחון: 6–8</td><td>—</td><td>5–7</td></tr>
+        <tr><th>זחילה</th><td>זחילת שש: 8–10</td><td>6–8</td><td>6–8</td></tr>
+        <tr><th>ישיבה ללא תמיכה</th><td class="hl">10–14</td><td class="hl">6–8</td><td class="hl">6–8</td></tr>
+        <tr><th>עמידה עם תמיכה</th><td>—</td><td>9–10</td><td>9–10</td></tr>
+        <tr><th>הליכה</th><td>ללא תמיכה: 11–18</td><td>11–15</td><td>12–16</td></tr>
+      </tbody></table></div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>הטווחים לא תואמים בין עמ׳ 29 לעמ׳ 30–31. הפער הבולט הוא בישיבה: 10–14 חודשים בטבלה של עמ׳ 29, מול 6–8 בשני האיורים. יש פערים קטנים יותר גם בהתהפכות, בזחילה, בהליכה ובשליטה בראש. אם שואלים על זה במבחן, כדאי לברר מול המדריכים לאיזה שקף הכוונה.</p>
+    </div>
+    <div class="tbl-wrap"><table class="data"><caption>גדילה והתפתחות רגשית בשנה הראשונה (״מבוא לגניקולוגיה״ עמ׳ 32)</caption>
+      <thead><tr><th>גיל (חודשים)</th><th>גובה</th><th>היקף ראש</th><th>משקל</th><th>התפתחות רגשית</th></tr></thead>
+      <tbody>
+        <tr><th>1–2</th><td>53–57 ס״מ</td><td>36–39 ס״מ</td><td>4.5–6.0 ק״ג</td><td>חיוך ספונטני שמתפתח לחיוך חברתי</td></tr>
+        <tr><th>3–4</th><td>57–64 ס״מ</td><td>39–42 ס״מ</td><td>6.0–7.5 ק״ג</td><td>נרגע כשהוא שומע את קול אמו, מתקשר עם זרים, מזהה את בני המשפחה כמוכרים, מבטא מצב רוח בקולו, מזהה הבעות פנים ומתבונן בהוריו בעניין</td></tr>
+        <tr><th>5–6</th><td>64–67 ס״מ</td><td>42–44 ס״מ</td><td>7.0–8.5 ק״ג</td><td class="hl">מפחד מזרים, בוחן פני מבוגרים. הרגשות עמוקים יותר והתגובה מהירה ותכופה. מחפש את נוכחות הקרובים</td></tr>
+        <tr><th>7–8</th><td>67–71 ס״מ</td><td>43–45 ס״מ</td><td>8.0–9.5 ק״ג</td><td>הפחד מזרים גובר, מפתח העדפות, מתעקש שדווקא ההורים יטפלו בו</td></tr>
+        <tr><th>9–10</th><td>70–74 ס״מ</td><td>45–47 ס״מ</td><td>8.5–10 ק״ג</td><td>בודק תגובות וגבולות, לא אוהב להישאר לבד</td></tr>
+        <tr><th>11–12</th><td>74–78 ס״מ</td><td>46–48 ס״מ</td><td>9.0–10.5 ק״ג</td><td>חוזר על פעולות שגרמו לצחוק, מחקה פעולות פשוטות, מבטא רגשות, נהנה להיות במרכז, רוצה עצמאות, מזהה כמה אנשים מחוץ למשפחה ומבין הומור</td></tr>
+      </tbody></table></div>
+    <p>הראייה מתפתחת בהדרגה. בגיל 3 ימים התינוק רואה מטושטש מאוד, והראייה מתחדדת עד גיל שנה. היא מגיעה להתפתחות מלאה בגיל 3 שנים.</p>
+
+    <h4>תסמונת החלוק הלבן</h4>
+    <p>ילדים, ולא רק ילדים, מגיבים בפחד לצוות רפואי: חלוק, מזרק, חדר טיפולים קר. ילד מפוחד נראה מצוקתי יותר, הדופק ולחץ הדם שלו עולים, וקשה לבדוק אותו. <b>איך מונעים?</b> מכירים בבעיה ויוצרים אווירה נעימה: חלוקים צבעוניים, ציוד נעים ועליז (סטטוסקופ עם דמות, שרוול לחץ דם מצויר, פלסטרים צבעוניים).</p>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p>מתקרבים לאט ובגובה העיניים. משאירים את הילד על ידי ההורה, מתחילים מהבדיקות הפחות מאיימות, ומציעים לו ״לבדוק״ את הצעצוע או הבובה לפני שבודקים אותו.</p>
+    </div>
+
+    <h3>סיבוכים בהיריון: מבט כולל</h3>
+    <p>״היריון ולידה״ מחלק את הסיבוכים שמגיעים אלינו לשלוש קבוצות. כל אחת מהן יכולה להרוג את האם:</p>
+    <ul>
+      <li><b>היריון מחוץ לרחם.</b></li>
+      <li><b>דימום וגינלי:</b> הפלות, קרע של הרחם, היפרדות שליה, אי ספיקת צוואר הרחם.</li>
+      <li><b>רעלת היריון:</b> פרה-אקלמפסיה ואקלמפסיה.</li>
+    </ul>
+    <p>הדרך הכי מהירה לחשוב עליהם היא לפי <b>מתי בהיריון</b> זה קורה:</p>
+    <figure><div class="svg-box"><svg viewBox="0 0 700 230" role="img" aria-label="סיבוכי היריון לפי תזמון: היריון מחוץ לרחם והפלות בתחילת ההיריון, דימום בטרימסטר השלישי, רעלת היריון משבוע 20 ועד אחרי הלידה">
+      <rect x="40" y="30" width="168" height="40" rx="6" class="f-alarm-soft"/>
+      <text x="124" y="55" direction="rtl" text-anchor="middle" class="t-b">היריון מחוץ לרחם</text>
+      <rect x="40" y="80" width="168" height="40" rx="6" class="f-zone-soft"/>
+      <text x="124" y="105" direction="rtl" text-anchor="middle">הפלה מוקדמת</text>
+      <rect x="208" y="80" width="112" height="40" rx="6" class="f-soft"/>
+      <text x="264" y="105" direction="rtl" text-anchor="middle">הפלה מאוחרת</text>
+      <rect x="432" y="30" width="168" height="90" rx="6" class="f-alarm-soft"/>
+      <text x="516" y="54" direction="rtl" text-anchor="middle" class="t-b">היפרדות שליה</text>
+      <text x="516" y="78" direction="rtl" text-anchor="middle" class="t-b">שליית פתח</text>
+      <text x="516" y="102" direction="rtl" text-anchor="middle" class="t-b">קרע של הרחם</text>
+      <rect x="320" y="135" width="370" height="36" rx="6" class="f-hl"/>
+      <text x="505" y="158" direction="rtl" text-anchor="middle" class="t-b">רעלת היריון: משבוע 20 ועד חודשיים אחרי הלידה</text>
+      <line x1="40" y1="190" x2="690" y2="190" class="ln"/>
+      <line x1="600" y1="182" x2="600" y2="198" class="ln"/>
+      <line x1="320" y1="182" x2="320" y2="198" class="ln"/>
+      <text x="40" y="212" direction="ltr" text-anchor="middle" class="t-sm">0</text>
+      <text x="208" y="212" direction="ltr" text-anchor="middle" class="t-sm">12</text>
+      <text x="320" y="212" direction="ltr" text-anchor="middle" class="t-b">20</text>
+      <text x="432" y="212" direction="ltr" text-anchor="middle" class="t-sm">28</text>
+      <text x="600" y="212" direction="ltr" text-anchor="middle" class="t-sm">40</text>
+      <text x="648" y="212" direction="rtl" text-anchor="middle" class="t-sm">אחרי הלידה</text>
+    </svg></div>
+      <figcaption><b>סיבוכי היריון לפי זמן (שבועות).</b> בתחילת ההיריון: היריון מחוץ לרחם (סיבת המוות השכיחה ביותר בטרימסטר הראשון) והפלות (עד שבוע 20, כ-80% עד שבוע 12). בטרימסטר השלישי: שלוש סיבות הדימום העיקריות. רעלת היריון: משבוע 20 ועד חודשיים אחרי הלידה, לפי הפרוטוקול.</figcaption></figure>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><span class="alarm-t">כל אישה שמתלוננת על כאבי בטן ודימום וגינלי מטופלת כמו בהלם, גם אם בבדיקה הראשונית אין סימני הלם.</span> אישה צעירה ובריאה מפצה היטב, ובהיריון נפח הדם שלה גדול. כשלחץ הדם כבר נופל, נשאר מעט זמן.</p>
+    </div>
+
+    <h3>היריון מחוץ לרחם <span class="en">(Ectopic Pregnancy)</span></h3>
+    <h4>מה זה ולמה זה קורה</h4>
+    <p>בהיריון מחוץ לרחם הביצית המופרית משתרשת <b>מחוץ לחלל הרחם</b>. ב-<mark>95% מהמקרים המקום הוא החצוצרה</mark>, ושם בדרך כלל באמפולה. הסיבה היא דלקת או הידבקויות בחצוצרה מזיהום קודם או מניתוח: החצוצרה פגועה, והביצית נתקעת בדרך לרחם.</p>
+    <ul>
+      <li>היריון חוץ רחמי קורה ב-<span class="num">1.4%</span> מכלל ההיריונות.</li>
+      <li><mark>זו סיבת המוות השכיחה ביותר בטרימסטר הראשון</mark>, ואחד הגורמים למוות אצל נשים. לכן חשוב מאוד לחשוב עליו כבר בשטח.</li>
+      <li>התהליך ההורמונלי נמשך כרגיל, כולל השינויים הפיזיולוגיים: גודש בשדיים, התעבות של הרחם ובדיקת היריון חיובית. האישה ״מרגישה בהיריון״.</li>
+      <li>החצוצרה לא יכולה להימתח הרבה. היא מתנפחת ונחסמת, ולכן יש כאבים חזקים. הסכנות הן <span class="alarm-t">קריעת החצוצרה, דימום תוך בטני ושוק</span>.</li>
+      <li>לפעמים העובר מתחיל להיווצר בפימבריה ונופל לחלל הבטן, וגם זה גורם לדימום תוך בטני.</li>
+    </ul>
+    <p>המצגת מזכירה שזה אחד משלושה מצבים מסכני חיים באגן. השניים האחרים הם קרע בציסטה שחלתית וקרע באבסס חצוצרתי-שחלתי, שכשהם מתפוצצים גורמים לזיהום חמור.</p>
+
+    <h4>איך זה נראה</h4>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>הטריאדה הקלאסית של היריון מחוץ לרחם:</b></p>
+      <ol>
+        <li>כאבי בטן</li>
+        <li>דימום וגינלי</li>
+        <li>היעדר וסת <span class="en">(Amenorrhea)</span></li>
+      </ol>
+    </div>
+    <ul>
+      <li><b>כאבי בטן התקפיים עוויתיים</b> בבטן התחתונה, בצד אחד. זו החצוצרה שמתנפחת.</li>
+      <li><b>אחרי הקרע</b> והעובר נפלט: כאב בטן חמור.</li>
+      <li><b>דם בחלל הבטן <span class="en">(Hemoperitoneum)</span>:</b> הקרנה של הכאב <mark>לכתף</mark>. הדם מגרה את הסרעפת, והכאב מורגש בכתף כי שתיהן מקבלות עצבוב מאותם מקטעים בצוואר.</li>
+      <li>אצל כ-<span class="num">65%</span> מהנשים מופיע דימום וגינלי <b>אחרי</b> הופעת הכאב. דימום קטן לא שולל דימום פנימי גדול.</li>
+    </ul>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>באנמנזה מבררים:</b> PID (זיהום באגן), היריון מחוץ לרחם בעבר (EP), שימוש בהתקן תוך רחמי. <b>בבדיקה הגופנית</b> מחפשים סימני הלם.</p>
+      <p>שאלה פשוטה שחוסכת טעויות: ״מתי הייתה הווסת האחרונה?״. כל אישה בגיל הפוריות עם כאב בטן תחתונה היא בחשד להיריון מחוץ לרחם עד שיוכח אחרת.</p>
+    </div>
+
+    <h4>טיפול</h4>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div>להבטיח נתיב אוויר <span class="en">(AW)</span> ולתת חמצן.</div></li>
+        <li><div>להשכיב את החולה, בדרך כלל על צידה השמאלי.</div></li>
+        <li><div>לפתוח וריד ולתת סליין.</div></li>
+        <li><div>לחבר מוניטור.</div></li>
+        <li><div>לא לתת שום דבר דרך הפה, ולהיערך להקאות <span class="en">(Pramin)</span>.</div></li>
+        <li><div>לשמור על חום הגוף.</div></li>
+        <li><div>לנטר סימנים חיוניים לאורך כל הטיפול והפינוי.</div></li>
+        <li><div>לפנות לבית החולים המתאים ולהודיע מראש על האבחנה החשודה.</div></li>
+      </ol>
+    </div>
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p>האבחנה נקבעת בבית החולים, והטיפול בחצוצרה שנקרעה הוא ניתוחי. לכן ההודעה המוקדמת חשובה: היא מכינה את הצוות לקבל מטופלת מדממת.</p>
+    </div>
+
+    <h3>הפלות</h3>
+    <h4>הגדרה ושכיחות</h4>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>הפלה</b> היא הפסקת היריון לפני שהעובר מסוגל לחיות מחוץ לרחם: <mark>לפני שבוע 20, או מסת עובר מתחת ל-500 גרם</mark>.</p>
+    </div>
+    <ul>
+      <li>הפלות עצמוניות (טבעיות) קורות בכ-<span class="num">15%</span> מכלל ההיריונות, והשכיחות עולה עם הגיל.</li>
+      <li>כ-<span class="num">80%</span> מההפלות קורות עד שבוע 12 (<b>הפלה מוקדמת</b>). השאר קורות בין שבועות 13–20 (<b>הפלה מאוחרת</b>).</li>
+      <li>הסיבות: <b>גורמים עובריים</b> (משהו לא בסדר עם העובר), <b>גורמים אימהיים</b> (משהו לא בסדר עם האם), <b>הפרעות רחמיות</b> (משהו לא בסדר ברחם).</li>
+    </ul>
+
+    <h4>סוגי הפלות</h4>
+    <p>המצגת מונה שמונה סוגים. ההסברים הקצרים כאן הם תוספת להבנה:</p>
+    <div class="tbl-wrap"><table class="data"><caption>סוגי הפלות (״היריון ולידה״ עמ׳ 31)</caption>
+      <thead><tr><th>שם</th><th>באנגלית</th><th>במילים פשוטות</th></tr></thead>
+      <tbody>
+        <tr><th>הפלה צפויה / מאיימת</th><td><span class="en">Threatened abortion</span></td><td>יש דימום, אבל ההיריון עוד יכול להימשך</td></tr>
+        <tr><th>הפלה בלתי נמנעת</th><td><span class="en">Inevitable abortion</span></td><td>התהליך כבר התחיל ואי אפשר לעצור אותו</td></tr>
+        <tr><th>הפלה בלתי שלמה</th><td><span class="en">Incomplete abortion</span></td><td>חלק מרקמות ההיריון יצא וחלק נשאר ברחם</td></tr>
+        <tr><th>הפלה שלמה</th><td><span class="en">Complete abortion</span></td><td>כל רקמות ההיריון יצאו</td></tr>
+        <tr><th>הפלה נידחת</th><td><span class="en">Missed abortion</span></td><td>העובר מת אבל לא נפלט</td></tr>
+        <tr><th>הפלה מזוהמת</th><td><span class="en">Septic abortion</span></td><td>הפלה שמלווה בזיהום</td></tr>
+        <tr><th>הפלה חוזרת</th><td><span class="en">Habitual abortion</span></td><td>הפלות שחוזרות שוב ושוב אצל אותה אישה</td></tr>
+        <tr><th>הפלה מלאכותית</th><td><span class="en">Induced abortion</span></td><td>הפסקה יזומה של ההיריון</td></tr>
+      </tbody></table></div>
+
+    <h4>הפלה מלאכותית</h4>
+    <p>הפלה מלאכותית היא הפסקה יזומה של ההיריון. ההחלטה מתקבלת בוועדה שפועלת לפי החוק, באחד המקרים הבאים:</p>
+    <ol>
+      <li>האישה מתחת לגיל הנישואין (לא תמיד).</li>
+      <li>ההיריון נבע מיחסים אסורים או לא מתוכננים.</li>
+      <li>הוולד עלול להיות בעל מום גופני או נפשי.</li>
+      <li>המשך ההיריון מסכן את חיי האישה או גורם לה נזק גופני או נפשי.</li>
+    </ol>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>״היריון ולידה״ עמ׳ 32 מתאר את הוועדה כ״מורכבת משני רופאים (גינקולוג ועובדת סוציאלית)״. עובדת סוציאלית אינה רופאה, כך שהניסוח לא עקבי.</p>
+    </div>
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p>הטכניקה נבחרת לפי גיל ההיריון. עד שבוע 12 שואבים את תוכן הרחם <span class="en">(Suction Curettage)</span> בהרדמה כללית. הפלה בטרימסטר השני מסוכנת יותר מבטרימסטר הראשון.</p>
+    </div>
+    <div class="compare">
+      <div><h5>סיבוכים מיידיים</h5><ul>
+        <li>קרעים של צוואר הרחם</li>
+        <li>ניקוב הרחם</li>
+        <li><span class="alarm-t">דימום תוך בטני</span></li>
+        <li>ניקוב המעיים</li>
+        <li>פגיעה בשלפוחית השתן</li>
+        <li>זיהומים של אברי המין</li>
+      </ul></div>
+      <div><h5>סיבוכים מאוחרים</h5><ul>
+        <li>עקרות</li>
+        <li>אי ספיקת צוואר הרחם</li>
+        <li>הידבקויות תוך רחמיות וצוואריות</li>
+      </ul></div>
+    </div>
+    <p>מה זה אומר בשטח: אישה שעברה הפלה או גרידה בימים האחרונים ומגיעה עם כאב בטן, חום או דימום יכולה להיות עם ניקוב, דימום פנימי או זיהום. זה לא ״כאב רגיל אחרי פעולה״.</p>
+
+    <h4>טיפול בהפלה</h4>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p><b>הטיפול הכי טוב להפלות הוא כמובן בבית החולים המתאים.</b> עד שמגיעים לשם, הטיפול זהה לזה של היריון מחוץ לרחם:</p>
+      <ol class="steps">
+        <li><div>נתיב אוויר וחמצן.</div></li>
+        <li><div>השכבה על צד שמאל.</div></li>
+        <li><div>וריד וסליין.</div></li>
+        <li><div>מוניטור.</div></li>
+        <li><div>שום דבר דרך הפה, היערכות להקאות (פרמין).</div></li>
+        <li><div>שמירה על חום הגוף.</div></li>
+        <li><div>ניטור סימנים חיוניים לאורך כל הטיפול והפינוי.</div></li>
+        <li><div>פינוי לבית החולים המתאים והודעה על האבחנה החשודה.</div></li>
+      </ol>
+    </div>
+
+    <h3>דימום בטרימסטר השלישי</h3>
+    <p>דימום מהנרתיק הוא סימן רע בכל שלב של ההיריון. <mark>בטרימסטר השלישי הוא מדאיג במיוחד</mark>, בגלל הסכנה שבאיבוד דם בשלב הזה: זרימת הדם לרחם גדולה, ומדממים מהר הרבה דם.</p>
+    <div class="compare">
+      <div><h5>ניתוק פתאומי של השליה</h5><ul>
+        <li>השליה נפרדת מדופן הרחם לפני הלידה.</li>
+        <li>העובר מאבד את מקור החמצן שלו, והאם מדממת. חלק מהדם יכול להיאסף מאחורי השליה, ולכן כמות הדם שרואים לא משקפת את האיבוד האמיתי.</li>
+      </ul></div>
+      <div><h5>שליית פתח (שליה ״קדמית״)</h5><ul>
+        <li>השליה מושתלת נמוך ומכסה את פתח צוואר הרחם.</li>
+        <li>כשצוואר הרחם מתחיל להיפתח, כלי הדם של השליה נקרעים ויש דימום.</li>
+      </ul></div>
+      <div><h5>קרע של הרחם</h5><ul>
+        <li>דופן הרחם נקרעת, למשל בצלקת מניתוח קודם.</li>
+        <li>דימום פנימי גדול, ותמונה של הלם מהיר.</li>
+      </ul></div>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>אותו מצב נקרא ״שליית פתח״ ב״היריון ולידה״ עמ׳ 20 (סיבוכים במהלך הלידה) ו״שלייה קדמית״ בעמ׳ 36. ההסברים על כל אחת משלוש הסיבות הם תוספת להבנה. השקף מונה רק את השמות.</p>
+    </div>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <p>השקף לא נותן טיפול נפרד לדימום בטרימסטר השלישי, ולכן חלים כאן העקרונות של דימום בהיריון שתוארו למעלה: טיפול כמו בהלם, נתיב אוויר וחמצן, <b>השכבה על צד שמאל</b> (בטרימסטר השלישי הרחם הכי כבד והלחץ על הווריד הנבוב הכי משמעותי), וריד וסליין, ניטור, שמירת חום ופינוי מהיר עם הודעה מראש.</p>
+    </div>
+
+    <h3>רעלת היריון: פרה-אקלמפסיה ואקלמפסיה</h3>
+    <h4>הגדרות</h4>
+    <dl class="kv">
+      <dt>פרהאקלמפסיה / רעלת היריון <span class="en">(Preeclampsia)</span></dt><dd>עלייה <b>חדשה</b> בלחץ הדם, יחד עם הפרעה בתפקוד איברים, עם או בלי חלבון בשתן, <mark>אחרי 20 שבועות של היריון או אחרי הלידה</mark> (פרוטוקול עמ׳ 63).</dd>
+      <dt>אקלמפסיה <span class="en">(Eclampsia)</span></dt><dd>פרכוסים כלליים <span class="en">(Grand Mal)</span> אצל אישה עם רעלת היריון, בלי רקע של בעיה נוירולוגית. זו ״התפרצות מלאה״ של רעלת ההיריון, עם עוויתות אפילפטיות.</dd>
+    </dl>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p>החלון של אקלמפסיה: <mark>משבוע 20 ועד חודשיים אחרי הלידה</mark> (פרוטוקול). קדם רעלת יכולה להתפתח מהר לרעלת לפני הלידה, במהלכה ואחריה. לכן יולדת שפרכסה שבוע אחרי הלידה היא אקלמפסיה עד שיוכח אחרת.</p>
+    </div>
+
+    <h4>מה קורה בגוף</h4>
+    <p>הגורם לא ידוע. יתר לחץ דם וסוכרת מגבירים את הסיכון. המחלה גורמת לאי סדרים במחזור הדם של האישה: היא פוגעת בזרימת הדם לכליות, שאוגרות נתרן כפיצוי, וגורמת לכיווץ של כלי הדם ההיקפיים. מכאן נובעים כל הסימנים:</p>
+    <figure><div class="svg-box"><svg viewBox="0 0 760 290" role="img" aria-label="מנגנון רעלת ההיריון: כיווץ כלי דם ופגיעה בזרימה לכליות גורמים לבצקות, ליתר לחץ דם, לסימנים מוחיים ולפגיעה בעובר">
+      <defs><marker id="ch30-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="f-alarm"/></marker></defs>
+      <rect x="220" y="12" width="320" height="86" rx="10" class="f-alarm-soft"/>
+      <text x="380" y="38" direction="rtl" text-anchor="middle" class="t-b">קדם רעלת היריון</text>
+      <text x="380" y="62" direction="rtl" text-anchor="middle">כיווץ כלי דם היקפיים</text>
+      <text x="380" y="85" direction="rtl" text-anchor="middle">פגיעה בזרימת הדם לכליות</text>
+      <path d="M330 98 L 95 148" class="s-alarm" fill="none" marker-end="url(#ch30-arr2)"/>
+      <path d="M360 98 L 285 148" class="s-alarm" fill="none" marker-end="url(#ch30-arr2)"/>
+      <path d="M400 98 L 475 148" class="s-alarm" fill="none" marker-end="url(#ch30-arr2)"/>
+      <path d="M430 98 L 665 148" class="s-alarm" fill="none" marker-end="url(#ch30-arr2)"/>
+      <rect x="580" y="155" width="170" height="115" rx="8" class="f-card"/>
+      <text x="665" y="182" direction="rtl" text-anchor="middle" class="t-b">כליות</text>
+      <text x="665" y="210" direction="rtl" text-anchor="middle">אגירת נתרן</text>
+      <text x="665" y="236" direction="rtl" text-anchor="middle">בצקות</text>
+      <rect x="390" y="155" width="170" height="115" rx="8" class="f-card"/>
+      <text x="475" y="182" direction="rtl" text-anchor="middle" class="t-b">כלי הדם</text>
+      <text x="475" y="210" direction="rtl" text-anchor="middle">לחץ דם גבוה</text>
+      <rect x="200" y="155" width="170" height="115" rx="8" class="f-card"/>
+      <text x="285" y="182" direction="rtl" text-anchor="middle" class="t-b">מוח</text>
+      <text x="285" y="208" direction="rtl" text-anchor="middle" class="t-sm">כאבי ראש, טשטוש ראייה</text>
+      <text x="285" y="240" direction="rtl" text-anchor="middle" class="t-alarm">פרכוס = אקלמפסיה</text>
+      <rect x="10" y="155" width="170" height="115" rx="8" class="f-card"/>
+      <text x="95" y="182" direction="rtl" text-anchor="middle" class="t-b">עובר</text>
+      <text x="95" y="208" direction="rtl" text-anchor="middle" class="t-sm">פגיעה באספקת הדם</text>
+      <text x="95" y="234" direction="rtl" text-anchor="middle" class="t-sm">האטה בגדילה</text>
+      <text x="95" y="256" direction="rtl" text-anchor="middle" class="t-sm">או מוות</text>
+    </svg></div>
+      <figcaption><b>מנגנון רעלת ההיריון.</b> כיווץ כלי הדם ההיקפיים ופגיעה בזרימה לכליות מסבירים את הבצקות, את לחץ הדם הגבוה, את הסימנים המוחיים (כאבי ראש, טשטוש ראייה, ובמקרה הקיצוני פרכוס) ואת הפגיעה בעובר. כאבי הבטן (בפרוטוקול: ברום הבטן, אפיגסטרי או רטרוסטרנלי) הם תלונה נוספת.</figcaption></figure>
+    <ul>
+      <li><b>לאם:</b> המחלה גורמת ל-<span class="num">5–15%</span> תמותת אמהות, והיא <mark>הגורם השני בחומרתו למות האם</mark>.</li>
+      <li><b>לעובר:</b> כיווץ כלי הדם ההיקפיים פוגע באספקת הדם לתינוק. התוצאה היא האטה בגדילה או מות התינוק.</li>
+    </ul>
+
+    <h4>מי בסיכון</h4>
+    <div class="compare">
+      <div><h5>גורמי סיכון (פרוטוקול)</h5><ul>
+        <li>היסטוריה משפחתית או אישית</li>
+        <li>היריון ראשון</li>
+        <li>היריון מרובה עוברים</li>
+        <li>מעל גיל 40 או מתחת לגיל 18</li>
+      </ul></div>
+      <div><h5>מחלות רקע (פרוטוקול)</h5><ul>
+        <li>סוכרת</li>
+        <li>יתר לחץ דם</li>
+        <li>השמנת יתר (שומנים בדם)</li>
+        <li>מחלת כליות כרונית</li>
+        <li>מחלה אוטואימונית, מחלות כלי דם</li>
+      </ul></div>
+    </div>
+
+    <h4>איך זה נראה</h4>
+    <div class="tbl-wrap"><table class="data"><caption>תלונות וסימנים (״היריון ולידה״ עמ׳ 37–38, פרוטוקול עמ׳ 62–63)</caption>
+      <thead><tr><th></th><th>פרה-אקלמפסיה</th><th>אקלמפסיה</th></tr></thead>
+      <tbody>
+        <tr><th>תלונות</th><td>כאבי ראש (חזקים / מתמשכים), טשטוש ראייה והפרעות בראייה, כאבי בטן (ברום הבטן), קוצר נשימה חדש או אורתופניאה</td><td>אותן תלונות</td></tr>
+        <tr><th>בבדיקה</th><td>בצקות (בעיקר בפנים ובידיים; בפרוטוקול: בצקת גומתית בשוקיים / קרסוליים), לחץ דם גבוה, שינוי במצב ההכרה</td><td>כל אלה, וגם חיוורון ופחד</td></tr>
+        <tr><th>ההבדל</th><td>אין פרכוס</td><td class="hl">התכווצויות אפילפטיות <span class="en">(Grand Mal)</span></td></tr>
+      </tbody></table></div>
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p>סף לחץ הדם לפי הפרוטוקול: <mark>לחץ דם סיסטולי מעל 140 ממ״כ או דיאסטולי מעל 90 ממ״כ</mark>. הצירוף שצריך לזהות: אישה מעבר לשבוע 20 (או אחרי לידה), עם לחץ דם גבוה, כאב ראש או הפרעה בראייה, ובצקות.</p>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>״היריון ולידה״ עמ׳ 37: ״כל לחץ דם מעל <b>130/80</b> ממ״כ, או עלייה בדיאסטולי של מעל 15 ממ״כ יותר מהרגיל, צריך להחשיד לקיום המחלה״. הפרוטוקול (עמ׳ 63) קובע <b>140/90</b>, והפרוטוקול הוא מה שהפרמדיק עובד לפיו. ערך השקף נמוך מהמקובל.</p>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <ul>
+        <li><span class="alarm-t">כאב ראש חזק, הפרעות ראייה, כאב באפיגסטריום ושינוי בהכרה</span> אצל הרה מעבר לשבוע 20 = פרה-אקלמפסיה חמורה. הפרכוס יכול להגיע בכל רגע.</li>
+        <li>אישה בהיריון שמפרכסת היא <span class="alarm-t">לא ״אפילפסיה״</span> כל עוד אין רקע נוירולוגי. מטפלים בה כבאקלמפסיה.</li>
+        <li>פרכוס יכול לנבוע גם מהיפוגליקמיה. <b>בודקים סוכר</b> (היפוגליקמיה = סוכר מתחת ל-<span class="num">60</span> מ״ג%).</li>
+      </ul>
+    </div>
+
+    <h4>טיפול: פרוטוקול אקלמפסיה / פרהאקלמפסיה</h4>
+    <p>המטרה העיקרית היא <b>לדכא את העוויתות מהר</b>, לשמור על חמצון ולפנות. הפרוטוקול מחלק לפי שאלה אחת: האם הייתה או יש פרכוס?</p>
+    <figure><div class="svg-box"><svg viewBox="0 0 700 640" role="img" aria-label="תרשים זרימה של פרוטוקול אקלמפסיה ופרהאקלמפסיה של איחוד הצלה">
+      <defs><marker id="ch30-arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" class="f-field"/></marker></defs>
+      <rect x="200" y="20" width="300" height="40" rx="8" class="f-card"/>
+      <text x="350" y="45" direction="rtl" text-anchor="middle">דיווח הגעה למוקד</text>
+      <path d="M350 60 V78" class="ln" fill="none" marker-end="url(#ch30-arr3)"/>
+      <rect x="200" y="80" width="300" height="50" rx="8" class="f-card"/>
+      <text x="350" y="111" direction="rtl" text-anchor="middle">הערכת מצב + אנמנזה רלוונטית</text>
+      <path d="M350 130 V148" class="ln" fill="none" marker-end="url(#ch30-arr3)"/>
+      <rect x="200" y="150" width="300" height="70" rx="8" class="f-field-soft"/>
+      <text x="350" y="178" direction="rtl" text-anchor="middle" class="t-b">השכבה בהטיה לצד שמאל</text>
+      <text x="350" y="204" direction="rtl" text-anchor="middle">שקול חמצן · גישה ורידית</text>
+      <path d="M350 220 V238" class="ln" fill="none" marker-end="url(#ch30-arr3)"/>
+      <polygon points="350,240 440,285 350,330 260,285" class="f-hl"/>
+      <text x="350" y="281" direction="rtl" text-anchor="middle" class="t-b">פרכוס או</text>
+      <text x="350" y="301" direction="rtl" text-anchor="middle" class="t-b">לאחר פרכוס?</text>
+      <path d="M440 285 H545 V348" class="s-alarm" fill="none" marker-end="url(#ch30-arr3)"/>
+      <text x="492" y="274" direction="rtl" text-anchor="middle" class="t-alarm">כן</text>
+      <path d="M260 285 H155 V348" class="s-field" fill="none" marker-end="url(#ch30-arr3)"/>
+      <text x="208" y="274" direction="rtl" text-anchor="middle" class="t-field">לא</text>
+      <rect x="430" y="350" width="230" height="40" rx="8" class="f-card"/>
+      <text x="545" y="375" direction="rtl" text-anchor="middle">בדוק רמת סוכר</text>
+      <path d="M545 390 V408" class="ln" fill="none" marker-end="url(#ch30-arr3)"/>
+      <rect x="430" y="410" width="230" height="40" rx="8" class="f-alarm-soft"/>
+      <text x="545" y="435" direction="rtl" text-anchor="middle" class="t-b">תן מגנזיום IV</text>
+      <path d="M545 450 V468" class="ln" fill="none" marker-end="url(#ch30-arr3)"/>
+      <rect x="430" y="470" width="230" height="46" rx="8" class="f-card"/>
+      <text x="545" y="490" direction="rtl" text-anchor="middle">שקול דורמיקום IV/IM/IN</text>
+      <text x="545" y="508" direction="rtl" text-anchor="middle" class="t-sm">בהתייעצות עם המוקד הרפואי</text>
+      <rect x="40" y="350" width="230" height="40" rx="8" class="f-card"/>
+      <text x="155" y="375" direction="rtl" text-anchor="middle">שקול מתן מגנזיום IV</text>
+      <path d="M545 516 V530 H350" class="ln" fill="none"/>
+      <path d="M155 390 V530 H350" class="ln" fill="none"/>
+      <path d="M350 530 V543" class="ln" fill="none" marker-end="url(#ch30-arr3)"/>
+      <rect x="150" y="545" width="400" height="85" rx="8" class="f-field-soft"/>
+      <text x="350" y="568" direction="rtl" text-anchor="middle" class="t-b">פינוי בדחיפות לבי״ח, בהטיה לשמאל</text>
+      <text x="350" y="592" direction="rtl" text-anchor="middle">ניטור וטיפול בדרך · מדדים כל 5–10 דק׳</text>
+      <text x="350" y="616" direction="rtl" text-anchor="middle">העברת דיווח למלר״ד</text>
+    </svg></div>
+      <figcaption><b>פרוטוקול אקלמפסיה / פרהאקלמפסיה (איחוד הצלה, עמ׳ 62).</b> כשיש פרכוס או שהיה פרכוס: סוכר, מגנזיום, ושקילת דורמיקום (סמל הטלפון בפרוטוקול = התייעצות). בלי פרכוס: שוקלים מגנזיום. בשני המקרים: פינוי דחוף בהטיה לשמאל, עם מדדים כל 5–10 דקות.</figcaption></figure>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div>דיווח הגעה למוקד. הערכת מצב ואנמנזה ממוקדת: שבוע היריון או זמן מהלידה, לחץ דם במעקב, כאב ראש, ראייה, כאב בטן עליונה.</div></li>
+        <li><div><b>השכבה בהטיה לצד שמאל.</b> חמצן במסכה בזרימה של <mark>10 LPM</mark>. גישה ורידית ומוניטור.</div></li>
+        <li><div><b>אם יש או היה פרכוס:</b> בדיקת סוכר, ואז <b>מגנזיום IV</b>.</div></li>
+        <li><div>אם הפרכוס ממשיך: <b>שקול דורמיקום</b> IV/IM/IN, רק במצבים מסכני חיים ואחרי התייעצות עם המוקד הרפואי.</div></li>
+        <li><div><b>בלי פרכוס:</b> שקול מגנזיום IV.</div></li>
+        <li><div>פינוי בדחיפות לבית החולים בהטיה לשמאל, עם ניטור וטיפול בדרך. מדדים כל 5–10 דקות ודיווח למלר״ד.</div></li>
+      </ol>
+      <p>המצגת מוסיפה: <b>להשתדל לפנות בלי סירנה ואורות נוצצים</b>, כי הם מאיצים את ההתקף. גירוי חושי חזק מוריד את סף הפרכוס של מוח שכבר מגורה.</p>
+    </div>
+
+    <div class="doses">
+      <article class="dose"><header><h5>מגנזיום סולפט</h5><span class="ind">פרכוס / לאחר פרכוס ברעלת היריון</span></header>
+        <div class="big">6 גרם <small>IV בטפטוף, במשך 15–20 דקות</small></div>
+        <dl>
+          <dt>צורת הופעה</dt><dd>אמפולה 10 מ״ל 50% (5 גרם)</dd>
+          <dt>הכנה</dt><dd>לשאוב 12 מ״ל ולמהול ב-100 מ״ל D5W או NS</dd>
+          <dt>מנגנון</dt><dd>הרפיית שריר חלק, הרחבת כלי דם עורקיים</dd>
+          <dt>ניטור</dt><dd>לחץ דם, דופק ונשימה לאורך הטיפול והפינוי</dd>
+          <dt>להפסיק</dt><dd>דיכוי נשימתי, ברדיקרדיה או הפרעת הולכה: עוצרים מיד, מתקשרים למוקד הרפואי ושוקלים קלציום גלוקונט 1–2 גרם IV. ירידה של יותר מ-30 ממ״כ בלחץ הדם ביחס לבסיס: עוצרים.</dd>
+        </dl>
+        <div class="calc">12 מ״ל × 0.5 גרם/מ״ל = 6 גרם ‏←‏ לשקית 100 מ״ל (סה״כ כ-112 מ״ל)</div></article>
+      <article class="dose"><header><h5>דורמיקום (מידזולם)</h5><span class="ind">פרכוס מתמשך</span></header>
+        <div class="big">2.5–5 <small>מ״ג IV</small></div>
+        <dl>
+          <dt>IM</dt><dd>5 מ״ג</dd>
+          <dt>IN</dt><dd>10 מ״ג, עם התקן</dd>
+          <dt>צורת הופעה</dt><dd>אמפולה 5 מ״ג ב-1 מ״ל</dd>
+          <dt>חזרה</dt><dd>אפשר לחזור על המינון אחרי 5–10 דקות אם הפרכוס ממשיך</dd>
+          <dt>מתי</dt><dd>רק במצבים מסכני חיים ואחרי התייעצות עם המוקד הרפואי</dd>
+          <dt>תופעות לוואי</dt><dd>דיכוי נשימתי, ירידה בלחץ הדם, ברדיקרדיה</dd>
+        </dl>
+        <div class="calc">IV 5 מ״ג = 1 מ״ל · IN 10 מ״ג = 2 מ״ל (5 מ״ג/מ״ל)</div></article>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>מגנזיום ודורמיקום מדכאים נשימה, ושניהם גם מורידים לחץ דם. אחרי הפרכוס האישה ישנונית, ממילא בסיכון לאספירציה (התרוקנות קיבה איטית), ועכשיו קיבלה תרופות. <span class="alarm-t">נשארים ליד הראש עם סקשן ואמבו מוכנים.</span></p>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li><b>מינון מגנזיום:</b> ״היריון ולידה״ עמ׳ 39 אומר ״שקול מתן מגנזיום 4–6 גרם IV באיטיות״. בפרוטוקול (עמ׳ 62–64) המינון הוא <b>6 גרם</b> במשך 15–20 דקות, ובאישה שפרכסה התרשים אומר ״תן״. עובדים לפי הפרוטוקול.</li>
+        <li><b>דורמיקום:</b> בשקף ״בעוויתות יש לתת 2.5–5 מ״ג דורמיקום IV״. בפרוטוקול: ״שקול״, רק במצבים מסכני חיים ואחרי התייעצות עם המוקד הרפואי.</li>
+        <li><b>סתירה בתוך הפרוטוקול, מגנזיום אחרי פרכוס:</b> בתרשים (עמ׳ 62) ״תן מגנזיום IV״, ובהערה 3 באותו עמוד ״שקול מתן בחולה לאחר פרכוס כדי למנוע הישנות פרכוס״.</li>
+        <li><b>ריכוז המגנזיום:</b> הפרוטוקול כותב ״מיהול ל-10%״, אבל 12 מ״ל (6 גרם) בתוך 100 מ״ל נותנים כ-112 מ״ל, כלומר ריכוז של כ-5.4% ולא 10%. המינון (6 גרם) נכון בכל מקרה.</li>
+        <li><b>חמצן:</b> בתרשים ״שקול מתן חמצן״, ובהערות ״חמצן במסכה בזרימה של 10 LPM״.</li>
+      </ul>
+    </div>
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p>הורדת לחץ דם בתרופות נשקלת, אבל בדרך כלל נעשית ברמת בית החולים. הטיפול הסופי ברעלת היריון הוא סיום ההיריון (לידה), ולכן חשוב לפנות לבית החולים המתאים ולהודיע מראש.</p>
+    </div>
+
+    <div class="recap"><span class="tag">בשורה התחתונה</span>
+      <ol>
+        <li>ההפריה קורית בחצוצרה. העובר מגיע לרחם 3–4 ימים אחרי ההפריה ומשתרש בדופן.</li>
+        <li>חבל הטבור: שני עורקים ווריד אחד. העובר שוקל בממוצע 3.5 ק״ג בשבוע 40.</li>
+        <li>קרקעית הרחם בגובה הטבור = שבוע 20. מעבר לזה רעלת היריון אפשרית.</li>
+        <li>בהיריון הדופק עולה (כ-20+), לחץ הדם יורד ונפח הדם עולה, ולכן ההלם מתגלה מאוחר. משכיבים על צד שמאל.</li>
+        <li>היריון מחוץ לרחם: 95% בחצוצרה, סיבת המוות השכיחה ביותר בטרימסטר הראשון. הטריאדה: כאב בטן, דימום וגינלי ואי-וסת. כאב בכתף = דם בבטן.</li>
+        <li>כל אישה עם כאב בטן ודימום וגינלי מטופלת כמו בהלם, גם בלי סימני הלם.</li>
+        <li>הפלה = לפני שבוע 20 או מתחת ל-500 גרם. כ-80% מההפלות קורות עד שבוע 12.</li>
+        <li>דימום בטרימסטר השלישי: היפרדות שליה, שליית פתח וקרע של הרחם.</li>
+        <li>רעלת היריון: משבוע 20 ועד חודשיים אחרי הלידה, עם לחץ דם מעל 140/90, כאב ראש, הפרעת ראייה ובצקות. פרכוס = אקלמפסיה.</li>
+        <li>אקלמפסיה: הטיה לשמאל, חמצן 10 LPM, בדיקת סוכר ומגנזיום 6 גרם IV במשך 15–20 דקות. דורמיקום רק בהתייעצות. פינוי בלי סירנה.</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<section class="chapter" id="ch31" data-zone="blue">
+  <header class="ch-head">
+    <div class="ch-zone">פרק 11 · מצבי חירום בגניקולוגיה ומיילדות · פרק 2</div>
+    <h2>קבלת לידה, סיבוכי לידה והחייאת יילוד</h2>
+    <p class="ch-lede">מה קורה בלידה ולמה, איך מחליטים בין פינוי לקבלת לידה בבית, איך מקבלים לידה רגילה צעד אחר צעד, מה עושים כשמשהו משתבש (מצג עכוז, צניחת חבל טבור, קרע רחם, דימום), ואיך מחייאים יילוד לפי פרוטוקול איחוד הצלה. לידה בשטח נדירה, ולכן כל צעד צריך להיות מוכן מראש בראש.</p>
+    <div class="ch-src">מקור: 04 - קבלת לידה והחייאת וולד.pdf, עמ' 1–95; UH_ACLS_2023.pdf, עמ' 57–62, 75–77</div>
+  </header>
+  <div class="flow">
+
+    <p>לידה היא תהליך טבעי, ורוב הלידות מסתיימות טוב גם בלי עזרה. אבל הרבה יכול להשתבש, ולכן החובש או הפרמדיק נמצא שם (עמ' 22). התפקיד שלכם הוא לא "לנהל" את הלידה. זו הלידה של האישה, ואתם מצטרפים כדי לעזור. אל תנסו להשתלט, אל תבקרו את הצורה או הדרך, דאגו לאישה בריאה ולתינוק בריא, והיו רגועים כדי שגם היולדת תירגע.</p>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>שלושה "אסור" מהפרוטוקול (עמ' 58): <span class="alarm-t">אין לבצע בדיקה וגינלית בשום שלב.</span> אין לאפשר ליולדת ללכת לשירותים לבד. אין לאפשר לה ללכת לאמבולנס בכוחות עצמה. וככלל, לא מומלץ לקבל לידה מחוץ לבית החולים אלא אם אין ברירה.</p>
+    </div>
+
+    <h3>רקע קצר: השליה, חבל הטבור ומחזור הדם העוברי</h3>
+    <p>המבוא לגניקולוגיה ולהיריון נמצא בפרק הקודם. כאן נזכיר רק מה שצריך כדי להבין את הלידה ואת היילוד.</p>
+    <dl class="kv">
+      <dt>שליה <span class="en">(Placenta)</span></dt><dd>איבר שמתפתח עד סוף החודש השלישי, צמוד לדופן הרחם, ומאז הוא האחראי להזנת העובר (עמ' 7).</dd>
+      <dt>חבל הטבור <span class="en">(Umbilical cord)</span></dt><dd>מחבר בין העובר לשליה. עוברים בו <mark>שלושה כלי דם: שני עורקים ווריד אחד</mark> (עמ' 7).</dd>
+      <dt>שק השפיר <span class="en">(Amniotic sac)</span></dt><dd>קרום שמקיף את העובר ומגן עליו. נוזל השפיר <span class="en">(Amniotic fluid)</span> שבתוכו נותן לעובר סביבה יציבה לגדול בה ומגן עליו מטראומה (עמ' 8).</dd>
+    </dl>
+
+    <h4>מחזור הדם העוברי ומה משתנה בנשימה הראשונה</h4>
+    <p>העובר לא נושם ולא אוכל בעצמו. החמצן והמזון מגיעים מהאם דרך השליה, ולכן מחזור הדם שלו בנוי אחרת (עמ' 9–11):</p>
+    <ul>
+      <li>הדם המחומצן מגיע דרך <b>וריד הטבור</b>, שמתחבר בחיבור מיוחד לווריד הנבוב התחתון.</li>
+      <li>בין שתי העליות יש <b>פתח</b>, כך שדם מחומצן עובר מהעלייה הימנית ישר לשמאלית, לחדר השמאלי ולגוף.</li>
+      <li>הדם שיוצא מהחדר הימני לעורק הריאה עובר דרך <b>מחבר מיוחד</b> ישר לאבי העורקים, ועוקף את הריאות.</li>
+      <li>דם דל חמצן ופסולת חוזרים לשליה דרך <b>עורקי הטבור</b>.</li>
+    </ul>
+    <p>מיד עם הלידה המצב מתהפך. בנשימה הראשונה הלחץ בריאות יורד מאוד, המעבר בין עורק הריאה לאבי העורקים נסגר והדם מוזרם לריאות. במקביל נסגר החיבור בין חבל הטבור לווריד הנבוב והזרימה מהשליה נפסקת, ושינויי לחצים בלב סוגרים את הפתח שבין העליות (עמ' 11).</p>
+    <p><b>למה זה חשוב לפרמדיק?</b> כל המעבר הזה תלוי בנשימה הראשונה. יילוד שלא נושם נשאר "תקוע" באמצע: הריאות לא נפתחות, הדם ממשיך לעקוף אותן, והוא נהיה היפוקסי וברדיקרדי. זו הסיבה שבהחייאת יילוד <mark>ההנשמה היא הפעולה החשובה ביותר</mark>, והדופק הוא הסימן הטוב ביותר להצלחתה.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 300" role="img" aria-label="מקור החמצן לפני הלידה ואחריה: לפני הלידה השליה והריאות עקופות, אחרי הלידה הריאות והשליה מנותקת">
+          <defs><marker id="ch31-a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-field"/></marker></defs>
+          <text x="500" y="24" direction="rtl" text-anchor="middle" class="t-b">לפני הלידה</text>
+          <text x="160" y="24" direction="rtl" text-anchor="middle" class="t-b">אחרי הלידה</text>
+          <line x1="320" y1="10" x2="320" y2="290" class="ln-dash"/>
+          <rect x="420" y="40" width="160" height="44" rx="8" class="f-field-soft"/>
+          <text x="500" y="67" direction="rtl" text-anchor="middle">שליה = מקור החמצן</text>
+          <line x1="500" y1="84" x2="500" y2="128" class="s-field" marker-end="url(#ch31-a1)"/>
+          <text x="490" y="112" direction="rtl" text-anchor="start" class="t-sm">וריד הטבור</text>
+          <rect x="420" y="130" width="160" height="56" rx="8" class="f-card"/>
+          <text x="500" y="153" direction="rtl" text-anchor="middle" class="t-b">לב</text>
+          <text x="500" y="174" direction="rtl" text-anchor="middle" class="t-sm">2 מעקפים פתוחים</text>
+          <rect x="336" y="136" width="64" height="44" rx="8" class="f-soft"/>
+          <text x="368" y="156" direction="rtl" text-anchor="middle" class="t-sm">ריאות</text>
+          <text x="368" y="172" direction="rtl" text-anchor="middle" class="t-sm">עקופות</text>
+          <line x1="402" y1="158" x2="418" y2="158" class="ln-dash"/>
+          <line x1="500" y1="186" x2="500" y2="228" class="s-field" marker-end="url(#ch31-a1)"/>
+          <rect x="420" y="230" width="160" height="44" rx="8" class="f-card"/>
+          <text x="500" y="257" direction="rtl" text-anchor="middle">גוף העובר</text>
+
+          <rect x="80" y="40" width="160" height="44" rx="8" class="f-field-soft"/>
+          <text x="160" y="67" direction="rtl" text-anchor="middle">ריאות = מקור החמצן</text>
+          <line x1="160" y1="84" x2="160" y2="128" class="s-field" marker-end="url(#ch31-a1)"/>
+          <rect x="80" y="130" width="160" height="56" rx="8" class="f-card"/>
+          <text x="160" y="153" direction="rtl" text-anchor="middle" class="t-b">לב</text>
+          <text x="160" y="174" direction="rtl" text-anchor="middle" class="t-sm">המעקפים נסגרים</text>
+          <rect x="250" y="136" width="60" height="44" rx="8" class="f-soft"/>
+          <text x="280" y="156" direction="rtl" text-anchor="middle" class="t-sm">שליה</text>
+          <text x="280" y="172" direction="rtl" text-anchor="middle" class="t-sm">מנותקת</text>
+          <line x1="160" y1="186" x2="160" y2="228" class="s-field" marker-end="url(#ch31-a1)"/>
+          <rect x="80" y="230" width="160" height="44" rx="8" class="f-card"/>
+          <text x="160" y="257" direction="rtl" text-anchor="middle">גוף התינוק</text>
+        </svg>
+      </div>
+      <figcaption><b>מי מספק את החמצן.</b> לפני הלידה הדם מגיע מהשליה בווריד הטבור ועוקף את הריאות דרך הפתח שבין העליות ודרך המחבר בין עורק הריאה לאבי העורקים. עם הנשימה הראשונה הריאות נפתחות, המעקפים נסגרים והזרימה מהשליה נפסקת. תרשים עקרוני, לא אנטומי.</figcaption>
+    </figure>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>עמ' 10 כותב שפחמן דו חמצני ופסולת יוצאים מגוף העובר "לאחר מעבר בכבד, דרך עורקי הטבור". הקביעה שהדם עובר בכבד בדרכו החוצה נראית שגויה. הדם החוזר לשליה יוצא לעורקי הטבור מהעורקים של אגן העובר. כאן הצגנו רק את מה שבטוח: הפסולת חוזרת לשליה בעורקי הטבור.</p>
+    </div>
+
+    <h3>מונחים וזמנים שחובה להכיר</h3>
+    <p>משך היריון תקין הוא כ-<mark>40 שבועות מהיום הראשון של הווסת האחרונה</mark>, כתשעה חודשים. מזה מחשבים את תאריך הלידה המשוער. זה רק תאריך משוער: האם מצפה ללדת בטווח של שבועיים לפניו או אחריו (עמ' 6). את ההיריון מחלקים לשלושה שלישים <span class="en">(Trimesters)</span>. רוב מערכות הגוף של העובר מתפתחות בשליש הראשון, ולקראת סוף החודש החמישי האם מרגישה תנועות עובר (עמ' 5).</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 240" role="img" aria-label="ציר שבועות ההיריון בקנה מידה: שלישים, לידה מוקדמת לפני שבוע 37, לידה במועד 37 עד 42, היריון עודף אחרי 42">
+          <rect x="50" y="40" width="168" height="40" rx="4" class="f-zone-soft"/>
+          <text x="134" y="65" direction="rtl" text-anchor="middle">שליש ראשון</text>
+          <rect x="218" y="40" width="144" height="40" rx="4" class="f-soft"/>
+          <text x="290" y="65" direction="rtl" text-anchor="middle">שליש שני</text>
+          <rect x="374" y="40" width="180" height="40" rx="4" class="f-zone-soft"/>
+          <text x="464" y="65" direction="rtl" text-anchor="middle">שליש שלישי</text>
+          <rect x="50" y="96" width="444" height="40" rx="4" class="f-alarm-soft"/>
+          <text x="272" y="121" direction="rtl" text-anchor="middle">לידה מוקדמת (פג)</text>
+          <rect x="494" y="96" width="60" height="40" rx="4" class="f-field-soft"/>
+          <text x="524" y="121" direction="rtl" text-anchor="middle" class="t-b">במועד</text>
+          <rect x="554" y="96" width="36" height="40" rx="4" class="f-hosp-soft"/>
+          <text x="572" y="121" direction="rtl" text-anchor="middle" class="t-sm">עודף</text>
+          <line x1="50" y1="156" x2="590" y2="156" class="ln"/>
+          <line x1="50" y1="150" x2="50" y2="162" class="ln"/>
+          <line x1="218" y1="150" x2="218" y2="162" class="ln"/>
+          <line x1="362" y1="150" x2="362" y2="162" class="ln"/>
+          <line x1="494" y1="150" x2="494" y2="162" class="ln"/>
+          <line x1="530" y1="150" x2="530" y2="162" class="s-field"/>
+          <line x1="554" y1="150" x2="554" y2="162" class="ln"/>
+          <text x="50" y="178" direction="ltr" text-anchor="middle">0</text>
+          <text x="218" y="178" direction="ltr" text-anchor="middle">14</text>
+          <text x="362" y="178" direction="ltr" text-anchor="middle">26</text>
+          <text x="494" y="178" direction="ltr" text-anchor="middle">37</text>
+          <text x="530" y="178" direction="ltr" text-anchor="middle" class="t-field">40</text>
+          <text x="556" y="178" direction="ltr" text-anchor="middle">42</text>
+          <text x="320" y="204" direction="rtl" text-anchor="middle" class="t-sm">שבועות היריון, מהיום הראשון של הווסת האחרונה</text>
+          <text x="320" y="226" direction="rtl" text-anchor="middle" class="t-sm t-field">40 שבועות = תאריך הלידה המשוער (±2 שבועות)</text>
+        </svg>
+      </div>
+      <figcaption><b>שבועות ההיריון בקנה מידה.</b> השלישים לפי עמ' 5 (עד 14, 14–26, מ-27 עד הלידה), והגדרות המועד לפי עמ' 21. כל מה שלפני שבוע 37 הוא לידה מוקדמת, וזה גם גורם סיכון לצורך בהחייאת יילוד.</figcaption>
+    </figure>
+
+    <div class="tbl-wrap"><table class="data"><caption>מונחים (עמ' 20–21)</caption>
+      <thead><tr><th>מונח</th><th>באנגלית</th><th>הגדרה</th></tr></thead>
+      <tbody>
+        <tr><th>מבכירה</th><td><span class="en">Primipara, Nullipara</span></td><td>אישה שזוהי לידתה הראשונה</td></tr>
+        <tr><th>ולדנית</th><td><span class="en">Multipara</span></td><td>אישה שילדה ולד חי בעבר</td></tr>
+        <tr><th>ולדנית גבוהה</th><td><span class="en">Grand multipara</span></td><td>אישה שילדה יותר מ-6 תינוקות (ראו הערה)</td></tr>
+        <tr><th>לידה במועד</th><td><span class="en">Term</span></td><td class="hl">משבוע 37 עד שבוע 42</td></tr>
+        <tr><th>לידה מוקדמת</th><td><span class="en">Premature birth</span></td><td class="hl">לפני שבוע 37</td></tr>
+        <tr><th>היריון עודף</th><td><span class="en">Post-term</span></td><td>משבוע 42</td></tr>
+        <tr><th>הפלה</th><td><span class="en">Abortion</span></td><td>היריון שמסתיים לפני שהעובר בר קיימא</td></tr>
+        <tr><th>גרידה</th><td><span class="en">Curettage</span></td><td class="hosp-c">הרחבת צוואר הרחם והסרת קרום רירי/תוכן הרחם</td></tr>
+      </tbody></table></div>
+
+    <p>במסמכים רפואיים תראו לפעמים את האותיות G ו-P, למשל <span class="en">G-3, P-2</span>. במקובל, <span class="en">G (Gravidity)</span> הוא מספר ההיריונות ו-<span class="en">P (Parity)</span> הוא מספר הלידות.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li><b>G ו-P הפוכים (עמ' 20):</b> בשקף G מוגדר "מספר הפעמים שהאישה ילדה ולד חי" ו-P "מספר הפעמים שהאישה הייתה בהיריון". זה הפוך מהמקובל ומהדוגמה שבאותו שקף (G-3, P-2 מתאים ל-3 היריונות ו-2 לידות). גם "ולדנית גבוהה: ילדה &gt;6" לא חד-משמעי בכיוון הסימן.</li>
+        <li><b>חלוקת השלישים (עמ' 5):</b> עד 14, 14–26 ומ-27. במצגות אחרות בקורס החלוקה שונה (1–12 / 13–24 / 25–42, ובמבוא טרימסטר שני 13–28). ודאו מול המדריכים איזו חלוקה תיבחן.</li>
+      </ul>
+    </div>
+
+    <h3>שלבי הלידה</h3>
+    <p>כדי שלידה תתקדם כרגיל צריכים להתקיים כמה תנאים (עמ' 16): התאמה בין ראש העובר לאגן האם, יכולת של העובר להתקפל, <b>מנח</b> אורכי, <b>מצג</b> מתאים (מצג ראש הוא האופטימלי), רחם שמתכווץ כראוי, ושליה תקינה ומתפקדת. כשאחד מהם לא מתקיים, מגיעים לסיבוכים שבהמשך הפרק.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>שלושת שלבי הלידה (עמ' 23, 25–28)</caption>
+      <thead><tr><th>שלב</th><th>מתחיל</th><th>מסתיים</th><th>מה רואים</th></tr></thead>
+      <tbody>
+        <tr><th>ראשון: שלב הצירים</th><td>תחילת הצירים</td><td>פתיחה מלאה של צוואר הרחם והתבססות הראש בתעלת הלידה</td><td>מחיקת הצוואר, פתיחתו וירידת הראש</td></tr>
+        <tr><th>שני: לידת הוולד</th><td>פתיחה מלאה של הצוואר</td><td>יציאת הוולד</td><td>צירי לחץ חזקים ותכופים, לרוב דחף בלתי נשלט ללחוץ. אפשר כאב בגב התחתון כשהעובר יורד לאגן. אם המים לא ירדו עד כה, לרוב יירדו עכשיו</td></tr>
+        <tr><th>שלישי: לידת השליה</th><td>יציאת הוולד</td><td>יציאת השליה</td><td>השליה מתנתקת מדופן הרחם ונדחפת החוצה עם הצירים. ברוב המקרים <mark>עד 30 דקות</mark> מהלידה</td></tr>
+      </tbody></table></div>
+
+    <h4>מה קורה בשלב הראשון</h4>
+    <dl class="kv">
+      <dt>פתיחה <span class="en">(Dilation)</span></dt><dd>צוואר הרחם נפתח כדי לאפשר את מעבר היילוד. פתיחה מלאה היא 10 ס"מ (עמ' 29).</dd>
+      <dt>מחיקה <span class="en">(Effacement)</span></dt><dd>צוואר הרחם מתקצר ונעשה דק יותר.</dd>
+      <dt>גובה <span class="en">(Station)</span></dt><dd>גובה התינוק בתעלת הלידה. הוא צריך לרדת באגן לכיוון התעלה. נקודת האפס היא גובה הקוצים האיסכיאליים <span class="en">(Ischial spines)</span>, מעליה מספרים שליליים ומתחתיה חיוביים (עמ' 19).</dd>
+    </dl>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 330" role="img" aria-label="פתיחת צוואר הרחם בקנה מידה: 2, 5, 8 ו-10 סנטימטר, וסולם גובה הראש מ-מינוס 3 עד פלוס 3">
+          <defs><marker id="ch31-a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-field"/></marker></defs>
+          <text x="320" y="24" direction="rtl" text-anchor="middle" class="t-b">פתיחת צוואר הרחם (בקנה מידה)</text>
+          <circle cx="570" cy="105" r="10" class="f-zone-soft"/>
+          <circle cx="455" cy="105" r="25" class="f-zone-soft"/>
+          <circle cx="310" cy="105" r="40" class="f-zone-soft"/>
+          <circle cx="140" cy="105" r="50" class="f-field-soft"/>
+          <line x1="550" y1="105" x2="486" y2="105" class="s-field" marker-end="url(#ch31-a2)"/>
+          <line x1="424" y1="105" x2="356" y2="105" class="s-field" marker-end="url(#ch31-a2)"/>
+          <line x1="264" y1="105" x2="196" y2="105" class="s-field" marker-end="url(#ch31-a2)"/>
+          <text x="570" y="180" direction="rtl" text-anchor="middle">2 ס"מ</text>
+          <text x="455" y="180" direction="rtl" text-anchor="middle">5 ס"מ</text>
+          <text x="310" y="180" direction="rtl" text-anchor="middle">8 ס"מ</text>
+          <text x="140" y="180" direction="rtl" text-anchor="middle" class="t-field">10 ס"מ = פתיחה מלאה</text>
+          <text x="320" y="230" direction="rtl" text-anchor="middle" class="t-b">גובה הראש באגן (Station)</text>
+          <line x1="80" y1="270" x2="560" y2="270" class="ln"/>
+          <line x1="560" y1="262" x2="560" y2="278" class="ln"/>
+          <line x1="480" y1="262" x2="480" y2="278" class="ln"/>
+          <line x1="400" y1="262" x2="400" y2="278" class="ln"/>
+          <line x1="320" y1="256" x2="320" y2="284" class="s-field"/>
+          <line x1="240" y1="262" x2="240" y2="278" class="ln"/>
+          <line x1="160" y1="262" x2="160" y2="278" class="ln"/>
+          <line x1="80" y1="262" x2="80" y2="278" class="ln"/>
+          <text x="560" y="300" direction="ltr" text-anchor="middle">−3</text>
+          <text x="480" y="300" direction="ltr" text-anchor="middle">−2</text>
+          <text x="400" y="300" direction="ltr" text-anchor="middle">−1</text>
+          <text x="320" y="300" direction="ltr" text-anchor="middle" class="t-field">0</text>
+          <text x="240" y="300" direction="ltr" text-anchor="middle">+1</text>
+          <text x="160" y="300" direction="ltr" text-anchor="middle">+2</text>
+          <text x="80" y="300" direction="ltr" text-anchor="middle">+3</text>
+          <text x="320" y="322" direction="rtl" text-anchor="middle" class="t-sm">0 = גובה הקוצים האיסכיאליים</text>
+          <text x="600" y="250" direction="rtl" text-anchor="start" class="t-sm">ראש גבוה</text>
+          <text x="40" y="250" direction="rtl" text-anchor="end" class="t-sm">בדרך החוצה</text>
+        </svg>
+      </div>
+      <figcaption><b>השלב הראשון במספרים.</b> הצוואר נפתח מ-2 ס"מ עד פתיחה מלאה של 10 ס"מ (עמ' 29), והראש יורד מגובה שלילי (מעל הקוצים האיסכיאליים) לגובה חיובי (עמ' 19). פתיחה מלאה היא הרגע שבו מתחיל השלב השני.</figcaption>
+    </figure>
+
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p>החובש <b>אינו</b> בודק פתיחה, מחיקה או גובה העובר. ייתכן שהאם נבדקה לאחרונה ויודעת את הנתונים, וזה יכול לעזור להעריך את המצב (עמ' 26). בפרוטוקול: אין לבצע בדיקה וגינלית בשום שלב (עמ' 58).</p>
+    </div>
+
+    <h4>צירים אמיתיים מול צירים מדומים</h4>
+    <p>לפעמים גם לאישה קשה לדעת אם אלה צירי לידה. <b>צירים מדומים</b> <span class="en">(Braxton-Hicks contractions)</span> הם צירים שנשים רבות חשות בשבועות האחרונים להיריון, אבל הם לא מובילים ללידה. <span class="alarm-t">בכל חשד לצירים מוקדמים מפנים את היולדת בדחיפות לבית החולים לבדיקה</span> (עמ' 17).</p>
+
+    <div class="callout hosp"><span class="tag">בבית החולים · לידיעה</span>
+      <p>בחדר הלידה מנטרים צירים וקצב לב עוברי (וריאביליות, אקסלרציות, דצלרציות, האטות דופק מוקדמות או מאוחרות, אי ספיקה שלייתית), נותנים אפידורל (צנתר לחלל האפידורלי), ובמידת הצורך מילדים בעזרת מלקחיים או ואקום, או בניתוח קיסרי (עמ' 24, 31, 42, 84).</p>
+    </div>
+
+    <h3>מגיעים ליולדת: אנמנזה והחלטה</h3>
+    <p>ההחלטה החשובה מבחינת החובש היא אם אפשר לפנות את היולדת לבית החולים או שצריך להיערך לקבלת לידה בבית בגלל לידה קרובה (עמ' 18). <b>עדיף מאוד שהלידה תתבצע בחדר הלידה</b>: יש שם מיילדות מיומנות, רופאים, תנאים נוחים וסטריליים וציוד מתקדם. אבל כשהלידה קרובה מאוד, ייתכן שאין זמן לפנות. במקרה כזה ייתכן שעדיף ליילד בבית, כי יש בו יותר מקום ויכולת לטפל בנוחות מאשר באמבולנס.</p>
+    <p>הסימן שמכריע הוא <b>לידה פעילה</b>, כלומר <b>כיתור</b> <span class="en">(Crowning)</span>: הופעת הראש בפתח תעלת הלידה (עמ' 36; פרוטוקול עמ' 57).</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>שאלות ליולדת (עמ' 14–15; פרוטוקול עמ' 57–58)</caption>
+      <thead><tr><th>שאלה</th><th>למה זה חשוב</th></tr></thead>
+      <tbody>
+        <tr><th>שבוע ההיריון / תאריך לידה משוער</th><td>לפני שבוע 37 זו לידה מוקדמת, ויש סיכוי גבוה יותר שהיילוד יזדקק להחייאה</td></tr>
+        <tr><th>משך הצירים ותדירותם</th><td>מעריך כמה הלידה קרובה</td></tr>
+        <tr><th>ירידת מים ו/או דימום, חשד למים מקוניאליים</th><td>מים מקוניאליים וירידת מים מעל 24 שעות הם גורמי סיכון ליילוד</td></tr>
+        <tr><th>מספר לידה, לידות מהירות בעבר</th><td>לידות קודמות מהירות מנבאות לידה מהירה (ולאחר לידה מהירה יש סיכון מוגבר לדימום)</td></tr>
+        <tr><th>מספר עוברים</th><td>היריון מרובה עוברים הוא גורם סיכון לצניחת חבל טבור ולהחייאה</td></tr>
+        <tr><th>מהלך היריון תקין? בעיות בלידות קודמות? ניתוח קיסרי בעבר?</th><td>צלקת ניתוחית היא גורם לקרע רחם</td></tr>
+        <tr><th>מצג נוכחי</th><td>מצג לא תקין עובר לפרוטוקול סיבוכי לידה</td></tr>
+        <tr><th>רקע רפואי, תרופות, עישון, אלכוהול, סמים</th><td>נרקוטיקה בתוך 4 שעות מהלידה היא גורם סיכון לדיכוי נשימה ביילוד</td></tr>
+      </tbody></table></div>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 620" role="img" aria-label="תרשים פרוטוקול קבלת לידה: הערכה, הכנת ציוד, גישה ורידית, האם הלידה פעילה, האם המצג תקין, ואז קבלת הלידה ופינוי">
+          <defs><marker id="ch31-a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-field"/></marker></defs>
+          <rect x="250" y="12" width="300" height="40" rx="8" class="f-card"/>
+          <text x="400" y="37" direction="rtl" text-anchor="middle">הערכה ראשונית + אנמנזה מהירה</text>
+          <line x1="400" y1="52" x2="400" y2="70" class="s-field" marker-end="url(#ch31-a3)"/>
+          <rect x="250" y="72" width="300" height="40" rx="8" class="f-card"/>
+          <text x="400" y="97" direction="rtl" text-anchor="middle">חמצן, ציוד הנשמה, ערכת לידה</text>
+          <line x1="400" y1="112" x2="400" y2="130" class="s-field" marker-end="url(#ch31-a3)"/>
+          <rect x="250" y="132" width="300" height="40" rx="8" class="f-card"/>
+          <text x="400" y="157" direction="rtl" text-anchor="middle">גישה ורידית ונוזלים</text>
+          <line x1="400" y1="172" x2="400" y2="188" class="s-field" marker-end="url(#ch31-a3)"/>
+          <polygon points="400,190 480,225 400,260 320,225" class="f-hl"/>
+          <text x="400" y="230" direction="rtl" text-anchor="middle" class="t-b">לידה פעילה?</text>
+          <line x1="480" y1="225" x2="508" y2="225" class="s-alarm"/>
+          <text x="494" y="216" direction="rtl" text-anchor="middle" class="t-sm">לא</text>
+          <rect x="510" y="200" width="120" height="50" rx="8" class="f-alarm-soft"/>
+          <text x="570" y="221" direction="rtl" text-anchor="middle" class="t-b">פנה לבי"ח</text>
+          <text x="570" y="240" direction="rtl" text-anchor="middle" class="t-b">בדחיפות</text>
+          <line x1="400" y1="260" x2="400" y2="286" class="s-field" marker-end="url(#ch31-a3)"/>
+          <text x="412" y="278" direction="rtl" text-anchor="end" class="t-sm">כן</text>
+          <polygon points="400,288 480,323 400,358 320,323" class="f-hl"/>
+          <text x="400" y="328" direction="rtl" text-anchor="middle" class="t-b">מצג תקין?</text>
+          <line x1="320" y1="323" x2="292" y2="323" class="s-alarm"/>
+          <text x="306" y="314" direction="rtl" text-anchor="middle" class="t-sm">לא</text>
+          <rect x="12" y="290" width="278" height="70" rx="8" class="f-alarm-soft"/>
+          <text x="151" y="312" direction="rtl" text-anchor="middle">התייעץ עם המוקד הרפואי</text>
+          <text x="151" y="331" direction="rtl" text-anchor="middle">שקול התחלת פינוי</text>
+          <text x="151" y="350" direction="rtl" text-anchor="middle" class="t-b">פרוטוקול סיבוכי לידה</text>
+          <line x1="400" y1="358" x2="400" y2="384" class="s-field" marker-end="url(#ch31-a3)"/>
+          <text x="412" y="376" direction="rtl" text-anchor="end" class="t-sm">כן</text>
+          <rect x="250" y="386" width="300" height="40" rx="8" class="f-field-soft"/>
+          <text x="400" y="411" direction="rtl" text-anchor="middle">השכב על הגב, פרוס ציוד לידה</text>
+          <line x1="400" y1="426" x2="400" y2="444" class="s-field" marker-end="url(#ch31-a3)"/>
+          <rect x="250" y="446" width="300" height="40" rx="8" class="f-field-soft"/>
+          <text x="400" y="471" direction="rtl" text-anchor="middle">תמוך בראש בזמן היציאה</text>
+          <line x1="400" y1="486" x2="400" y2="504" class="s-field" marker-end="url(#ch31-a3)"/>
+          <rect x="250" y="506" width="300" height="40" rx="8" class="f-field-soft"/>
+          <text x="400" y="531" direction="rtl" text-anchor="middle">APGAR, ואז חיתוך חבל הטבור</text>
+          <line x1="400" y1="546" x2="400" y2="564" class="s-field" marker-end="url(#ch31-a3)"/>
+          <rect x="230" y="566" width="340" height="46" rx="8" class="f-card"/>
+          <text x="400" y="586" direction="rtl" text-anchor="middle" class="t-b">חמם אמבולנס, פנה בדחיפות</text>
+          <text x="400" y="604" direction="rtl" text-anchor="middle" class="t-sm">מדדים כל 5–10 דקות ליולדת וליילוד</text>
+        </svg>
+      </div>
+      <figcaption><b>פרוטוקול קבלת לידה, מקוצר (UH עמ' 57).</b> לפני הכול מדווחים הגעה למוקד. בלי לידה פעילה מפנים בדחיפות. בלידה פעילה עם מצג לא תקין מתייעצים עם המוקד הרפואי, שוקלים התחלת פינוי ועוברים לפרוטוקול סיבוכי לידה. בסוף מפנים לבית חולים עם חדר לידה, ככל הניתן, ומעבירים דיווח למלר"ד.</figcaption>
+    </figure>
+
+    <h3>קבלת לידה רגילה, צעד אחר צעד</h3>
+
+    <h4>הכנה</h4>
+    <ul>
+      <li><b>תנוחה:</b> לפי השקפים, התנוחה המועדפת היא <b>חצי ישיבה</b>, כשירכי היולדת מפושקות, ברכיה מכופפות וכפות רגליה צמודות למיטה. בדרך כלל זו התנוחה הנוחה ביותר ליולדת (עמ' 33). בפרוטוקול: "השכב את היולדת על גבה" (עמ' 57).</li>
+      <li>תן חמצן, החדר עירוי במידה ומתאפשר, ופתח ערכת לידה (עמ' 33).</li>
+      <li>אם אפשר, בקש מבני המשפחה מפה חד-פעמית והנח אותה על המיטה, מתחת לסדין, כדי להגן על המזרן (עמ' 33).</li>
+      <li><b>צור מרחב סטרילי</b> עם הסדינים הסטריליים שבערכה: סדין מתחת לעכוז האם, סדין על המיטה בין רגליה מתחת לנרתיק, סדין על הבטן וסדין קטן יותר על כל רגל (עמ' 34).</li>
+      <li><b>לבש כפפות סטריליות</b> (עמ' 35). ביד הלא דומיננטית הרם את הכפפה של היד הדומיננטית באחיזה בצד הפנימי (המקופל החוצה), ומשוך אותה על היד. ודא שהאגודל מקופל פנימה כדי לא לגעת בצד הסטרילי. אחר כך הכנס את אצבעות היד העטויה מתחת לקיפול של הכפפה השנייה ולבש אותה, כשאתה נוגע רק בצד החיצוני הסטרילי שלה (סטרילי בסטרילי).</li>
+    </ul>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>תנוחת הלידה מתוארת אחרת בכל מקור. במצגת הזו היא חצי ישיבה עם ברכיים כפופות (עמ' 33), במצגת "היריון ולידה" (עמ' 11) שכיבה על הגב ורגליים כפופות, ובתרשים הפרוטוקול "השכב את היולדת על גבה" (עמ' 57). בכל המקורות הברכיים כפופות והירכיים מפושקות. מה שמשתנה הוא זווית הגב.</p>
+    </div>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div><b>עודד את האם ללחוץ רק בזמן הצירים</b> (עמ' 37; פרוטוקול עמ' 58).</div></li>
+        <li><div><b>כיתור:</b> כשהראש מופיע, הפעל לחץ עדין ביותר על החלק העליון של הפרינאום (עמ' 36). הפרוטוקול: תמוך בפרינאום בעת יציאת הראש (עמ' 58).</div></li>
+        <li><div><b>תמוך בעדינות בראש התינוק</b> עם יציאתו. אחרי שהראש יוצא הוא מסתובב הצידה, כשפניו פונים לכיוון אחת מרגלי האם. ספק תמיכה עדינה (עמ' 37).</div></li>
+        <li><div><b>בדוק אם חבל הטבור כרוך סביב הצוואר</b>, ואם כן דאג לשחרר אותו (עמ' 37, 43; פירוט בהמשך).</div></li>
+        <li><div><b>שקול שאיבה עדינה</b> של דרכי האוויר העליונות בעת הצורך (עמ' 37). לפי הפרוטוקול מתחילים מהפה ורק אחר כך מהאף, ו<b>לא באופן שגרתי</b> (עמ' 58).</div></li>
+        <li><div><b>הכתפיים:</b> הטה בעדינות את ראש היילוד <b>כלפי מטה</b> כדי לעזור לכתף העליונה לצאת. אחריה הטה בעדינות את הגוף <b>כלפי מעלה</b> כדי לעזור לכתף התחתונה לצאת (עמ' 38).</div></li>
+        <li><div><b>תמוך בגוף היילוד עם יציאתו.</b> זהירות: הוא רטוב וחלקלק (עמ' 38).</div></li>
+        <li><div>החזק את היילוד <b>בהטיה קלה כשפניו כלפי מטה</b>, כדי שהפרשות יתנקזו ולא יישאפו, ושקול שאיבת הפרשות מהפה ומהאף לפי הצורך (עמ' 39).</div></li>
+        <li><div>אם עדיין לא נושם, עודד אותו בטפיחות קלות על כפות רגליו. דאג לייבוש ולחימום בהקדם, ו<mark>שמור את היילוד בגובה האם עד לחיתוך חבל הטבור</mark> (עמ' 39; פרוטוקול עמ' 59).</div></li>
+      </ol>
+    </div>
+
+    <p><b>לא להיבהל מצואה.</b> ראש התינוק שיוצא לוחץ על המעי הגס של האם, ולכן לעיתים נדחקת צואה החוצה. הרגיעו את האם והסבירו לה שזו תופעה נפוצה ותקינה. בקשו מחובש נוסף לדחוף את הצואה למטה ולאחור עם פד גזה סטרילי, או לקפל עליה חלקים מהסדין, כדי לשמור על סביבה סטרילית ככל הניתן (עמ' 37).</p>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><span class="alarm-t">אין למשוך את ראש היילוד</span> כדי לשחרר כתף תקועה (פרע כתפיים, פרוטוקול עמ' 61). ההטיות שבשלב 6 עדינות בלבד.</p>
+    </div>
+
+    <h3>חבל הטבור: כרוך סביב הצוואר, מתי ואיך חותכים</h3>
+
+    <h4>חבל טבור כרוך סביב הצוואר</h4>
+    <div class="compare">
+      <div><h5>חבל טבור רפוי</h5><ul><li>נסה להרים בעדינות את החבל ולהעביר אותו מעל הראש, אל מחוץ לצוואר (עמ' 43).</li></ul></div>
+      <div><h5>חבל מתוח או כרוך כמה פעמים</h5><ul><li>הנח שני תופסנים על החבל, חתוך ביניהם ושחרר את החבל (עמ' 43).</li></ul></div>
+    </div>
+
+    <h4>חיתוך חבל הטבור</h4>
+    <p>כל עוד התינוק מחובר לשליה, מחזיקים אותו <b>בגובה מקביל לגובה מקום היציאה</b>. אם היילוד נמוך יותר, יותר דם עלול לזרום מהשליה אליו. אם הוא גבוה יותר, הדם עלול "לחזור" ממנו לשליה ולגרום לחוסר דם (עמ' 44). זה משנה כי <mark>נפח הדם ביילוד הוא 70 מ"ל לק"ג</mark> בלבד (עמ' 45). אצל יילוד של 3 ק"ג זה כ-210 מ"ל, כך שגם איבוד דם קטן משמעותי.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 220" role="img" aria-label="חיתוך חבל הטבור לפי הפרוטוקול: תופסן ראשון כ-5 סנטימטר מהיילוד, תופסן שני 5 עד 10 סנטימטר ממנו, חיתוך ביניהם">
+          <rect x="520" y="60" width="104" height="80" rx="30" class="f-skin"/>
+          <text x="572" y="105" direction="rtl" text-anchor="middle" class="t-b">יילוד</text>
+          <ellipse cx="62" cy="100" rx="44" ry="34" class="f-alarm-soft"/>
+          <text x="62" y="105" direction="rtl" text-anchor="middle" class="t-b">שליה</text>
+          <rect x="106" y="94" width="414" height="12" rx="6" class="f-zone-soft"/>
+          <rect x="414" y="80" width="12" height="40" rx="3" class="f-field"/>
+          <rect x="314" y="80" width="12" height="40" rx="3" class="f-field"/>
+          <line x1="370" y1="70" x2="370" y2="130" class="s-alarm"/>
+          <text x="370" y="60" direction="rtl" text-anchor="middle" class="t-alarm">חיתוך</text>
+          <line x1="520" y1="160" x2="420" y2="160" class="ln-soft"/>
+          <line x1="520" y1="154" x2="520" y2="166" class="ln-soft"/>
+          <line x1="420" y1="154" x2="420" y2="166" class="ln-soft"/>
+          <text x="470" y="184" direction="rtl" text-anchor="middle">כ-5 ס"מ</text>
+          <line x1="420" y1="160" x2="220" y2="160" class="ln-dash"/>
+          <line x1="320" y1="154" x2="320" y2="166" class="ln-soft"/>
+          <line x1="220" y1="154" x2="220" y2="166" class="ln-soft"/>
+          <text x="320" y="184" direction="rtl" text-anchor="middle">עוד 5–10 ס"מ</text>
+          <text x="420" y="208" direction="rtl" text-anchor="middle" class="t-sm t-field">תופסן 1</text>
+          <text x="270" y="208" direction="rtl" text-anchor="middle" class="t-sm t-field">תופסן 2 (בטווח)</text>
+        </svg>
+      </div>
+      <figcaption><b>מיקום התופסנים לפי הפרוטוקול (UH עמ' 59), בקנה מידה.</b> תופסן ראשון כ-5 ס"מ מגוף היילוד, תופסן שני 5–10 ס"מ מהראשון. מחטאים וחותכים בין שני התופסנים, במשנה זהירות כדי לא לפגוע במטפל וביילוד.</figcaption>
+    </figure>
+
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ol class="steps">
+        <li><div>הנח שני תופסנים (קלמפים) סטריליים על חבל הטבור, לפי המרחקים שבתרשים (פרוטוקול עמ' 59).</div></li>
+        <li><div>ודא שהתופסנים סגורים היטב (עמ' 44).</div></li>
+        <li><div>חטא, וחתוך בין שני התופסנים בסקלפל, או בחותכן מיוחד שיש בו שני תופסנים וסכין חיתוך ביניהם (עמ' 46; פרוטוקול עמ' 59).</div></li>
+      </ol>
+    </div>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li><b>מרחקי התופסנים:</b> בשקף, תופסנים ב-10 ס"מ וב-15 ס"מ מגוף התינוק (עמ' 44). במצגת "היריון ולידה" (עמ' 14) 5 ס"מ. <b>בפרוטוקול</b> תופסן ראשון כ-5 ס"מ והשני 5–10 ס"מ ממנו (עמ' 59). בשטח עובדים לפי הפרוטוקול.</li>
+        <li><b>מתי חותכים:</b> השקפים אומרים שאחרי כמה דקות במגע עם האוויר חבל הטבור מפסיק לפעום, ו"בגמר הפעימות בחבל הטבור – לנתק" (עמ' 44–45). <b>בפרוטוקול</b> בהערות "יש לחתוך את חבל הטבור מיד לאחר יציאת היילוד" (עמ' 59), ובתרשים מעקב APGAR מופיע לפני החיתוך (עמ' 57). הפרוטוקול קובע.</li>
+      </ul>
+    </div>
+
+    <h3>היילוד בדקות הראשונות</h3>
+
+    <h4>חימום: הדבר הראשון</h4>
+    <p><mark>יילודים מאבדים חום גוף במהירות</mark>, והרבה ממנו מאזור הראש (עמ' 47). יילוד רטוב באוויר החדר מתקרר מהר מאוד. התקררות מעלה את צריכת החמצן שלו, ובפרוטוקול <b>מניעת היפותרמיה מוגדרת כחשובה ביותר ביילודים</b> (עמ' 75–76).</p>
+    <div class="callout field"><span class="tag">בשטח</span>
+      <ul>
+        <li>ייבש היטב את היילוד, ועטוף אותו בסדינים סטריליים ובשמיכות.</li>
+        <li>כסה את ראשו, גופו, כפות ידיו ורגליו. רק הפנים נשארות חשופות.</li>
+        <li>חמם מראש את החדר או האמבולנס, <b>גם ביום חם</b> (עמ' 47).</li>
+        <li><b>מגע עור לעור:</b> אחרי הייבוש, במידה ומתאפשר, הנח את היילוד במגע עור ישיר עם אמו וכסה אותו בכיסוי יבש ונקי. זו המלצת ארגון הלב האמריקאי <span class="en">(AHA)</span> והאקדמיה האמריקאית לפדיאטריה (עמ' 54). לפי הפרוטוקול, ביילוד בריא זה הדבר החשוב ביותר: הוא שומר על חום גוף תקין ועוזר לקשר ההורי ולהנקה (עמ' 76).</li>
+      </ul>
+    </div>
+
+    <h4>איך נראה יילוד תקין</h4>
+    <ul>
+      <li>אם התינוק נושם בכוחות עצמו ופניו ושפתיו ורודים, <b>אל תיבהלו מכפות ידיים ורגליים כחלחלות</b>. כל עוד הוא נושם כראוי, זה מצב נורמלי שיחלוף (עמ' 48).</li>
+      <li>העור יכול להיות אדום, מתקלף, או מכוסה בחומר שמנוני לבן <span class="en">(Vernix)</span>.</li>
+      <li>הראש יכול להיות מוארך בגלל הלחץ בתעלת הלידה. זו תופעה נורמלית שחולפת.</li>
+    </ul>
+    <p><b>יילוד חיוני</b> לפי הפרוטוקול: מאמץ נשימתי תקין, טונוס שרירים תקין ודופק <mark>מעל 100 לדקה</mark>. את הדופק אפשר למשש בחבל הטבור ובעורק הברכיאלי. ודאו התחלת נשימה ספונטנית <b>בתוך 30 שניות</b>, והניחו את היילוד על האם (עמ' 58, 76).</p>
+
+    <h4>סולם אפגר <span class="en">(APGAR)</span></h4>
+    <p>כלי קליני מהיר ואובייקטיבי להערכת היילוד. מחשבים אותו <mark>לפחות פעמיים: דקה אחת ו-5 דקות אחרי הלידה</mark>. יש חמישה מדדים, כל אחד מקבל 0, 1 או 2, והציון הוא הסכום, בין 0 ל-10 (עמ' 49–51; פרוטוקול עמ' 76).</p>
+
+    <ul class="mnemonic">
+      <li><b>A</b><span class="en">Appearance</span> · הופעה/צבע</li>
+      <li><b>P</b><span class="en">Pulse</span> · דופק</li>
+      <li><b>G</b><span class="en">Grimace</span> · העוויות</li>
+      <li><b>A</b><span class="en">Activity</span> · הנעת גפיים</li>
+      <li><b>R</b><span class="en">Respiration</span> · נשימה</li>
+    </ul>
+
+    <div class="tbl-wrap"><table class="data"><caption>ניקוד אפגר (עמ' 50; פרוטוקול עמ' 58, 76)</caption>
+      <thead><tr><th>מדד</th><th>2 נקודות</th><th>1 נקודה</th><th>0 נקודות</th></tr></thead>
+      <tbody>
+        <tr><th>הופעה/צבע</th><td>ורוד</td><td>ורוד, גפיים כחולים</td><td>כחול/חיוור</td></tr>
+        <tr><th>דופק</th><td class="hl">מעל 100 לדקה</td><td>מתחת ל-100 לדקה</td><td>אין דופק</td></tr>
+        <tr><th>העוויות</th><td>בכי/שיעול</td><td>העוויות</td><td>אין תגובה</td></tr>
+        <tr><th>הנעת גפיים</th><td>תנועות נמרצות</td><td>תנועות קלות</td><td>גפיים רפויות</td></tr>
+        <tr><th>נשימה</th><td>בכי חזק</td><td>נשימה חלשה/איטית</td><td>אין נשימה</td></tr>
+      </tbody></table></div>
+
+    <div class="tbl-wrap"><table class="data"><caption>פירוש הציון לפי הפרוטוקול (עמ' 76)</caption>
+      <thead><tr><th>ציון</th><th>משמעות</th></tr></thead>
+      <tbody>
+        <tr><th>מעל 7</th><td>תקין</td></tr>
+        <tr><th>4–6</th><td>נמוך. מעיד כי ייתכן צורך בהתערבות רפואית</td></tr>
+        <tr><th>מתחת ל-4</th><td class="hl">משמעותי: צורך בהתערבות רפואית דחופה, שעשויה לכלול פעולות החייאתיות</td></tr>
+      </tbody></table></div>
+
+    <p><b>תרגול:</b> יילוד ורוד עם גפיים כחולות (1), דופק 120 (2), מעווה פנים (1), תנועות קלות (1), בוכה חזק (2). סה"כ <span class="num">7</span>. יילוד כחול (0), דופק 80 (1), בלי תגובה (0), רפוי (0), נשימה איטית (1). סה"כ <span class="num">2</span>, כלומר צריך התערבות דחופה. כשאתם מעריכים, שאלו את עצמכם גם: האם בוצע ניקוי מעברי אוויר? האם היו ניסיונות גירוי? האם הוולד יבש? (עמ' 52).</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בעמ' 51 בשקף "7–10" מוגדר יילוד פעיל ונמרץ, "4–6" במצוקה בינונית ש"זקוק לחמצן ולגירוי/המרצה", ו"מתחת ל-4" במצוקה קשה שזקוק לטיפול החייאתי מיידי. בפרוטוקול (עמ' 76) תקין הוא "מעל 7", ולציון 4–6 אין קישור לחמצן. החמצן ניתן לפי ערכי הסטורציה, ראו בהחייאת יילוד. הטבלה עצמה (עמ' 50) תואמת לפרוטוקול. במצגת "היריון ולידה" יש טבלת אפגר עם ניקוד שונה.</p>
+    </div>
+
+    <p>השקפים שואלים גם "לשקול? לעטוף?" (עמ' 53). בשטח העדיפות היא חום, נשימה והערכה חוזרת, לא שקילה.</p>
+
+    <h3>השלב השלישי: השליה והטיפול באם</h3>
+    <p>השליה יוצאת בדרך כלל <mark>תוך 20–30 דקות</mark> מהלידה (עמ' 55, 57). הצירים ממשיכים אחרי לידת התינוק כי הרחם צריך להתכווץ. ההתכווצות מנתקת את השליה, ובעיקר סוגרת את כלי הדם הגדולים במקום שבו הייתה מחוברת. רחם שלא מתכווץ מדמם.</p>
+
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>אין לעכב פינוי בהמתנה ליציאת השליה</b>, ואין לזרז את יציאתה. כשהיא יוצאת שמים אותה בשקית או בכלי מתאים ומביאים לבית החולים, לבדיקת שלמותה (עמ' 57; פרוטוקול עמ' 57, 59).</p>
+    </div>
+
+    <div class="callout field"><span class="tag">בשטח: הטיפול באם (עמ' 55–57)</span>
+      <ul>
+        <li><span class="en">ABC</span>, וניטור סימנים חיוניים ומצב כללי.</li>
+        <li><b>אין למשוך את חבל הטבור.</b></li>
+        <li>עודד הנקה, וגם אחרי יציאת השליה. ההנקה עוזרת לרחם להתכווץ ולקשר בין האם לתינוק <span class="en">(Bonding)</span>.</li>
+        <li>שקול עיסוי חיצוני של הרחם לעידוד ההתכווצות.</li>
+        <li>שקול מתן נוזלים, <b>בלי לעכב פינוי</b>.</li>
+        <li>בקש מהיולדת לעדכן אותך אם הדימום מתגבר, והיה ערני להתפתחות הלם.</li>
+        <li>אם שלפוחית השתן מלאה, תן לאישה לתת שתן (פרוטוקול עמ' 61). שלפוחית מלאה מפריעה לרחם להתכווץ.</li>
+      </ul>
+    </div>
+
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p><span class="alarm-t">אחרי לידה מהירה יש סיכון מוגבר לדימום משמעותי.</span> פנו בדחיפות לבית החולים (עמ' 56). בדימום אחרי לידה אין להמתין ליציאת השליה כדי להתחיל בפינוי (פרוטוקול עמ' 61).</p>
+    </div>
+    <p>בבית החולים אפשר לתת לאם <span class="hosp-i">זריקת פיטוצין</span>, שעוזרת לרחם להתכווץ ביעילות (עמ' 56).</p>
+
+    <h3>סיבוכי לידה</h3>
+    <p>הסיבוכים העיקריים שבמצגת (עמ' 59): מצגים חריגים, צניחת חבל טבור, קרע רחם, חבל טבור כרוך סביב הצוואר (ראו למעלה) ופרע כתפיים. שני מושגים שצריך להבחין ביניהם (עמ' 61):</p>
+    <dl class="kv">
+      <dt>מצג</dt><dd>החלק המתקדם (הנמוך ביותר) של העובר בתעלת הלידה: ראש, עכוז, רגל, פנים.</dd>
+      <dt>מנח</dt><dd>מיקום הציר האורכי של העובר ביחס לציר האורכי של האם. המנח התקין הוא אורכי. במנח רוחבי העובר שוכב לרוחב הרחם.</dd>
+    </dl>
+
+    <div class="tbl-wrap"><table class="data"><caption>מצגים שלא ניתן ליילד בשטח (עמ' 61)</caption>
+      <thead><tr><th>מצג / מנח</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><th>מצג עכוז *</th><td>העכוז נכנס ראשון לתעלת הלידה</td></tr>
+        <tr><th>מצג גפה</th><td>יד או רגל יוצאת ראשונה. אין ליילד בשטח</td></tr>
+        <tr><th>מנח רוחבי</th><td>אין ליילד בשטח</td></tr>
+        <tr><th>מצג פנים *</th><td></td></tr>
+      </tbody></table></div>
+    <p>* במקרים מסוימים אפשר ליילד מצג זה, אבל צריך צוות מיומן, ציוד מתקדם וחדר ניתוח בכוננות למקרה של סיבוכים (עמ' 61).</p>
+
+    <div class="callout field"><span class="tag">בשטח: חשד למצג חריג (עמ' 64)</span>
+      <ol class="steps">
+        <li><div>הרגע את האם.</div></li>
+        <li><div>ספק חמצן בריכוז גבוה.</div></li>
+        <li><div>פנה בדחיפות לבית החולים הקרוב, תוך דיווח ותיאום עם חדר הלידה.</div></li>
+      </ol>
+    </div>
+
+    <h4>מצג עכוז</h4>
+    <p>למה מצג עכוז מסוכן? <b>הראש הוא החלק הגדול ביותר</b> שצריך לעבור בתעלת הלידה. כשהחלק האחורי יוצא ראשון, הראש יוצא אחרון, ובזמן הזה חבל הטבור עלול להילחץ. כך נפסקת זרימת החמצן לעובר עוד לפני שהוא יכול לנשום, והתוצאה היא אספיקציה. בנוסף, מצג עכוז עלול להפוך למצג גפה, שלא ניתן ליילד בשטח (עמ' 63). אם הלידה בכל זאת פעילה ואין ברירה, הפרוטוקול מגדיר מה עושים:</p>
+    <div class="callout field"><span class="tag">בשטח: מצג עכוז בלידה פעילה (פרוטוקול עמ' 60–61)</span>
+      <ol class="steps">
+        <li><div>השכב את היולדת על גבה, כשהברכיים מכופפות ומשוכות כלפי הגוף.</div></li>
+        <li><div><b>אין לגעת ביילוד עד לאחר יציאת הכתפיים.</b> מגע ביילוד עלול לעורר רפלקס.</div></li>
+        <li><div>תמוך בגוף היילוד רק לאחר יציאת הכתפיים, ונסה להאט את יציאתו.</div></li>
+        <li><div>הכנס יד בין תעלת הלידה לפני היילוד, כדי לפתוח לו נתיב אוויר.</div></li>
+        <li><div>הנחה את היולדת להימנע מלחיצות בזמן הצירים, ועדכן את בית החולים.</div></li>
+      </ol>
+    </div>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בפרוטוקול, תרשים לידת עכוז מתאר שכיבה על הגב עם ברכיים כפופות (עמ' 60), וההערות מתארות "חצי שכיבה/ישיבה" (עמ' 61). ההסבר שמגע ביילוד יגרום לרפלקס "שיוביל לפרע כתפיים", והמשפט "ברגע שהכתפיים מגיעות המגע ממשיכת היילוד" (עמ' 61), משובשים ולא ברורים. הכלל שאפשר ללמוד מהם: לא נוגעים עד שהכתפיים בחוץ.</p>
+    </div>
+
+    <h4>צניחת חבל טבור <span class="en">(Cord prolapse)</span></h4>
+    <p>קטע מחבל הטבור יורד לנרתיק לפני העובר. העובר לוחץ עליו מול דופן תעלת הלידה, כלי הדם שבחבל נלחצים, וזרימת הדם לעובר נפסקת. <span class="alarm-t">ללא התערבות מיידית העובר עלול למות</span> (עמ' 65).</p>
+    <p><b>גורמי סיכון</b> (עמ' 65): מצגים חריגים, לידות מוקדמות, היריון מרובה עוברים, וירידת מים כשראש התינוק עדיין גבוה ולא התמקם בתוך האגן. בכל המקרים האלה יש מרווח שדרכו החבל יכול לגלוש לפני העובר.</p>
+
+    <div class="callout field"><span class="tag">בשטח: צניחת חבל טבור (עמ' 66; פרוטוקול עמ' 60–61)</span>
+      <ol class="steps">
+        <li><div><b>תנוחה:</b> הנח את היולדת בתנוחת ברכיים-חזה ("עמידה על שש"), כשאגן היולדת גבוה מראשה. הכובד מרחיק את העובר מהחבל. הפינוי מתבצע ככל האפשר כשהאישה נשענת על מרפקיה ועל ברכיה, כדי להפחית את הלחץ מחבל הטבור.</div></li>
+        <li><div>ודא שיש דופק בחבל הטבור. הרטב אותו בסליין ועטוף בגזה סטרילית רטובה.</div></li>
+        <li><div><b>באמצעות 2 אצבעות צור מרווח</b> בין חבל הטבור השמוט לדופן תעלת הלידה.</div></li>
+        <li><div>הנחה את האם להימנע מלחיצות.</div></li>
+        <li><div>תן חמצן בריכוז גבוה, ופנה בדחיפות לבית החולים תוך דיווח.</div></li>
+        <li><div>אם הלידה פעילה, ודא שהחבל אינו כרוך סביב צוואר היילוד (עמ' 60).</div></li>
+      </ol>
+    </div>
+
+    <h4>מצג גפה ופרע כתפיים</h4>
+    <ul>
+      <li><b>מצג גפה</b> (פרוטוקול עמ' 61): תנוחת טרנדלנבורג, ברכיים-חזה, עמידה על שש כשהאגן גבוה מהראש. ודא שיש דופק בגפה. הנחה את האם להימנע מלדחוף במהלך הצירים ולהתנשם במקום, ועדכן את בית החולים.</li>
+      <li><b>פרע כתפיים</b> (פרוטוקול עמ' 61): הכתפיים "נכלאות" אחרי יציאת הראש. <span class="alarm-t">אין למשוך את ראש היילוד</span> כדי לשחרר את הכתף הכלואה.</li>
+      <li><b>לידה מקוניאלית</b> (פרוטוקול עמ' 61): בצע שאיבה בסקשן לפה ולאף, לא באופן שגרתי ורק במידת הצורך, לפני יציאת הכתפיים, כדי למנוע אספירציה אחרי הלידה. <b>השתמש בלחץ שאיבה מינימלי.</b></li>
+    </ul>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>בפרוטוקול (עמ' 60–61) התנוחה בצניחת חבל טבור ובמצג גפה נקראת "טרנדלנבורג", אבל מתוארת ומצוירת כתנוחת ברכיים-חזה ("עמידה על שש", האגן גבוה מהראש). טרנדלנבורג במובן המקובל היא שכיבה על הגב עם הרגליים גבוה. השקף (עמ' 66) מתאר הישענות על מרפקים וברכיים. בשטח פועלים לפי התיאור והציור: אגן גבוה מהראש, על הברכיים.</p>
+    </div>
+
+    <h4>קרע של הרחם <span class="en">(Uterine rupture)</span></h4>
+    <p>קרע של שריר הרחם, בדרך כלל בשלב ההתחלתי של הלידה (עמ' 67). <b>גורמים:</b> צירים חזקים במיוחד, צלקות ניתוחיות (למשל אחרי ניתוח קיסרי), לידה ארוכה או לידה שאינה מתקדמת מסיבה פיזיולוגית, וטראומה.</p>
+    <div class="compare">
+      <div><h5>סימנים ותלונות (עמ' 68)</h5><ul>
+        <li>דימום מהיר ומסיבי</li>
+        <li>הלם קשה</li>
+        <li>צירים שהפסיקו אחרי התחלת הכאב</li>
+        <li>כאב פתאומי שהלך והתעצם</li>
+        <li>לעיתים תיאור של תחושת קריעה ממש</li>
+        <li>בטן רגישה וקשה למגע</li>
+        <li>היעדר תנועות עובר</li>
+      </ul></div>
+      <div><h5>גישה וטיפול (עמ' 69)</h5><ul>
+        <li><span class="en">ABC</span></li>
+        <li>חמצן בריכוז גבוה</li>
+        <li>טיפול במצב ההלם</li>
+        <li><b>פינוי בדחיפות</b></li>
+        <li>עירוי בדרך, במידה ואינו מעכב פינוי</li>
+        <li>דיווח על ההגעה</li>
+      </ul></div>
+    </div>
+    <div class="callout redflag"><span class="tag">דגל אדום</span>
+      <p>צירים שנפסקו פתאום, יחד עם כאב קורע, בטן קשה והלם, הם קרע רחם עד שיוכח אחרת. <span class="alarm-t">הגעה מהירה לחדר הניתוח היא הסיכוי היחיד להצלת חיי האם והעובר</span> (עמ' 69).</p>
+    </div>
+
+    <h4>דימום: הפרדות שליה ושליית פתח</h4>
+    <p>השקף על דימום חמור (<span class="en">PPH</span>, עמ' 70) מציג שני מצבים: <b>הפרדות שליה</b>, שבה השליה מתנתקת מדופן הרחם לפני הזמן, ו<b>שליית פתח</b>, שבה השליה ממוקמת מעל פתח צוואר הרחם. שניהם מפורטים בפרק "היריון ורעלת היריון". הגישה הבסיסית זהה לכל דימום מיילדותי: <span class="en">ABC</span>, חמצן, גישה ורידית ונוזלים בלי לעכב פינוי, ופינוי דחוף.</p>
+
+    <h3>מצבי חירום בהיריון: תזכורת קצרה</h3>
+    <p>המצגת חוזרת בקצרה על מצבים שמפורטים בפרק "היריון ורעלת היריון". הנה רק מה שחשוב ליד לידה:</p>
+    <div class="tbl-wrap"><table class="data"><caption>מצבי חירום בהיריון (עמ' 72–81)</caption>
+      <thead><tr><th>מצב</th><th>עיקר</th><th>בשטח</th></tr></thead>
+      <tbody>
+        <tr><th>סוכרת הריונית</th><td>סוכרת קיימת שהחמירה או סוכרת שהתפתחה רק בהיריון, וחוזרת לתקינה אחרי הלידה. העובר נוטה להיות גדול, מה שעלול להקשות על הלידה. לתינוק לפעמים קשה לשמור על חום גוף</td><td>צפו ללידה קשה ולצורך מוגבר בחימום היילוד</td></tr>
+        <tr><th>יתר לחץ דם</th><td>בהיריון לחץ הדם בדרך כלל מעט נמוך מהרגיל. לחץ דם גבוה עלול להיות תסמין של רעלת היריון ומסכן את השליה והעובר. בהיריון לא ניתן לתת את התרופות המקובלות להורדת לחץ דם</td><td>חשדו ברעלת היריון</td></tr>
+        <tr><th>הפלה</th><td>כאבי בטן, התכווצויות, דימום, פליטת רקמות או עובר. באיבוד דם ניכר יופיעו סימני הלם היפוולמי</td><td>התייחסו לכל אישה מדממת כמי שבסיכון להלם היפוולמי: חמצן, שקלו וריד ונוזלים בלי עיכוב, ופנו בדחיפות</td></tr>
+        <tr><th>רעלת היריון</th><td>לפי עמ' 78, בכ-5% מההיריונות. קלה: לחץ דם מעל 140/90, עלייה במשקל, בצקות, חלבון בשתן, כאבי בטן, הפרעות ראייה (מאוחר). קשה <span class="en">(Eclampsia)</span>: אורות מרצדים ופרכוסים מלאים, סיכון לדימום תוך-מוחי ולכשל כלייתי</td><td><span class="en">ABC</span>, חמצן בריכוז גבוה, צוות ALS, לחץ דם בשכיבה על צד שמאל ולא בזמן ציר, מניעת אורות חזקים, הרגעה, <mark>פינוי דחוף בלי אורות וסירנה</mark>, ודיווח</td></tr>
+      </tbody></table></div>
+    <p><b>בהפלה</b> (עמ' 75–77): אספו רקמות, קרישי דם וכל תוכן שנפלט מהרחם, והעבירו לצוות בבית החולים. אם יצא עובר מת שעדיין מחובר לשליה, הניחו שני תופסנים מערכת הלידה על חבל הטבור וחתכו ביניהם. עטפו את העובר בסדין והעבירו אותו עם האם. התייחסו לאם ולמשפחה ברגישות מיוחדת, והימנעו ממילה "הפלה" בנוכחות האישה שלא לצורך, במיוחד כשמדובר רק בחשד. <b>דימום אינו מעיד בהכרח על הפלה.</b></p>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>רעלת היריון: בעמ' 78 כתוב שהיא מתפתחת בשליש השלישי, ובעמ' 80 שהיא מופיעה משבוע 20 (שכיחה יותר משבוע 32) ועד <b>שישה שבועות</b> אחרי הלידה. בפרוטוקול אקלמפסיה (UH עמ' 62) היא עלולה להופיע משבוע 20 ועד <b>חודשיים</b> אחרי הלידה. בשטח הולכים לפי הפרוטוקול. במצגת "היריון ולידה" (עמ' 37) סף לחץ הדם הוא 130/80, וכאן (עמ' 78) 140/90.</p>
+    </div>
+
+    <h3>הפג והאינקובטור</h3>
+    <p>האינקובטור הוא "רחם מלאכותי". הוא יוצר תנאים מתאימים יותר לוולד שמתקשה להתמודד עם התנאים החיצוניים (עמ' 82). כל אחד מהתפקידים שלו מראה מה חסר לפג, ומה צריך לשמור עליו בדרך לבית החולים (עמ' 83):</p>
+    <div class="tbl-wrap"><table class="data"><caption>למה אינקובטור (עמ' 83)</caption>
+      <thead><tr><th>מטרה</th><th>הסיבה</th><th>מה זה אומר באמבולנס</th></tr></thead>
+      <tbody>
+        <tr><th>הקלה על הנשימה</th><td>הריאות עדיין לא מפותחות לגמרי, ולכן צריך סיוע בחמצן</td><td>צפו לצורך בתמיכה נשימתית</td></tr>
+        <tr><th>שמירה על חום הגוף</th><td>העור עוד לא עבה מספיק</td><td>חימום אגרסיבי, כיסוי הראש</td></tr>
+        <tr><th>הקלה על עיניים ואוזניים</th><td>עדיין לא מפותחות לגמרי, וצריך לכסות כדי למנוע נזק</td><td>מקום חמים ונעים</td></tr>
+        <tr><th>מניעת זיהום</th><td>המערכת החיסונית עוד לא מפותחת לגמרי, ולכן מסננים את האוויר</td><td>הקפדה על סטריליות</td></tr>
+        <tr><th>מניעת צהבת</th><td>תאורה מיוחדת</td><td class="hosp-c">בבית החולים</td></tr>
+      </tbody></table></div>
+
+    <h3>החייאת יילוד</h3>
+    <p><b>וולד</b> הוא תינוק בחודש הראשון לחייו (עמ' 87). רוב היילודים נושמים לבד. מיעוטם צריך עזרה, ואפשר לזהות מראש מי בסיכון. לכן חשוב לשאול את השאלות הנכונות לפני הלידה.</p>
+
+    <div class="tbl-wrap"><table class="data"><caption>גורמי סיכון לצורך בהחייאת יילוד (עמ' 88–89)</caption>
+      <thead><tr><th>מצד האם וההיריון</th><th>מצד הלידה</th></tr></thead>
+      <tbody>
+        <tr><td>משקל לידה נמוך</td><td>לידה מוקדמת (לפני שבוע 37)</td></tr>
+        <tr><td>לידות מרובות</td><td>מים מקוניאליים</td></tr>
+        <tr><td>היעדר מעקב וטיפול במהלך ההיריון</td><td>ירידת מים מעל 24 שעות לפני הלידה</td></tr>
+        <tr><td>גיל האם: צעירה מאוד (מתחת ל-16) או מבוגרת (מעל 35)</td><td>שימוש בנרקוטיקה בתוך 4 שעות מהלידה</td></tr>
+        <tr><td>היסטוריה של סיבוכים או מוות עוברי</td><td>מצגים חריגים</td></tr>
+        <tr><td>היריון עודף</td><td>לידות ארוכות מאוד</td></tr>
+        <tr><td>נטילת סמים, תרופות מסוימות</td><td>סיבוכים במהלך הלידה (דימום, צניחת חבל טבור וכו')</td></tr>
+        <tr><td>רעלת היריון, יתר לחץ דם, סוכרת</td><td></td></tr>
+      </tbody></table></div>
+
+    <h4>"הפירמידה ההפוכה": סדר הפעולות</h4>
+    <p>שלבי ההחייאה מתבצעים לפי הסדר הבא, ורק לפי הצורך (עמ' 90–91). כל שלב רחב יותר מזה שמתחתיו, כי כל היילודים צריכים את השלב הראשון ורק מעטים מגיעים לתחתית.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 320" role="img" aria-label="הפירמידה ההפוכה של החייאת יילוד: ייבוש וחימום, הנשמה במפוח, עיסויי חזה, צוות ALS">
+          <polygon points="80,20 560,20 500,90 140,90" class="f-zone-soft"/>
+          <polygon points="140,90 500,90 440,160 200,160" class="f-field-soft"/>
+          <polygon points="200,160 440,160 380,230 260,230" class="f-alarm-soft"/>
+          <polygon points="260,230 380,230 320,300" class="f-hosp-soft"/>
+          <text x="320" y="52" direction="rtl" text-anchor="middle" class="t-b">ייבוש וחימום · נתיב אוויר</text>
+          <text x="320" y="74" direction="rtl" text-anchor="middle" class="t-sm">גירוי תחושתי · תנוחה</text>
+          <text x="320" y="130" direction="rtl" text-anchor="middle" class="t-b">הנשמה במפוח (אמבו)</text>
+          <text x="320" y="200" direction="rtl" text-anchor="middle" class="t-b">עיסויי חזה</text>
+          <text x="320" y="258" direction="ltr" text-anchor="middle" class="t-b t-hosp">ALS</text>
+          <text x="620" y="262" direction="rtl" text-anchor="start" class="t-sm t-hosp">צוות ALS: אינטובציה, תרופות</text>
+          <text x="215" y="200" direction="rtl" text-anchor="start" class="t-sm">3 עיסויים : 1 הנשמה</text>
+          <text x="610" y="130" direction="rtl" text-anchor="start" class="t-sm">דופק מתחת ל-100</text>
+          <text x="610" y="200" direction="rtl" text-anchor="start" class="t-sm">דופק מתחת ל-60</text>
+        </svg>
+      </div>
+      <figcaption><b>הפירמידה ההפוכה (עמ' 91–92).</b> מלמעלה למטה: ייבוש, חימום, פתיחת נתיב אוויר, גירוי ותנוחה. אחר כך הנשמה כשהדופק מתחת ל-100, עיסויים כשהדופק מתחת ל-60, ובהגעת צוות ALS אינטובציה ותרופות. יחס עיסויים להנשמות 3:1.</figcaption>
+    </figure>
+
+    <dl class="kv">
+      <dt>שלבים ראשונים</dt><dd>ייצוב היילוד: ייבש וחמם, ודא נתיב אוויר (שאיבת הפרשות ומיקום בתנוחה שמאפשרת ניקוז נוזלים, בעת הצורך), ובצע <b>גירוי תחושתי</b>, כלומר שפשוף עדין של כף הרגל, שעשוי להמריץ יילוד לנשום (עמ' 90). אפשר גם לשפשף את הגב (עמ' 58).</dd>
+      <dt>הנשמות</dt><dd>כשהדופק <mark>מתחת ל-100</mark>, או כשיש דום נשימה (עמ' 92; פרוטוקול עמ' 75).</dd>
+      <dt>עיסויים</dt><dd>כשהדופק <mark>מתחת ל-60</mark> או נעדר: עיסויים והנשמות, החייאה מלאה (עמ' 92; פרוטוקול עמ' 77).</dd>
+      <dt>טיפול תרופתי</dt><dd>בהגעת צוות ALS (עמ' 90).</dd>
+    </dl>
+
+    <div class="callout must"><span class="tag">חובה לזכור</span>
+      <p><b>"דקת הזהב":</b> 60 שניות שבהן על המטפל לסיים את הצעדים ההתחלתיים, לבצע הערכה מחדש ולהנשים במידת הצורך (פרוטוקול עמ' 76). <b>נשימה לא תקינה</b> (אגונלית, בראדיפנאה) שווה ערך לדום נשימה (עמ' 77). <b>התגובה הרגישה והטובה ביותר להצלחת ההנשמה היא האצת קצב הלב</b> (עמ' 77).</p>
+    </div>
+
+    <h4>האלגוריתם של הפרוטוקול</h4>
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 600 640" role="img" aria-label="אלגוריתם החייאת יילוד: טונוס ונשימה, ייבוש וגירוי, הנשמה כשהדופק מתחת ל-100, עיסויים 3 ל-1 כשהדופק מתחת ל-60, ואז גישה ואדרנלין">
+          <defs><marker id="ch31-a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="f-field"/></marker></defs>
+          <rect x="130" y="10" width="260" height="40" rx="20" class="f-hl"/>
+          <text x="260" y="35" direction="rtl" text-anchor="middle" class="t-b">טונוס תקין? נושם/בוכה?</text>
+          <line x1="390" y1="30" x2="408" y2="30" class="s-field"/>
+          <text x="406" y="22" direction="rtl" text-anchor="start" class="t-sm">כן</text>
+          <rect x="410" y="10" width="180" height="40" rx="8" class="f-field-soft"/>
+          <text x="500" y="35" direction="rtl" text-anchor="middle" class="t-sm">ייבוש, כיסוי, על האם</text>
+          <line x1="260" y1="50" x2="260" y2="68" class="s-field" marker-end="url(#ch31-a4)"/>
+          <text x="272" y="64" direction="rtl" text-anchor="end" class="t-sm">לא</text>
+          <rect x="80" y="70" width="360" height="44" rx="8" class="f-field-soft"/>
+          <text x="260" y="97" direction="rtl" text-anchor="middle">ייבש וחמם · גרה · פתח נתיב אוויר</text>
+          <line x1="260" y1="114" x2="260" y2="132" class="s-field" marker-end="url(#ch31-a4)"/>
+          <rect x="130" y="134" width="260" height="40" rx="20" class="f-hl"/>
+          <text x="260" y="159" direction="rtl" text-anchor="middle" class="t-b">דום נשימה או דופק מתחת ל-100?</text>
+          <text x="590" y="159" direction="rtl" text-anchor="start" class="t-sm">לא: ניטור, חמצן לפי צורך</text>
+          <line x1="260" y1="174" x2="260" y2="192" class="s-field" marker-end="url(#ch31-a4)"/>
+          <rect x="80" y="194" width="360" height="44" rx="8" class="f-field-soft"/>
+          <text x="260" y="221" direction="rtl" text-anchor="middle">הנשמה בלחץ חיובי באוויר חדר</text>
+          <line x1="260" y1="238" x2="260" y2="256" class="s-field" marker-end="url(#ch31-a4)"/>
+          <rect x="130" y="258" width="260" height="40" rx="20" class="f-hl"/>
+          <text x="260" y="283" direction="rtl" text-anchor="middle" class="t-b">דופק מתחת ל-100?</text>
+          <text x="590" y="283" direction="rtl" text-anchor="start" class="t-sm">לא: פינוי בניטור</text>
+          <line x1="260" y1="298" x2="260" y2="316" class="s-field" marker-end="url(#ch31-a4)"/>
+          <rect x="80" y="318" width="360" height="56" rx="8" class="f-field-soft"/>
+          <text x="260" y="340" direction="rtl" text-anchor="middle">בדוק התרוממות חזה</text>
+          <text x="260" y="362" direction="rtl" text-anchor="middle">הנשמה + חמצן 30 שניות</text>
+          <line x1="260" y1="374" x2="260" y2="392" class="s-field" marker-end="url(#ch31-a4)"/>
+          <rect x="130" y="394" width="260" height="40" rx="20" class="f-hl"/>
+          <text x="260" y="419" direction="rtl" text-anchor="middle" class="t-b">דופק מתחת ל-60?</text>
+          <text x="590" y="419" direction="rtl" text-anchor="start" class="t-sm">לא: חזרה לבדיקת 100</text>
+          <line x1="260" y1="434" x2="260" y2="452" class="s-alarm" marker-end="url(#ch31-a4)"/>
+          <rect x="80" y="454" width="360" height="56" rx="8" class="f-alarm-soft"/>
+          <text x="260" y="476" direction="rtl" text-anchor="middle" class="t-b">עיסויים ביחס 3:1</text>
+          <text x="260" y="498" direction="rtl" text-anchor="middle">נתיב מתקדם, חמצן בריכוז גבוה</text>
+          <line x1="260" y1="510" x2="260" y2="528" class="s-alarm" marker-end="url(#ch31-a4)"/>
+          <rect x="130" y="530" width="260" height="40" rx="20" class="f-hl"/>
+          <text x="260" y="555" direction="rtl" text-anchor="middle" class="t-b">עדיין דופק מתחת ל-60?</text>
+          <line x1="260" y1="570" x2="260" y2="584" class="s-alarm" marker-end="url(#ch31-a4)"/>
+          <rect x="60" y="586" width="400" height="48" rx="8" class="f-alarm-soft"/>
+          <text x="260" y="607" direction="rtl" text-anchor="middle" class="t-b">גישה ורידית · אדרנלין כל 3–5 דקות</text>
+          <text x="260" y="626" direction="rtl" text-anchor="middle" class="t-sm">המשך עיסויים והנשמות · חפש גורמים הפיכים</text>
+        </svg>
+      </div>
+      <figcaption><b>החייאת יילוד, מקוצר (UH עמ' 75).</b> יילוד עם טונוס תקין שנושם או בוכה מיובש, מכוסה ומונח על האם. אם הנשימה מאומצת או שהוא ציאנוטי, שוקלים ניקוי הפרשות, מנטרים סטורציה ודופק ונותנים חמצן לפי הצורך. בכל יציאה מהמסלול מפנים בדחיפות לבית החולים, ממשיכים בניטור וטיפול, מודדים מדדים כל 5–10 דקות ומעבירים דיווח למלר"ד. ההערכה מתחדשת כל כמה דקות (נשימות, תזוזה, צבע).</figcaption>
+    </figure>
+
+    <h4>הנשמה</h4>
+    <p>לפי הפרוטוקול מנשימים בלחץ חיובי <b>באוויר חדר</b>, בקצב <mark>40–60 הנשמות לדקה</mark>, ואפשר להשתמש ב-<span class="en">PEEP</span> של 5 ס"מ מים (עמ' 75, 77). מנשימים עד להתרוממות בית החזה (עמ' 93), ונמנעים מהנשמות בנפח גדול מדי (עמ' 77). חמצן ניתן במידה וערכי הסטורציה נמוכים מהנורמה לפרק הזמן שחלף מהלידה. בדקות הראשונות אחרי הלידה הסטורציה יכולה להיות נמוכה, ולכן אפשר שיופיע כחלון. אל תטפלו במספר של מבוגר.</p>
+
+    <figure>
+      <div class="svg-box">
+        <svg viewBox="0 0 640 290" role="img" aria-label="ערכי סטורציה רצויים לאחר לידה: דקה 1 60 עד 65 אחוז, דקה 2 65 עד 70, דקה 3 70 עד 75, דקה 4 75 עד 80, דקה 5 80 עד 85, דקה 10 85 עד 95">
+          <line x1="90" y1="30" x2="600" y2="30" class="ln-dash"/>
+          <line x1="90" y1="70" x2="600" y2="70" class="ln-dash"/>
+          <line x1="90" y1="110" x2="600" y2="110" class="ln-dash"/>
+          <line x1="90" y1="150" x2="600" y2="150" class="ln-dash"/>
+          <line x1="90" y1="190" x2="600" y2="190" class="ln-dash"/>
+          <line x1="90" y1="230" x2="600" y2="230" class="ln"/>
+          <text x="80" y="35" direction="ltr" text-anchor="end" class="t-sm">100%</text>
+          <text x="80" y="75" direction="ltr" text-anchor="end" class="t-sm">90%</text>
+          <text x="80" y="115" direction="ltr" text-anchor="end" class="t-sm">80%</text>
+          <text x="80" y="155" direction="ltr" text-anchor="end" class="t-sm">70%</text>
+          <text x="80" y="195" direction="ltr" text-anchor="end" class="t-sm">60%</text>
+          <text x="80" y="235" direction="ltr" text-anchor="end" class="t-sm">50%</text>
+          <rect x="108" y="170" width="44" height="20" rx="3" class="f-field-soft"/>
+          <rect x="188" y="150" width="44" height="20" rx="3" class="f-field-soft"/>
+          <rect x="268" y="130" width="44" height="20" rx="3" class="f-field-soft"/>
+          <rect x="348" y="110" width="44" height="20" rx="3" class="f-field-soft"/>
+          <rect x="428" y="90" width="44" height="20" rx="3" class="f-field-soft"/>
+          <rect x="538" y="50" width="44" height="40" rx="3" class="f-field-soft"/>
+          <text x="130" y="163" direction="ltr" text-anchor="middle" class="t-sm">60–65</text>
+          <text x="210" y="143" direction="ltr" text-anchor="middle" class="t-sm">65–70</text>
+          <text x="290" y="123" direction="ltr" text-anchor="middle" class="t-sm">70–75</text>
+          <text x="370" y="103" direction="ltr" text-anchor="middle" class="t-sm">75–80</text>
+          <text x="450" y="83" direction="ltr" text-anchor="middle" class="t-sm">80–85</text>
+          <text x="560" y="43" direction="ltr" text-anchor="middle" class="t-sm">85–95</text>
+          <text x="130" y="252" direction="ltr" text-anchor="middle">1</text>
+          <text x="210" y="252" direction="ltr" text-anchor="middle">2</text>
+          <text x="290" y="252" direction="ltr" text-anchor="middle">3</text>
+          <text x="370" y="252" direction="ltr" text-anchor="middle">4</text>
+          <text x="450" y="252" direction="ltr" text-anchor="middle">5</text>
+          <text x="560" y="252" direction="ltr" text-anchor="middle">10</text>
+          <text x="505" y="252" direction="ltr" text-anchor="middle" class="t-sm">…</text>
+          <text x="345" y="278" direction="rtl" text-anchor="middle" class="t-sm">דקות מהלידה</text>
+        </svg>
+      </div>
+      <figcaption><b>ערכי סטורציה רצויים אחרי לידה (UH עמ' 77), בקנה מידה בציר האנכי.</b> הסטורציה עולה בהדרגה מ-60–65% בדקה הראשונה ל-85–95% בדקה העשירית. בציר הזמן יש קפיצה מדקה 5 לדקה 10. מוסיפים חמצן רק כשהערך נמוך מהטווח לאותה דקה.</figcaption>
+    </figure>
+
+    <h4>עיסויים</h4>
+    <div class="tbl-wrap"><table class="data"><caption>עיסויי חזה ביילוד (פרוטוקול עמ' 77; עמ' 94)</caption>
+      <thead><tr><th>פרמטר</th><th>ערך</th></tr></thead>
+      <tbody>
+        <tr><th>מתי</th><td class="hl">דופק נמוך מ-60 או היעדר דופק</td></tr>
+        <tr><th>מיקום</th><td>השליש התחתון של בית החזה</td></tr>
+        <tr><th>טכניקה</th><td>2 אגודלים, והידיים תומכות בגב</td></tr>
+        <tr><th>עומק</th><td>שליש מקוטר בית החזה</td></tr>
+        <tr><th>יחס</th><td class="hl">3 עיסויים : 1 הנשמה (90 עיסויים ו-30 הנשמות בדקה)</td></tr>
+        <tr><th>דגשים</th><td>לאפשר חזרה מלאה של בית החזה, ולהימנע מהנשמות בנפח גדול מדי</td></tr>
+      </tbody></table></div>
+    <p>חשבון קטן: 90 עיסויים ו-30 הנשמות הם 120 פעולות בדקה, כלומר מחזור של 3 עיסויים והנשמה כל 2 שניות.</p>
+
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <ul>
+        <li><b>הנשמה:</b> בשקף (עמ' 93) "פה – פה + אף", "חמצן!" ו"הנשמה אחת כל 3 שניות", כלומר 20 בדקה. בפרוטוקול (עמ' 75, 77) מנשימים במפוח באוויר חדר, 40–60 הנשמות בדקה, וחמצן לפי טבלת הסטורציה. גם עמ' 91 במצגת עצמה מראה אמבו. בשטח: לפי הפרוטוקול.</li>
+        <li><b>קצב עיסויים:</b> בשקף (עמ' 94) "פעמיים בשנייה", כלומר כ-120 בדקה. בפרוטוקול 90 עיסויים ו-30 הנשמות בדקה ביחס 3:1. היחס 3:1 זהה בשני המקורות.</li>
+      </ul>
+    </div>
+
+    <h4>גישה ותרופות (צוות ALS)</h4>
+    <p><b>גישה:</b> הגישה המועדפת היא <mark>וריד הטבור</mark>. מחטאים היטב את חבל הטבור ומבצעים גישה כמו גישה ורידית רגילה. כשגישה טבורית לא אפשרית או לא מצליחה, אפשר לשקול גישה תוך-גרמית (פרוטוקול עמ' 75–76).</p>
+
+    <div class="doses">
+      <article class="dose"><header><h5>אדרנלין IV/IO</h5><span class="ind">דופק מתחת ל-60 למרות הנשמה ועיסויים</span></header>
+        <div class="big">0.01–0.03 <small>מ"ג/ק"ג</small></div>
+        <dl><dt>צורה</dt><dd>1 מ"ג ב-1 מ"ל באמפולה</dd>
+          <dt>הכנה</dt><dd>1 מ"ל בשקית 100 מ"ל סליין 0.9%, כלומר 0.01 מ"ג למ"ל</dd>
+          <dt>מתן</dt><dd>שואבים את המינון במזרק 10 מ"ל ומזריקים כל 3–5 דקות. שוטפים ב-10 מ"ל סליין 0.9%</dd></dl>
+        <div class="calc">יילוד 3 ק"ג ‏←‏ 0.03–0.09 מ"ג ‏←‏ 3–9 מ"ל מהתמיסה המהולה</div></article>
+      <article class="dose"><header><h5>אדרנלין לטובוס (ET)</h5><span class="ind">כשאין גישה, דרך טובוס</span></header>
+        <div class="big">0.05–0.1 <small>מ"ג/ק"ג</small></div>
+        <dl><dt>הכנה</dt><dd>שואבים את המינון הרצוי (0.1 מ"ג/ק"ג) ומוהלים במזרק 5 מ"ל</dd>
+          <dt>מתן</dt><dd>מזריקים לטובוס דרך קטטר סקשן, ואחר כך מנשימים מספר הנשמות ברצף</dd></dl>
+        <div class="calc">יילוד 3 ק"ג ‏←‏ 0.15–0.3 מ"ג</div></article>
+      <article class="dose"><header><h5>סליין 0.9%</h5><span class="ind">היפוולמיה</span></header>
+        <div class="big">10 <small>מ"ל/ק"ג</small></div>
+        <dl><dt>מתי</dt><dd>בהיעדר תגובה, כשמחפשים גורמים הפיכים</dd></dl>
+        <div class="calc">יילוד 3 ק"ג ‏←‏ 30 מ"ל</div></article>
+      <article class="dose"><header><h5>גלוקוז 10%</h5><span class="ind">היפוגליקמיה סימפטומטית</span></header>
+        <div class="big">0.5–1 <small>גרם/ק"ג</small></div>
+        <dl><dt>סף</dt><dd>יילוד סימפטומטי עם סוכר נמוך מ-50 מ"ג%</dd>
+          <dt>בדיקה</dt><dd>רק ביילוד סימפטומטי, בדקירת עקב, בכל שלב</dd></dl>
+        <div class="calc">יילוד 3 ק"ג ‏←‏ 1.5–3 גרם ‏←‏ 15–30 מ"ל של גלוקוז 10%</div></article>
+    </div>
+
+    <p><b>היפוגליקמיה ביילוד</b> (פרוטוקול עמ' 77): יילוד שנולד עם ערכי סוכר נמוכים מהנורמה יכול להיות סימפטומטי, עם שינויים במצב ההכרה, אפניאה, ברדיקרדיה, ציאנוזיס, היפותרמיה או פרכוסים. סימפטומים כאלה יחד עם סוכר נמוך מ-50 מ"ג% מחייבים טיפול.</p>
+    <p><b>שאיבת הפרשות</b> (פרוטוקול עמ' 76): רק במידה ויש הפרשות מרובות או חסימה של נתיב האוויר. <span class="alarm-t">גם כשיש מים מקוניאליים אין לבצע סקשן באופן שגרתי.</span> שאיבה מיותרת מגרה את הלוע ועלולה לגרום לברדיקרדיה.</p>
+
+    <div class="callout field"><span class="tag">בשטח: אחרי ההחייאה ובכל לידה</span>
+      <ul>
+        <li>חמם את האמבולנס ופנה בדחיפות לבית חולים, ככל הניתן לבית חולים עם חדר לידה.</li>
+        <li>המשך ניטור וטיפול, ומדוד מדדים כל 5–10 דקות ליולדת וליילוד.</li>
+        <li>העבר דיווח למלר"ד (פרוטוקול עמ' 57, 75).</li>
+      </ul>
+    </div>
+
+    <div class="recap"><span class="tag">בשורה התחתונה</span>
+      <ol>
+        <li>בלי לידה פעילה (כיתור) מפנים בדחיפות. אין בדיקה וגינלית בשום שלב.</li>
+        <li>לידה רגילה: לוחצים רק בצירים, תמיכה עדינה בראש ובפרינאום, ראש למטה לכתף העליונה ולמעלה לתחתונה. לא מושכים את הראש.</li>
+        <li>חבל טבור לפי הפרוטוקול: חותכים מיד אחרי היציאה, תופסן ראשון כ-5 ס"מ מהיילוד ושני 5–10 ס"מ ממנו. עד אז היילוד בגובה האם.</li>
+        <li>חום הוא הדבר הראשון: ייבוש, כיסוי הראש, עור לעור עם האם ואמבולנס מחומם.</li>
+        <li>APGAR בדקה 1 ובדקה 5: מעל 7 תקין, 4–6 נמוך, מתחת ל-4 התערבות דחופה.</li>
+        <li>לא מחכים לשליה (20–30 דקות) ולא מושכים את החבל. הנקה ועיסוי רחם נגד דימום, ואחרי לידה מהירה זהירות מוגברת.</li>
+        <li>צניחת חבל טבור: ברכיים-חזה עם האגן מעל הראש, 2 אצבעות מרחיקות את העובר מהחבל, חבל לח ומכוסה, חמצן ופינוי דחוף.</li>
+        <li>מצג עכוז: לא נוגעים עד שהכתפיים בחוץ, ואז יד מול הפנים לפתיחת נתיב אוויר. מצג גפה ומנח רוחבי לא מיילדים בשטח.</li>
+        <li>החייאת יילוד: דקת הזהב. מתחת ל-100 מנשימים באוויר חדר 40–60 בדקה. מתחת ל-60 עיסויים 3:1 (90:30). אחר כך אדרנלין 0.01–0.03 מ"ג/ק"ג IV/IO דרך וריד הטבור.</li>
+        <li>הסימן הטוב ביותר להנשמה יעילה הוא עליית הדופק. חמצן ניתן לפי טבלת הסטורציה, מ-60–65% בדקה 1 עד 85–95% בדקה 10.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="end">סיכום קורס פרמדיק · סיכום לימודי לקורס פרמדיק מספר 5. אינו מחליף את הפרוטוקולים הרשמיים.</footer>
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.rail a, .strip a'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.chapter'));
+  if (!('IntersectionObserver' in window) || !secs.length) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>
