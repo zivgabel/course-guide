@@ -132,6 +132,9 @@ mark { background: linear-gradient(transparent 12%, var(--hl) 12%, var(--hl) 88%
 
 .recap { background: var(--card); border: 1px solid var(--rule); border-top: 6px solid var(--zone); border-radius: var(--r); padding: 1.1rem 1.3rem; }
 .recap > .tag { background: var(--ink); color: var(--paper); }
+.exam-link { margin-block: 1.4rem 0; font-family: var(--f-ui); font-weight: 700; }
+.exam-link a { color: var(--ink); text-decoration: none; padding: .45rem 1rem; border-radius: 99px; box-shadow: inset 0 0 0 1.5px var(--ink-3); display: inline-block; }
+.exam-link a:hover { background: var(--ink); color: var(--paper); box-shadow: none; }
 .recap ol, .recap ul { font-family: var(--f-ui); font-size: .98rem; }
 
 /* ---------- check-yourself question at the end of each topic; the answer opens on click ---------- */
@@ -303,7 +306,7 @@ body{margin:0}
 <nav class="rail" aria-label="פרקים"><a href="#ch8" data-zone="red">1<span class="lbl">ניהול נתיב אוויר: בסיסי, מתקדם, אינטובציה ו-LMA</span></a><a href="#ch9" data-zone="blue">2<span class="lbl">אנאפילקסיס וחנק מגוף זר</span></a></nav>
 
 <div class="page">
-<nav class="vols" aria-label="חלקי הסיכום"><a class="home" href="index.html">סיכום הקורס</a><a href="basic.html">מדעי היסוד</a><a class="on" href="airway.html">נתיב אוויר</a><a href="conscious.html">שינויים בהכרה</a><a href="inter.html">פרמקולוגיה ואנמנזה</a><a href="resp.html">נשימה</a><a href="cardio.html">קרדיולוגיה</a><a href="trauma.html">טראומה</a><a href="peds.html">ילדים ותינוקות</a><a href="obgyn.html">גניקולוגיה ומיילדות</a><a href="pop.html">אוכלוסיות שונות</a></nav>
+<nav class="vols" aria-label="חלקי הסיכום"><a class="home" href="index.html">סיכום הקורס</a><a href="basic.html">מדעי היסוד</a><a class="on" href="airway.html">נתיב אוויר</a><a href="conscious.html">שינויים בהכרה</a><a href="inter.html">פרמקולוגיה ואנמנזה</a><a href="resp.html">נשימה</a><a href="cardio.html">קרדיולוגיה</a><a href="trauma.html">טראומה</a><a href="peds.html">ילדים ותינוקות</a><a href="obgyn.html">גניקולוגיה ומיילדות</a><a href="pop.html">אוכלוסיות שונות</a><a class="home" href="exam.html">המבחן המסכם ←</a></nav>
 <header class="hero">
   <div class="hero-in">
     <div class="eyebrow">סיכום קורס פרמדיק · פרק ב׳ · החייאה בסיסית וניהול נתיב אוויר</div>
@@ -1232,6 +1235,7 @@ body{margin:0}
         <li>RSI כשצריך שליטה מיידית. DSI (סדציה בקטמין, חמצון, ואז RSI) כשאי אפשר לחמצן. מודדים לחץ דם אחרי כל מנת תרופה.</li>
         <li>קוניוטומיה רק אחרי 3 ניסיונות, בוז׳י, וידאו-לרינגוסקופ ו-LMA, כשבית החזה לא עולה. מחט מספקת רק חמצון, וקוניוטומיה מספקת חמצון ואיוורור.</li>
       </ol></div>
+    <p class="exam-link"><a href="exam.html#ch8">תרגלו את הפרק במבחן המסכם ←</a></p>
 
   </div>
 </section>
@@ -1615,6 +1619,9 @@ body{margin:0}
       <li>במידת הצורך – קוניוטומיה <span class="en">(Cricothyrotomy)</span>: כשאין אפשרות להכניס לרינגוסקופ, או בלרינגוספאזם.</li>
     </ul>
     <p>בדום לב על רקע אנאפילקסיס (מצגת עמ׳ 14; פרוטוקול עמ׳ 34): מבצעים החייאה ועוברים לפרוטוקול דום לב, נותנים <b>אדרנלין 1 מ"ג IV כל 2 דקות</b>, נוזלים 4–5 ל׳/ש׳ ושוקלים סולומדרול. צפו לאינטובציה קשה: הבצקת לא נעלמת כשהלב נעצר.</p>
+    <div class="callout note-src"><span class="tag">שימו לב למקור</span>
+      <p>הפרוטוקול סותר את עצמו: בעמוד האנאפילקסיס (עמ' 34) כתוב "דום לב – 1 מ"ג כל 2 דקות", ובטבלת ההחייאה במצבים מיוחדים (עמ' 7) כתוב לאנאפילקסיס "אדרנלין 1 מ"ג כל 3–5 דקות". כדאי לברר עם המדריכים איזה מרווח נדרש.</p>
+    </div>
     <p>פירוט טכני של אינטובציה, אינטובציה קשה וקוניוטומיה – בפרק ניהול נתיב האוויר.</p>
 
     <div class="callout check"><span class="tag">בדקו את עצמכם</span>
@@ -1863,6 +1870,7 @@ body{margin:0}
         <li>אובדן הכרה מחנק: 30 עיסויים ללא בדיקת דופק, הבטה לפה, 2 הנשמות; תינוק בהכרה עם חסימה משמעותית – 555.</li>
       </ol>
     </div>
+    <p class="exam-link"><a href="exam.html#ch9">תרגלו את הפרק במבחן המסכם ←</a></p>
 
   </div>
 </section>

@@ -132,6 +132,9 @@ mark { background: linear-gradient(transparent 12%, var(--hl) 12%, var(--hl) 88%
 
 .recap { background: var(--card); border: 1px solid var(--rule); border-top: 6px solid var(--zone); border-radius: var(--r); padding: 1.1rem 1.3rem; }
 .recap > .tag { background: var(--ink); color: var(--paper); }
+.exam-link { margin-block: 1.4rem 0; font-family: var(--f-ui); font-weight: 700; }
+.exam-link a { color: var(--ink); text-decoration: none; padding: .45rem 1rem; border-radius: 99px; box-shadow: inset 0 0 0 1.5px var(--ink-3); display: inline-block; }
+.exam-link a:hover { background: var(--ink); color: var(--paper); box-shadow: none; }
 .recap ol, .recap ul { font-family: var(--f-ui); font-size: .98rem; }
 
 /* ---------- check-yourself question at the end of each topic; the answer opens on click ---------- */
@@ -303,7 +306,7 @@ body{margin:0}
 <nav class="rail" aria-label="פרקים"><a href="#ch24" data-zone="red">1<span class="lbl">קינמטיקה, זירה, סכימת טיפול, סבב שניוני וחילוץ</span></a><a href="#ch25" data-zone="blue">2<span class="lbl">פגיעות חזה, נתיב אוויר בטראומה ונקז חזה</span></a><a href="#ch26" data-zone="green">3<span class="lbl">הכרה, ראש ועמוד שדרה</span></a><a href="#ch27" data-zone="orange">4<span class="lbl">עצמות, בטן, דימומים ופצעים</span></a><a href="#ch28" data-zone="purple">5<span class="lbl">כוויות, טביעה, צלילה, חשמל, אקלים ובעלי חיים</span></a><a href="#ch29" data-zone="yellow">6<span class="lbl">טראומה בקשישים ובנשים הרות</span></a></nav>
 
 <div class="page">
-<nav class="vols" aria-label="חלקי הסיכום"><a class="home" href="index.html">סיכום הקורס</a><a href="basic.html">מדעי היסוד</a><a href="airway.html">נתיב אוויר</a><a href="conscious.html">שינויים בהכרה</a><a href="inter.html">פרמקולוגיה ואנמנזה</a><a href="resp.html">נשימה</a><a href="cardio.html">קרדיולוגיה</a><a class="on" href="trauma.html">טראומה</a><a href="peds.html">ילדים ותינוקות</a><a href="obgyn.html">גניקולוגיה ומיילדות</a><a href="pop.html">אוכלוסיות שונות</a></nav>
+<nav class="vols" aria-label="חלקי הסיכום"><a class="home" href="index.html">סיכום הקורס</a><a href="basic.html">מדעי היסוד</a><a href="airway.html">נתיב אוויר</a><a href="conscious.html">שינויים בהכרה</a><a href="inter.html">פרמקולוגיה ואנמנזה</a><a href="resp.html">נשימה</a><a href="cardio.html">קרדיולוגיה</a><a class="on" href="trauma.html">טראומה</a><a href="peds.html">ילדים ותינוקות</a><a href="obgyn.html">גניקולוגיה ומיילדות</a><a href="pop.html">אוכלוסיות שונות</a><a class="home" href="exam.html">המבחן המסכם ←</a></nav>
 <header class="hero">
   <div class="hero-in">
     <div class="eyebrow">סיכום קורס פרמדיק · פרק ו׳ · טראומה</div>
@@ -1016,6 +1019,7 @@ body{margin:0}
         <li>הקסקפרון 1 גרם (ילד 15 מ"ג/ק"ג) עד 3 שעות; נוזלים בבולוסים של 250 מ"ל עד סיסטולי 90; לעולם לא לדחות פינוי בשביל סבב שניוני או קיבוע מושלם.</li>
       </ol>
     </div>
+    <p class="exam-link"><a href="exam.html#ch24">תרגלו את הפרק במבחן המסכם ←</a></p>
   </div>
 </section>
 
@@ -1842,6 +1846,7 @@ body{margin:0}
         <li>דום לב בחבלה קהה עם אסיסטולה או PEA מתחת ל-40: לא מתחילים החייאה. בחבלה חודרת עם סימני את"פ ופינוי קצר מ-15 דקות: מפנים תוך כדי החייאה.</li>
       </ol>
     </div>
+    <p class="exam-link"><a href="exam.html#ch25">תרגלו את הפרק במבחן המסכם ←</a></p>
   </div>
 </section>
 
@@ -2549,6 +2554,7 @@ body{margin:0}
         <li>הליכה או עמידה לא שוללות פגיעה בעמוד השדרה; לא מורידים מלוח גב שהונח ע"י BLS.</li>
       </ol>
     </div>
+    <p class="exam-link"><a href="exam.html#ch26">תרגלו את הפרק במבחן המסכם ←</a></p>
   </div>
 </section>
 
@@ -3328,7 +3334,7 @@ body{margin:0}
         <polygon class="f-hl" points="290,412 360,450 290,488 220,450"/>
         <text class="t-b" x="290" y="455" text-anchor="middle" direction="rtl">חילוץ ארוך?</text>
         <rect class="f-alarm-soft" x="10" y="425" width="120" height="50" rx="8"/>
-        <text x="70" y="446" text-anchor="middle" direction="rtl">האץ נוזלים</text>
+        <text x="70" y="446" text-anchor="middle" direction="rtl">האט נוזלים</text>
         <text class="t-sm" x="70" y="466" text-anchor="middle" direction="rtl">+ מוקד רפואי</text>
         <line class="s-field" x1="220" y1="450" x2="132" y2="450" marker-end="url(#ch27-arr2)"/>
         <text class="t-alarm" x="176" y="440" text-anchor="middle" direction="rtl">כן</text>
@@ -3434,6 +3440,7 @@ body{margin:0}
         <li>כאב: קיבוע וקירור קודם; קל 1–3, בינוני 4–6, חזק 7–10; מורפיום 0.05–0.1 מ"ג/ק"ג, קטמין 0.2 מ"ג/ק"ג; הערכה מחדש כל 5–10 דקות.</li>
       </ol>
     </div>
+    <p class="exam-link"><a href="exam.html#ch27">תרגלו את הפרק במבחן המסכם ←</a></p>
 
   </div>
 </section>
@@ -4327,6 +4334,7 @@ body{margin:0}
         <li>בעלי חיים: מנוחה מוחלטת, וריד בגפה הבריאה, בלי חסם, חיתוך, מציצה או קרח. כל עקיצת עקרב: השגחה של 6 שעות לפחות. כל נשיכה היא חשד לכלבת.</li>
       </ol>
     </div>
+    <p class="exam-link"><a href="exam.html#ch28">תרגלו את הפרק במבחן המסכם ←</a></p>
 
   </div>
 </section>
@@ -4846,6 +4854,7 @@ body{margin:0}
         <li>פינוי דחוף; מעל שבוע 24 לחדר לידה; בפציעה חמורה או החייאה ממושכת להודיע מראש לקראת ניתוח קיסרי דחוף.</li>
       </ol>
     </div>
+    <p class="exam-link"><a href="exam.html#ch29">תרגלו את הפרק במבחן המסכם ←</a></p>
   </div>
 </section>
 </main>
