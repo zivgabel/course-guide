@@ -134,6 +134,22 @@ mark { background: linear-gradient(transparent 12%, var(--hl) 12%, var(--hl) 88%
 .recap > .tag { background: var(--ink); color: var(--paper); }
 .recap ol, .recap ul { font-family: var(--f-ui); font-size: .98rem; }
 
+/* ---------- check-yourself question at the end of each topic; the answer opens on click ---------- */
+.check { --chk: #5B45C2; background: color-mix(in srgb, var(--chk) 7%, var(--card)); border: 1px solid color-mix(in srgb, var(--chk) 35%, var(--rule)); border-inline-start: 5px solid var(--chk); border-radius: 4px var(--r) var(--r) 4px; margin-block: 2rem 1rem; }
+:root[data-theme="dark"] .check { --chk: #A996FF; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .check { --chk: #A996FF; } }
+.check > .tag { background: var(--chk); color: var(--card); }
+.check .q { font-weight: 600; }
+.check details { margin-block-start: .6rem; }
+.check summary { display: inline-flex; align-items: center; gap: .4em; cursor: pointer; list-style: none; font-family: var(--f-ui); font-size: var(--t-sm); font-weight: 600; color: var(--chk); padding: .3em .9em; border-radius: 99px; box-shadow: inset 0 0 0 1.5px var(--chk); user-select: none; }
+.check summary::-webkit-details-marker { display: none; }
+.check summary::after { content: "הצג תשובה"; }
+.check details[open] summary::after { content: "הסתר תשובה"; }
+.check summary:hover, .check details[open] summary { background: var(--chk); color: var(--card); }
+.check summary:focus-visible { outline: 2px solid var(--chk); outline-offset: 2px; }
+.check .a { margin-block-start: .7rem; padding-block-start: .6rem; border-block-start: 1px dashed color-mix(in srgb, var(--chk) 45%, var(--rule)); }
+.check .a > :first-child { margin-block-start: 0; }
+
 /* ---------- steps (real sequences only) ---------- */
 ol.steps { list-style: none; padding: 0; counter-reset: s; display: grid; gap: .55rem; font-family: var(--f-ui); font-size: 1rem; line-height: 1.6; }
 ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 2rem 1fr; gap: .7rem; align-items: start; margin: 0; }
