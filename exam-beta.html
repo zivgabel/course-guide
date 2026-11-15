@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="מבחן מסכם על כל חומר קורס הפרמדיק, לפי הפרקים והנושאים של הסיכום.">
+<title>המבחן המסכם</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700;800&family=Frank+Ruhl+Libre:wght@500;700;900&display=swap">
+<style>
+
+  :root{
+    --bg:#f3f1ee; --surface:#ffffff; --surface-2:#f8f6f3;
+    --ink:#1d1a17; --muted:#6b635b; --line:#e3ddd5;
+    --accent:#b3261e; --accent-ink:#ffffff; --accent-soft:#f8e5e2;
+    --good:#1c7c54; --good-bg:#e3f3ea; --good-line:#a8d8bf;
+    --bad:#b3261e; --bad-bg:#fbe7e4; --bad-line:#efb9b2;
+    --warn:#a8650f; --warn-bg:#fbf0dc;
+    --shadow:0 1px 2px rgba(29,26,23,.05),0 14px 32px -20px rgba(29,26,23,.35);
+    --serif:"Frank Ruhl Libre",Georgia,serif;
+    --sans:"Assistant","Segoe UI",system-ui,sans-serif;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#161311; --surface:#211d1a; --surface-2:#2a2521;
+    --ink:#f1ebe4; --muted:#a89e94; --line:#3a332d;
+    --accent:#f0857c; --accent-ink:#2a0c09; --accent-soft:#3d201c;
+    --good:#5fcf98; --good-bg:#15301f; --good-line:#27573c;
+    --bad:#f0857c; --bad-bg:#3a1c19; --bad-line:#6b322c;
+    --warn:#e7ac52; --warn-bg:#35280f;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 34px -20px rgba(0,0,0,.75);
+    color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#161311; --surface:#211d1a; --surface-2:#2a2521;
+    --ink:#f1ebe4; --muted:#a89e94; --line:#3a332d;
+    --accent:#f0857c; --accent-ink:#2a0c09; --accent-soft:#3d201c;
+    --good:#5fcf98; --good-bg:#15301f; --good-line:#27573c;
+    --bad:#f0857c; --bad-bg:#3a1c19; --bad-line:#6b322c;
+    --warn:#e7ac52; --warn-bg:#35280f;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 34px -20px rgba(0,0,0,.75);
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  [hidden]{display:none!important}
+  button{font-family:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:22px 16px 48px;display:flex;flex-direction:column;gap:16px}
+
+  header{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .kicker{font-size:.72rem;font-weight:700;letter-spacing:.14em;color:var(--accent)}
+  h1{font-family:var(--serif);font-weight:900;font-size:2.1rem;margin:0;line-height:1.1}
+  .sub{color:var(--muted);font-size:.9rem}
+  .hlinks{display:flex;gap:8px;align-items:center}
+  .link{color:var(--muted);font-size:.85rem;font-weight:600;text-decoration:none;border:1px solid var(--line);
+    padding:6px 11px;border-radius:10px;background:transparent;cursor:pointer}
+  .link:hover{color:var(--ink);border-color:var(--muted)}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+  .pad{padding:18px}
+  .sec-title{font-size:.74rem;font-weight:800;letter-spacing:.1em;color:var(--muted);margin:0 0 10px}
+
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+  .seg button{border:none;background:transparent;color:var(--muted);font-weight:800;font-size:1rem;padding:11px;border-radius:10px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+  .seg-note{font-size:.84rem;color:var(--muted);margin:8px 2px 0}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1.5px solid var(--line);background:var(--surface);color:var(--muted);font-weight:700;font-size:.9rem;
+    padding:7px 13px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+  .chip b{font-family:var(--serif);font-variant-numeric:tabular-nums}
+  .chip[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+
+  .topics{display:flex;flex-direction:column;gap:14px}
+  .tgroup h3{display:flex;justify-content:space-between;align-items:center;margin:0 0 6px;font-size:.95rem}
+  .tgroup h3 button{border:none;background:none;color:var(--accent);font-weight:700;font-size:.8rem;cursor:pointer}
+  .tlist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .trow{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:11px;border:1px solid var(--line);
+    background:var(--surface-2);cursor:pointer;font-size:.92rem;min-width:0}
+  .trow input{accent-color:var(--accent);width:17px;height:17px;flex:0 0 auto}
+  .trow .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .trow .ct{font-family:var(--serif);color:var(--muted);font-variant-numeric:tabular-nums;font-size:.85rem}
+  .trow .acc{font-size:.72rem;font-weight:800;padding:1px 7px;border-radius:99px;font-variant-numeric:tabular-nums}
+  .acc.hi{background:var(--good-bg);color:var(--good)} .acc.mid{background:var(--warn-bg);color:var(--warn)} .acc.lo{background:var(--bad-bg);color:var(--bad)}
+
+  .opts{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+  .opts label{display:flex;gap:7px;align-items:center;font-size:.92rem;cursor:pointer}
+  .opts input{accent-color:var(--accent)}
+  select{font-family:inherit;font-size:.92rem;padding:6px 10px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+
+  .btn{border:none;border-radius:14px;font-weight:800;font-size:1.02rem;cursor:pointer;padding:13px 22px;
+    background:var(--accent);color:var(--accent-ink);transition:filter .15s,transform .08s}
+  .btn:hover{filter:brightness(1.06)} .btn:active{transform:translateY(1px)}
+  .btn:disabled{opacity:.45;cursor:default;filter:none}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn.block{width:100%}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+  /* quiz */
+  .qtop{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .prog{flex:1;min-width:160px;display:flex;flex-direction:column;gap:5px}
+  .prog-row{display:flex;justify-content:space-between;font-size:.84rem;color:var(--muted);font-weight:600}
+  .prog-row b{font-family:var(--serif);color:var(--ink);font-variant-numeric:tabular-nums}
+  .bar{height:7px;border-radius:99px;background:var(--line);overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .tag{font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
+  .tag.cat{color:var(--accent);border-color:var(--accent-soft);background:var(--accent-soft)}
+  .qtext{font-size:1.18rem;font-weight:700;margin:0 0 14px;line-height:1.5}
+  .answers{display:flex;flex-direction:column;gap:9px}
+  .ans{display:flex;gap:12px;align-items:flex-start;text-align:right;width:100%;border:1.5px solid var(--line);background:var(--surface);
+    color:var(--ink);border-radius:13px;padding:12px 14px;font-size:1rem;cursor:pointer;line-height:1.45}
+  .ans:hover:not(:disabled){border-color:var(--muted)}
+  .ans .k{flex:0 0 auto;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--surface-2);
+    border:1px solid var(--line);font-weight:800;font-size:.85rem;color:var(--muted)}
+  .ans.sel{border-color:var(--accent);background:var(--accent-soft)}
+  .ans.sel .k{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .ans.right{border-color:var(--good);background:var(--good-bg)}
+  .ans.right .k{background:var(--good);color:#fff;border-color:var(--good)}
+  .ans.wrong{border-color:var(--bad);background:var(--bad-bg)}
+  .ans.wrong .k{background:var(--bad);color:#fff;border-color:var(--bad)}
+  .ans:disabled{cursor:default}
+  .explain{margin-top:14px;padding:13px 15px;border-radius:13px;background:var(--surface-2);border:1px solid var(--line)}
+  .explain .v{font-weight:800;margin-bottom:4px}
+  .explain .v.ok{color:var(--good)} .explain .v.no{color:var(--bad)}
+  .src{margin-top:8px;font-size:.82rem;color:var(--muted)}
+  .qnav{display:flex;gap:10px;justify-content:space-between;margin-top:16px;flex-wrap:wrap}
+
+  /* results */
+  .score{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:24px 18px}
+  .score .big{font-family:var(--serif);font-weight:900;font-size:3.6rem;line-height:1;font-variant-numeric:tabular-nums}
+  .score .big small{font-size:1.4rem;color:var(--muted)}
+  .brk{width:100%;border-collapse:collapse;font-size:.92rem}
+  .brk td,.brk th{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right}
+  .brk th{font-size:.74rem;color:var(--muted);letter-spacing:.06em}
+  .brk .n{font-family:var(--serif);font-variant-numeric:tabular-nums;text-align:center;width:70px}
+  .review{display:flex;flex-direction:column;gap:10px}
+  .rv{border:1px solid var(--line);border-inline-start:4px solid var(--bad);border-radius:12px;padding:12px 14px;background:var(--surface)}
+  .rv .q{font-weight:700;margin-bottom:6px}
+  .rv .yours{color:var(--bad);font-size:.92rem} .rv .right{color:var(--good);font-size:.92rem;font-weight:700}
+  .rv .e{font-size:.9rem;color:var(--muted);margin-top:6px}
+  .row-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .empty{color:var(--muted);text-align:center;padding:10px}
+  .toast{font-size:.85rem;color:var(--muted);min-height:1.2em}
+
+  @media (max-width:560px){
+    h1{font-size:1.8rem}
+    .tlist{grid-template-columns:1fr}
+    .qtext{font-size:1.08rem}
+    .row-btns{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+
+  /* master exam: parts -> chapters -> topics */
+  .mastery{display:flex;flex-direction:column;gap:8px}
+  .mastery .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .mastery .big{font-family:var(--serif);font-weight:900;font-size:1.9rem;line-height:1;font-variant-numeric:tabular-nums}
+  .mastery .big small{font-size:1rem;color:var(--muted);font-weight:700}
+  .bar.thick{height:10px}
+  .bar i.good{background:var(--good)}
+  .part{display:flex;flex-direction:column;gap:6px}
+  .part h3{display:flex;justify-content:space-between;align-items:center;margin:0 0 2px;font-size:.95rem}
+  .part h3 button{border:none;background:none;color:var(--accent);font-weight:700;font-size:.8rem;cursor:pointer}
+  .chap{border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+  .chrow{display:flex;align-items:center;gap:9px;padding:8px 10px;font-size:.93rem;min-width:0}
+  .chrow input{accent-color:var(--accent);width:17px;height:17px;flex:0 0 auto;cursor:pointer}
+  .chrow .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;cursor:pointer}
+  .chrow .nm .num{font-family:var(--serif);color:var(--muted);margin-inline-end:4px}
+  .chrow .ct,.trow .ct{font-family:var(--serif);color:var(--muted);font-variant-numeric:tabular-nums;font-size:.85rem;white-space:nowrap}
+  .chrow .exp{border:none;background:none;color:var(--muted);cursor:pointer;font-size:.8rem;font-weight:700;padding:2px 4px;white-space:nowrap}
+  .chrow .exp::after{content:"▾";display:inline-block;margin-inline-start:3px;transition:transform .15s}
+  .chap.open .chrow .exp::after{transform:rotate(180deg)}
+  .chap .tlist{padding:0 10px 10px;display:none}
+  .chap.open .tlist{display:grid}
+  .chap .trow{background:var(--surface)}
+  .mbar{width:46px;height:5px;border-radius:99px;background:var(--line);overflow:hidden;flex:0 0 auto}
+  .mbar i{display:block;height:100%;background:var(--good)}
+  .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .sync input{font:inherit;font-size:.95rem;padding:8px 11px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:0;flex:1 1 180px}
+  .sync .code{font-family:ui-monospace,Consolas,monospace;letter-spacing:.04em;font-size:1.05rem}
+  @media (prefers-reduced-motion:reduce){.chrow .exp::after{transition:none}}
+</style>
+<script data-goatcounter="https://zivgabel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="kicker">סיכום קורס פרמדיק · כל החומר</div>
+      <h1>המבחן המסכם</h1>
+      <div class="sub" id="totalLine">טוען שאלות…</div>
+    </div>
+    <div class="hlinks">
+      <a class="link" href="index.html">סיכום הקורס</a>
+      <button class="link" id="themeBtn" type="button">מצב תצוגה</button>
+    </div>
+  </header>
+
+  <!-- SETUP -->
+  <section id="setup" hidden>
+    <div class="card pad mastery" style="margin-bottom:16px">
+      <p class="sec-title" style="margin:0">ההתקדמות שלכם בכל החומר</p>
+      <div class="row"><span class="big" id="mNum">0<small>/0</small></span><span class="sub" id="mNote"></span></div>
+      <div class="bar thick"><i class="good" id="mBar"></i></div>
+    </div>
+
+    <div class="card pad sync" id="syncCard" hidden style="margin-bottom:16px">
+      <p class="sec-title" style="margin:0 0 8px">סנכרון בין מכשירים</p>
+      <div id="syncOff">
+        <p class="sub" style="margin:0 0 10px">עם קוד סנכרון אחד, ההתקדמות במבחן וההערות האישיות בסיכום עוברות בין הטלפון למחשב. בלי משתמש ובלי סיסמה: מי שיודע את הקוד רואה את ההתקדמות, אז שמרו אותו לעצמכם.</p>
+        <div class="tools">
+          <button class="btn" type="button" id="syncNew" style="padding:9px 16px;font-size:.95rem">יצירת קוד חדש</button>
+          <input id="syncIn" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="יש לי קוד: הקלידו אותו כאן" dir="ltr">
+          <button class="btn ghost" type="button" id="syncJoin" style="padding:9px 16px;font-size:.95rem">חיבור</button>
+        </div>
+      </div>
+      <div id="syncOn" hidden>
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <span>הקוד שלכם: <b class="code" id="syncCode" dir="ltr"></b> <button class="link" type="button" id="syncCopy">העתקה</button></span>
+          <span class="tools"><button class="link" type="button" id="syncNow">סנכרון עכשיו</button><button class="link" type="button" id="syncOffBtn">ניתוק המכשיר</button></span>
+        </div>
+        <p class="sub" id="syncStatus" style="margin:8px 0 0"></p>
+        <p class="sub" style="margin:4px 0 0">במכשיר השני: נכנסים לעמוד הזה, לוחצים "יש לי קוד" ומקלידים את אותו קוד.</p>
+      </div>
+      <div class="toast" id="syncMsg"></div>
+    </div>
+
+    <div class="card pad" style="display:flex;flex-direction:column;gap:18px">
+      <div>
+        <div class="seg" role="group" aria-label="מצב">
+          <button type="button" id="mPractice" aria-pressed="true">תרגול</button>
+          <button type="button" id="mExam" aria-pressed="false">מבחן</button>
+        </div>
+        <p class="seg-note" id="modeNote"></p>
+      </div>
+
+      <div>
+        <p class="sec-title">מקורות</p>
+        <div class="chips" id="cats"></div>
+      </div>
+
+      <div>
+        <p class="sec-title">רמת קושי</p>
+        <div class="chips" id="diffs"></div>
+      </div>
+
+      <div>
+        <p class="sec-title" style="display:flex;justify-content:space-between;align-items:center">פרקים ונושאים
+          <span class="tools"><button class="link" type="button" id="allOn">הכל</button><button class="link" type="button" id="allOff">כלום</button></span></p>
+        <div class="topics" id="topics"></div>
+      </div>
+
+      <div class="opts">
+        <label><input type="radio" name="pool" value="todo" checked> רק מה שעוד לא עניתי נכון</label>
+        <label><input type="radio" name="pool" value="all"> כל השאלות</label>
+        <label><input type="radio" name="pool" value="unseen"> רק שלא ראיתי</label>
+        <label><input type="radio" name="pool" value="wrong"> רק שטעיתי בהן</label>
+        <label id="lenWrap" hidden>אורך המבחן
+          <select id="examLen"><option>20</option><option selected>50</option><option>100</option><option value="0">הכל</option></select>
+        </label>
+      </div>
+
+      <button class="btn block" id="startBtn" type="button">התחל</button>
+      <div class="toast" id="setupNote"></div>
+    </div>
+    <p class="sub" style="text-align:center;margin-top:10px">
+      ההתקדמות נשמרת בדפדפן הזה בלבד. <button class="link" id="resetBtn" type="button" style="margin-inline-start:6px">איפוס היסטוריה</button>
+    </p>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" hidden>
+    <div class="card pad">
+      <div class="qtop" style="margin-bottom:14px">
+        <div class="prog">
+          <div class="prog-row"><span id="progLabel">שאלה</span><b id="progNum">1/20</b></div>
+          <div class="bar"><i id="progBar"></i></div>
+        </div>
+        <div class="hlinks">
+          <button class="link" id="homeBtn" type="button">→ דף ראשי</button>
+          <button class="link" id="quitBtn" type="button">סיום וסיכום</button>
+        </div>
+      </div>
+      <div class="meta" id="qmeta"></div>
+      <p class="qtext" id="qtext"></p>
+      <div class="answers" id="answers"></div>
+      <div class="explain" id="explain" hidden></div>
+      <div class="qnav">
+        <button class="btn ghost" id="prevBtn" type="button">→ הקודמת</button>
+        <button class="btn" id="nextBtn" type="button">הבאה ←</button>
+      </div>
+    </div>
+    <p class="sub" style="text-align:center;margin-top:10px">מקשים: 1–4 לבחירה · Enter להמשך</p>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" hidden></section>
+</div>
+
+<script src="sync.js"></script>
+<script>
+const CAT = { guide:"סיכום הקורס", presentations:"מצגות", drugs:"תרופות", protocols:"פרוטוקולים" };
+const CAT_ORDER = ["guide","presentations","drugs","protocols"];
+const DIFF = { easy:"קלה", medium:"בינונית", hard:"קשה" };
+const DIFF_ORDER = ["easy","medium","hard"];
+const KEYS = ["א","ב","ג","ד"];
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let Q = [], PARTS = [], byTopic = {}, topicName = {}, topicChap = {}, chapOf = {};
+let mode = "practice";
+let catsOn = new Set(CAT_ORDER), diffOn = new Set(DIFF_ORDER), topicsOn = new Set(), openChaps = new Set();
+let run = null; // {items:[q], answers:[idx|null], i, mode, revealed:Set}
+
+function track(name){ try{ if(window.goatcounter && window.goatcounter.count) window.goatcounter.count({path:name, title:name, event:true}); }catch(e){} }
+
+// ---- history (per-viewer, best effort): id -> [seen, right, lastOk] ----
+const HK = "cg_exam_hist";
+let hist = {};
+try { hist = JSON.parse(localStorage.getItem(HK) || "{}") || {}; } catch(e) { hist = {}; }
+const saveHist = () => { try { localStorage.setItem(HK, JSON.stringify(hist)); } catch(e) {} if(window.CGSync) CGSync.schedule(); };
+function record(q, ok){
+  const h = hist[q.id] || [0,0,0,0];
+  h[0]++; if(ok) h[1]++; h[2] = ok ? 1 : 0; h[3] = Date.now();
+  hist[q.id] = h;
+}
+const done = q => hist[q.id] && hist[q.id][2];
+
+function srcLabel(q){
+  if(q.c === "guide") return "סיכום הקורס · פרק " + chapOf[topicChap[q.k]].n + ": " + chapOf[topicChap[q.k]].title;
+  if(q.c === "protocols") return "פרוטוקול איחוד הצלה 2023 · עמ' " + q.p;
+  return q.f.replace(/\.pdf$/i,"").replace(/^\d+\s*-\s*/,"").replace(/_+/g," ").trim() + " · עמ' " + q.p;
+}
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function pctTag(qs){
+  const seen = qs.filter(q=>hist[q.id]);
+  if(!seen.length) return "";
+  const pct = Math.round(100*seen.filter(done).length/seen.length);
+  return '<span class="acc '+(pct>=80?"hi":pct>=60?"mid":"lo")+'" title="אחוז הצלחה אחרון ב-'+seen.length+' שאלות שראיתם">'+pct+'%</span>';
+}
+
+// ---- setup screen ----
+function renderMastery(){
+  const n = Q.length, m = Q.filter(done).length;
+  $("mNum").innerHTML = m + '<small>/' + n + '</small>';
+  $("mBar").style.width = (n ? 100*m/n : 0) + "%";
+  const seen = Q.filter(q=>hist[q.id]).length;
+  $("mNote").textContent = m===n && n ? "עניתם נכון על כל השאלות. עברתם על כל החומר."
+    : "שאלות שעניתם עליהן נכון בפעם האחרונה · ראיתם " + seen + " · נשארו " + (n-m);
+}
+function renderSetup(){
+  $("modeNote").textContent = mode === "practice"
+    ? "משוב מיידי אחרי כל שאלה, עם הסבר ומקור."
+    : "בלי משוב עד הסוף. בסיום: ציון, פירוט לפי נושא וסקירת טעויות.";
+  $("mPractice").setAttribute("aria-pressed", mode==="practice");
+  $("mExam").setAttribute("aria-pressed", mode==="exam");
+  $("lenWrap").hidden = mode !== "exam";
+  renderMastery();
+  $("cats").innerHTML = CAT_ORDER.filter(c => Q.some(q=>q.c===c)).map(c =>
+    '<button type="button" class="chip" data-cat="'+c+'" aria-pressed="'+catsOn.has(c)+'">'+CAT[c]+' <b>'+Q.filter(q=>q.c===c).length+'</b></button>'
+  ).join("");
+  $("topics").innerHTML = PARTS.map((p,pi) =>
+    '<div class="part"><h3>'+esc(p.title)+'<span><button type="button" data-pall="'+pi+'">הכל</button> · <button type="button" data-pnone="'+pi+'">כלום</button></span></h3>'+
+    p.chapters.map(ch => {
+      const qs = ch.topics.flatMap(([k]) => byTopic[k] || []);
+      if(!qs.length) return "";
+      const m = qs.filter(done).length;
+      return '<div class="chap'+(openChaps.has(ch.id)?" open":"")+'" data-chap="'+ch.id+'"><div class="chrow">'+
+        '<input type="checkbox" data-ch="'+ch.id+'" aria-label="'+esc(ch.title)+'">'+
+        '<span class="nm" data-exp="'+ch.id+'" title="'+esc(ch.title)+'"><span class="num">'+ch.n+'.</span>'+esc(ch.title)+'</span>'+
+        '<span class="mbar" title="'+m+' מתוך '+qs.length+' נענו נכון"><i style="width:'+(100*m/qs.length)+'%"></i></span>'+
+        '<span class="ct">'+m+'/'+qs.length+'</span>'+
+        '<button type="button" class="exp" data-exp="'+ch.id+'" aria-expanded="'+openChaps.has(ch.id)+'">נושאים</button></div>'+
+        '<div class="tlist">'+ch.topics.filter(([k]) => byTopic[k]).map(([k,t]) =>
+          '<label class="trow"><input type="checkbox" data-topic="'+k+'"'+(topicsOn.has(k)?" checked":"")+'>'+
+          '<span class="nm" title="'+esc(t)+'">'+esc(t)+'</span>'+pctTag(byTopic[k])+'<span class="ct">'+byTopic[k].length+'</span></label>'
+        ).join("")+'</div></div>';
+    }).join("")+'</div>'
+  ).join("");
+  syncChapBoxes();
+  updateStart();
+}
+function syncChapBoxes(){
+  document.querySelectorAll("[data-ch]").forEach(cb => {
+    const ks = chapOf[cb.dataset.ch].topics.map(t=>t[0]).filter(k=>byTopic[k]);
+    const on = ks.filter(k=>topicsOn.has(k)).length;
+    cb.checked = on === ks.length; cb.indeterminate = on > 0 && on < ks.length;
+  });
+}
+function renderDiffs(){
+  const base = Q.filter(q => catsOn.has(q.c) && topicsOn.has(q.k));
+  $("diffs").innerHTML = DIFF_ORDER.map(d =>
+    '<button type="button" class="chip" data-diff="'+d+'" aria-pressed="'+diffOn.has(d)+'">'+DIFF[d]+' <b>'+base.filter(q=>q.d===d).length+'</b></button>'
+  ).join("");
+}
+function pool(){
+  const p = document.querySelector('input[name="pool"]:checked').value;
+  return Q.filter(q => catsOn.has(q.c) && topicsOn.has(q.k) && diffOn.has(q.d) &&
+    (p==="all" || (p==="todo" && !done(q)) || (p==="unseen" && !hist[q.id]) || (p==="wrong" && hist[q.id] && !hist[q.id][2])));
+}
+function updateStart(){
+  renderDiffs();
+  const n = pool().length;
+  let take = n;
+  if(mode==="exam"){ const L = +$("examLen").value; if(L) take = Math.min(L, n); }
+  $("startBtn").disabled = !take;
+  $("startBtn").textContent = take ? "התחל · "+take+" שאלות" : "אין שאלות בבחירה הזו";
+}
+function setTopics(keys, on){ keys.forEach(k => on ? topicsOn.add(k) : topicsOn.delete(k)); }
+const chapKeys = id => chapOf[id].topics.map(t=>t[0]).filter(k=>byTopic[k]);
+
+$("mPractice").onclick = () => { mode="practice"; renderSetup(); };
+$("mExam").onclick = () => { mode="exam"; renderSetup(); };
+$("diffs").onclick = e => {
+  const b = e.target.closest("[data-diff]"); if(!b) return;
+  const d = b.dataset.diff;
+  if(diffOn.has(d)){ if(diffOn.size > 1) diffOn.delete(d); } else diffOn.add(d);
+  updateStart();
+};
+$("cats").onclick = e => {
+  const b = e.target.closest("[data-cat]"); if(!b) return;
+  const c = b.dataset.cat;
+  if(catsOn.has(c)){ if(catsOn.size > 1) catsOn.delete(c); } else catsOn.add(c);
+  b.setAttribute("aria-pressed", catsOn.has(c)); updateStart();
+};
+$("allOn").onclick = () => { setTopics(Object.keys(byTopic), true); renderSetup(); };
+$("allOff").onclick = () => { topicsOn.clear(); renderSetup(); };
+$("topics").addEventListener("change", e => {
+  const t = e.target;
+  if(t.dataset.topic){ t.checked ? topicsOn.add(t.dataset.topic) : topicsOn.delete(t.dataset.topic); syncChapBoxes(); }
+  else if(t.dataset.ch){
+    setTopics(chapKeys(t.dataset.ch), t.checked);
+    t.closest(".chap").querySelectorAll("[data-topic]").forEach(cb => cb.checked = t.checked);
+  }
+  updateStart();
+});
+$("topics").addEventListener("click", e => {
+  const x = e.target.closest("[data-exp]");
+  if(x){
+    const id = x.dataset.exp, el = x.closest(".chap");
+    openChaps.has(id) ? openChaps.delete(id) : openChaps.add(id);
+    el.classList.toggle("open", openChaps.has(id));
+    el.querySelector(".exp").setAttribute("aria-expanded", openChaps.has(id));
+    return;
+  }
+  const a = e.target.closest("[data-pall],[data-pnone]"); if(!a) return;
+  const p = PARTS[+(a.dataset.pall || a.dataset.pnone)];
+  p.chapters.forEach(ch => setTopics(chapKeys(ch.id), !!a.dataset.pall));
+  renderSetup();
+});
+document.querySelectorAll('input[name="pool"]').forEach(r => r.onchange = updateStart);
+$("examLen").onchange = updateStart;
+$("resetBtn").onclick = () => {
+  const b = $("resetBtn");
+  if(b.dataset.armed){ hist = {}; try { localStorage.setItem("cg_exam_reset", JSON.stringify(Date.now())); } catch(e) {} saveHist(); delete b.dataset.armed; b.textContent = "איפוס היסטוריה"; renderSetup(); $("setupNote").textContent = "ההיסטוריה אופסה."; }
+  else { b.dataset.armed = "1"; b.textContent = "ללחוץ שוב לאישור"; setTimeout(()=>{ delete b.dataset.armed; b.textContent="איפוס היסטוריה"; }, 4000); }
+};
+$("startBtn").onclick = () => {
+  let items = shuffle(pool().slice());
+  if(mode==="exam"){ const L = +$("examLen").value; if(L) items = items.slice(0, L); }
+  start(items, mode);
+};
+
+function show(id){ ["setup","quiz","results"].forEach(s => $(s).hidden = s!==id); window.scrollTo({top:0}); }
+
+// ---- quiz ----
+function start(items, m){
+  run = { items, answers: items.map(()=>null), i:0, mode:m, revealed:new Set() };
+  track(m==="exam" ? "master-start-exam" : "master-start-practice");
+  show("quiz"); renderQ();
+}
+function renderQ(){
+  const q = run.items[run.i], a = run.answers[run.i], n = run.items.length;
+  const revealed = run.mode==="practice" && run.revealed.has(run.i);
+  const ch = chapOf[topicChap[q.k]];
+  $("progLabel").textContent = run.mode==="exam" ? "מבחן" : "תרגול";
+  $("progNum").textContent = (run.i+1)+"/"+n;
+  $("progBar").style.width = (100*(run.i+(revealed||a!==null?1:0))/n)+"%";
+  $("qmeta").innerHTML = '<span class="tag cat">פרק '+ch.n+'</span><span class="tag">'+esc(topicName[q.k])+'</span><span class="tag">'+DIFF[q.d]+'</span>';
+  $("qtext").textContent = q.q;
+  $("answers").innerHTML = q.o.map((o,k) => {
+    let cls = "ans";
+    if(revealed){ if(k===q.a) cls+=" right"; else if(k===a) cls+=" wrong"; }
+    else if(k===a) cls+=" sel";
+    return '<button type="button" class="'+cls+'" data-k="'+k+'"'+(revealed?" disabled":"")+'><span class="k">'+KEYS[k]+'</span><span>'+esc(o)+'</span></button>';
+  }).join("");
+  const ex = $("explain");
+  if(revealed){
+    const ok = a===q.a;
+    ex.innerHTML = '<div class="v '+(ok?"ok":"no")+'">'+(ok?"נכון":"לא נכון · התשובה הנכונה: "+KEYS[q.a])+'</div><div>'+esc(q.e)+'</div>'+
+      '<div class="src">מקור: '+esc(srcLabel(q))+' · <a href="'+ch.page+'.html#'+ch.id+'" target="_blank" rel="noopener">לפרק בסיכום</a></div>';
+    ex.hidden = false;
+  } else ex.hidden = true;
+  $("prevBtn").hidden = run.mode==="practice" || run.i===0;
+  const last = run.i===n-1;
+  if(run.mode==="practice"){
+    $("nextBtn").textContent = revealed ? (last ? "סיכום" : "הבאה ←") : "בדיקה";
+    $("nextBtn").disabled = !revealed && a===null;
+  } else {
+    $("nextBtn").textContent = last ? "הגשת המבחן" : "הבאה ←";
+    $("nextBtn").disabled = false;
+  }
+}
+function choose(k){
+  if(!run) return;
+  if(run.mode==="practice" && run.revealed.has(run.i)) return;
+  run.answers[run.i] = k;
+  if(run.mode==="practice"){ reveal(); } else renderQ();
+}
+function reveal(){
+  const q = run.items[run.i];
+  run.revealed.add(run.i);
+  record(q, run.answers[run.i]===q.a); saveHist();
+  renderQ();
+}
+function next(){
+  const n = run.items.length;
+  if(run.mode==="practice" && !run.revealed.has(run.i)){ if(run.answers[run.i]!==null) reveal(); return; }
+  if(run.i<n-1){ run.i++; renderQ(); } else finish();
+}
+$("answers").onclick = e => { const b = e.target.closest("[data-k]"); if(b) choose(+b.dataset.k); };
+$("nextBtn").onclick = next;
+$("prevBtn").onclick = () => { if(run.i>0){ run.i--; renderQ(); } };
+$("quitBtn").onclick = () => finish(true);
+$("homeBtn").onclick = () => {
+  const b = $("homeBtn");
+  const unsaved = run && run.mode==="exam" && run.answers.some(a=>a!==null);
+  if(unsaved && !b.dataset.armed){
+    b.dataset.armed = "1"; b.textContent = "ללחוץ שוב · המבחן לא יישמר";
+    setTimeout(()=>{ delete b.dataset.armed; b.textContent = "→ דף ראשי"; }, 4000);
+    return;
+  }
+  delete b.dataset.armed; b.textContent = "→ דף ראשי";
+  run = null; show("setup"); renderSetup();
+};
+document.addEventListener("keydown", e => {
+  if($("quiz").hidden || e.target.tagName==="SELECT") return;
+  if(["1","2","3","4"].includes(e.key)){ choose(+e.key-1); e.preventDefault(); }
+  else if(e.key==="Enter"){ if(!$("nextBtn").disabled) next(); e.preventDefault(); }
+});
+
+// ---- results ----
+function finish(early){
+  let items = run.items, answers = run.answers;
+  if(run.mode==="exam"){
+    items.forEach((q,k) => { if(answers[k]!==null) record(q, answers[k]===q.a); });
+    saveHist();
+  } else {
+    const idx = [...run.revealed].sort((x,y)=>x-y);
+    items = idx.map(k=>run.items[k]); answers = idx.map(k=>run.answers[k]);
+  }
+  if(run.mode==="exam" && early){
+    const idx = answers.map((a,k)=>a===null?-1:k).filter(k=>k>=0);
+    items = idx.map(k=>run.items[k]); answers = idx.map(k=>run.answers[k]);
+  }
+  const total = items.length, right = items.filter((q,k)=>answers[k]===q.a).length;
+  track(run.mode==="exam" ? "master-finish-exam" : "master-finish-practice");
+  const pct = total ? Math.round(100*right/total) : 0;
+  const color = pct>=85 ? "var(--good)" : pct>=70 ? "var(--warn)" : "var(--bad)";
+  const topics = {};
+  items.forEach((q,k) => { const t = topics[q.k] || (topics[q.k]=[0,0]); t[0]++; if(answers[k]===q.a) t[1]++; });
+  const rows = Object.entries(topics).sort((a,b)=> a[1][1]/a[1][0] - b[1][1]/b[1][0]).map(([k,[n,r]]) => {
+    const p = Math.round(100*r/n);
+    return '<tr><td>'+esc(topicName[k])+'<div class="sub" style="font-size:.78rem">פרק '+chapOf[topicChap[k]].n+': '+esc(chapOf[topicChap[k]].title)+'</div></td><td class="n">'+r+'/'+n+'</td><td class="n"><span class="acc '+(p>=80?"hi":p>=60?"mid":"lo")+'" style="padding:2px 8px;border-radius:99px;font-weight:800">'+p+'%</span></td></tr>';
+  }).join("");
+  const wrong = items.map((q,k)=>[q,answers[k]]).filter(([q,a])=>a!==q.a);
+  const rv = wrong.map(([q,a]) =>
+    '<div class="rv"><div class="q">'+esc(q.q)+'</div>'+
+    (a===null ? '<div class="yours">לא נענתה</div>' : '<div class="yours">עניתם: '+esc(q.o[a])+'</div>')+
+    '<div class="right">נכון: '+esc(q.o[q.a])+'</div><div class="e">'+esc(q.e)+'</div><div class="src">מקור: '+esc(srcLabel(q))+'</div></div>').join("");
+  const m = Q.filter(done).length;
+  $("results").innerHTML =
+    '<div class="card score"><span class="sec-title" style="margin:0">'+(run.mode==="exam"?"ציון המבחן":"סיכום תרגול")+'</span>'+
+      '<span class="big" style="color:'+color+'">'+pct+'<small>%</small></span>'+
+      '<span class="sub">'+right+' נכונות מתוך '+total+' · בכל החומר: '+m+'/'+Q.length+' נענו נכון</span></div>'+
+    (rows ? '<div class="card pad" style="margin-top:14px"><p class="sec-title">לפי נושא (מהחלש לחזק)</p><div style="overflow-x:auto"><table class="brk"><thead><tr><th>נושא</th><th class="n">נכון</th><th class="n">%</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>' : '')+
+    '<div class="row-btns" style="margin-top:14px">'+
+      '<button class="btn" id="retryWrong" type="button"'+(wrong.length?'':' disabled')+'>תרגול הטעויות ('+wrong.length+')</button>'+
+      '<button class="btn ghost" id="backSetup" type="button">חזרה להגדרות</button></div>'+
+    (wrong.length ? '<p class="sec-title" style="margin-top:18px">סקירת טעויות</p><div class="review">'+rv+'</div>' : '<p class="empty" style="margin-top:14px">'+(total?"אין טעויות. כל הכבוד!":"לא נענו שאלות.")+'</p>');
+  show("results");
+  $("retryWrong").onclick = () => start(shuffle(wrong.map(([q])=>q)), "practice");
+  $("backSetup").onclick = () => { show("setup"); renderSetup(); };
+  run = null;
+}
+
+// ---- sync between devices (only when sync.js is loaded) ----
+function renderSync(st){
+  if(!window.CGSync) return;
+  $("syncCard").hidden = false;
+  const c = CGSync.code();
+  $("syncOff").hidden = !!c; $("syncOn").hidden = !c;
+  if(!c) return;
+  $("syncCode").textContent = c;
+  const at = CGSync.lastAt();
+  $("syncStatus").textContent = st==="busy" ? "מסנכרן…" : st==="error" ? "הסנכרון נכשל. בדקו חיבור לאינטרנט ונסו שוב."
+    : at ? "סונכרן לאחרונה: " + new Date(at).toLocaleString("he-IL",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}) : "";
+}
+if(window.CGSync){
+  window.addEventListener("cgsync", e => {
+    const d = e.detail || {};
+    if(d.changed){
+      try { hist = JSON.parse(localStorage.getItem(HK) || "{}") || {}; } catch(err) {}
+      if(!$("setup").hidden) renderSetup();
+    }
+    renderSync(d.status);
+  });
+  $("syncNew").onclick = () => { CGSync.setCode(CGSync.newCode()); renderSync("busy"); };
+  $("syncJoin").onclick = () => {
+    const v = $("syncIn").value.trim().toLowerCase();
+    if(v.length < 10){ $("syncMsg").textContent = "הקוד קצר מדי. העתיקו אותו בדיוק מהמכשיר השני."; return; }
+    $("syncMsg").textContent = ""; $("syncIn").value = "";
+    CGSync.setCode(v); renderSync("busy");
+  };
+  $("syncNow").onclick = () => CGSync.sync();
+  $("syncCopy").onclick = () => { try { navigator.clipboard.writeText(CGSync.code()); $("syncMsg").textContent = "הקוד הועתק."; } catch(e) {} };
+  $("syncOffBtn").onclick = () => {
+    const b = $("syncOffBtn");
+    if(!b.dataset.armed){ b.dataset.armed = "1"; b.textContent = "ללחוץ שוב לאישור"; setTimeout(()=>{ delete b.dataset.armed; b.textContent = "ניתוק המכשיר"; }, 4000); return; }
+    CGSync.clear(); $("syncMsg").textContent = "המכשיר נותק. ההתקדמות נשארת כאן, אבל לא תסונכרן."; renderSync();
+  };
+  renderSync();
+}
+
+// ---- theme ----
+try { const t = localStorage.getItem("kx_theme"); if(t) document.documentElement.setAttribute("data-theme", t); } catch(e) {}
+$("themeBtn").onclick = () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const dark = cur ? cur==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  const nx = dark ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", nx);
+  try { localStorage.setItem("kx_theme", nx); } catch(e) {}
+};
+
+// ---- load ----
+fetch("exam.json", {cache:"no-cache"}).then(r => r.json()).then(data => {
+  PARTS = data.parts; Q = data.q;
+  PARTS.forEach(p => p.chapters.forEach(ch => { chapOf[ch.id] = ch; ch.topics.forEach(([k,t]) => { topicName[k] = t; topicChap[k] = ch.id; }); }));
+  Q.forEach(q => { (byTopic[q.k] = byTopic[q.k] || []).push(q); topicsOn.add(q.k); });
+  // exam.html#ch17 opens with only that chapter selected
+  const h = location.hash.slice(1);
+  if(chapOf[h]){ topicsOn.clear(); setTopics(chapKeys(h), true); openChaps.add(h); }
+  const c = CAT_ORDER.map(k => [k, Q.filter(q=>q.c===k).length]).filter(x=>x[1]);
+  $("totalLine").textContent = Q.length + " שאלות על 43 הפרקים · " + c.map(([k,n]) => CAT[k]+" "+n).join(" · ");
+  show("setup"); renderSetup();
+}).catch(() => { $("totalLine").textContent = "לא ניתן לטעון את השאלות. רעננו את הדף."; });
+</script>
+</body>
+</html>

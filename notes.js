@@ -9,8 +9,11 @@
 
   function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
   function store() {
-    try { localStorage.setItem(KEY, JSON.stringify(notes)); return true; }
+    try { localStorage.setItem(KEY, JSON.stringify(notes)); if (window.CGSync) CGSync.schedule(); return true; }
     catch (e) { toast('לא הצלחתי לשמור – ייתכן שהדפדפן חוסם אחסון מקומי'); return false; }
+  }
+  function tomb(id) {  // remember deletions so a sync doesn't bring the note back from another device
+    try { var d = JSON.parse(localStorage.getItem('cg-notes-del-v1')) || {}; d[id] = Date.now(); localStorage.setItem('cg-notes-del-v1', JSON.stringify(d)); } catch (e) {}
   }
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   function btn(txt, cls, fn) { var b = el('button', cls, txt); b.type = 'button'; b.addEventListener('click', fn); return b; }
@@ -170,7 +173,7 @@
   var popT = el('p', 'txt'), popM = el('div', 'meta'), popRow = el('div', 'un-row'), popN = null;
   var delB = btn('מחיקה', 'del', function () {
     if (delB.getAttribute('data-sure') !== '1') { delB.setAttribute('data-sure', '1'); delB.textContent = 'למחוק?'; return; }
-    unwrap(popN.id); notes = notes.filter(function (x) { return x !== popN; }); store(); hidePop(); refresh(); toast('ההערה נמחקה');
+    unwrap(popN.id); notes = notes.filter(function (x) { return x !== popN; }); tomb(popN.id); store(); hidePop(); refresh(); toast('ההערה נמחקה');
   });
   popRow.appendChild(btn('עריכה', '', function () { openEditor(popN); }));
   popRow.appendChild(delB);
@@ -278,6 +281,13 @@
   // initial paint
   notes.forEach(function (n) { if (n.page === page) n.orphan = !paint(n); });
   refresh();
+  window.addEventListener('cgsync', function (e) {  // another device's notes were merged in: repaint from storage
+    if (!e.detail || !e.detail.changed) return;
+    notes.forEach(function (n) { unwrap(n.id); });
+    notes = load();
+    notes.forEach(function (n) { if (n.page === page) n.orphan = !paint(n); });
+    refresh();
+  });
   var m = /^#note-(.+)$/.exec(location.hash);
   if (m) setTimeout(function () { jump(decodeURIComponent(m[1])); }, 300);
 })();

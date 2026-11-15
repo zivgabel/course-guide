@@ -177,7 +177,9 @@
   .chap .trow{background:var(--surface)}
   .mbar{width:46px;height:5px;border-radius:99px;background:var(--line);overflow:hidden;flex:0 0 auto}
   .mbar i{display:block;height:100%;background:var(--good)}
-  .tools{display:flex;gap:8px;flex-wrap:wrap}
+  .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .sync input{font:inherit;font-size:.95rem;padding:8px 11px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:0;flex:1 1 180px}
+  .sync .code{font-family:ui-monospace,Consolas,monospace;letter-spacing:.04em;font-size:1.05rem}
   @media (prefers-reduced-motion:reduce){.chrow .exp::after{transition:none}}
 </style>
 <script data-goatcounter="https://zivgabel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -202,6 +204,27 @@
       <p class="sec-title" style="margin:0">ההתקדמות שלכם בכל החומר</p>
       <div class="row"><span class="big" id="mNum">0<small>/0</small></span><span class="sub" id="mNote"></span></div>
       <div class="bar thick"><i class="good" id="mBar"></i></div>
+    </div>
+
+    <div class="card pad sync" id="syncCard" hidden style="margin-bottom:16px">
+      <p class="sec-title" style="margin:0 0 8px">סנכרון בין מכשירים</p>
+      <div id="syncOff">
+        <p class="sub" style="margin:0 0 10px">עם קוד סנכרון אחד, ההתקדמות במבחן וההערות האישיות בסיכום עוברות בין הטלפון למחשב. בלי משתמש ובלי סיסמה: מי שיודע את הקוד רואה את ההתקדמות, אז שמרו אותו לעצמכם.</p>
+        <div class="tools">
+          <button class="btn" type="button" id="syncNew" style="padding:9px 16px;font-size:.95rem">יצירת קוד חדש</button>
+          <input id="syncIn" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="יש לי קוד: הקלידו אותו כאן" dir="ltr">
+          <button class="btn ghost" type="button" id="syncJoin" style="padding:9px 16px;font-size:.95rem">חיבור</button>
+        </div>
+      </div>
+      <div id="syncOn" hidden>
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <span>הקוד שלכם: <b class="code" id="syncCode" dir="ltr"></b> <button class="link" type="button" id="syncCopy">העתקה</button></span>
+          <span class="tools"><button class="link" type="button" id="syncNow">סנכרון עכשיו</button><button class="link" type="button" id="syncOffBtn">ניתוק המכשיר</button></span>
+        </div>
+        <p class="sub" id="syncStatus" style="margin:8px 0 0"></p>
+        <p class="sub" style="margin:4px 0 0">במכשיר השני: נכנסים לעמוד הזה, לוחצים "יש לי קוד" ומקלידים את אותו קוד.</p>
+      </div>
+      <div class="toast" id="syncMsg"></div>
     </div>
 
     <div class="card pad" style="display:flex;flex-direction:column;gap:18px">
@@ -296,10 +319,10 @@ function track(name){ try{ if(window.goatcounter && window.goatcounter.count) wi
 const HK = "cg_exam_hist";
 let hist = {};
 try { hist = JSON.parse(localStorage.getItem(HK) || "{}") || {}; } catch(e) { hist = {}; }
-const saveHist = () => { try { localStorage.setItem(HK, JSON.stringify(hist)); } catch(e) {} };
+const saveHist = () => { try { localStorage.setItem(HK, JSON.stringify(hist)); } catch(e) {} if(window.CGSync) CGSync.schedule(); };
 function record(q, ok){
-  const h = hist[q.id] || [0,0,0];
-  h[0]++; if(ok) h[1]++; h[2] = ok ? 1 : 0;
+  const h = hist[q.id] || [0,0,0,0];
+  h[0]++; if(ok) h[1]++; h[2] = ok ? 1 : 0; h[3] = Date.now();
   hist[q.id] = h;
 }
 const done = q => hist[q.id] && hist[q.id][2];
@@ -430,7 +453,7 @@ document.querySelectorAll('input[name="pool"]').forEach(r => r.onchange = update
 $("examLen").onchange = updateStart;
 $("resetBtn").onclick = () => {
   const b = $("resetBtn");
-  if(b.dataset.armed){ hist = {}; saveHist(); delete b.dataset.armed; b.textContent = "איפוס היסטוריה"; renderSetup(); $("setupNote").textContent = "ההיסטוריה אופסה."; }
+  if(b.dataset.armed){ hist = {}; try { localStorage.setItem("cg_exam_reset", JSON.stringify(Date.now())); } catch(e) {} saveHist(); delete b.dataset.armed; b.textContent = "איפוס היסטוריה"; renderSetup(); $("setupNote").textContent = "ההיסטוריה אופסה."; }
   else { b.dataset.armed = "1"; b.textContent = "ללחוץ שוב לאישור"; setTimeout(()=>{ delete b.dataset.armed; b.textContent="איפוס היסטוריה"; }, 4000); }
 };
 $("startBtn").onclick = () => {
@@ -560,6 +583,44 @@ function finish(early){
   $("retryWrong").onclick = () => start(shuffle(wrong.map(([q])=>q)), "practice");
   $("backSetup").onclick = () => { show("setup"); renderSetup(); };
   run = null;
+}
+
+// ---- sync between devices (only when sync.js is loaded) ----
+function renderSync(st){
+  if(!window.CGSync) return;
+  $("syncCard").hidden = false;
+  const c = CGSync.code();
+  $("syncOff").hidden = !!c; $("syncOn").hidden = !c;
+  if(!c) return;
+  $("syncCode").textContent = c;
+  const at = CGSync.lastAt();
+  $("syncStatus").textContent = st==="busy" ? "מסנכרן…" : st==="error" ? "הסנכרון נכשל. בדקו חיבור לאינטרנט ונסו שוב."
+    : at ? "סונכרן לאחרונה: " + new Date(at).toLocaleString("he-IL",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}) : "";
+}
+if(window.CGSync){
+  window.addEventListener("cgsync", e => {
+    const d = e.detail || {};
+    if(d.changed){
+      try { hist = JSON.parse(localStorage.getItem(HK) || "{}") || {}; } catch(err) {}
+      if(!$("setup").hidden) renderSetup();
+    }
+    renderSync(d.status);
+  });
+  $("syncNew").onclick = () => { CGSync.setCode(CGSync.newCode()); renderSync("busy"); };
+  $("syncJoin").onclick = () => {
+    const v = $("syncIn").value.trim().toLowerCase();
+    if(v.length < 10){ $("syncMsg").textContent = "הקוד קצר מדי. העתיקו אותו בדיוק מהמכשיר השני."; return; }
+    $("syncMsg").textContent = ""; $("syncIn").value = "";
+    CGSync.setCode(v); renderSync("busy");
+  };
+  $("syncNow").onclick = () => CGSync.sync();
+  $("syncCopy").onclick = () => { try { navigator.clipboard.writeText(CGSync.code()); $("syncMsg").textContent = "הקוד הועתק."; } catch(e) {} };
+  $("syncOffBtn").onclick = () => {
+    const b = $("syncOffBtn");
+    if(!b.dataset.armed){ b.dataset.armed = "1"; b.textContent = "ללחוץ שוב לאישור"; setTimeout(()=>{ delete b.dataset.armed; b.textContent = "ניתוק המכשיר"; }, 4000); return; }
+    CGSync.clear(); $("syncMsg").textContent = "המכשיר נותק. ההתקדמות נשארת כאן, אבל לא תסונכרן."; renderSync();
+  };
+  renderSync();
 }
 
 // ---- theme ----
