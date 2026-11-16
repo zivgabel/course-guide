@@ -1,0 +1,51 @@
+/* Drug cards: names in the text are tappable; the card is a bottom sheet on phones and a centered window on wide screens. */
+:root { --dg: #0E8A7B; --dg-bg: color-mix(in srgb, var(--dg) 11%, transparent); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --dg: #4FC7B6; } }
+:root[data-theme="dark"] { --dg: #4FC7B6; }
+
+.drug { cursor: pointer; text-decoration: underline dotted var(--dg); text-decoration-thickness: 2px; text-underline-offset: .22em; border-radius: 3px; }
+.drug:hover { background: var(--dg-bg); }
+.drug:focus-visible { outline: 2px solid var(--dg); outline-offset: 1px; }
+
+html.dg-open { overflow: hidden; }
+.dg-back { position: fixed; inset: 0; z-index: 88; background: rgba(10,16,24,.45); display: flex; align-items: flex-end; justify-content: center; }
+.dg-back[hidden] { display: none; }
+.dg-card { background: var(--card); color: var(--ink); width: 100%; max-height: 86vh; overflow: auto; overscroll-behavior: contain;
+  border-radius: 16px 16px 0 0; box-shadow: 0 -8px 30px rgba(0,0,0,.3); padding: .9rem 16px calc(1rem + env(safe-area-inset-bottom, 0px));
+  font-family: var(--f-body); line-height: 1.55; animation: dg-up .22s ease-out; }
+@keyframes dg-up { from { transform: translateY(40px); opacity: .4; } }
+@media (min-width: 720px) {
+  .dg-back { align-items: center; padding: 24px; }
+  .dg-card { width: min(36rem, 100%); max-height: calc(100vh - 48px); border-radius: var(--r); padding: 1.1rem 1.3rem 1.2rem; animation: none; }
+}
+@media (prefers-reduced-motion: reduce) { .dg-card { animation: none; } }
+
+.dg-card header { display: flex; align-items: flex-start; gap: .6rem; position: sticky; top: -.9rem; margin: -.9rem -16px .2rem; padding: .9rem 16px .4rem; background: var(--card); z-index: 1; }
+@media (min-width: 720px) { .dg-card header { top: -1.1rem; margin: -1.1rem -1.3rem .2rem; padding: 1.1rem 1.3rem .4rem; } }
+.dg-card header .t { flex: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .6rem; }
+.dg-card h3 { margin: 0; font-family: var(--f-ui); font-size: var(--t-lg); color: var(--dg); }
+.dg-card h3::before { content: none; }
+.dg-card header .en { direction: ltr; font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-3); }
+.dg-card .x { border: 0; background: color-mix(in srgb, var(--ink) 8%, var(--card)); color: var(--ink); width: 2.2rem; height: 2.2rem; border-radius: 99px; font-size: 1.3rem; line-height: 1; cursor: pointer; flex: none; }
+.dg-card .grp { font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); margin-bottom: .6rem; }
+
+.dg-here { background: var(--dg-bg); border-inline-start: 4px solid var(--dg); border-radius: 8px; padding: .6rem .8rem; margin: .4rem 0 .8rem; font-family: var(--f-ui); }
+.dg-here .k { font-size: var(--t-xs); font-weight: 700; color: var(--dg); letter-spacing: .03em; }
+.dg-here .dg-dose { font-size: var(--t-md); font-weight: 700; }
+.dg-here .ml { font-size: var(--t-base); margin-top: .15rem; }
+.dg-here .ml b { font-size: var(--t-md); color: var(--dg); }
+.dg-here .hint { font-size: var(--t-xs); color: var(--ink-3); margin-top: .25rem; }
+.dg-here .wt { display: block; margin: .4rem 0 .2rem; font-size: var(--t-sm); }
+.dg-here input { width: 5.5em; padding: .3rem .45rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); font: inherit; font-size: var(--t-base); }
+
+.dg-card section { margin: .7rem 0 0; }
+.dg-card h4 { margin: 0 0 .2rem; font-family: var(--f-ui); font-size: var(--t-sm); color: var(--ink-2); }
+.dg-card section p, .dg-card section ul { margin: 0; font-size: var(--t-sm); }
+.dg-card section ul { padding-inline-start: 1.1rem; }
+.dg-card section li + li { margin-top: .15rem; }
+.dg-forms ul, .dg-prep ul { padding-inline-start: 0; list-style: none; }
+.dg-forms li, .dg-prep li { background: color-mix(in srgb, var(--ink) 5%, var(--card)); border-radius: 6px; padding: .3rem .55rem; }
+.dg-contra h4 { color: var(--alarm); }
+.dg-card footer { margin-top: .9rem; padding-top: .6rem; border-top: 1px solid var(--rule); font-family: var(--f-ui); font-size: var(--t-xs); color: var(--ink-3); display: grid; gap: .3rem; }
+.dg-card footer a { color: var(--dg); font-weight: 700; }
+@media print { .dg-back { display: none !important; } .drug { text-decoration: none; } }
