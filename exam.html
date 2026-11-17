@@ -125,6 +125,9 @@
   .explain{margin-top:14px;padding:13px 15px;border-radius:13px;background:var(--surface-2);border:1px solid var(--line)}
   .explain .v{font-weight:800;margin-bottom:4px}
   .explain .v.ok{color:var(--good)} .explain .v.no{color:var(--bad)}
+  .explain .fc{margin:12px 0 0}
+  .explain .fc img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--line);background:#fff}
+  .explain .fc figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
   .src{margin-top:8px;font-size:.82rem;color:var(--muted)}
   .qnav{display:flex;gap:10px;justify-content:space-between;margin-top:16px;flex-wrap:wrap}
 
@@ -490,7 +493,9 @@ function renderQ(){
   if(revealed){
     const ok = a===q.a;
     ex.innerHTML = '<div class="v '+(ok?"ok":"no")+'">'+(ok?"נכון":"לא נכון · התשובה הנכונה: "+KEYS[q.a])+'</div><div>'+esc(q.e)+'</div>'+
-      '<div class="src">מקור: '+esc(srcLabel(q))+' · <a href="'+ch.page+'.html#'+ch.id+'" target="_blank" rel="noopener">לפרק בסיכום</a></div>';
+      '<div class="src">מקור: '+esc(srcLabel(q))+' · <a href="'+ch.page+'.html#'+ch.id+'" target="_blank" rel="noopener">לפרק בסיכום</a></div>'+
+      (q.fc ? '<figure class="fc"><a href="protocols.html#p='+(q.p||q.fc)+'" target="_blank" rel="noopener"><img loading="lazy" src="protocol/p'+String(q.fc).padStart(3,"0")+'.jpg" alt="תרשים הפרוטוקול, עמוד '+q.fc+'"></a>'+
+        '<figcaption>תרשים הפרוטוקול · עמ\' '+q.fc+' · <a href="protocols.html#p='+(q.p||q.fc)+'" target="_blank" rel="noopener">פתיחה בספר הפרוטוקולים'+(q.p&&q.p!==q.fc?' (עמ\' '+q.p+')':'')+'</a></figcaption></figure>' : '');
     ex.hidden = false;
   } else ex.hidden = true;
   $("prevBtn").hidden = run.mode==="practice" || run.i===0;

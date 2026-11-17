@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ספר הפרוטוקולים</title>
+<meta name="description" content="פרוטוקולי איחוד הצלה 2023, עמוד אחר עמוד, עם תוכן עניינים.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#f3f1ee;--surface:#fff;--surface-2:#f8f6f3;--ink:#1d1a17;--muted:#6b635b;--line:#e3ddd5;--accent:#b3261e;--accent-soft:#f8e5e2;
+  --sans:"Assistant","Segoe UI",system-ui,sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161311;--surface:#211d1a;--surface-2:#2a2521;--ink:#f1ebe4;--muted:#a89e94;--line:#3a332d;--accent:#f0857c;--accent-soft:#3d201c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161311;--surface:#211d1a;--surface-2:#2a2521;--ink:#f1ebe4;--muted:#a89e94;--line:#3a332d;--accent:#f0857c;--accent-soft:#3d201c;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);display:flex;flex-direction:column;overflow:hidden}
+button,input,select{font:inherit;color:inherit}
+header{display:flex;align-items:center;gap:8px;padding:8px max(16px,env(safe-area-inset-right)) 8px max(16px,env(safe-area-inset-left));background:var(--surface);border-bottom:1px solid var(--line);flex:none}
+header h1{font-size:1.05rem;margin:0;font-weight:800;white-space:nowrap}
+header .where{flex:1;min-width:0;font-size:.9rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn{border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:6px 12px;cursor:pointer;font-weight:700;white-space:nowrap}
+.btn:hover{border-color:var(--accent)}
+a.home{color:var(--muted);text-decoration:none;font-size:.9rem;white-space:nowrap}
+main{flex:1;min-height:0;position:relative;overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y pinch-zoom}
+.sheet{max-width:900px;margin:0 auto;padding:12px 16px 90px}
+.sheet img{display:block;width:100%;height:auto;background:#fff;border-radius:6px;box-shadow:0 2px 14px rgba(0,0,0,.18)}
+:root.zoom .sheet{max-width:none;width:180%}
+footer{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 35%)}
+footer .nav{width:52px;height:46px;border-radius:14px;border:1px solid var(--line);background:var(--surface);font-size:1.3rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+footer .nav:disabled{opacity:.35}
+footer label{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.12);font-weight:700}
+footer input{width:3.6em;border:1px solid var(--line);border-radius:8px;padding:4px 6px;background:var(--surface-2);text-align:center}
+@media (max-width:520px){header h1{display:none}}
+#toc{position:fixed;inset:0;z-index:20;background:rgba(10,8,6,.45);display:flex;justify-content:flex-start}
+#toc[hidden]{display:none}
+#toc .panel{width:min(24rem,88vw);height:100%;background:var(--surface);overflow:auto;padding:14px 16px calc(16px + env(safe-area-inset-bottom));box-shadow:-6px 0 30px rgba(0,0,0,.25)}
+#toc h2{font-size:.95rem;margin:16px 0 6px;color:var(--accent)}
+#toc h2:first-of-type{margin-top:4px}
+#toc button.it{display:flex;width:100%;justify-content:space-between;gap:10px;text-align:start;border:0;background:none;padding:7px 8px;border-radius:8px;cursor:pointer}
+#toc button.it:hover,#toc button.it.on{background:var(--accent-soft)}
+#toc .pg{color:var(--muted);font-variant-numeric:tabular-nums}
+#toc .top{display:flex;justify-content:space-between;align-items:center}
+#toc .top b{font-size:1.05rem}
+</style>
+</head>
+<body>
+<header>
+  <button class="btn" id="tocBtn" type="button">תוכן עניינים</button>
+  <h1>ספר הפרוטוקולים</h1>
+  <div class="where" id="where"></div>
+  <button class="btn" id="zoomBtn" type="button" title="הגדלה">🔍</button>
+  <a class="home" href="index.html">לסיכום ←</a>
+</header>
+<main id="main"><div class="sheet"><img id="img" alt=""></div></main>
+<footer>
+  <button class="nav" id="prev" type="button" aria-label="עמוד קודם">→</button>
+  <label>עמוד <input id="num" type="number" inputmode="numeric" min="1"> / <span id="total"></span></label>
+  <button class="nav" id="next" type="button" aria-label="עמוד הבא">←</button>
+</footer>
+<div id="toc" hidden><div class="panel" role="dialog" aria-label="תוכן עניינים">
+  <div class="top"><b>תוכן עניינים</b><button class="btn" id="tocClose" type="button">סגירה</button></div>
+  <div id="tocList"></div>
+</div></div>
+<script>
+const TOC = [["פרק החולה", [["הגישה הכללית למטופל", 4], ["דום לב", 6], ["VF / Pulseless VT", 8], ["PEA / Asystole", 11], ["ROSC", 13], ["אי ביצוע החייאה או הפסקת החייאה", 16], ["חנק מגוף זר", 18], ["בצקת ריאות", 20], ["אסתמה", 23], ["COPD", 26], ["שימוש ב-CPAP", 28], ["הפסקת נשימה מאיימת", 30], ["אנאפילקסיס", 34], ["פרכוסים / לאחר פרכוס", 37], ["שינויים במצב ההכרה", 39], ["יתר לחץ דם ממאיר", 43], ["טכיקרדיה", 45], ["ברדיקרדיה", 50], ["ACS - תסמונת כלילית חריפה", 54], ["קבלת לידה", 57], ["סיבוכי לידה", 60], ["אקלמפסיה / פרהאקלמפסיה", 62]]], ["פרק תינוקות וילדים", [["הגישה הכללית לתינוקות וילדים", 66], ["דום לב", 69], ["VF / Pulseless VT", 73], ["Asystole / PEA", 74], ["החייאת יילוד", 75], ["ROSC", 78], ["הפסקת נשימה מאיימת", 82], ["סטרידור", 85], ["אסתמה", 87], ["אנאפילקסיס", 90], ["פרכוסים", 93], ["שינויים במצב ההכרה", 96], ["טכיקרדיה", 99], ["ברדיקרדיה", 104], ["טיפול בכאב", 108]]], ["פרק טראומה", [["הגישה הכללית לנפגע טראומה", 112], ["דום לב ונשימה כתוצאה מטראומה", 117], ["קיבוע נפגע טראומה", 119], ["טיפול בכאב", 121], ["פגיעות בעו\"ח ארסיים", 124], ["טיפול בכוויות ושאיפת עשן", 126], ["הרעלות כולל זרחנים אורגניים", 129], ["תסמונת מעיכה", 131], ["טיפול בהיפותרמיה", 133], ["פגיעות חום", 135]]], ["מודולת תרופות", [["תוכן עניינים מודולת תרופות", 138]]]], N = 166;
+const $ = id => document.getElementById(id);
+const src = p => "protocol/p" + String(p).padStart(3, "0") + ".jpg";
+const flat = []; TOC.forEach(([sec, items]) => items.forEach(([t, p]) => flat.push({ sec, t, p })));
+function titleOf(p) { let cur = null; for (const x of flat) if (x.p <= p) cur = x; return cur && p >= 4 ? cur.sec + " · " + cur.t : ""; }
+let page = 1;
+function show(p, push) {
+  page = Math.min(Math.max(1, p | 0), N);
+  $("img").src = src(page); $("img").alt = "עמוד " + page;
+  $("num").value = page; $("where").textContent = titleOf(page);
+  $("prev").disabled = page === 1; $("next").disabled = page === N;
+  $("main").scrollTop = 0;
+  const h = "#p=" + page; if (location.hash !== h) history[push ? "pushState" : "replaceState"](null, "", h);
+  [page + 1, page - 1].forEach(q => { if (q >= 1 && q <= N) new Image().src = src(q); });  // preload neighbours
+  try { localStorage.setItem("cg_protocol_page", page); } catch (e) {}
+  document.querySelectorAll("#toc button.it").forEach(b => b.classList.toggle("on", +b.dataset.p === (flat.filter(x => x.p <= page).pop() || {}).p));
+}
+$("total").textContent = N;
+$("prev").onclick = () => show(page - 1, true);
+$("next").onclick = () => show(page + 1, true);
+$("num").onchange = () => show(+$("num").value, true);
+$("zoomBtn").onclick = () => document.documentElement.classList.toggle("zoom");
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT") return;
+  if (e.key === "ArrowLeft") show(page + 1, true);     // RTL book: left = forward
+  if (e.key === "ArrowRight") show(page - 1, true);
+  if (e.key === "Escape") $("toc").hidden = true;
+});
+// swipe: right-to-left book, so swiping left goes forward
+let sx = null, sy = 0;
+$("main").addEventListener("touchstart", e => { if (e.touches.length === 1 && !document.documentElement.classList.contains("zoom")) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; } else sx = null; }, { passive: true });
+$("main").addEventListener("touchend", e => {
+  if (sx === null) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy) && (!window.visualViewport || visualViewport.scale <= 1.05)) show(page + (dx < 0 ? 1 : -1), true);
+});
+// table of contents
+$("tocList").innerHTML = TOC.map(([sec, items]) => "<h2>" + sec + "</h2>" + items.map(([t, p]) =>
+  '<button type="button" class="it" data-p="' + p + '"><span>' + t + '</span><span class="pg">' + p + "</span></button>").join("")).join("");
+$("tocList").onclick = e => { const b = e.target.closest("button.it"); if (b) { $("toc").hidden = true; show(+b.dataset.p, true); } };
+$("tocBtn").onclick = () => { $("toc").hidden = false; };
+$("tocClose").onclick = () => { $("toc").hidden = true; };
+$("toc").onclick = e => { if (e.target.id === "toc") $("toc").hidden = true; };
+function fromHash() { const m = /p=(\d+)/.exec(location.hash); if (m) return +m[1]; try { return +localStorage.getItem("cg_protocol_page") || 2; } catch (e) { return 2; } }
+window.addEventListener("popstate", () => show(fromHash(), false));
+show(fromHash(), false);
+</script>
+</body>
+</html>
