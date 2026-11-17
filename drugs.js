@@ -158,7 +158,7 @@
      section('שימו לב', d.notes)].forEach(function (s) { if (s) card.appendChild(s); });
     var foot = el('footer');
     if (d.src && d.src.length) foot.appendChild(el('div', '', 'מקור: ' + d.src.join(' · ')));
-    if (d.page) { var b = el('a', '', 'דף התרופה בספר הפרוטוקולים (עמ' ' + d.page + ') ←'); b.href = 'protocols.html#p=' + d.page; foot.appendChild(b); }
+    if (d.page) { var b = el('a', '', 'דף התרופה בספר הפרוטוקולים (עמ׳ ' + d.page + ') ←'); b.href = 'protocols.html#p=' + d.page; foot.appendChild(b); }
     var a = el('a', '', 'לכל כרטיסי המינון (פרק 13) ←'); a.href = 'inter.html#ch13'; foot.appendChild(a);
     card.appendChild(foot);
 
