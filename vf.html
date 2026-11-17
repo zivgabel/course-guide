@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VF עקשן עד ROSC</title>
+<meta name="description" content="תרחיש החייאה דקה אחר דקה: VF עקשן במבוגר שהופך ל-ROSC אחרי 20 דקות, לפי פרוטוקול איחוד הצלה 2023.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap">
+<script data-goatcounter="https://zivgabel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<style>
+:root{--bg:#f3f1ee;--surface:#fff;--surface-2:#f8f6f3;--ink:#1d1a17;--muted:#6b635b;--line:#e3ddd5;
+  --red:#b3261e;--red-soft:#f8e5e2;--amber:#9a5b00;--amber-soft:#fbefd9;--blue:#1f5fa8;--blue-soft:#e3edf9;
+  --green:#1d7a46;--green-soft:#e1f3e8;--violet:#6a3fa0;--violet-soft:#efe7f8;
+  --sans:"Assistant","Segoe UI",system-ui,sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161311;--surface:#211d1a;--surface-2:#2a2521;--ink:#f1ebe4;--muted:#a89e94;--line:#3a332d;
+  --red:#f0857c;--red-soft:#3d201c;--amber:#f0b45a;--amber-soft:#3a2a12;--blue:#8ab8f0;--blue-soft:#18273a;--green:#6fd29a;--green-soft:#14301f;--violet:#c5a3f0;--violet-soft:#2a1f3a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161311;--surface:#211d1a;--surface-2:#2a2521;--ink:#f1ebe4;--muted:#a89e94;--line:#3a332d;
+  --red:#f0857c;--red-soft:#3d201c;--amber:#f0b45a;--amber-soft:#3a2a12;--blue:#8ab8f0;--blue-soft:#18273a;--green:#6fd29a;--green-soft:#14301f;--violet:#c5a3f0;--violet-soft:#2a1f3a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:17px}
+a{color:var(--blue)}
+bdi{unicode-bidi:isolate}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 120px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;font-size:.92rem}
+.top a{color:var(--muted);text-decoration:none}
+h1{font-size:1.9rem;line-height:1.2;margin:8px 0 6px;font-weight:800}
+.lead{color:var(--muted);margin:0 0 18px}
+.ctl{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-bottom:1px solid var(--line)}
+.ctl label,.clock{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 12px;font-weight:700}
+.ctl input{width:4.2em;font:inherit;border:1px solid var(--line);border-radius:8px;padding:2px 6px;background:var(--surface-2);color:inherit;text-align:center}
+.btn{font:inherit;font-weight:700;border:1px solid var(--line);background:var(--surface);color:inherit;border-radius:12px;padding:6px 14px;cursor:pointer}
+.btn:hover{border-color:var(--red)}
+.clock{font-variant-numeric:tabular-nums;min-width:6.5em;justify-content:center}
+.clock[hidden]{display:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem;color:var(--muted);margin:14px 0 4px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:6px;vertical-align:-1px;background:var(--c)}
+h2{font-size:1.25rem;margin:30px 0 10px}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;inset-block:8px;inset-inline-start:39px;width:2px;background:var(--line)}
+.row{display:grid;grid-template-columns:80px 1fr;gap:0 12px;margin:0 0 12px;position:relative}
+.t{font-weight:800;font-variant-numeric:tabular-nums;text-align:center;padding-top:10px;position:relative}
+.t b{display:inline-block;background:var(--bg);padding:2px 4px;border-radius:6px;direction:ltr}
+.card{background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--edge,var(--line));border-radius:12px;padding:10px 14px}
+.row.shock .card{--edge:var(--red)}
+.row.rosc .card{--edge:var(--green)}
+.row.now .card{box-shadow:0 0 0 3px var(--amber);}
+.row.now .t b{background:var(--amber);color:#fff}
+.card h3{margin:0 0 6px;font-size:1.05rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font-size:.85rem;font-weight:800;border-radius:999px;padding:1px 10px;white-space:nowrap}
+.c-shock{background:var(--red-soft);color:var(--red)}
+.c-adr{background:var(--amber-soft);color:var(--amber)}
+.c-anti{background:var(--violet-soft);color:var(--violet)}
+.c-air{background:var(--blue-soft);color:var(--blue)}
+.c-rosc{background:var(--green-soft);color:var(--green)}
+.card ul{margin:0;padding-inline-start:20px}
+.card li{margin:2px 0}
+.prep{font-size:.92rem;color:var(--muted)}
+.prep b{color:var(--ink)}
+.note{background:var(--surface-2);border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin:12px 0;font-size:.95rem}
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.95rem}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}
+th{background:var(--surface-2)}
+.rule{display:grid;gap:6px;margin:0 0 12px}
+.rule .k{display:inline-block;min-width:6.2em;text-align:center;border-radius:999px;padding:1px 10px;margin-inline-end:8px}
+.sched td,.sched th{text-align:center;padding:6px 8px}
+.sched td:first-child{font-weight:800;font-variant-numeric:tabular-nums;direction:ltr}
+.sched td.m{color:var(--muted);font-size:.9rem}
+.sched tr.ok td{background:var(--green-soft)}
+.src{font-size:.85rem;color:var(--muted);margin-top:28px}
+@media (max-width:520px){.row{grid-template-columns:58px 1fr;gap:0 8px}.tl::before{inset-inline-start:28px}h1{font-size:1.55rem}body{font-size:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="index.html">→ לסיכום הקורס</a><a href="protocols.html#p=8">פרוטוקול VF בספר ←</a></div>
+  <h1>VF עקשן עד ROSC, דקה אחר דקה</h1>
+  <p class="lead">מבוגר בדום לב עם VF שלא מגיב לשוקים. אחרי 20 דקות יש קצב מאורגן ודופק. כל הפעולות והתרופות לפי פרוטוקול איחוד הצלה 2023, עם ההכנה במ"ל.</p>
+
+  <div class="ctl">
+    <label>משקל <input id="wt" type="number" inputmode="decimal" min="20" max="250" value="80"> ק"ג</label>
+    <button class="btn" id="run" type="button">▶ הפעלת שעון לתרגול</button>
+    <span class="clock" id="clock" hidden>00:00</span>
+  </div>
+  <div class="legend">
+    <span style="--c:var(--red)">שוק</span><span style="--c:var(--amber)">אדרנלין</span><span style="--c:var(--violet)">אנטי-אריתמי</span><span style="--c:var(--blue)">נתיב אוויר</span><span style="--c:var(--green)">ROSC</span>
+  </div>
+
+  <h2>לוח הזמנים</h2>
+  <div class="rule">
+    <div><b class="k c-shock">⚡ שוק</b> כל 2 דקות, בכל ניתוח קצב שמראה VF</div>
+    <div><b class="k c-adr">אדרנלין</b> אחרי כל שוק זוגי (2, 4, 6...). זה יוצא כל 4 דקות, בתוך הטווח של 3-5</div>
+    <div><b class="k c-anti">אמיודרון</b> 300 אחרי שוק 3, ו-150 אחרי שוק 5</div>
+  </div>
+  <table class="sched">
+    <thead><tr><th>דקה</th><th>שוק</th><th>תרופה מיד אחרי השוק</th></tr></thead>
+    <tbody>
+      <tr><td>0:00</td><td><span class="chip c-shock">1</span></td><td class="m">עיסויים · אמבו · IV/IO</td></tr>
+      <tr><td>2:00</td><td><span class="chip c-shock">2</span></td><td><span class="chip c-adr">אדרנלין 1 מ"ג</span></td></tr>
+      <tr><td>4:00</td><td><span class="chip c-shock">3</span></td><td><span class="chip c-anti">אמיודרון 300</span></td></tr>
+      <tr><td>6:00</td><td><span class="chip c-shock">4</span></td><td><span class="chip c-adr">אדרנלין 1 מ"ג</span></td></tr>
+      <tr><td>8:00</td><td><span class="chip c-shock">5</span></td><td><span class="chip c-anti">אמיודרון 150</span></td></tr>
+      <tr><td>10:00</td><td><span class="chip c-shock">6</span></td><td><span class="chip c-adr">אדרנלין 1 מ"ג</span></td></tr>
+      <tr><td>12:00</td><td><span class="chip c-shock">7</span></td><td class="m">אין תרופה · בודקים H&amp;T</td></tr>
+      <tr><td>14:00</td><td><span class="chip c-shock">8</span></td><td><span class="chip c-adr">אדרנלין 1 מ"ג</span></td></tr>
+      <tr><td>16:00</td><td><span class="chip c-shock">9</span></td><td class="m">אין תרופה</td></tr>
+      <tr><td>18:00</td><td><span class="chip c-shock">10</span></td><td><span class="chip c-adr">אדרנלין 1 מ"ג</span></td></tr>
+      <tr class="ok"><td>20:00</td><td>אין</td><td><span class="chip c-rosc">ROSC</span> קצב מאורגן ודופק</td></tr>
+    </tbody>
+  </table>
+  <p class="prep">כל ניתוח קצב הוא גם החלפת מעסה. כדאי להכין את התרופה הבאה כבר בזמן העיסויים שלפני השוק.</p>
+
+  <h2>הקצב שלא משתנה לאורך כל ההחייאה</h2>
+  <div class="note">
+    עיסויים 100-120 לדקה, עומק 5-6 ס"מ, חזרה מלאה של בית החזה · החלפת מעסה כל 2 דקות · בלי הפסקות, חוץ מניתוח קצב, שוק ושחרור נתיב אוויר · עד נתיב מתקדם 30:2, אחריו עיסויים רצופים והנשמה כל 6 שניות (10 לדקה) · ETCO2 מתחת ל-10 = לשפר עיסויים · כל 2 דקות: ניתוח קצב, ואם VF שוק 200 ג'אול ביפאזי וחזרה מיד לעיסויים.
+  </div>
+
+  <h2>שלב 1: VF עקשן (0:00 עד 20:00)</h2>
+  <ol class="tl" id="tl">
+    <li class="row shock" data-m="0"><div class="t"><b>0:00</b></div><div class="card">
+      <h3>הגעה וזיהוי דום לב <span class="chip c-shock">⚡ שוק 1</span></h3>
+      <ul>
+        <li>מחוסר הכרה, לא נושם או נשימה אגונלית, אין דופק = דום לב. להזעיק סיוע.</li>
+        <li>להשכיב על משטח קשיח (מהמיטה לרצפה) ולהתחיל עיסויים מיד (C-A-B).</li>
+        <li>לחבר מדבקות דפיברילטור בהקדם. הקצב: VF.</li>
+        <li>להכריז "מתרחקים", לוודא שאיש לא נוגע, לייבש חזה רטוב, ולתת <b>שוק 200 ג'</b>. חזרה מיידית לעיסויים, בלי בדיקת דופק.</li>
+      </ul></div></li>
+
+    <li class="row" data-m="0.5"><div class="t"><b>0:30</b></div><div class="card">
+      <h3>הנשמות וגישה לווריד <span class="chip c-air">BVM</span></h3>
+      <ul>
+        <li>אמבו עם חמצן, 30:2, בלי הנשמות מהירות או בנפח גדול. אפשר להכניס מנתב אוויר (airway).</li>
+        <li>גישה ורידית. אחרי 2 ניסיונות כושלים או 90 שניות מהניסיון הראשון: <b>IO</b>.</li>
+        <li>להכין אדרנלין ואמיודרון מראש, כדי שיהיו מוכנים כשיגיע תורם.</li>
+      </ul></div></li>
+
+    <li class="row shock" data-m="2"><div class="t"><b>2:00</b></div><div class="card">
+      <h3>ניתוח קצב: VF <span class="chip c-shock">⚡ שוק 2</span><span class="chip c-adr">אדרנלין 1</span></h3>
+      <ul>
+        <li>החלפת מעסה. <b>שוק 200 ג'</b>, ומיד חזרה לעיסויים.</li>
+        <li><b>אדרנלין 1 מ"ג IV/IO</b> בפוש, ואחריו שטיפה של 20 מ"ל סליין. מכאן כל 3-5 דקות.</li>
+        <li class="prep"><b>הכנה:</b> אמפולה 1 מ"ג/1 מ"ל = <b>1 מ"ל</b>. אם אין IV/IO אפשר דרך הטובוס: 3 מ"ג (3 מ"ל) במזרק 5 מ"ל, להשלים ב-2 מ"ל סליין.</li>
+        <li>לשקול נתיב אוויר מתקדם (אינטובציה או LMA).</li>
+      </ul></div></li>
+
+    <li class="row" data-m="3"><div class="t"><b>3:00</b></div><div class="card">
+      <h3>נתיב אוויר מתקדם <span class="chip c-air">טובוס / LMA</span></h3>
+      <ul>
+        <li>לא לעצור הנשמות ליותר מ-20-30 שניות בשביל הנתיב, ולא לעצור עיסויים בכלל.</li>
+        <li>לוודא מיקום בהאזנה ובקפנוגרפיה. לשקול וידאו-לרינגוסקופ או בוז'י אם האינטובציה קשה או שניסיון אחד נכשל.</li>
+        <li>מעכשיו עיסויים רצופים והנשמה כל 6 שניות. לעקוב אחרי ETCO2.</li>
+      </ul></div></li>
+
+    <li class="row shock" data-m="4"><div class="t"><b>4:00</b></div><div class="card">
+      <h3>ניתוח קצב: VF <span class="chip c-shock">⚡ שוק 3</span><span class="chip c-anti">אמיודרון 300</span></h3>
+      <ul>
+        <li>החלפת מעסה. <b>שוק 200 ג'</b>, ומיד עיסויים.</li>
+        <li><b>אמיודרון 300 מ"ג IV/IO</b> בפוש.</li>
+        <li class="prep"><b>הכנה:</b> 2 אמפולות של 150 מ"ג/3 מ"ל = <b>6 מ"ל</b>, במזרק 20 מ"ל, להשלים בסליין.</li>
+        <li class="prep">חלופה לאמיודרון היא לידוקאין <span class="w" data-lo="1" data-hi="1.5" data-u='מ"ג'></span> IV/IO (1-1.5 מ"ג/ק"ג). לתת אחד מהם, לא את שניהם.</li>
+        <li>להתחיל לחפש גורמים הפיכים (H&amp;T): אנמנזה מהמשפחה, תרופות, נסיבות.</li>
+      </ul></div></li>
+
+    <li class="row shock" data-m="6"><div class="t"><b>6:00</b></div><div class="card">
+      <h3>ניתוח קצב: VF <span class="chip c-shock">⚡ שוק 4</span><span class="chip c-adr">אדרנלין 2</span></h3>
+      <ul>
+        <li><b>שוק 200 ג'</b> ועיסויים. <b>אדרנלין 1 מ"ג</b> (1 מ"ל) עם שטיפה של 20 מ"ל.</li>
+        <li>H&amp;T: היפוולמיה (בולוס סליין), היפוקסיה (חמצן בריכוז גבוה), חמצת או היפרקלמיה, היפותרמיה (להסיר בגדים רטובים ולחמם), חזה אוויר בלחץ (ניקור), טמפונדה, הרעלה (באופיאטים לשקול נרקן), תסחיף.</li>
+      </ul></div></li>
+
+    <li class="row shock" data-m="8"><div class="t"><b>8:00</b></div><div class="card">
+      <h3>ניתוח קצב: VF <span class="chip c-shock">⚡ שוק 5</span><span class="chip c-anti">אמיודרון 150</span></h3>
+      <ul>
+        <li><b>שוק 200 ג'</b> ועיסויים.</li>
+        <li><b>אמיודרון 150 מ"ג IV/IO</b>, המנה השנייה (3-5 דקות אחרי הראשונה). <span class="prep"><b>הכנה:</b> אמפולה אחת = <b>3 מ"ל</b>, להשלים בסליין במזרק 20 מ"ל.</span></li>
+        <li class="prep">אם בחרתם בלידוקאין: מנות חוזרות של <span class="w" data-lo="0.5" data-hi="0.75" data-u='מ"ג'></span> (0.5-0.75 מ"ג/ק"ג) עד סך מצטבר של <span class="w" data-lo="3" data-u='מ"ג'></span> (3 מ"ג/ק"ג).</li>
+      </ul></div></li>
+
+    <li class="row shock" data-m="10"><div class="t"><b>10:00</b></div><div class="card">
+      <h3>ניתוח קצב: VF <span class="chip c-shock">⚡ שוק 6</span><span class="chip c-adr">אדרנלין 3</span></h3>
+      <ul>
+        <li><b>שוק 200 ג'</b>, עיסויים, <b>אדרנלין 1 מ"ג</b>.</li>
+        <li>כבר נתתם את כל האמיודרון (450 מ"ג). מכאן ממשיכים בשוקים ובאדרנלין, ומחפשים סיבה.</li>
+        <li>יש סימני היפרקלמיה, אי ספיקת כליות או הרעלה? <b>ביקרבונט 8.4% 1 מאק"ו/ק"ג</b> = <span class="w" data-lo="1" data-u='מ"ל'></span>, בטפטוף מהיר דרך סט נוזלים מחובר לבקבוקון. לשטוף את הקו לפני ואחרי, כי הוא לא מתערבב עם אדרנלין או קלציום.</li>
+        <li>יש Torsades (QRS מתפתל)? <b>מגנזיום 1-2 גרם IV/IO</b>: 2-4 מ"ל מ-50%, במזרק 20 מ"ל עם D5W או NS, בבולוס איטי של 5-10 דקות.</li>
+      </ul></div></li>
+
+    <li class="row shock" data-m="12"><div class="t"><b>12:00</b></div><div class="card">
+      <h3>ניתוח קצב: VF <span class="chip c-shock">⚡ שוק 7</span></h3>
+      <ul>
+        <li><b>שוק 200 ג'</b> ועיסויים. החלפת מעסה, ולוודא שהעיסויים באיכות טובה לפי ה-ETCO2.</li>
+        <li>לבדוק שוב את הטובוס: מיקום, הנשמה סימטרית, קפנוגרפיה.</li>
+      </ul></div></li>
+
+    <li class="row shock" data-m="14"><div class="t"><b>14:00</b></div><div class="card">
+      <h3>ניתוח קצב: VF <span class="chip c-shock">⚡ שוק 8</span><span class="chip c-adr">אדרנלין 4</span></h3>
+      <ul><li><b>שוק 200 ג'</b>, עיסויים, <b>אדרנלין 1 מ"ג</b>. ממשיכים לטפל בגורמים הפיכים.</li></ul></div></li>
+
+    <li class="row shock" data-m="16"><div class="t"><b>16:00</b></div><div class="card">
+      <h3>ניתוח קצב: VF <span class="chip c-shock">⚡ שוק 9</span></h3>
+      <ul><li><b>שוק 200 ג'</b> ועיסויים. להכין את הציוד ל-ROSC: מזרקים לטפטוף, שקית סליין, אק"ג 12 לידים.</li></ul></div></li>
+
+    <li class="row shock" data-m="18"><div class="t"><b>18:00</b></div><div class="card">
+      <h3>ניתוח קצב: VF <span class="chip c-shock">⚡ שוק 10</span><span class="chip c-adr">אדרנלין 5</span></h3>
+      <ul>
+        <li><b>שוק 200 ג'</b>, עיסויים, <b>אדרנלין 1 מ"ג</b>.</li>
+        <li>ב-19:30 ה-ETCO2 קופץ פתאום, בדרך כלל מעל 40 ממ"כ. זה סימן ל-ROSC. ממשיכים לעסות עד ניתוח הקצב.</li>
+      </ul></div></li>
+
+    <li class="row rosc" data-m="20"><div class="t"><b>20:00</b></div><div class="card">
+      <h3>ניתוח קצב: קצב מאורגן, יש דופק <span class="chip c-rosc">ROSC</span></h3>
+      <ul>
+        <li>בקצב מאורגן בודקים דופק: יש דופק מרכזי ויש לחץ דם. <b>עוברים לפרוטוקול ROSC</b>.</li>
+        <li>לא נותנים שוק ולא נותנים את מנת האדרנלין הבאה.</li>
+      </ul></div></li>
+  </ol>
+
+  <h2>סיכום עד ה-ROSC</h2>
+  <table>
+    <tr><th>מה</th><th>כמה</th></tr>
+    <tr><td>שוקים</td><td>10 × 200 ג'</td></tr>
+    <tr><td>אדרנלין</td><td>5 מנות × 1 מ"ג = 5 מ"ג (ב-2, 6, 10, 14 ו-18 דקות)</td></tr>
+    <tr><td>אמיודרון</td><td>300 + 150 = 450 מ"ג (ב-4 וב-8 דקות)</td></tr>
+    <tr><td>החלפות מעסה</td><td>כל 2 דקות, בכל ניתוח קצב</td></tr>
+  </table>
+
+  <h2>שלב 2: אחרי ROSC (מ-20:00)</h2>
+  <ol class="tl">
+    <li class="row rosc" data-m="20.5"><div class="t"><b>20:00</b></div><div class="card">
+      <h3>הנשמה וחמצון <span class="chip c-air">ETCO2 30-40</span></h3>
+      <ul>
+        <li>להנשים 10-12 נשימות לדקה ולא יותר, כי היפרוונטילציה מזיקה.</li>
+        <li>להוריד את החמצן עד שהסטורציה <b>94-99%</b>, ולהימנע מהיפראוקסיה.</li>
+        <li>לשמור על ETCO2 בין <b>30 ל-40</b> ממ"כ.</li>
+      </ul></div></li>
+
+    <li class="row rosc" data-m="21"><div class="t"><b>21:00</b></div><div class="card">
+      <h3>מדדים ואק"ג 12 לידים</h3>
+      <ul>
+        <li>לחץ דם, דופק, סטורציה, ETCO2. מכאן מדדים כל 5-10 דקות.</li>
+        <li><b>אק"ג 12 לידים</b>. אם יש STEMI ואין חבלת ראש: <b>הפרין 5,000 יחידות IV</b>.</li>
+        <li>להמשיך לחפש גורמים הפיכים ולטפל בהם.</li>
+      </ul></div></li>
+
+    <li class="row rosc" data-m="22"><div class="t"><b>22:00</b></div><div class="card">
+      <h3>אם הסיסטולי מתחת ל-90</h3>
+      <ul>
+        <li>קודם <b>נוזלים: בולוס של 1-2 ליטר</b> סליין או רינגר לקטט IV/IO.</li>
+        <li>אם אין שיפור, <b>אדרנלין בטפטוף 2-10 מק"ג/דקה</b>. <span class="prep"><b>הכנה:</b> אמפולה 1 מ"ג לשקית 100 מ"ל = 10 מק"ג/מ"ל. 2-10 מק"ג/דקה = 0.2-1 מ"ל/דקה = <b>4-20 טיפות/דקה</b> בסט של 20 טיפות/מ"ל.</span></li>
+        <li>או <b>דופמין 5-20 מק"ג/ק"ג/דקה</b> = <span class="w" data-lo="5" data-hi="20" data-u='מק"ג/דקה'></span>. <span class="prep"><b>הכנה:</b> 2 אמפולות (400 מ"ג) לשקית 500 מ"ל = 800 מק"ג/מ"ל, כלומר <span class="drip"></span>.</span></li>
+      </ul></div></li>
+
+    <li class="row rosc" data-m="23"><div class="t"><b>23:00</b></div><div class="card">
+      <h3>אמיודרון אחזקה <span class="chip c-anti">1 מ"ג/דקה</span></h3>
+      <ul>
+        <li>מכיוון שהמטופל קיבל אמיודרון בהחייאה, נותנים <b>אחזקה של 1 מ"ג/דקה IV/IO</b>.</li>
+        <li class="prep"><b>הכנה:</b> 2 מ"ל (100 מ"ג) לשקית סליין 100 מ"ל = 1 מ"ג/מ"ל. בסט רגיל: <b>טיפה כל 3 שניות</b>.</li>
+        <li class="prep">לא נותנים כטיפול מניעתי למי שלא קיבל אמיודרון. אם מתפתחת טכיאריטמיה: העמסה של 150 מ"ג ב-100 מ"ל במשך 10 דקות.</li>
+      </ul></div></li>
+
+    <li class="row rosc" data-m="24"><div class="t"><b>24:00</b></div><div class="card">
+      <h3>אם הוא מתנגד להנשמה: סדציה</h3>
+      <ul>
+        <li><b>דורמיקום 2.5-5 מ"ג IV</b>, כלומר 0.5-1 מ"ל מאמפולה של 5 מ"ג/מ"ל, עם מעקב לחץ דם. להיזהר אם הסיסטולי מתחת ל-90.</li>
+        <li>או <b>קטאמין 2 מ"ג/ק"ג</b> = <span class="w" data-lo="2" data-u='מ"ג'></span>, כלומר <span class="w" data-lo="0.1" data-u='מ"ל' data-raw></span> מהול: 4 מ"ל מהבקבוקון במזרק 10 מ"ל = 20 מ"ג/מ"ל.</li>
+        <li>או <b>אטומידאט 0.15-0.3 מ"ג/ק"ג</b> = <span class="w" data-lo="0.15" data-hi="0.3" data-u='מ"ג'></span> (2 מ"ג/מ"ל). הוא משרה שינה אבל לא משכך כאב, ופועל לזמן קצר.</li>
+      </ul></div></li>
+
+    <li class="row rosc" data-m="25"><div class="t"><b>25:00</b></div><div class="card">
+      <h3>פינוי</h3>
+      <ul>
+        <li>לפנות בדחיפות לבית חולים, ולהמשיך ניטור וטיפול בדרך. להעביר דיווח למלר"ד.</li>
+        <li>להיות מוכנים לדום לב חוזר: מדבקות מחוברות ודפיברילטור דלוק.</li>
+      </ul></div></li>
+  </ol>
+
+  <p class="src">מקור: פרוטוקול איחוד הצלה 2023: דום לב עמ' 6-7, VF/pVT עמ' 8-10, ROSC עמ' 13-15. הזמנים בדף הם תרחיש לדוגמה. בהחייאה אמיתית הקצב נקבע לפי הלוח של 2 דקות ולפי הזמן שלוקח לבצע.
+    <br><a href="protocols.html#p=8">VF בספר הפרוטוקולים</a> · <a href="protocols.html#p=13">ROSC בספר הפרוטוקולים</a></p>
+</div>
+<script>
+(function () {
+  var wt = document.getElementById('wt');
+  function n(x) { return String(Math.round(x * 10) / 10); }
+  function upd() {
+    var w = parseFloat(wt.value) || 0;
+    document.querySelectorAll('.w').forEach(function (s) {
+      var lo = +s.dataset.lo * w, hi = s.dataset.hi ? +s.dataset.hi * w : null;
+      if (s.hasAttribute('data-raw')) { s.innerHTML = '<bdi dir="ltr">' + n(lo) + '</bdi> ' + s.dataset.u; return; }
+      s.innerHTML = '<b><bdi dir="ltr">' + n(lo) + (hi != null ? '–' + n(hi) : '') + '</bdi> ' + s.dataset.u + '</b>';
+    });
+    // dopamine 5-20 mcg/kg/min at 800 mcg/mL, 20 drops/mL
+    var d = document.querySelector('.drip');
+    if (d) d.innerHTML = '<b><bdi dir="ltr">' + n(5 * w / 800) + '–' + n(20 * w / 800) + '</bdi> מ"ל/דקה</b> = <b><bdi dir="ltr">' +
+      Math.round(5 * w / 800 * 20) + '–' + Math.round(20 * w / 800 * 20) + '</bdi> טיפות/דקה</b> בסט של 20 טיפות/מ"ל';
+    try { localStorage.setItem('cg_vf_wt', wt.value); } catch (e) {}
+  }
+  try { var s = localStorage.getItem('cg_vf_wt'); if (s) wt.value = s; } catch (e) {}
+  wt.addEventListener('input', upd); upd();
+
+  // practice clock: highlights the current step and scrolls to it
+  var btn = document.getElementById('run'), clock = document.getElementById('clock'), t0 = 0, iv = null;
+  var rows = [].slice.call(document.querySelectorAll('.row[data-m]'));
+  function tick() {
+    var sec = (Date.now() - t0) / 1000, m = sec / 60;
+    clock.textContent = String(Math.floor(sec / 60)).padStart(2, '0') + ':' + String(Math.floor(sec % 60)).padStart(2, '0');
+    var cur = null; rows.forEach(function (r) { if (+r.dataset.m <= m) cur = r; });
+    rows.forEach(function (r) { if (r !== cur) r.classList.remove('now'); });
+    if (cur && !cur.classList.contains('now')) { cur.classList.add('now'); cur.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  }
+  btn.onclick = function () {
+    if (iv) { clearInterval(iv); iv = null; btn.textContent = '▶ הפעלת שעון לתרגול'; clock.hidden = true; rows.forEach(function (r) { r.classList.remove('now'); }); return; }
+    t0 = Date.now(); clock.hidden = false; btn.textContent = '■ עצירה'; tick(); iv = setInterval(tick, 500);
+  };
+})();
+</script>
+</body>
+</html>
